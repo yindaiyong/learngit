@@ -1,0 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/include/common.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css"> .dialog-button { padding: 5px; text-align: center; /*background-color: #E0ECFF;*/ } </style>
+<head>
+<title>查看业务取值对应的sql</title>
+<script type="text/javascript">
+var url = "${url}";
+document.location.href = '${ctx}'+url;
+</script>
+</head>
+<body>
+${json }
+</body>
+</html>

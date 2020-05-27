@@ -1,0 +1,81 @@
+--06丰利F类分红数据逻辑取值
+select
+      t.f_lastshares-t.f_occurshares basisforcalculatingdividend,
+      t.f_occurshares volofdividendforreinvestment,
+      t.f_occurshares dividendamount,
+      t.c_requestno  requestno,
+      t.c_requestno  taserialno,
+        '' charge,
+        '' agencyfee,
+        '' transferfee,
+        '' shareclass,
+        '' drawbonusunit,
+        2 dividendtype,
+        '' achievementpay,
+        '' achievementcompen,
+        '' nav,
+        '' businesscode,
+        '' dividendperunit,
+        0  defdividendmethod,
+        0  confirmedamount,
+      '' depositacct,
+      '' regioncode,
+      '' totalfrozenvol,
+      '' otherfee1,
+      '' otherfee2,
+      '' individualorinstitution,
+      '' dividendratio,
+      '' stampduty,
+      '' frozenbalance,
+      '' feecalculator,
+      '' frozensharesforreinvest,
+      '' originalappsheetno,
+      (select p.pi_currency_type 
+        from p_product_info p, p_channel_product c
+        where p.pi_channel_product_code = c.cp_channel_product_code
+         and c.cp_channel_code =t2.dci_channel_code
+         and p.pi_channel_code=c.cp_channel_code
+         and c.cp_valid_flag = '01'
+         and c.cp_check_state = '01'
+         and p.pi_valid_flag not in('00','99')
+         and p.pi_check_state = '01'
+         and c.cp_channel_product_code=t2.dci_fund_code
+         and c.cp_ta_product_code=t2.dci_product_code) currencytype,
+        '20200529' transactioncfmdate,--TRANSDATE
+        '20200529' dividentdate,--TRANSDATE
+        '20200529' xrdate,--TRANSDATE
+        '20200529' registrationdate,--TRANSDATE
+        '20200529' downloaddate,--TRANSDATE
+        t2.dci_fund_code  fundcode,
+        t2.dci_channel_code channelcode,
+        '20200528' lastdate,--LASTDATE
+        '0000' returncode,
+          t2.dci_trans_action_account    transactionaccountid,
+          t2.dci_ta_account_id    taaccountid,
+          t2.dci_distributor_code    distributorcode,
+          t2.dci_branch_code    branchcode,
+          t2.dci_in_contract     incontract
+          from ta_tsharecurrents t,d_contract_info t2
+          WHERE exists (
+          select 1 from  d_contract_info o  where exists (
+             select 1 from p_product_info p, p_channel_product c
+           where p.pi_channel_product_code = c.cp_channel_product_code
+           and p.pi_channel_code=c.cp_channel_code
+           and c.cp_channel_code = 'TTTNETB3'--CHANNELCODE
+           and c.cp_valid_flag = '01'
+           and c.cp_check_state = '01'
+           and p.pi_valid_flag not in('00','99')
+           and p.pi_check_state = '01'
+           and p.pi_product_type='0'--PRODUCTTYPE
+           and c.cp_ta_product_code = o.dci_product_code
+           and p.pi_channel_product_code = o.dci_fund_code 
+           and to_date(p.pi_pro_setup_date, 'yyyymmdd') <to_date('20200529', 'yyyyMMdd')--TRANSDATE
+             )
+      and o.dci_valid_flag = '01'
+      and o.dci_channel_code = 'TTTNETB3'--CHANNELCODE
+      and o.dci_in_contract = T.L_CONTRACTSERIALNO )
+      and t.c_businflag='74'
+      and t2.dci_in_contract=t.l_contractserialno
+          and t2.dci_channel_code = 'TTTNETB3'--CHANNELCODE
+          and t2.dci_valid_flag='01'
+          and to_char(t.d_requestdate, 'yyyyMM') = to_char(to_date('20200529','yyyyMMdd'),'yyyyMM')--TRANSDATE

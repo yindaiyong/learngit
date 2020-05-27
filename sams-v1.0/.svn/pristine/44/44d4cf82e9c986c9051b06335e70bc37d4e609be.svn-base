@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sams.custom.mapper.ProductSalePrarmsMapper">
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.ProductSalePrarms">
+    <id column="PSP_ID" jdbcType="DECIMAL" property="pspId" />
+    <result column="PSP_CHANNEL_CODE" jdbcType="VARCHAR" property="pspChannelCode" />
+    <result column="PSP_CHANNEL_PRODUCT_CODE" jdbcType="VARCHAR" property="pspChannelProductCode" />
+    <result column="PSP_INDI_MIN_BIDS_AMT" jdbcType="DECIMAL" property="pspIndiMinBidsAmt" />
+    <result column="PSP_INST_MIN_BIDS_AMT" jdbcType="DECIMAL" property="pspInstMinBidsAmt" />
+    <result column="PSP_INDI_BIDS_DIFF_AMT" jdbcType="DECIMAL" property="pspIndiBidsDiffAmt" />
+    <result column="PSP_INST_BIDS_DIFF_AMT" jdbcType="DECIMAL" property="pspInstBidsDiffAmt" />
+    <result column="PSP_INDI_MAX_BIDS_AMT" jdbcType="DECIMAL" property="pspIndiMaxBidsAmt" />
+    <result column="PSP_INST_MAX_BIDS_AMT" jdbcType="DECIMAL" property="pspInstMaxBidsAmt" />
+    <result column="PSP_INDI_MIN_APP_BIDS_AMT" jdbcType="DECIMAL" property="pspIndiMinAppBidsAmt" />
+    <result column="PSP_INST_MIN_APP_BIDS_AMT" jdbcType="DECIMAL" property="pspInstMinAppBidsAmt" />
+    <result column="PSP_INDI_APP_BIDS_DIFF_AMT" jdbcType="DECIMAL" property="pspIndiAppBidsDiffAmt" />
+    <result column="PSP_INST_APP_BIDS_DIFF_AMT" jdbcType="DECIMAL" property="pspInstAppBidsDiffAmt" />
+    <result column="PSP_INDI_MAX_APP_BIDS_AMT" jdbcType="DECIMAL" property="pspIndiMaxAppBidsAmt" />
+    <result column="PSP_INST_MAX_APP_BIDS_AMT" jdbcType="DECIMAL" property="pspInstMaxAppBidsAmt" />
+    <result column="PSP_INDI_MAX_VOL" jdbcType="DECIMAL" property="pspIndiMaxVol" />
+    <result column="PSP_INST_MAX_VOL" jdbcType="DECIMAL" property="pspInstMaxVol" />
+    <result column="PSP_PAY_TYPE" jdbcType="VARCHAR" property="pspPayType" />
+    <result column="PSP_CURRENCY_TYPE" jdbcType="VARCHAR" property="pspCurrencyType" />
+    <result column="PSP_INDI_BUY_FLAG" jdbcType="VARCHAR" property="pspIndiBuyFlag" />
+    <result column="PSP_INST_BUY_FLAG" jdbcType="VARCHAR" property="pspInstBuyFlag" />
+    <result column="PSP_CTIME" jdbcType="TIMESTAMP" property="pspCtime" />
+    <result column="PSP_UTIME" jdbcType="TIMESTAMP" property="pspUtime" />
+    <result column="PSP_CUSER" jdbcType="VARCHAR" property="pspCuser" />
+    <result column="PSP_UUSER" jdbcType="VARCHAR" property="pspUuser" />
+    <result column="PSP_VALID_FLAG" jdbcType="VARCHAR" property="pspValidFlag" />
+    <result column="PSP_CHECK_FLAG" jdbcType="VARCHAR" property="pspCheckFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    PSP_ID, PSP_CHANNEL_CODE, PSP_CHANNEL_PRODUCT_CODE, PSP_INDI_MIN_BIDS_AMT, PSP_INST_MIN_BIDS_AMT, 
+    PSP_INDI_BIDS_DIFF_AMT, PSP_INST_BIDS_DIFF_AMT, PSP_INDI_MAX_BIDS_AMT, PSP_INST_MAX_BIDS_AMT, 
+    PSP_INDI_MIN_APP_BIDS_AMT, PSP_INST_MIN_APP_BIDS_AMT, PSP_INDI_APP_BIDS_DIFF_AMT, 
+    PSP_INST_APP_BIDS_DIFF_AMT, PSP_INDI_MAX_APP_BIDS_AMT, PSP_INST_MAX_APP_BIDS_AMT, 
+    PSP_INDI_MAX_VOL, PSP_INST_MAX_VOL,  PSP_PAY_TYPE, PSP_CURRENCY_TYPE,
+    PSP_INDI_BUY_FLAG, PSP_INST_BUY_FLAG,  PSP_CTIME, PSP_UTIME,
+    PSP_CUSER, PSP_UUSER, PSP_VALID_FLAG,PSP_CHECK_FLAG
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.math.BigDecimal" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_PRODUCT_SALE_PRARMS
+    where PSP_ID = #{pspId,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectProSalePrarmsById" parameterType="java.math.BigDecimal"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from P_PRODUCT_SALE_PRARMS
+    where PSP_ID = #{ID,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal">
+    delete from P_PRODUCT_SALE_PRARMS
+    where PSP_ID = #{pspId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.ProductSalePrarms">
+    insert into P_PRODUCT_SALE_PRARMS (
+      PSP_ID, 
+      PSP_CHANNEL_CODE, 
+      PSP_CHANNEL_PRODUCT_CODE, 
+      PSP_INDI_MIN_BIDS_AMT, 
+      PSP_INST_MIN_BIDS_AMT, 
+      PSP_INDI_BIDS_DIFF_AMT, 
+      PSP_INST_BIDS_DIFF_AMT, 
+      PSP_INDI_MAX_BIDS_AMT, 
+      PSP_INST_MAX_BIDS_AMT, 
+      PSP_INDI_MIN_APP_BIDS_AMT, 
+      PSP_INST_MIN_APP_BIDS_AMT, 
+      PSP_INDI_APP_BIDS_DIFF_AMT, 
+      PSP_INST_APP_BIDS_DIFF_AMT,
+      PSP_INDI_MAX_APP_BIDS_AMT, 
+      PSP_INST_MAX_APP_BIDS_AMT, 
+      PSP_INDI_MAX_VOL, 
+      PSP_INST_MAX_VOL, 
+      PSP_PAY_TYPE, 
+      PSP_CURRENCY_TYPE,
+      PSP_INDI_BUY_FLAG, 
+      PSP_INST_BUY_FLAG, 
+      PSP_CTIME, 
+      PSP_UTIME, 
+      PSP_CUSER, 
+      PSP_UUSER,
+      PSP_VALID_FLAG,
+      PSP_CHECK_FLAG)
+    values (#{pspId,jdbcType=DECIMAL}, 
+      #{pspChannelCode,jdbcType=VARCHAR}, 
+      #{pspChannelProductCode,jdbcType=VARCHAR}, 
+      #{pspIndiMinBidsAmt,jdbcType=DECIMAL},
+      #{pspInstMinBidsAmt,jdbcType=DECIMAL}, 
+      #{pspIndiBidsDiffAmt,jdbcType=DECIMAL}, 
+      #{pspInstBidsDiffAmt,jdbcType=DECIMAL}, 
+      #{pspIndiMaxBidsAmt,jdbcType=DECIMAL}, 
+      #{pspInstMaxBidsAmt,jdbcType=DECIMAL},
+      #{pspIndiMinAppBidsAmt,jdbcType=DECIMAL}, 
+      #{pspInstMinAppBidsAmt,jdbcType=DECIMAL},
+      #{pspIndiAppBidsDiffAmt,jdbcType=DECIMAL}, 
+      #{pspInstAppBidsDiffAmt,jdbcType=DECIMAL}, 
+      #{pspIndiMaxAppBidsAmt,jdbcType=DECIMAL}, 
+      #{pspInstMaxAppBidsAmt,jdbcType=DECIMAL}, 
+      #{pspIndiMaxVol,jdbcType=DECIMAL}, 
+      #{pspInstMaxVol,jdbcType=DECIMAL}, 
+      #{pspPayType,jdbcType=DECIMAL}, 
+      #{pspCurrencyType,jdbcType=DECIMAL}, 
+      #{pspIndiBuyFlag,jdbcType=VARCHAR}, 
+      #{pspInstBuyFlag,jdbcType=VARCHAR}, 
+      #{pspCtime,jdbcType=TIMESTAMP}, 
+      #{pspUtime,jdbcType=TIMESTAMP}, 
+      #{pspCuser,jdbcType=VARCHAR}, 
+      #{pspUuser,jdbcType=VARCHAR},
+      #{pspValidFlag,jdbcType=VARCHAR}, 
+      #{pspCheckFlag,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.sams.custom.model.ProductSalePrarms">
+    insert into P_PRODUCT_SALE_PRARMS
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pspId != null">
+        PSP_ID,
+      </if>
+      <if test="pspChannelCode != null">
+        PSP_CHANNEL_CODE,
+      </if>
+      <if test="pspChannelProductCode != null">
+        PSP_CHANNEL_PRODUCT_CODE,
+      </if>
+      <if test="pspIndiMinBidsAmt != null">
+        PSP_INDI_MIN_BIDS_AMT,
+      </if>
+      <if test="pspInstMinBidsAmt != null">
+        PSP_INST_MIN_BIDS_AMT,
+      </if>
+      <if test="pspIndiBidsDiffAmt != null">
+        PSP_INDI_BIDS_DIFF_AMT,
+      </if>
+      <if test="pspInstBidsDiffAmt != null">
+        PSP_INST_BIDS_DIFF_AMT,
+      </if>
+      <if test="pspIndiMaxBidsAmt != null">
+        PSP_INDI_MAX_BIDS_AMT,
+      </if>
+      <if test="pspInstMaxBidsAmt != null">
+        PSP_INST_MAX_BIDS_AMT,
+      </if>
+      <if test="pspIndiMinAppBidsAmt != null">
+        PSP_INDI_MIN_APP_BIDS_AMT,
+      </if>
+      <if test="pspInstMinAppBidsAmt != null">
+        PSP_INST_MIN_APP_BIDS_AMT,
+      </if>
+      <if test="pspIndiAppBidsDiffAmt != null">
+        PSP_INDI_APP_BIDS_DIFF_AMT,
+      </if>
+      <if test="pspInstAppBidsDiffAmt != null">
+        PSP_INST_APP_BIDS_DIFF_AMT,
+      </if>
+      <if test="pspIndiMaxAppBidsAmt != null">
+        PSP_INDI_MAX_APP_BIDS_AMT,
+      </if>
+      <if test="pspInstMaxAppBidsAmt != null">
+        PSP_INST_MAX_APP_BIDS_AMT,
+      </if>
+      <if test="pspIndiMaxVol != null">
+        PSP_INDI_MAX_VOL,
+      </if>
+      <if test="pspInstMaxVol != null">
+        PSP_INST_MAX_VOL,
+      </if>
+      <if test="pspPayType != null">
+        PSP_PAY_TYPE,
+      </if>
+      <if test="pspIndiBuyFlag != null">
+        PSP_INDI_BUY_FLAG,
+      </if>
+      <if test="pspInstBuyFlag != null">
+        PSP_INST_BUY_FLAG,
+      </if>
+      <if test="pspCtime != null">
+        PSP_CTIME,
+      </if>
+      <if test="pspUtime != null">
+        PSP_UTIME,
+      </if>
+      <if test="pspCuser != null">
+        PSP_CUSER,
+      </if>
+      <if test="pspUuser != null">
+        PSP_UUSER,
+      </if>
+      <if test="pspValidFlag != null">
+        PSP_VALID_FLAG,
+      </if>
+      <if test="pspCheckFlag != null">
+        PSP_CHECK_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pspId != null">
+        #{pspId,jdbcType=DECIMAL},
+      </if>
+      <if test="pspChannelCode != null">
+        #{pspChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pspChannelProductCode != null">
+        #{pspChannelProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pspIndiMinBidsAmt != null">
+        #{pspIndiMinBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMinBidsAmt != null">
+        #{pspInstMinBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiBidsDiffAmt != null">
+        #{pspIndiBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstBidsDiffAmt != null">
+        #{pspInstBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxBidsAmt != null">
+        #{pspIndiMaxBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxBidsAmt != null">
+        #{pspInstMaxBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMinAppBidsAmt != null">
+        #{pspIndiMinAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMinAppBidsAmt != null">
+        #{pspInstMinAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiAppBidsDiffAmt != null">
+        #{pspIndiAppBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstAppBidsDiffAmt != null">
+        #{pspInstAppBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxAppBidsAmt != null">
+        #{pspIndiMaxAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxAppBidsAmt != null">
+        #{pspInstMaxAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxVol != null">
+        #{pspIndiMaxVol,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxVol != null">
+        #{pspInstMaxVol,jdbcType=DECIMAL},
+      </if>
+      <if test="pspPayType != null">
+        #{pspPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="pspIndiBuyFlag != null">
+        #{pspIndiBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspInstBuyFlag != null">
+        #{pspInstBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspSubChannelCode != null">
+        #{pspSubChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pspCtime != null">
+        #{pspCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pspUtime != null">
+        #{pspUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pspCuser != null">
+        #{pspCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="pspUuser != null">
+        #{pspUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="pspValidFlag != null">
+        #{pspValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspCheckFlag != null">
+        #{pspCheckFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.ProductSalePrarms">
+    update P_PRODUCT_SALE_PRARMS
+    <set>
+      <if test="pspChannelCode != null">
+        PSP_CHANNEL_CODE = #{pspChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pspChannelProductCode != null">
+        PSP_CHANNEL_PRODUCT_CODE = #{pspChannelProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pspIndiMinBidsAmt != null">
+        PSP_INDI_MIN_BIDS_AMT = #{pspIndiMinBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMinBidsAmt != null">
+        PSP_INST_MIN_BIDS_AMT = #{pspInstMinBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiBidsDiffAmt != null">
+        PSP_INDI_BIDS_DIFF_AMT = #{pspIndiBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstBidsDiffAmt != null">
+        PSP_INST_BIDS_DIFF_AMT = #{pspInstBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxBidsAmt != null">
+        PSP_INDI_MAX_BIDS_AMT = #{pspIndiMaxBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxBidsAmt != null">
+        PSP_INST_MAX_BIDS_AMT = #{pspInstMaxBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMinAppBidsAmt != null">
+        PSP_INDI_MIN_APP_BIDS_AMT = #{pspIndiMinAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMinAppBidsAmt != null">
+        PSP_INST_MIN_APP_BIDS_AMT = #{pspInstMinAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiAppBidsDiffAmt != null">
+        PSP_INDI_APP_BIDS_DIFF_AMT = #{pspIndiAppBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstAppBidsDiffAmt != null">
+        PSP_INST_APP_BIDS_DIFF_AMT = #{pspInstAppBidsDiffAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxAppBidsAmt != null">
+        PSP_INDI_MAX_APP_BIDS_AMT = #{pspIndiMaxAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxAppBidsAmt != null">
+        PSP_INST_MAX_APP_BIDS_AMT = #{pspInstMaxAppBidsAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="pspIndiMaxVol != null">
+        PSP_INDI_MAX_VOL = #{pspIndiMaxVol,jdbcType=DECIMAL},
+      </if>
+      <if test="pspInstMaxVol != null">
+        PSP_INST_MAX_VOL = #{pspInstMaxVol,jdbcType=DECIMAL},
+      </if>
+      <if test="pspPayType != null">
+        PSP_PAY_TYPE = #{pspPayType,jdbcType=VARCHAR},
+      </if>
+      <if test="pspIndiBuyFlag != null">
+        PSP_INDI_BUY_FLAG = #{pspIndiBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspInstBuyFlag != null">
+        PSP_INST_BUY_FLAG = #{pspInstBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspCtime != null">
+        PSP_CTIME = #{pspCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pspUtime != null">
+        PSP_UTIME = #{pspUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pspCuser != null">
+        PSP_CUSER = #{pspCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="pspUuser != null">
+        PSP_UUSER = #{pspUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="pspValidFlag != null">
+        PSP_VALID_FLAG = #{pspValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="pspCheckFlag != null">
+        PSP_CHECK_FLAG = #{pspCheckFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PSP_ID = #{pspId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.ProductSalePrarms">
+    update P_PRODUCT_SALE_PRARMS
+    set PSP_CHANNEL_CODE = #{pspChannelCode,jdbcType=VARCHAR},
+      PSP_CHANNEL_PRODUCT_CODE = #{pspChannelProductCode,jdbcType=VARCHAR},
+      PSP_INDI_MIN_BIDS_AMT = #{pspIndiMinBidsAmt,jdbcType=DECIMAL},
+      PSP_INST_MIN_BIDS_AMT = #{pspInstMinBidsAmt,jdbcType=DECIMAL},
+      PSP_INDI_BIDS_DIFF_AMT = #{pspIndiBidsDiffAmt,jdbcType=DECIMAL},
+      PSP_INST_BIDS_DIFF_AMT = #{pspInstBidsDiffAmt,jdbcType=DECIMAL},
+      PSP_INDI_MAX_BIDS_AMT = #{pspIndiMaxBidsAmt,jdbcType=DECIMAL},
+      PSP_INST_MAX_BIDS_AMT = #{pspInstMaxBidsAmt,jdbcType=DECIMAL},
+      PSP_INDI_MIN_APP_BIDS_AMT = #{pspIndiMinAppBidsAmt,jdbcType=DECIMAL},
+      PSP_INST_MIN_APP_BIDS_AMT = #{pspInstMinAppBidsAmt,jdbcType=DECIMAL},
+      PSP_INDI_APP_BIDS_DIFF_AMT = #{pspIndiAppBidsDiffAmt,jdbcType=DECIMAL},
+      PSP_INST_APP_BIDS_DIFF_AMT = #{pspInstAppBidsDiffAmt,jdbcType=DECIMAL},
+      PSP_INDI_MAX_APP_BIDS_AMT = #{pspIndiMaxAppBidsAmt,jdbcType=DECIMAL},
+      PSP_INST_MAX_APP_BIDS_AMT = #{pspInstMaxAppBidsAmt,jdbcType=DECIMAL},
+      PSP_INDI_MAX_VOL = #{pspIndiMaxVol,jdbcType=DECIMAL},
+      PSP_INST_MAX_VOL = #{pspInstMaxVol,jdbcType=DECIMAL},
+      PSP_PAY_TYPE = #{pspPayType,jdbcType=VARCHAR},
+      PSP_INDI_BUY_FLAG = #{pspIndiBuyFlag,jdbcType=VARCHAR},
+      PSP_INST_BUY_FLAG = #{pspInstBuyFlag,jdbcType=VARCHAR},
+      PSP_CTIME = #{pspCtime,jdbcType=TIMESTAMP},
+      PSP_UTIME = #{pspUtime,jdbcType=TIMESTAMP},
+      PSP_CUSER = #{pspCuser,jdbcType=VARCHAR},
+      PSP_UUSER = #{pspUuser,jdbcType=VARCHAR},
+      PSP_VALID_FLAG = #{pspValidFlag,jdbcType=VARCHAR},
+      PSP_CHECK_FLAG = #{pspCheckFlag,jdbcType=VARCHAR}
+    where PSP_ID = #{pspId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="queryProductParamInfo" parameterType="Map" resultMap="BaseResultMap">
+    select s.* from p_product_info p ,p_product_sale_prarms s 
+	  where p.pi_channel_code = s.psp_channel_code 
+	  and p.pi_channel_product_code = s.psp_channel_product_code
+	  and p.pi_valid_flag not in ('00','99')
+	  and p.pi_check_state = '01'
+	  and p.pi_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+	  and p.pi_channel_product_code = #{FUNDCODE,jdbcType = VARCHAR}
+	  and s.psp_currency_type = #{CURRENCYTYPE,jdbcType = VARCHAR}
+	and rownum = 1 
+  </select>
+  
+  <select id="queryCountSubChannelByCurrencyType" parameterType="Map" resultType="Integer">
+  		select count(1) from (
+			select p.pi_currency_type from p_product_info p 
+			where p.pi_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+			and  p.pi_valid_flag not in ('00','99')
+			and p.pi_check_state = '01'
+			and p.pi_channel_product_code  = #{FUNDCODE,jdbcType = VARCHAR}
+			and p.pi_currency_type = #{CURRENCYTYPE,jdbcType = VARCHAR}
+			union 
+			select s.psp_currency_type from p_product_sale_prarms s 
+			where s.psp_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+			and s.psp_channel_product_code = #{FUNDCODE,jdbcType = VARCHAR}
+			and s.psp_currency_type= #{CURRENCYTYPE,jdbcType = VARCHAR}
+			and s.psp_valid_flag = '01'
+			and s.psp_check_flag = '01' 
+		) t 
+  </select>
+  
+  <select id="findProductSalePrarmsCondition" parameterType="java.util.Map"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from  P_PRODUCT_SALE_PRARMS i             
+        where  1=1
+        <if test=" condition.pspChannelProductCode != null and condition.pspChannelProductCode != ''  ">
+                and i.PSP_CHANNEL_PRODUCT_CODE like  ('%'|| #{condition.pspChannelProductCode} ||'%')
+        </if>
+        <if test=" condition.pspChannelCode != null and condition.pspChannelCode != ''  ">
+                and i.PSP_CHANNEL_CODE = #{condition.pspChannelCode} 
+        </if>
+        <if test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by ${pageInfo.sort} ${pageInfo.order}
+        </if>
+    </select>
+    
+    <select id="queryBuyTradeChannel" parameterType="map" resultType="String">
+    	select t.c_trustagencyno from ta_ttrustcontractdetails t 
+			where t.c_fundacco = (
+				select s.as_ta_account_id from d_account_stat s 
+				where s.as_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+				and s.as_transaction_account_id = #{TRANSACTIONACCOUNTID,jdbcType = VARCHAR})
+			and t.l_serialno = #{INCONTRACT,jdbcType = VARCHAR}
+    </select>
+    
+    <select id="countProductSalePrarms" parameterType="java.util.Map"  resultType="Int">
+        select count(1)
+        from  P_PRODUCT_SALE_PRARMS i             
+        where     i. PSP_CHANNEL_CODE= #{channelCode,jdbcType = VARCHAR} 
+                and i.PSP_CHANNEL_PRODUCT_CODE = #{channelProductCode,jdbcType = VARCHAR } 
+                and i.PSP_CURRENCY_TYPE = #{currentType,jdbcType = VARCHAR } 
+    </select>
+    
+    <select id="queryFirstCurrencyType" parameterType="map" resultType="String">
+    	select t.c_moneyType moneytype from ta_taccobank t 
+			where t.c_bankacco = '[空回款账户]'
+			and t.c_bankname = '[空回款账户]'
+			and t.c_nameinbank = '[空回款账户]'
+			and t.c_bankno = '000' 
+			and exists (
+				select 1 from d_account_stat s where s.as_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+				and s.as_transaction_account_id = #{TRANSACTIONACCOUNTID,jdbcType = VARCHAR}
+				and s.as_ta_account_id = t.c_fundacco
+			)
+			and t.l_contractserialno = #{INCONTRACT,jdbcType = VARCHAR}
+    </select>
+</mapper>

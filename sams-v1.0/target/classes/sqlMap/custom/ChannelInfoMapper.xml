@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.ChannelInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.ChannelInfo" >
+    <id column="CI_ID" property="ciId" jdbcType="DECIMAL" />
+    <result column="CI_CHANNEL_CODE" property="ciChannelCode" jdbcType="VARCHAR" />
+    <result column="CI_CHANNEL_NAME" property="ciChannelName" jdbcType="VARCHAR" />
+    <result column="CI_SALE_AGENT_CODE" property="ciSaleAgentCode" jdbcType="VARCHAR" />
+    <result column="CI_BIZ_MANAGER_NAME" property="ciBizManagerName" jdbcType="VARCHAR" />
+    <result column="CI_BIZ_MANAGER_PHONE" property="ciBizManagerPhone" jdbcType="VARCHAR" />
+    <result column="CI_BIZ_MANAGER_MAIL" property="ciBizManagerMail" jdbcType="VARCHAR" />
+    <result column="CI_OPS_MANAGER_NAME" property="ciOpsManagerName" jdbcType="VARCHAR" />
+    <result column="CI_OPS_MANAGER_PHONE" property="ciOpsManagerPhone" jdbcType="VARCHAR" />
+    <result column="CI_OPS_MANAGER_MAIL" property="ciOpsManagerMail" jdbcType="VARCHAR" />
+    <result column="CI_MARKET_CODE" property="ciMarketCode" jdbcType="VARCHAR" />
+    <result column="CI_CSDC_VER" property="ciCsdcVer" jdbcType="VARCHAR" />
+    <result column="CI_CHECK_ACCT_TYPE" property="ciCheckAcctType" jdbcType="VARCHAR" />
+    <result column="CI_ECON_VERIFY_TYPE" property="ciEconVerifyType" jdbcType="VARCHAR" />
+    <result column="CI_SZT_RECV_PATH" property="ciSztRecvPath" jdbcType="VARCHAR" />
+    <result column="CI_SZT_SEND_PATH" property="ciSztSendPath" jdbcType="VARCHAR" />
+    <result column="CI_PER_ACCT_TYPE" property="ciPerAcctType" jdbcType="VARCHAR" />
+    <result column="CI_ORG_ACCT_TYPE" property="ciOrgAcctType" jdbcType="VARCHAR" />
+    <result column="CI_VALID_FLAG" property="ciValidFlag" jdbcType="VARCHAR" />
+    <result column="CI_CHECK_STATE" property="ciCheckState" jdbcType="VARCHAR" />
+    <result column="CI_CTIME" property="ciCtime" jdbcType="TIMESTAMP" />
+    <result column="CI_UTIME" property="ciUtime" jdbcType="TIMESTAMP" />
+    <result column="CI_CUSER" property="ciCuser" jdbcType="VARCHAR" />
+    <result column="CI_UUSER" property="ciUuser" jdbcType="VARCHAR" />
+    <result column="CI_DEAL_FILE" property="ciDealFile" jdbcType="VARCHAR" />
+    <result column="CI_PRO_CFM_WAY" property="ciProCfmWay" jdbcType="VARCHAR" />
+    <result column="CI_OTHER_FILE_TYPE" property="ciOtherFileType" jdbcType="VARCHAR" />
+    <result column="CI_VOL_DETAIL_TYPE" property="ciVolDetailType" jdbcType="VARCHAR" />
+
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CI_ID, CI_CHANNEL_CODE, CI_CHANNEL_NAME, CI_SALE_AGENT_CODE, CI_BIZ_MANAGER_NAME, 
+    CI_BIZ_MANAGER_PHONE, CI_BIZ_MANAGER_MAIL, CI_OPS_MANAGER_NAME, CI_OPS_MANAGER_PHONE, 
+    CI_OPS_MANAGER_MAIL, CI_MARKET_CODE, CI_CSDC_VER, CI_CHECK_ACCT_TYPE, CI_ECON_VERIFY_TYPE, 
+    CI_SZT_RECV_PATH, CI_SZT_SEND_PATH, CI_PER_ACCT_TYPE, CI_ORG_ACCT_TYPE, CI_VALID_FLAG, 
+    CI_CHECK_STATE, CI_CTIME, CI_UTIME, CI_CUSER, CI_UUSER, CI_DEAL_FILE,CI_PRO_CFM_WAY,
+    CI_OTHER_FILE_TYPE,CI_VOL_DETAIL_TYPE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultType="hashMap" parameterType="hashMap" >
+		select i.ci_channel_code channelcode,
+			   c.cp_channel_product_code fundcode,
+		       i.CI_CSDC_VER  CSDCVER,
+			   p.pi_pro_cfm_way PROCFMWAY,
+			   p.pi_product_type PRODUCTTYPE,
+			   p.pi_channel_product_code channelproductcode,
+			   i.CI_MARKET_CODE MARKETCODE, 
+			   c.cp_ta_product_code  TAPRODUCTCODE,
+			   p.PI_PRO_END_DATE PROENDDATE
+			   from  P_CHANNEL_INFO i,p_channel_product c,P_PRODUCT_INFO p
+		where i.ci_channel_code=c.cp_channel_code
+		and c.cp_channel_product_code=p.pi_channel_product_code
+		and i.ci_valid_flag='01'
+		and i.ci_check_state='01'
+		and c.cp_check_state='01'
+		and p.pi_valid_flag='01'
+		and p.pi_check_state='01'
+      <if test="CHANNELCODE != null" >
+     	 and i.ci_channel_code=#{CHANNELCODE,jdbcType=VARCHAR}
+      </if>
+  </select>
+  
+    <select id="selectChannelInfo" resultMap="BaseResultMap" parameterType="hashMap" >
+		select  <include refid="Base_Column_List" />
+		from  P_CHANNEL_INFO i
+		where  i.ci_valid_flag='01'
+		and i.ci_check_state='01'
+      <if test="CHANNELCODE != null" >
+     	 and i.ci_channel_code=#{CHANNELCODE,jdbcType=VARCHAR}
+      </if>
+  </select>
+  
+  <select id="selectSubChannelList" resultType="hashmap" parameterType="java.lang.String" >
+		  select c_agencyno agencyNo,c_agencyName agencyName from ta_ttrustagencyinfo where 1=1
+      <if test="CHANNELCODE != null" >
+     	  and c_parentcode = #{CHANNELCODE,jdbcType=VARCHAR}
+      </if>
+  </select>
+
+  <select id="selectSubChannelToShow" resultType="hashmap" parameterType="java.lang.String" >
+    select c_agencyno agencyNo,c_agencyName||'('||c_agencyno||')' agencyName from ta_ttrustagencyinfo where 1=1
+    <if test="CHANNELCODE != null" >
+      and c_parentcode = #{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from P_CHANNEL_INFO
+    where 1=1      
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.ChannelInfo" >
+    insert into P_CHANNEL_INFO (CI_ID, CI_CHANNEL_CODE, CI_CHANNEL_NAME, 
+      CI_SALE_AGENT_CODE, CI_BIZ_MANAGER_NAME, CI_BIZ_MANAGER_PHONE, 
+      CI_BIZ_MANAGER_MAIL, CI_OPS_MANAGER_NAME, CI_OPS_MANAGER_PHONE, 
+      CI_OPS_MANAGER_MAIL, CI_MARKET_CODE, CI_CSDC_VER, 
+      CI_CHECK_ACCT_TYPE, CI_ECON_VERIFY_TYPE, CI_SZT_RECV_PATH, 
+      CI_SZT_SEND_PATH, CI_PER_ACCT_TYPE, CI_ORG_ACCT_TYPE, 
+      CI_VALID_FLAG, CI_CHECK_STATE, CI_CTIME, 
+      CI_UTIME, CI_CUSER, CI_UUSER, 
+      CI_DEAL_FILE,CI_VOL_DETAIL_TYPE)
+    values (#{ciId,jdbcType=DECIMAL}, #{ciChannelCode,jdbcType=VARCHAR}, #{ciChannelName,jdbcType=VARCHAR}, 
+      #{ciSaleAgentCode,jdbcType=VARCHAR}, #{ciBizManagerName,jdbcType=VARCHAR}, #{ciBizManagerPhone,jdbcType=VARCHAR}, 
+      #{ciBizManagerMail,jdbcType=VARCHAR}, #{ciOpsManagerName,jdbcType=VARCHAR}, #{ciOpsManagerPhone,jdbcType=VARCHAR}, 
+      #{ciOpsManagerMail,jdbcType=VARCHAR}, #{ciMarketCode,jdbcType=VARCHAR}, #{ciCsdcVer,jdbcType=VARCHAR}, 
+      #{ciCheckAcctType,jdbcType=VARCHAR}, #{ciEconVerifyType,jdbcType=VARCHAR}, #{ciSztRecvPath,jdbcType=VARCHAR}, 
+      #{ciSztSendPath,jdbcType=VARCHAR}, #{ciPerAcctType,jdbcType=VARCHAR}, #{ciOrgAcctType,jdbcType=VARCHAR}, 
+      #{ciValidFlag,jdbcType=VARCHAR}, #{ciCheckState,jdbcType=VARCHAR}, #{ciCtime,jdbcType=TIMESTAMP}, 
+      #{ciUtime,jdbcType=TIMESTAMP}, #{ciCuser,jdbcType=VARCHAR}, #{ciUuser,jdbcType=VARCHAR}, 
+      #{ciDealFile,jdbcType=VARCHAR}, #{ciVolDetailType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.ChannelInfo" >
+    insert into P_CHANNEL_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ciId != null" >
+        CI_ID,
+      </if>
+      <if test="ciChannelCode != null" >
+        CI_CHANNEL_CODE,
+      </if>
+      <if test="ciChannelName != null" >
+        CI_CHANNEL_NAME,
+      </if>
+      <if test="ciSaleAgentCode != null" >
+        CI_SALE_AGENT_CODE,
+      </if>
+      <if test="ciBizManagerName != null" >
+        CI_BIZ_MANAGER_NAME,
+      </if>
+      <if test="ciBizManagerPhone != null" >
+        CI_BIZ_MANAGER_PHONE,
+      </if>
+      <if test="ciBizManagerMail != null" >
+        CI_BIZ_MANAGER_MAIL,
+      </if>
+      <if test="ciOpsManagerName != null" >
+        CI_OPS_MANAGER_NAME,
+      </if>
+      <if test="ciOpsManagerPhone != null" >
+        CI_OPS_MANAGER_PHONE,
+      </if>
+      <if test="ciOpsManagerMail != null" >
+        CI_OPS_MANAGER_MAIL,
+      </if>
+      <if test="ciMarketCode != null" >
+        CI_MARKET_CODE,
+      </if>
+      <if test="ciCsdcVer != null" >
+        CI_CSDC_VER,
+      </if>
+      <if test="ciCheckAcctType != null" >
+        CI_CHECK_ACCT_TYPE,
+      </if>
+      <if test="ciEconVerifyType != null" >
+        CI_ECON_VERIFY_TYPE,
+      </if>
+      <if test="ciSztRecvPath != null" >
+        CI_SZT_RECV_PATH,
+      </if>
+      <if test="ciSztSendPath != null" >
+        CI_SZT_SEND_PATH,
+      </if>
+      <if test="ciPerAcctType != null" >
+        CI_PER_ACCT_TYPE,
+      </if>
+      <if test="ciOrgAcctType != null" >
+        CI_ORG_ACCT_TYPE,
+      </if>
+      <if test="ciValidFlag != null" >
+        CI_VALID_FLAG,
+      </if>
+      <if test="ciCheckState != null" >
+        CI_CHECK_STATE,
+      </if>
+      <if test="ciCtime != null" >
+        CI_CTIME,
+      </if>
+      <if test="ciUtime != null" >
+        CI_UTIME,
+      </if>
+      <if test="ciCuser != null" >
+        CI_CUSER,
+      </if>
+      <if test="ciUuser != null" >
+        CI_UUSER,
+      </if>
+      <if test="ciDealFile != null" >
+        CI_DEAL_FILE,
+      </if>
+      <if test="ciVolDetailType != null" >
+        CI_VOL_DETAIL_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ciId != null" >
+        #{ciId,jdbcType=DECIMAL},
+      </if>
+      <if test="ciChannelCode != null" >
+        #{ciChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciChannelName != null" >
+        #{ciChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSaleAgentCode != null" >
+        #{ciSaleAgentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerName != null" >
+        #{ciBizManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerPhone != null" >
+        #{ciBizManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerMail != null" >
+        #{ciBizManagerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerName != null" >
+        #{ciOpsManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerPhone != null" >
+        #{ciOpsManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerMail != null" >
+        #{ciOpsManagerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ciMarketCode != null" >
+        #{ciMarketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCsdcVer != null" >
+        #{ciCsdcVer,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCheckAcctType != null" >
+        #{ciCheckAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciEconVerifyType != null" >
+        #{ciEconVerifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSztRecvPath != null" >
+        #{ciSztRecvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSztSendPath != null" >
+        #{ciSztSendPath,jdbcType=VARCHAR},
+      </if>
+      <if test="ciPerAcctType != null" >
+        #{ciPerAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOrgAcctType != null" >
+        #{ciOrgAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciValidFlag != null" >
+        #{ciValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCheckState != null" >
+        #{ciCheckState,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCtime != null" >
+        #{ciCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ciUtime != null" >
+        #{ciUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ciCuser != null" >
+        #{ciCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ciUuser != null" >
+        #{ciUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ciDealFile != null" >
+        #{ciDealFile,jdbcType=VARCHAR},
+      </if>
+      <if test="ciVolDetailType != null" >
+        #{ciVolDetailType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.ChannelInfo" >
+    update P_CHANNEL_INFO
+    <set >
+      <if test="ciChannelCode != null" >
+        CI_CHANNEL_CODE = #{ciChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciChannelName != null" >
+        CI_CHANNEL_NAME = #{ciChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSaleAgentCode != null" >
+        CI_SALE_AGENT_CODE = #{ciSaleAgentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerName != null" >
+        CI_BIZ_MANAGER_NAME = #{ciBizManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerPhone != null" >
+        CI_BIZ_MANAGER_PHONE = #{ciBizManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ciBizManagerMail != null" >
+        CI_BIZ_MANAGER_MAIL = #{ciBizManagerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerName != null" >
+        CI_OPS_MANAGER_NAME = #{ciOpsManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerPhone != null" >
+        CI_OPS_MANAGER_PHONE = #{ciOpsManagerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOpsManagerMail != null" >
+        CI_OPS_MANAGER_MAIL = #{ciOpsManagerMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ciMarketCode != null" >
+        CI_MARKET_CODE = #{ciMarketCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCsdcVer != null" >
+        CI_CSDC_VER = #{ciCsdcVer,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCheckAcctType != null" >
+        CI_CHECK_ACCT_TYPE = #{ciCheckAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciEconVerifyType != null" >
+        CI_ECON_VERIFY_TYPE = #{ciEconVerifyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSztRecvPath != null" >
+        CI_SZT_RECV_PATH = #{ciSztRecvPath,jdbcType=VARCHAR},
+      </if>
+      <if test="ciSztSendPath != null" >
+        CI_SZT_SEND_PATH = #{ciSztSendPath,jdbcType=VARCHAR},
+      </if>
+      <if test="ciPerAcctType != null" >
+        CI_PER_ACCT_TYPE = #{ciPerAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciOrgAcctType != null" >
+        CI_ORG_ACCT_TYPE = #{ciOrgAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="ciValidFlag != null" >
+        CI_VALID_FLAG = #{ciValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCheckState != null" >
+        CI_CHECK_STATE = #{ciCheckState,jdbcType=VARCHAR},
+      </if>
+      <if test="ciCtime != null" >
+        CI_CTIME = #{ciCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ciUtime != null" >
+        CI_UTIME = #{ciUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ciCuser != null" >
+        CI_CUSER = #{ciCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ciUuser != null" >
+        CI_UUSER = #{ciUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ciDealFile != null" >
+        CI_DEAL_FILE = #{ciDealFile,jdbcType=VARCHAR},
+      </if>
+       <if test="ciVolDetailType != null" >
+        CI_VOL_DETAIL_TYPE = #{ciVolDetailType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CI_ID = #{ciId,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.ChannelInfo" >
+    update P_CHANNEL_INFO
+    set CI_CHANNEL_CODE = #{ciChannelCode,jdbcType=VARCHAR},
+      CI_CHANNEL_NAME = #{ciChannelName,jdbcType=VARCHAR},
+      CI_SALE_AGENT_CODE = #{ciSaleAgentCode,jdbcType=VARCHAR},
+      CI_BIZ_MANAGER_NAME = #{ciBizManagerName,jdbcType=VARCHAR},
+      CI_BIZ_MANAGER_PHONE = #{ciBizManagerPhone,jdbcType=VARCHAR},
+      CI_BIZ_MANAGER_MAIL = #{ciBizManagerMail,jdbcType=VARCHAR},
+      CI_OPS_MANAGER_NAME = #{ciOpsManagerName,jdbcType=VARCHAR},
+      CI_OPS_MANAGER_PHONE = #{ciOpsManagerPhone,jdbcType=VARCHAR},
+      CI_OPS_MANAGER_MAIL = #{ciOpsManagerMail,jdbcType=VARCHAR},
+      CI_MARKET_CODE = #{ciMarketCode,jdbcType=VARCHAR},
+      CI_CSDC_VER = #{ciCsdcVer,jdbcType=VARCHAR},
+      CI_CHECK_ACCT_TYPE = #{ciCheckAcctType,jdbcType=VARCHAR},
+      CI_ECON_VERIFY_TYPE = #{ciEconVerifyType,jdbcType=VARCHAR},
+      CI_SZT_RECV_PATH = #{ciSztRecvPath,jdbcType=VARCHAR},
+      CI_SZT_SEND_PATH = #{ciSztSendPath,jdbcType=VARCHAR},
+      CI_PER_ACCT_TYPE = #{ciPerAcctType,jdbcType=VARCHAR},
+      CI_ORG_ACCT_TYPE = #{ciOrgAcctType,jdbcType=VARCHAR},
+      CI_VALID_FLAG = #{ciValidFlag,jdbcType=VARCHAR},
+      CI_CHECK_STATE = #{ciCheckState,jdbcType=VARCHAR},
+      CI_CTIME = #{ciCtime,jdbcType=TIMESTAMP},
+      CI_UTIME = #{ciUtime,jdbcType=TIMESTAMP},
+      CI_CUSER = #{ciCuser,jdbcType=VARCHAR},
+      CI_UUSER = #{ciUuser,jdbcType=VARCHAR},
+      CI_DEAL_FILE = #{ciDealFile,jdbcType=VARCHAR},
+      CI_VOL_DETAIL_TYPE = #{ciVolDetailType,jdbcType=VARCHAR}
+    where CI_ID = #{ciId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="getAllChannelDataCount" resultType="hashmap">
+    select
+    pci.ci_channel_code CHANNELCODE,
+    pci.ci_channel_name CHANNELNAME,
+       decode(zh.DataCount, null, 0, '', 0, zh.DataCount) as FILECOUNTZH,
+       decode(jy.DataCount, null, 0, '', 0, jy.DataCount) as FILECOUNTJY,
+       decode(ht.DataCount, null, 0, '', 0, ht.DataCount) as FILECOUNTHT,
+       decode(r1.DataCount, null, 0, '', 0, r1.DataCount) as FILECOUNTR
+  from p_channel_info pci
+  left join (select t.cr_channel_code as channelCode, sum(1) as DataCount
+               from D_CONTRACT_REQ t
+              where t.cr_channel_code in
+                    (select CI_CHANNEL_CODE from p_channel_info)
+                and t.cr_TRANS_DATE = #{date,jdbcType=VARCHAR}
+              group by t.cr_channel_code) ht
+    on pci.CI_CHANNEL_CODE = ht.channelCode
+  left join (select t.rtir_channel_code as channelCode, sum(1) as DataCount
+               from d_resident_tax_inform_req t
+              where t.rtir_channel_code in
+                    (select CI_CHANNEL_CODE from p_channel_info)
+                and t.rtir_TRANS_DATE = #{date,jdbcType=VARCHAR}
+              group by t.rtir_channel_code) r1
+    on pci.CI_CHANNEL_CODE = r1.channelCode
+  left join (select t.er_channel_code as channelCode, sum(1) as DataCount
+               from d_exchange_req t
+              where t.er_channel_code in
+                    (select CI_CHANNEL_CODE from p_channel_info)
+                and t.ER_TRANS_DATE = #{date,jdbcType=VARCHAR}
+              group by t.er_channel_code) jy
+    on pci.CI_CHANNEL_CODE = jy.channelCode
+  left join (select t.ar_channel_code as channelCode, sum(1) as DataCount
+               from d_account_req t
+              where t.ar_channel_code in
+                    (select CI_CHANNEL_CODE from p_channel_info)
+                and t.AR_TRANS_DATE = #{date,jdbcType=VARCHAR}
+              group by t.ar_channel_code) zh
+    on pci.CI_CHANNEL_CODE = zh.channelCode
+ where pci.ci_valid_flag = '01'
+
+  </select>
+</mapper>

@@ -1,0 +1,91 @@
+--06红宝石七天分红数据逻辑取值
+SELECT
+			  nvl(T.F_LASTSHARES,0.00)-nvl(T.F_OCCURSHARES,0.00) BASISFORCALCULATINGDIVIDEND,
+			  T.F_OCCURSHARES VOLOFDIVIDENDFORREINVESTMENT,
+			  T.F_OCCURSHARES DIVIDENDAMOUNT,
+			  T.C_REQUESTNO  REQUESTNO,
+			  T.C_REQUESTNO  TASERIALNO,
+		      '' CHARGE,
+          '' AGENCYFEE,
+          '' TRANSFERFEE,
+          '' SHARECLASS,
+          '' DRAWBONUSUNIT,
+          2 DIVIDENDTYPE,
+          '' ACHIEVEMENTPAY,
+          '' ACHIEVEMENTCOMPEN,
+          '' NAV,
+          '' BUSINESSCODE,
+          '' DIVIDENDPERUNIT,
+          0  DEFDIVIDENDMETHOD,
+          0  CONFIRMEDAMOUNT,
+        '' DEPOSITACCT,
+        '' REGIONCODE,
+        '' TOTALFROZENVOL,
+        '' OTHERFEE1,
+        '' OTHERFEE2,
+        '' INDIVIDUALORINSTITUTION,
+        '' DIVIDENDRATIO,
+        '' STAMPDUTY,
+        '' FROZENBALANCE,
+        '' FEECALCULATOR,
+        '' FROZENSHARESFORREINVEST,
+        '' ORIGINALAPPSHEETNO,
+          (select p.PI_CURRENCY_TYPE 
+      from p_product_info p, p_channel_product c
+     where p.pi_channel_product_code = c.cp_channel_product_code
+       and p.pi_channel_code=c.cp_channel_code
+       and c.cp_channel_code =T2.dci_channel_code
+       and c.cp_valid_flag = '01'
+       and c.cp_check_state = '01'
+       and p.pi_valid_flag not in('00','99')
+       and p.pi_check_state = '01'
+       and c.cp_channel_product_code=T2.dci_fund_code
+       and c.cp_ta_product_code=T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+          '20200615' TRANSACTIONCFMDATE,--TRANSDATE
+          '20200615' DIVIDENTDATE,--TRANSDATE
+          '20200615' XRDATE,--TRANSDATE
+          '20200615' REGISTRATIONDATE,--TRANSDATE
+          '20200615' DOWNLOADDATE,--TRANSDATE
+          T2.dci_fund_code  FUNDCODE,
+          T2.dci_channel_code CHANNELCODE,
+          '20200615' LASTDATE,--TRANSDATE
+          '0000' RETURNCODE,
+          T2.DCI_TRANS_ACTION_ACCOUNT    TRANSACTIONACCOUNTID,
+         T2.DCI_TA_ACCOUNT_ID    TAACCOUNTID,
+         T2.DCI_DISTRIBUTOR_CODE    DISTRIBUTORCODE,
+         T2.DCI_BRANCH_CODE    BRANCHCODE,
+         T2.DCI_IN_CONTRACT    INCONTRACT 
+        FROM TA_TSHARECURRENTS T,D_CONTRACT_INFO T2
+        WHERE exists (select 1
+              from (
+              --create by yindy 修改函数  -->
+              select c.dci_in_contract incontract
+              from d_contract_info c
+              where exists (select 1
+                      from (
+                        --create by yindy 修改函数  -->
+                        select distinct c.CP_TA_PRODUCT_CODE fundcode
+                        ,p.pi_channel_product_code 
+                  from p_product_info p, p_channel_product c
+                 where p.pi_channel_product_code = c.cp_channel_product_code
+                   and p.pi_channel_code=c.cp_channel_code
+                   and c.cp_channel_code = 'TTTNETB6'--CHANNELCODE
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                  and p.pi_product_type='3'-- PRODUCTTYPE
+                        --函数结束  -->
+                      ) temp
+                     where temp.fundcode = c.DCI_PRODUCT_CODE
+                     and temp.pi_channel_product_code = c.dci_fund_code )
+                 and c.dci_valid_flag = '01'
+                 and c.dci_channel_code = 'TTTNETB6'--CHANNELCODE
+              --函数结束  -->
+              ) tempout
+             where tempout.incontract = T.L_CONTRACTSERIALNO )
+       AND T.C_BUSINFLAG='74'
+       AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+            AND T2.DCI_CHANNEL_CODE = 'TTTNETB6'--CHANNELCODE
+            AND T2.DCI_VALID_FLAG='01'       
+         and to_char(T.D_REQUESTDATE, 'yyyyMM') = to_char(to_date('20200614','yyyyMMdd'),'yyyyMM')--LASTDATE

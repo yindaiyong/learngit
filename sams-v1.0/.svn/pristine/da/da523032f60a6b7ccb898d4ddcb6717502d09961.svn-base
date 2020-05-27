@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.FundQuotTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.FundQuotTmp" >
+    <id column="FQ_ID" property="fqId" jdbcType="DECIMAL" />
+    <result column="FQ_CHANNEL_CODE" property="fqChannelCode" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_NAME" property="fqFundName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_CODE" property="fqFundCode" jdbcType="VARCHAR" />
+    <result column="FQ_TOTAL_FUND_VOL" property="fqTotalFundVol" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_STATUS" property="fqFundStatus" jdbcType="VARCHAR" />
+    <result column="FQ_NAV" property="fqNav" jdbcType="DECIMAL" />
+    <result column="FQ_UPDATE_DATE" property="fqUpdateDate" jdbcType="VARCHAR" />
+    <result column="FQ_NET_VALUE_TYPE" property="fqNetValueType" jdbcType="VARCHAR" />
+    <result column="FQ_ACCUMULATIVE_NAV" property="fqAccumulativeNav" jdbcType="DECIMAL" />
+    <result column="FQ_CONVERT_STATUS" property="fqConvertStatus" jdbcType="VARCHAR" />
+    <result column="FQ_CURRENCY_TYPE" property="fqCurrencyType" jdbcType="VARCHAR" />
+    <result column="FQ_INST_APP_SUBS_AMNT" property="fqInstAppSubsAmnt" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_AMOUNT_BY_INST" property="fqMinAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_IPOSTART_DATE" property="fqIpostartDate" jdbcType="VARCHAR" />
+    <result column="FQ_IPOEND_DATE" property="fqIpoendDate" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_APP_SUBS_AMOUNT" property="fqIndiAppSubsAmount" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_SUBS_AMOUNT_BY_INDI" property="fqMinSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_AMOUNT_BY_INDI" property="fqUnitSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_AMOUNT_BY_INST" property="fqUnitSubsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_BIDS_AMOUNT_BY_INDI" property="fqMinBidsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_BIDS_AMOUNT_BY_INST" property="fqMinBidsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_APP_BIDS_AMOUNT_BY_INDI" property="fqMinAppBidsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_APP_BIDS_AMOUNT_BY_INST" property="fqMinAppBidsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_COLLECT_FEE_TYPE" property="fqCollectFeeType" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_INCOME" property="fqFundIncome" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_INCOME_FLAG" property="fqFundIncomeFlag" jdbcType="VARCHAR" />
+    <result column="FQ_YIELD" property="fqYield" jdbcType="DECIMAL" />
+    <result column="FQ_YIELD_FLAG" property="fqYieldFlag" jdbcType="VARCHAR" />
+    <result column="FQ_DATA_GENERATE" property="fqDataGenerate" jdbcType="TIMESTAMP" />
+    <result column="FQ_CTIME" property="fqCtime" jdbcType="TIMESTAMP" />
+    <result column="FQ_UTIME" property="fqUtime" jdbcType="TIMESTAMP" />
+    <result column="FQ_CUSER" property="fqCuser" jdbcType="VARCHAR" />
+    <result column="FQ_UUSER" property="fqUuser" jdbcType="VARCHAR" />
+    <result column="FQ_INST_FAY_MAX_SUM_BUY" property="fqInstFayMaxSumBuy" jdbcType="DECIMAL" />
+    <result column="FQ_EXCHANGE_DATE" property="fqExchangeDate" jdbcType="VARCHAR" />
+    <result column="FQ_SZT_SEND_PATH" property="fqSztSendPath" jdbcType="VARCHAR" />
+    <result column="FQ_CSDC_VER" property="fqCsdcVer" jdbcType="VARCHAR" />
+    <result column="FQ_VALID_FLAG" property="fqValidFlag" jdbcType="VARCHAR" />
+    <result column="FQ_BATCH_NO" property="fqBatchNo" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_AMOUNT_RAISED" property="fqMaxAmountRaised" jdbcType="VARCHAR" />
+    <result column="FQ_PRODUCT_TYPE" property="fqProductType" jdbcType="VARCHAR" />
+    <result column="FQ_TA_PRODUCT_CODE" property="fqTaProductCode" jdbcType="VARCHAR" />
+    <result column="FQ_REMAIN_SHARES" property="fqRemainShares" jdbcType="VARCHAR" />
+    <result column="FQ_MIN_ACCOUNT_BALANCE" property="fqMinAccountBalance" jdbcType="VARCHAR" />
+    <result column="FQ_PERIODIC_STATUS" property="fqPeriodicStatus" jdbcType="VARCHAR" />
+    <result column="FQ_TRANSFER_AGENCY_STATUS" property="fqTransferAgencyStatus" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SIZE" property="fqFundSize" jdbcType="DECIMAL" />
+    <result column="FQ_ANNOUNC_FLAG" property="fqAnnouncFlag" jdbcType="VARCHAR" />
+    <result column="FQ_DEF_DIVIDEN_DMETHOD" property="fqDefDividenDmethod" jdbcType="VARCHAR" />
+    <result column="FQ_INST_APP_SUBS_VOL" property="fqInstAppSubsVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_VOL_BY_INST" property="fqMinVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_CUSTODIAN_CODE" property="fqCustodianCode" jdbcType="VARCHAR" />
+    <result column="FQ_AMOUNT_OF_PERIODIC_SUBS" property="fqAmountOfPeriodicSubs" jdbcType="DECIMAL" />
+    <result column="FQ_DATE_OF_PERIODIC_SUBS" property="fqDateOfPeriodicSubs" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_REDEMPTION_VOL" property="fqMaxRedemptionVol" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_MANAGER_CODE" property="fqFundManagerCode" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_APP_SUBS_VOL" property="fqIndiAppSubsVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_SUBS_VOL_BY_INDI" property="fqMinSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_REGISTRAR_CODE" property="fqRegistrarCode" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SPONSOR" property="fqFundSponsor" jdbcType="VARCHAR" />
+    <result column="FQ_TRADING_PRICE" property="fqTradingPrice" jdbcType="DECIMAL" />
+    <result column="FQ_FACE_VALUE" property="fqFaceValue" jdbcType="DECIMAL" />
+    <result column="FQ_DIVIDENT_DATE" property="fqDividentDate" jdbcType="VARCHAR" />
+    <result column="FQ_REGISTRATION_DATE" property="fqRegistrationDate" jdbcType="VARCHAR" />
+    <result column="FQ_XR_DATE" property="fqXrDate" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_SUBS_VOL_BY_INDI" property="fqMaxSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_AMOUNT_BY_INDI" property="fqMaxSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_VOL_BY_INST" property="fqMaxSubsVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_AMOUNT_BY_INST" property="fqMaxSubsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_VOL_BY_INDI" property="fqUnitSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_VOL_BY_INST" property="fqUnitSubsVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_REDEMPTION_VOL" property="fqMinRedemptionVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_INTERCONVERT_VOL" property="fqMinInterconvertVol" jdbcType="DECIMAL" />
+    <result column="FQ_ISSUE_TYPE_BY_INDI" property="fqIssueTypeByIndi" jdbcType="VARCHAR" />
+    <result column="FQ_ISSUE_TYPE_BY_INST" property="fqIssueTypeByInst" jdbcType="VARCHAR" />
+    <result column="FQ_SUBS_TYPE" property="fqSubsType" jdbcType="VARCHAR" />
+    <result column="FQ_NEXT_TRADE_DATE" property="fqNextTradeDate" jdbcType="VARCHAR" />
+    <result column="FQ_VALUE_LINE" property="fqValueLine" jdbcType="DECIMAL" />
+    <result column="FQ_TOTAL_DIVIDENT" property="fqTotalDivident" jdbcType="DECIMAL" />
+    <result column="FQ_GUARANTEED_NAV" property="fqGuaranteedNav" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_YEAR_INCOME_RATE" property="fqFundYearIncomeRate" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_YEAR_INCOME_RATE_FLAG" property="fqFundYearIncomeRateFlag" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_MAX_PURCHASE" property="fqIndiMaxPurchase" jdbcType="DECIMAL" />
+    <result column="FQ_INST_MAX_PURCHASE" property="fqInstMaxPurchase" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_DAY_MAX_SUM_BUY" property="fqIndiDayMaxSumBuy" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_DAY_MAX_SUM_REDEEM" property="fqIndiDayMaxSumRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INST_DAY_MAX_SUM_REDEEM" property="fqInstDayMaxSumRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_MAX_REDEEM" property="fqIndiMaxRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INST_MAX_REDEEM" property="fqInstMaxRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_DAY_INCOME_FLAG" property="fqFundDayIncomeFlag" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_DAY_INCOME" property="fqFundDayIncome" jdbcType="DECIMAL" />
+    <result column="FQ_ALLOW_BREACH_REDEMPT" property="fqAllowBreachRedempt" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_TYPE" property="fqFundType" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_TYPE_NAME" property="fqFundTypeName" jdbcType="VARCHAR" />
+    <result column="FQ_REGISTRAR_NAME" property="fqRegistrarName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_MANAGER_NAME" property="fqFundManagerName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SERVER_TEL" property="fqFundServerTel" jdbcType="VARCHAR" />
+    <result column="FQ_DUND_INTERNET_ADDRESS" property="fqDundInternetAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="quotTmpMap"  type="hashMap" >
+    <id column="FQ_ID" property="fqId" jdbcType="DECIMAL" />
+    <result column="FQ_CHANNEL_CODE" property="fqChannelCode" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_NAME" property="fqFundName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_CODE" property="fqFundCode" jdbcType="VARCHAR" />
+    <result column="FQ_TOTAL_FUND_VOL" property="fqTotalFundVol" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_STATUS" property="fqFundStatus" jdbcType="VARCHAR" />
+    <result column="FQ_NAV" property="fqNav" jdbcType="DECIMAL" />
+    <result column="FQ_UPDATE_DATE" property="fqUpdateDate" jdbcType="VARCHAR" />
+    <result column="FQ_NET_VALUE_TYPE" property="fqNetValueType" jdbcType="VARCHAR" />
+    <result column="FQ_ACCUMULATIVE_NAV" property="fqAccumulativeNav" jdbcType="DECIMAL" />
+    <result column="FQ_CONVERT_STATUS" property="fqConvertStatus" jdbcType="VARCHAR" />
+    <result column="FQ_CURRENCY_TYPE" property="fqCurrencyType" jdbcType="VARCHAR" />
+    <result column="FQ_INST_APP_SUBS_AMNT" property="fqInstAppSubsAmnt" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_AMOUNT_BY_INST" property="fqMinAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_IPOSTART_DATE" property="fqIpostartDate" jdbcType="VARCHAR" />
+    <result column="FQ_IPOEND_DATE" property="fqIpoendDate" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_APP_SUBS_AMOUNT" property="fqIndiAppSubsAmount" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_SUBS_AMOUNT_BY_INDI" property="fqMinSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_AMOUNT_BY_INDI" property="fqUnitSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_AMOUNT_BY_INST" property="fqUnitSubsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_BIDS_AMOUNT_BY_INDI" property="fqMinBidsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_BIDS_AMOUNT_BY_INST" property="fqMinBidsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_APP_BIDS_AMOUNT_BY_INDI" property="fqMinAppBidsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_APP_BIDS_AMOUNT_BY_INST" property="fqMinAppBidsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_COLLECT_FEE_TYPE" property="fqCollectFeeType" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_INCOME" property="fqFundIncome" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_INCOME_FLAG" property="fqFundIncomeFlag" jdbcType="VARCHAR" />
+    <result column="FQ_YIELD" property="fqYield" jdbcType="DECIMAL" />
+    <result column="FQ_YIELD_FLAG" property="fqYieldFlag" jdbcType="VARCHAR" />
+    <result column="FQ_DATA_GENERATE" property="fqDataGenerate" jdbcType="TIMESTAMP" />
+    <result column="FQ_CTIME" property="fqCtime" jdbcType="TIMESTAMP" />
+    <result column="FQ_UTIME" property="fqUtime" jdbcType="TIMESTAMP" />
+    <result column="FQ_CUSER" property="fqCuser" jdbcType="VARCHAR" />
+    <result column="FQ_UUSER" property="fqUuser" jdbcType="VARCHAR" />
+    <result column="FQ_INST_FAY_MAX_SUM_BUY" property="fqInstFayMaxSumBuy" jdbcType="DECIMAL" />
+    <result column="FQ_EXCHANGE_DATE" property="fqExchangeDate" jdbcType="VARCHAR" />
+    <result column="FQ_SZT_SEND_PATH" property="fqSztSendPath" jdbcType="VARCHAR" />
+    <result column="FQ_CSDC_VER" property="fqCsdcVer" jdbcType="VARCHAR" />
+    <result column="FQ_VALID_FLAG" property="fqValidFlag" jdbcType="VARCHAR" />
+    <result column="FQ_BATCH_NO" property="fqBatchNo" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_AMOUNT_RAISED" property="fqMaxAmountRaised" jdbcType="VARCHAR" />
+    <result column="FQ_PRODUCT_TYPE" property="fqProductType" jdbcType="VARCHAR" />
+    <result column="FQ_TA_PRODUCT_CODE" property="fqTaProductCode" jdbcType="VARCHAR" />
+    <result column="FQ_REMAIN_SHARES" property="fqRemainShares" jdbcType="VARCHAR" />
+    <result column="FQ_MIN_ACCOUNT_BALANCE" property="fqMinAccountBalance" jdbcType="VARCHAR" />
+    <result column="FQ_PERIODIC_STATUS" property="fqPeriodicStatus" jdbcType="VARCHAR" />
+    <result column="FQ_TRANSFER_AGENCY_STATUS" property="fqTransferAgencyStatus" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SIZE" property="fqFundSize" jdbcType="DECIMAL" />
+    <result column="FQ_ANNOUNC_FLAG" property="fqAnnouncFlag" jdbcType="VARCHAR" />
+    <result column="FQ_DEF_DIVIDEN_DMETHOD" property="fqDefDividenDmethod" jdbcType="VARCHAR" />
+    <result column="FQ_INST_APP_SUBS_VOL" property="fqInstAppSubsVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_VOL_BY_INST" property="fqMinVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_CUSTODIAN_CODE" property="fqCustodianCode" jdbcType="VARCHAR" />
+    <result column="FQ_AMOUNT_OF_PERIODIC_SUBS" property="fqAmountOfPeriodicSubs" jdbcType="DECIMAL" />
+    <result column="FQ_DATE_OF_PERIODIC_SUBS" property="fqDateOfPeriodicSubs" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_REDEMPTION_VOL" property="fqMaxRedemptionVol" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_MANAGER_CODE" property="fqFundManagerCode" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_APP_SUBS_VOL" property="fqIndiAppSubsVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_SUBS_VOL_BY_INDI" property="fqMinSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_REGISTRAR_CODE" property="fqRegistrarCode" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SPONSOR" property="fqFundSponsor" jdbcType="VARCHAR" />
+    <result column="FQ_TRADING_PRICE" property="fqTradingPrice" jdbcType="DECIMAL" />
+    <result column="FQ_FACE_VALUE" property="fqFaceValue" jdbcType="DECIMAL" />
+    <result column="FQ_DIVIDENT_DATE" property="fqDividentDate" jdbcType="VARCHAR" />
+    <result column="FQ_REGISTRATION_DATE" property="fqRegistrationDate" jdbcType="VARCHAR" />
+    <result column="FQ_XR_DATE" property="fqXrDate" jdbcType="VARCHAR" />
+    <result column="FQ_MAX_SUBS_VOL_BY_INDI" property="fqMaxSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_AMOUNT_BY_INDI" property="fqMaxSubsAmountByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_VOL_BY_INST" property="fqMaxSubsVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MAX_SUBS_AMOUNT_BY_INST" property="fqMaxSubsAmountByInst" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_VOL_BY_INDI" property="fqUnitSubsVolByIndi" jdbcType="DECIMAL" />
+    <result column="FQ_UNIT_SUBS_VOL_BY_INST" property="fqUnitSubsVolByInst" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_REDEMPTION_VOL" property="fqMinRedemptionVol" jdbcType="DECIMAL" />
+    <result column="FQ_MIN_INTERCONVERT_VOL" property="fqMinInterconvertVol" jdbcType="DECIMAL" />
+    <result column="FQ_ISSUE_TYPE_BY_INDI" property="fqIssueTypeByIndi" jdbcType="VARCHAR" />
+    <result column="FQ_ISSUE_TYPE_BY_INST" property="fqIssueTypeByInst" jdbcType="VARCHAR" />
+    <result column="FQ_SUBS_TYPE" property="fqSubsType" jdbcType="VARCHAR" />
+    <result column="FQ_NEXT_TRADE_DATE" property="fqNextTradeDate" jdbcType="VARCHAR" />
+    <result column="FQ_VALUE_LINE" property="fqValueLine" jdbcType="DECIMAL" />
+    <result column="FQ_TOTAL_DIVIDENT" property="fqTotalDivident" jdbcType="DECIMAL" />
+    <result column="FQ_GUARANTEED_NAV" property="fqGuaranteedNav" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_YEAR_INCOME_RATE" property="fqFundYearIncomeRate" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_YEAR_INCOME_RATE_FLAG" property="fqFundYearIncomeRateFlag" jdbcType="VARCHAR" />
+    <result column="FQ_INDI_MAX_PURCHASE" property="fqIndiMaxPurchase" jdbcType="DECIMAL" />
+    <result column="FQ_INST_MAX_PURCHASE" property="fqInstMaxPurchase" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_DAY_MAX_SUM_BUY" property="fqIndiDayMaxSumBuy" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_DAY_MAX_SUM_REDEEM" property="fqIndiDayMaxSumRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INST_DAY_MAX_SUM_REDEEM" property="fqInstDayMaxSumRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INDI_MAX_REDEEM" property="fqIndiMaxRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_INST_MAX_REDEEM" property="fqInstMaxRedeem" jdbcType="DECIMAL" />
+    <result column="FQ_FUND_DAY_INCOME_FLAG" property="fqFundDayIncomeFlag" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_DAY_INCOME" property="fqFundDayIncome" jdbcType="DECIMAL" />
+    <result column="FQ_ALLOW_BREACH_REDEMPT" property="fqAllowBreachRedempt" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_TYPE" property="fqFundType" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_TYPE_NAME" property="fqFundTypeName" jdbcType="VARCHAR" />
+    <result column="FQ_REGISTRAR_NAME" property="fqRegistrarName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_MANAGER_NAME" property="fqFundManagerName" jdbcType="VARCHAR" />
+    <result column="FQ_FUND_SERVER_TEL" property="fqFundServerTel" jdbcType="VARCHAR" />
+    <result column="FQ_DUND_INTERNET_ADDRESS" property="fqDundInternetAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List"  >
+    FQ_ID ID, 
+    FQ_CHANNEL_CODE CHANNELCODE,
+    FQ_FUND_NAME FUNDNAME, 
+    FQ_FUND_CODE  FUNDCODE,
+    FQ_TOTAL_FUND_VOL TOTALFUNDVOL, 
+    FQ_FUND_STATUS FUNDSTATUS, 
+    FQ_NAV NAV, 
+    FQ_UPDATE_DATE  UPDATEDATE,
+    FQ_NET_VALUE_TYPE NETVALUETYPE, 
+    FQ_ACCUMULATIVE_NAV ACCUMULATIVENAV, 
+    FQ_CONVERT_STATUS  CONVERTSTATUS, 
+    FQ_CURRENCY_TYPE CURRENCYTYPE, 
+    FQ_INST_APP_SUBS_AMNT INSTAPPSUBSAMNT, 
+    FQ_MIN_AMOUNT_BY_INST MINAMOUNTBYINST, 
+    FQ_IPOSTART_DATE IPOSTARTDATE, 
+    FQ_IPOEND_DATE IPOENDDATE, 
+    FQ_INDI_APP_SUBS_AMOUNT INDIAPPSUBSAMOUNT, 
+    FQ_MIN_SUBS_AMOUNT_BY_INDI MINSUBSAMOUNTBYINDI, 
+    FQ_UNIT_SUBS_AMOUNT_BY_INDI UNITSUBSAMOUNTBYINDI, 
+    FQ_UNIT_SUBS_AMOUNT_BY_INST UNITSUBSAMOUNTBYINST, 
+    FQ_MIN_BIDS_AMOUNT_BY_INDI MINBIDSAMOUNTBYINDI, 
+    FQ_MIN_BIDS_AMOUNT_BY_INST MINBIDSAMOUNTBYINST, 
+    FQ_MIN_APP_BIDS_AMOUNT_BY_INDI MINAPPBIDSAMOUNTBYINDI,
+    FQ_MIN_APP_BIDS_AMOUNT_BY_INST MINAPPBIDSAMOUNTBYINST, 
+    FQ_COLLECT_FEE_TYPE COLLECTFEETYPE, 
+    FQ_FUND_INCOME FUNDINCOME, 
+    FQ_FUND_INCOME_FLAG FUNDINCOMEFLAG, 
+    FQ_YIELD YIELD, 
+    FQ_YIELD_FLAG YIELDFLAG, 
+    FQ_DATA_GENERATE DATAGENERATE, 
+    FQ_CTIME CTIME, 
+    FQ_UTIME UTIME, 
+    FQ_CUSER CUSER, 
+    FQ_UUSER UUSER, 
+    FQ_INST_FAY_MAX_SUM_BUY INSTFAYMAXSUMBUY, 
+    FQ_EXCHANGE_DATE EXCHANGEDATE, 
+    FQ_SZT_SEND_PATH SZTSENDPATH, 
+    FQ_CSDC_VER CSDCVER, 
+    FQ_VALID_FLAG VALIDFLAG, 
+    FQ_BATCH_NO BATCHNO, 
+    FQ_MAX_AMOUNT_RAISED MAXAMOUNTRAISED, 
+    FQ_PRODUCT_TYPE PRODUCTTYPE, 
+    FQ_TA_PRODUCT_CODE TAPRODUCTCODE, 
+    FQ_REMAIN_SHARES REMAINSHARES, 
+    FQ_MIN_ACCOUNT_BALANCE MINACCOUNTBALANCE, 
+    FQ_PERIODIC_STATUS PERIODICSTATUS,
+    FQ_TRANSFER_AGENCY_STATUS TRANSFERAGENCYSTATUS, 
+    FQ_FUND_SIZE FUNDSIZE, 
+    FQ_ANNOUNC_FLAG ANNOUNCFLAG, 
+    FQ_DEF_DIVIDEN_DMETHOD DEFDIVIDENDMETHOD, 
+    FQ_INST_APP_SUBS_VOL INSTAPPSUBSVOL,  
+    FQ_MIN_VOL_BY_INST MINVOLBYINST, 
+    FQ_CUSTODIAN_CODE CUSTODIANCODE, 
+    FQ_AMOUNT_OF_PERIODIC_SUBS AMOUNTOFPERIODICSUBS, 
+    FQ_DATE_OF_PERIODIC_SUBS DATEOFPERIODICSUBS, 
+    FQ_MAX_REDEMPTION_VOL MAXREDEMPTIONVOL, 
+    FQ_FUND_MANAGER_CODE FUNDMANAGERCODE, 
+    FQ_INDI_APP_SUBS_VOL INDIAPPSUBSVOL, 
+    FQ_MIN_SUBS_VOL_BY_INDI MINSUBSVOLBYINDI, 
+    FQ_REGISTRAR_CODE REGISTRARCODE, 
+    FQ_FUND_SPONSOR FUNDSPONSOR, 
+    FQ_TRADING_PRICE TRADINGPRICE, 
+    FQ_FACE_VALUE FACEVALUE, 
+    FQ_DIVIDENT_DATE DIVIDENTDATE, 
+    FQ_REGISTRATION_DATE REGISTRATIONDATE, 
+    FQ_XR_DATE XRDATE, 
+    FQ_MAX_SUBS_VOL_BY_INDI MAXSUBSVOLBYINDI, 
+    FQ_MAX_SUBS_AMOUNT_BY_INDI MAXSUBSAMOUNTBYINDI, 
+    FQ_MAX_SUBS_VOL_BY_INST MAXSUBSVOLBYINST, 
+    FQ_MAX_SUBS_AMOUNT_BY_INST MAXSUBSAMOUNTBYINST, 
+    FQ_UNIT_SUBS_VOL_BY_INDI UNITSUBSVOLBYINDI, 
+    FQ_UNIT_SUBS_VOL_BY_INST UNITSUBSVOLBYINST, 
+    FQ_MIN_REDEMPTION_VOL MINREDEMPTIONVOL, 
+    FQ_MIN_INTERCONVERT_VOL MININTERCONVERTVOL, 
+    FQ_ISSUE_TYPE_BY_INDI MININTERCONVERTVOL, 
+    FQ_ISSUE_TYPE_BY_INST ISSUETYPEBYINST, 
+    FQ_SUBS_TYPE SUBSTYPE, 
+    FQ_NEXT_TRADE_DATE NEXTTRADEDATE,
+    FQ_VALUE_LINE VALUELINE, 
+    FQ_TOTAL_DIVIDENT TOTALDIVIDENT, 
+    FQ_GUARANTEED_NAV GUARANTEEDNAV, 
+    FQ_FUND_YEAR_INCOME_RATE FUNDYEARINCOMERATE, 
+    FQ_FUND_YEAR_INCOME_RATE_FLAG FUNDYEARINCOMERATEFLAG, 
+    FQ_INDI_MAX_PURCHASE INDIMAXPURCHASE, 
+    FQ_INST_MAX_PURCHASE INSTMAXPURCHASE, 
+    FQ_INDI_DAY_MAX_SUM_BUY INDIDAYMAXSUMBUY, 
+    FQ_INDI_DAY_MAX_SUM_REDEEM INDIDAYMAXSUMREDEEM, 
+    FQ_INST_DAY_MAX_SUM_REDEEM INSTDAYMAXSUMREDEEM,
+    FQ_INDI_MAX_REDEEM INDIMAXREDEEM, 
+    FQ_INST_MAX_REDEEM INSTMAXREDEEM, 
+    FQ_FUND_DAY_INCOME_FLAG FUNDDAYINCOMEFLAG, 
+    FQ_FUND_DAY_INCOME FUNDDAYINCOME, 
+    FQ_ALLOW_BREACH_REDEMPT ALLOWBREACHREDEMPT, 
+    FQ_FUND_TYPE FUNDTYPE, 
+    FQ_FUND_TYPE_NAME FUNDTYPENAME, 
+    FQ_REGISTRAR_NAME REGISTRARNAME, 
+    FQ_FUND_MANAGER_NAME FUNDMANAGERNAME, 
+    FQ_FUND_SERVER_TEL FUNDSERVERTEL, 
+    FQ_DUND_INTERNET_ADDRESS DUNDINTERNETADDRESS
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_FUND_QUOT_TMP
+    where FQ_ID = #{fqId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_FUND_QUOT_TMP
+    where FQ_ID = #{fqId,jdbcType=DECIMAL}
+  </delete>
+  
+   <select id="selectAllFundQuotTmp" resultMap = "quotTmpMap"  parameterType="hashMap">
+    select 
+    <include refid="Base_Column_List" />
+    from D_FUND_QUOT_TMP
+    where 1=1
+     and fq_valid_flag='01'
+    <if test="fqChannelCode != null" >
+       and FQ_CHANNEL_CODE= #{fqChannelCode,jdbcType=VARCHAR}
+    </if>
+     <if test="fqExchangeDate != null" >
+       and FQ_EXCHANGE_DATE= #{fqExchangeDate,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <delete id="truncateFundQuotTmp">
+    truncate table D_FUND_QUOT_TMP 
+  </delete>
+  
+  <insert id="insert" parameterType="com.sams.custom.model.FundQuotTmp" >
+    insert into D_FUND_QUOT_TMP (FQ_ID, FQ_CHANNEL_CODE, FQ_FUND_NAME, 
+      FQ_FUND_CODE, FQ_TOTAL_FUND_VOL, FQ_FUND_STATUS, 
+      FQ_NAV, FQ_UPDATE_DATE, FQ_NET_VALUE_TYPE, 
+      FQ_ACCUMULATIVE_NAV, FQ_CONVERT_STATUS, FQ_CURRENCY_TYPE, 
+      FQ_INST_APP_SUBS_AMNT, FQ_MIN_AMOUNT_BY_INST, FQ_IPOSTART_DATE, 
+      FQ_IPOEND_DATE, FQ_INDI_APP_SUBS_AMOUNT, FQ_MIN_SUBS_AMOUNT_BY_INDI, 
+      FQ_UNIT_SUBS_AMOUNT_BY_INDI, FQ_UNIT_SUBS_AMOUNT_BY_INST, 
+      FQ_MIN_BIDS_AMOUNT_BY_INDI, FQ_MIN_BIDS_AMOUNT_BY_INST, 
+      FQ_MIN_APP_BIDS_AMOUNT_BY_INDI, FQ_MIN_APP_BIDS_AMOUNT_BY_INST, 
+      FQ_COLLECT_FEE_TYPE, FQ_FUND_INCOME, FQ_FUND_INCOME_FLAG, 
+      FQ_YIELD, FQ_YIELD_FLAG, FQ_DATA_GENERATE, 
+      FQ_CTIME, FQ_UTIME, FQ_CUSER, 
+      FQ_UUSER, FQ_INST_FAY_MAX_SUM_BUY, FQ_EXCHANGE_DATE, 
+      FQ_SZT_SEND_PATH, FQ_CSDC_VER, FQ_VALID_FLAG, 
+      FQ_BATCH_NO, FQ_MAX_AMOUNT_RAISED, FQ_PRODUCT_TYPE, 
+      FQ_TA_PRODUCT_CODE, FQ_REMAIN_SHARES, FQ_MIN_ACCOUNT_BALANCE, 
+      FQ_PERIODIC_STATUS, FQ_TRANSFER_AGENCY_STATUS, 
+      FQ_FUND_SIZE, FQ_ANNOUNC_FLAG, FQ_DEF_DIVIDEN_DMETHOD, 
+      FQ_INST_APP_SUBS_VOL, FQ_MIN_VOL_BY_INST, FQ_CUSTODIAN_CODE, 
+      FQ_AMOUNT_OF_PERIODIC_SUBS, FQ_DATE_OF_PERIODIC_SUBS, 
+      FQ_MAX_REDEMPTION_VOL, FQ_FUND_MANAGER_CODE, 
+      FQ_INDI_APP_SUBS_VOL, FQ_MIN_SUBS_VOL_BY_INDI, FQ_REGISTRAR_CODE, 
+      FQ_FUND_SPONSOR, FQ_TRADING_PRICE, FQ_FACE_VALUE, 
+      FQ_DIVIDENT_DATE, FQ_REGISTRATION_DATE, FQ_XR_DATE, 
+      FQ_MAX_SUBS_VOL_BY_INDI, FQ_MAX_SUBS_AMOUNT_BY_INDI, 
+      FQ_MAX_SUBS_VOL_BY_INST, FQ_MAX_SUBS_AMOUNT_BY_INST, 
+      FQ_UNIT_SUBS_VOL_BY_INDI, FQ_UNIT_SUBS_VOL_BY_INST, 
+      FQ_MIN_REDEMPTION_VOL, FQ_MIN_INTERCONVERT_VOL, 
+      FQ_ISSUE_TYPE_BY_INDI, FQ_ISSUE_TYPE_BY_INST, FQ_SUBS_TYPE, 
+      FQ_NEXT_TRADE_DATE, FQ_VALUE_LINE, FQ_TOTAL_DIVIDENT, 
+      FQ_GUARANTEED_NAV, FQ_FUND_YEAR_INCOME_RATE, 
+      FQ_FUND_YEAR_INCOME_RATE_FLAG, FQ_INDI_MAX_PURCHASE, 
+      FQ_INST_MAX_PURCHASE, FQ_INDI_DAY_MAX_SUM_BUY, 
+      FQ_INDI_DAY_MAX_SUM_REDEEM, FQ_INST_DAY_MAX_SUM_REDEEM, 
+      FQ_INDI_MAX_REDEEM, FQ_INST_MAX_REDEEM, FQ_FUND_DAY_INCOME_FLAG, 
+      FQ_FUND_DAY_INCOME, FQ_ALLOW_BREACH_REDEMPT, 
+      FQ_FUND_TYPE, FQ_FUND_TYPE_NAME, FQ_REGISTRAR_NAME, 
+      FQ_FUND_MANAGER_NAME, FQ_FUND_SERVER_TEL, FQ_DUND_INTERNET_ADDRESS
+      )
+    values (#{fqId,jdbcType=DECIMAL}, #{fqChannelCode,jdbcType=VARCHAR}, #{fqFundName,jdbcType=VARCHAR}, 
+      #{fqFundCode,jdbcType=VARCHAR}, #{fqTotalFundVol,jdbcType=DECIMAL}, #{fqFundStatus,jdbcType=VARCHAR}, 
+      #{fqNav,jdbcType=DECIMAL}, #{fqUpdateDate,jdbcType=VARCHAR}, #{fqNetValueType,jdbcType=VARCHAR}, 
+      #{fqAccumulativeNav,jdbcType=DECIMAL}, #{fqConvertStatus,jdbcType=VARCHAR}, #{fqCurrencyType,jdbcType=VARCHAR}, 
+      #{fqInstAppSubsAmnt,jdbcType=DECIMAL}, #{fqMinAmountByInst,jdbcType=DECIMAL}, #{fqIpostartDate,jdbcType=VARCHAR}, 
+      #{fqIpoendDate,jdbcType=VARCHAR}, #{fqIndiAppSubsAmount,jdbcType=DECIMAL}, #{fqMinSubsAmountByIndi,jdbcType=DECIMAL}, 
+      #{fqUnitSubsAmountByIndi,jdbcType=DECIMAL}, #{fqUnitSubsAmountByInst,jdbcType=DECIMAL}, 
+      #{fqMinBidsAmountByIndi,jdbcType=DECIMAL}, #{fqMinBidsAmountByInst,jdbcType=DECIMAL}, 
+      #{fqMinAppBidsAmountByIndi,jdbcType=DECIMAL}, #{fqMinAppBidsAmountByInst,jdbcType=DECIMAL}, 
+      #{fqCollectFeeType,jdbcType=VARCHAR}, #{fqFundIncome,jdbcType=DECIMAL}, #{fqFundIncomeFlag,jdbcType=VARCHAR}, 
+      #{fqYield,jdbcType=DECIMAL}, #{fqYieldFlag,jdbcType=VARCHAR}, #{fqDataGenerate,jdbcType=TIMESTAMP}, 
+      #{fqCtime,jdbcType=TIMESTAMP}, #{fqUtime,jdbcType=TIMESTAMP}, #{fqCuser,jdbcType=VARCHAR}, 
+      #{fqUuser,jdbcType=VARCHAR}, #{fqInstFayMaxSumBuy,jdbcType=DECIMAL}, #{fqExchangeDate,jdbcType=VARCHAR}, 
+      #{fqSztSendPath,jdbcType=VARCHAR}, #{fqCsdcVer,jdbcType=VARCHAR}, #{fqValidFlag,jdbcType=VARCHAR}, 
+      #{fqBatchNo,jdbcType=VARCHAR}, #{fqMaxAmountRaised,jdbcType=VARCHAR}, #{fqProductType,jdbcType=VARCHAR}, 
+      #{fqTaProductCode,jdbcType=VARCHAR}, #{fqRemainShares,jdbcType=VARCHAR}, #{fqMinAccountBalance,jdbcType=VARCHAR}, 
+      #{fqPeriodicStatus,jdbcType=VARCHAR}, #{fqTransferAgencyStatus,jdbcType=VARCHAR}, 
+      #{fqFundSize,jdbcType=DECIMAL}, #{fqAnnouncFlag,jdbcType=VARCHAR}, #{fqDefDividenDmethod,jdbcType=VARCHAR}, 
+      #{fqInstAppSubsVol,jdbcType=DECIMAL}, #{fqMinVolByInst,jdbcType=DECIMAL}, #{fqCustodianCode,jdbcType=VARCHAR}, 
+      #{fqAmountOfPeriodicSubs,jdbcType=DECIMAL}, #{fqDateOfPeriodicSubs,jdbcType=VARCHAR}, 
+      #{fqMaxRedemptionVol,jdbcType=DECIMAL}, #{fqFundManagerCode,jdbcType=VARCHAR}, 
+      #{fqIndiAppSubsVol,jdbcType=DECIMAL}, #{fqMinSubsVolByIndi,jdbcType=DECIMAL}, #{fqRegistrarCode,jdbcType=VARCHAR}, 
+      #{fqFundSponsor,jdbcType=VARCHAR}, #{fqTradingPrice,jdbcType=DECIMAL}, #{fqFaceValue,jdbcType=DECIMAL}, 
+      #{fqDividentDate,jdbcType=VARCHAR}, #{fqRegistrationDate,jdbcType=VARCHAR}, #{fqXrDate,jdbcType=VARCHAR}, 
+      #{fqMaxSubsVolByIndi,jdbcType=DECIMAL}, #{fqMaxSubsAmountByIndi,jdbcType=DECIMAL}, 
+      #{fqMaxSubsVolByInst,jdbcType=DECIMAL}, #{fqMaxSubsAmountByInst,jdbcType=DECIMAL}, 
+      #{fqUnitSubsVolByIndi,jdbcType=DECIMAL}, #{fqUnitSubsVolByInst,jdbcType=DECIMAL}, 
+      #{fqMinRedemptionVol,jdbcType=DECIMAL}, #{fqMinInterconvertVol,jdbcType=DECIMAL}, 
+      #{fqIssueTypeByIndi,jdbcType=VARCHAR}, #{fqIssueTypeByInst,jdbcType=VARCHAR}, #{fqSubsType,jdbcType=VARCHAR}, 
+      #{fqNextTradeDate,jdbcType=VARCHAR}, #{fqValueLine,jdbcType=DECIMAL}, #{fqTotalDivident,jdbcType=DECIMAL}, 
+      #{fqGuaranteedNav,jdbcType=DECIMAL}, #{fqFundYearIncomeRate,jdbcType=DECIMAL}, 
+      #{fqFundYearIncomeRateFlag,jdbcType=VARCHAR}, #{fqIndiMaxPurchase,jdbcType=DECIMAL}, 
+      #{fqInstMaxPurchase,jdbcType=DECIMAL}, #{fqIndiDayMaxSumBuy,jdbcType=DECIMAL}, 
+      #{fqIndiDayMaxSumRedeem,jdbcType=DECIMAL}, #{fqInstDayMaxSumRedeem,jdbcType=DECIMAL}, 
+      #{fqIndiMaxRedeem,jdbcType=DECIMAL}, #{fqInstMaxRedeem,jdbcType=DECIMAL}, #{fqFundDayIncomeFlag,jdbcType=VARCHAR}, 
+      #{fqFundDayIncome,jdbcType=DECIMAL}, #{fqAllowBreachRedempt,jdbcType=VARCHAR}, 
+      #{fqFundType,jdbcType=VARCHAR}, #{fqFundTypeName,jdbcType=VARCHAR}, #{fqRegistrarName,jdbcType=VARCHAR}, 
+      #{fqFundManagerName,jdbcType=VARCHAR}, #{fqFundServerTel,jdbcType=VARCHAR}, #{fqDundInternetAddress,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.FundQuotTmp" >
+    INSERT ALL 
+     <foreach collection="list" index="index" item="item">
+     INTO D_FUND_QUOT_TMP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="item.fqId != null" > 
+        FQ_ID,
+      </if>
+      <if test="item.fqChannelCode != null" >
+        FQ_CHANNEL_CODE,
+      </if>
+      <if test="item.fqFundName != null" >
+        FQ_FUND_NAME,
+      </if>
+      <if test="item.fqFundCode != null" >
+        FQ_FUND_CODE,
+      </if>
+      <if test="item.fqTotalFundVol != null" >
+        FQ_TOTAL_FUND_VOL,
+      </if>
+      <if test="item.fqFundStatus != null" >
+        FQ_FUND_STATUS,
+      </if>
+      <if test="item.fqNav != null" >
+        FQ_NAV,
+      </if>
+      <if test="item.fqUpdateDate != null" >
+        FQ_UPDATE_DATE,
+      </if>
+      <if test="item.fqNetValueType != null" >
+        FQ_NET_VALUE_TYPE,
+      </if>
+      <if test="item.fqAccumulativeNav != null" >
+        FQ_ACCUMULATIVE_NAV,
+      </if>
+      <if test="item.fqConvertStatus != null" >
+        FQ_CONVERT_STATUS,
+      </if>
+      <if test="item.fqCurrencyType != null" >
+        FQ_CURRENCY_TYPE,
+      </if>
+      <if test="item.fqInstAppSubsAmnt != null" >
+        FQ_INST_APP_SUBS_AMNT,
+      </if>
+      <if test="item.fqMinAmountByInst != null" >
+        FQ_MIN_AMOUNT_BY_INST,
+      </if>
+      <if test="item.fqIpostartDate != null" >
+        FQ_IPOSTART_DATE,
+      </if>
+      <if test="item.fqIpoendDate != null" >
+        FQ_IPOEND_DATE,
+      </if>
+      <if test="item.fqIndiAppSubsAmount != null" >
+        FQ_INDI_APP_SUBS_AMOUNT,
+      </if>
+      <if test="item.fqMinSubsAmountByIndi != null" >
+        FQ_MIN_SUBS_AMOUNT_BY_INDI,
+      </if>
+      <if test="item.fqUnitSubsAmountByIndi != null" >
+        FQ_UNIT_SUBS_AMOUNT_BY_INDI,
+      </if>
+      <if test="item.fqUnitSubsAmountByInst != null" >
+        FQ_UNIT_SUBS_AMOUNT_BY_INST,
+      </if>
+      <if test="item.fqMinBidsAmountByIndi != null" >
+        FQ_MIN_BIDS_AMOUNT_BY_INDI,
+      </if>
+      <if test="item.fqMinBidsAmountByInst != null" >
+        FQ_MIN_BIDS_AMOUNT_BY_INST,
+      </if>
+      <if test="item.fqMinAppBidsAmountByIndi != null" >
+        FQ_MIN_APP_BIDS_AMOUNT_BY_INDI,
+      </if>
+      <if test="item.fqMinAppBidsAmountByInst != null" >
+        FQ_MIN_APP_BIDS_AMOUNT_BY_INST,
+      </if>
+      <if test="item.fqCollectFeeType != null" >
+        FQ_COLLECT_FEE_TYPE,
+      </if>
+      <if test="item.fqFundIncome != null" >
+        FQ_FUND_INCOME,
+      </if>
+      <if test="item.fqFundIncomeFlag != null" >
+        FQ_FUND_INCOME_FLAG,
+      </if>
+      <if test="item.fqYield != null" >
+        FQ_YIELD,
+      </if>
+      <if test="item.fqYieldFlag != null" >
+        FQ_YIELD_FLAG,
+      </if>
+      <if test="item.fqDataGenerate != null" >
+        FQ_DATA_GENERATE,
+      </if>
+      <if test="item.fqCtime != null" >
+        FQ_CTIME,
+      </if>
+      <if test="item.fqUtime != null" >
+        FQ_UTIME,
+      </if>
+      <if test="item.fqCuser != null" >
+        FQ_CUSER,
+      </if>
+      <if test="item.fqUuser != null" >
+        FQ_UUSER,
+      </if>
+      <if test="item.fqInstFayMaxSumBuy != null" >
+        FQ_INST_FAY_MAX_SUM_BUY,
+      </if>
+      <if test="item.fqExchangeDate != null" >
+        FQ_EXCHANGE_DATE,
+      </if>
+      <if test="item.fqSztSendPath != null" >
+        FQ_SZT_SEND_PATH,
+      </if>
+      <if test="item.fqCsdcVer != null" >
+        FQ_CSDC_VER,
+      </if>
+      <if test="item.fqValidFlag != null" >
+        FQ_VALID_FLAG,
+      </if>
+      <if test="item.fqBatchNo != null" >
+        FQ_BATCH_NO,
+      </if>
+      <if test="item.fqMaxAmountRaised != null" >
+        FQ_MAX_AMOUNT_RAISED,
+      </if>
+      <if test="item.fqProductType != null" >
+        FQ_PRODUCT_TYPE,
+      </if>
+      <if test="item.fqTaProductCode != null" >
+        FQ_TA_PRODUCT_CODE,
+      </if>
+      <if test="item.fqRemainShares != null" >
+        FQ_REMAIN_SHARES,
+      </if>
+      <if test="item.fqMinAccountBalance != null" >
+        FQ_MIN_ACCOUNT_BALANCE,
+      </if>
+      <if test="item.fqPeriodicStatus != null" >
+        FQ_PERIODIC_STATUS,
+      </if>
+      <if test="item.fqTransferAgencyStatus != null" >
+        FQ_TRANSFER_AGENCY_STATUS,
+      </if>
+      <if test="item.fqFundSize != null" >
+        FQ_FUND_SIZE,
+      </if>
+      <if test="item.fqAnnouncFlag != null" >
+        FQ_ANNOUNC_FLAG,
+      </if>
+      <if test="item.fqDefDividenDmethod != null" >
+        FQ_DEF_DIVIDEN_DMETHOD,
+      </if>
+      <if test="item.fqInstAppSubsVol != null" >
+        FQ_INST_APP_SUBS_VOL,
+      </if>
+      <if test="item.fqMinVolByInst != null" >
+        FQ_MIN_VOL_BY_INST,
+      </if>
+      <if test="item.fqCustodianCode != null" >
+        FQ_CUSTODIAN_CODE,
+      </if>
+      <if test="item.fqAmountOfPeriodicSubs != null" >
+        FQ_AMOUNT_OF_PERIODIC_SUBS,
+      </if>
+      <if test="item.fqDateOfPeriodicSubs != null" >
+        FQ_DATE_OF_PERIODIC_SUBS,
+      </if>
+      <if test="item.fqMaxRedemptionVol != null" >
+        FQ_MAX_REDEMPTION_VOL,
+      </if>
+      <if test="item.fqFundManagerCode != null" >
+        FQ_FUND_MANAGER_CODE,
+      </if>
+      <if test="item.fqIndiAppSubsVol != null" >
+        FQ_INDI_APP_SUBS_VOL,
+      </if>
+      <if test="item.fqMinSubsVolByIndi != null" >
+        FQ_MIN_SUBS_VOL_BY_INDI,
+      </if>
+      <if test="item.fqRegistrarCode != null" >
+        FQ_REGISTRAR_CODE,
+      </if>
+      <if test="item.fqFundSponsor != null" >
+        FQ_FUND_SPONSOR,
+      </if>
+      <if test="item.fqTradingPrice != null" >
+        FQ_TRADING_PRICE,
+      </if>
+      <if test="item.fqFaceValue != null" >
+        FQ_FACE_VALUE,
+      </if>
+      <if test="item.fqDividentDate != null" >
+        FQ_DIVIDENT_DATE,
+      </if>
+      <if test="item.fqRegistrationDate != null" >
+        FQ_REGISTRATION_DATE,
+      </if>
+      <if test="item.fqXrDate != null" >
+        FQ_XR_DATE,
+      </if>
+      <if test="item.fqMaxSubsVolByIndi != null" >
+        FQ_MAX_SUBS_VOL_BY_INDI,
+      </if>
+      <if test="item.fqMaxSubsAmountByIndi != null" >
+        FQ_MAX_SUBS_AMOUNT_BY_INDI,
+      </if>
+      <if test="item.fqMaxSubsVolByInst != null" >
+        FQ_MAX_SUBS_VOL_BY_INST,
+      </if>
+      <if test="item.fqMaxSubsAmountByInst != null" >
+        FQ_MAX_SUBS_AMOUNT_BY_INST,
+      </if>
+      <if test="item.fqUnitSubsVolByIndi != null" >
+        FQ_UNIT_SUBS_VOL_BY_INDI,
+      </if>
+      <if test="item.fqUnitSubsVolByInst != null" >
+        FQ_UNIT_SUBS_VOL_BY_INST,
+      </if>
+      <if test="item.fqMinRedemptionVol != null" >
+        FQ_MIN_REDEMPTION_VOL,
+      </if>
+      <if test="item.fqMinInterconvertVol != null" >
+        FQ_MIN_INTERCONVERT_VOL,
+      </if>
+      <if test="item.fqIssueTypeByIndi != null" >
+        FQ_ISSUE_TYPE_BY_INDI,
+      </if>
+      <if test="item.fqIssueTypeByInst != null" >
+        FQ_ISSUE_TYPE_BY_INST,
+      </if>
+      <if test="item.fqSubsType != null" >
+        FQ_SUBS_TYPE,
+      </if>
+      <if test="item.fqNextTradeDate != null" >
+        FQ_NEXT_TRADE_DATE,
+      </if>
+      <if test="item.fqValueLine != null" >
+        FQ_VALUE_LINE,
+      </if>
+      <if test="item.fqTotalDivident != null" >
+        FQ_TOTAL_DIVIDENT,
+      </if>
+      <if test="item.fqGuaranteedNav != null" >
+        FQ_GUARANTEED_NAV,
+      </if>
+      <if test="item.fqFundYearIncomeRate != null" >
+        FQ_FUND_YEAR_INCOME_RATE,
+      </if>
+      <if test="item.fqFundYearIncomeRateFlag != null" >
+        FQ_FUND_YEAR_INCOME_RATE_FLAG,
+      </if>
+      <if test="item.fqIndiMaxPurchase != null" >
+        FQ_INDI_MAX_PURCHASE,
+      </if>
+      <if test="item.fqInstMaxPurchase != null" >
+        FQ_INST_MAX_PURCHASE,
+      </if>
+      <if test="item.fqIndiDayMaxSumBuy != null" >
+        FQ_INDI_DAY_MAX_SUM_BUY,
+      </if>
+      <if test="item.fqIndiDayMaxSumRedeem != null" >
+        FQ_INDI_DAY_MAX_SUM_REDEEM,
+      </if>
+      <if test="item.fqInstDayMaxSumRedeem != null" >
+        FQ_INST_DAY_MAX_SUM_REDEEM,
+      </if>
+      <if test="item.fqIndiMaxRedeem != null" >
+        FQ_INDI_MAX_REDEEM,
+      </if>
+      <if test="item.fqInstMaxRedeem != null" >
+        FQ_INST_MAX_REDEEM,
+      </if>
+      <if test="item.fqFundDayIncomeFlag != null" >
+        FQ_FUND_DAY_INCOME_FLAG,
+      </if>
+      <if test="item.fqFundDayIncome != null" >
+        FQ_FUND_DAY_INCOME,
+      </if>
+      <if test="item.fqAllowBreachRedempt != null" >
+        FQ_ALLOW_BREACH_REDEMPT,
+      </if>
+      <if test="item.fqFundType != null" >
+        FQ_FUND_TYPE,
+      </if>
+      <if test="item.fqFundTypeName != null" >
+        FQ_FUND_TYPE_NAME,
+      </if>
+      <if test="item.fqRegistrarName != null" >
+        FQ_REGISTRAR_NAME,
+      </if>
+      <if test="item.fqFundManagerName != null" >
+        FQ_FUND_MANAGER_NAME,
+      </if>
+      <if test="item.fqFundServerTel != null" >
+        FQ_FUND_SERVER_TEL,
+      </if>
+      <if test="item.fqDundInternetAddress != null" >
+        FQ_DUND_INTERNET_ADDRESS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="item.fqId != null" >
+        #{item.fqId,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqChannelCode != null" >
+        #{item.fqChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundName != null" >
+        #{item.fqFundName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundCode != null" >
+        #{item.fqFundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqTotalFundVol != null" >
+        #{item.fqTotalFundVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundStatus != null" >
+        #{item.fqFundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqNav != null" >
+        #{item.fqNav,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqUpdateDate != null" >
+        #{item.fqUpdateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqNetValueType != null" >
+        #{item.fqNetValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqAccumulativeNav != null" >
+        #{item.fqAccumulativeNav,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqConvertStatus != null" >
+        #{item.fqConvertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqCurrencyType != null" >
+        #{item.fqCurrencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqInstAppSubsAmnt != null" >
+        #{item.fqInstAppSubsAmnt,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinAmountByInst != null" >
+        #{item.fqMinAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqIpostartDate != null" >
+        #{item.fqIpostartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqIpoendDate != null" >
+        #{item.fqIpoendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqIndiAppSubsAmount != null" >
+        #{item.fqIndiAppSubsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinSubsAmountByIndi != null" >
+        #{item.fqMinSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqUnitSubsAmountByIndi != null" >
+        #{item.fqUnitSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqUnitSubsAmountByInst != null" >
+        #item.{fqUnitSubsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinBidsAmountByIndi != null" >
+        #{item.fqMinBidsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinBidsAmountByInst != null" >
+        #{item.fqMinBidsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinAppBidsAmountByIndi != null" >
+        #{item.fqMinAppBidsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinAppBidsAmountByInst != null" >
+        #{item.fqMinAppBidsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqCollectFeeType != null" >
+        #{item.fqCollectFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundIncome != null" >
+        #{item.fqFundIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundIncomeFlag != null" >
+        #{item.fqFundIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqYield != null" >
+        #{item.fqYield,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqYieldFlag != null" >
+        #{item.fqYieldFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqDataGenerate != null" >
+        #{item.fqDataGenerate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.fqCtime != null" >
+        #{item.fqCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.fqUtime != null" >
+        #{item.fqUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="item.fqCuser != null" >
+        #{item.fqCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqUuser != null" >
+        #{item.fqUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqInstFayMaxSumBuy != null" >
+        #{item.fqInstFayMaxSumBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqExchangeDate != null" >
+        #{item.fqExchangeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqSztSendPath != null" >
+        #{item.fqSztSendPath,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqCsdcVer != null" >
+        #{item.fqCsdcVer,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqValidFlag != null" >
+        #{item.fqValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqBatchNo != null" >
+        #{item.fqBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqMaxAmountRaised != null" >
+        #{item.fqMaxAmountRaised,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqProductType != null" >
+        #{item.fqProductType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqTaProductCode != null" >
+        #{item.fqTaProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqRemainShares != null" >
+        #{item.fqRemainShares,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqMinAccountBalance != null" >
+        #{item.fqMinAccountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqPeriodicStatus != null" >
+        #{item.fqPeriodicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqTransferAgencyStatus != null" >
+        #{item.fqTransferAgencyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundSize != null" >
+        #{item.fqFundSize,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqAnnouncFlag != null" >
+        #{item.fqAnnouncFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqDefDividenDmethod != null" >
+        #{item.fqDefDividenDmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqInstAppSubsVol != null" >
+        #{item.fqInstAppSubsVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinVolByInst != null" >
+        #{item.fqMinVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqCustodianCode != null" >
+        #{item.fqCustodianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqAmountOfPeriodicSubs != null" >
+        #{item.fqAmountOfPeriodicSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqDateOfPeriodicSubs != null" >
+        #{item.fqDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqMaxRedemptionVol != null" >
+        #{item.fqMaxRedemptionVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundManagerCode != null" >
+        #{item.fqFundManagerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqIndiAppSubsVol != null" >
+        #{item.fqIndiAppSubsVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinSubsVolByIndi != null" >
+        #{item.fqMinSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqRegistrarCode != null" >
+        #{item.fqRegistrarCode,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundSponsor != null" >
+        #{item.fqFundSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqTradingPrice != null" >
+        #{item.fqTradingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFaceValue != null" >
+        #{item.fqFaceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqDividentDate != null" >
+        #{item.fqDividentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqRegistrationDate != null" >
+        #{item.fqRegistrationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqXrDate != null" >
+        #{item.fqXrDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqMaxSubsVolByIndi != null" >
+        #{item.fqMaxSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMaxSubsAmountByIndi != null" >
+        #{item.fqMaxSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMaxSubsVolByInst != null" >
+        #{item.fqMaxSubsVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMaxSubsAmountByInst != null" >
+        #{item.fqMaxSubsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqUnitSubsVolByIndi != null" >
+        #{item.fqUnitSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqUnitSubsVolByInst != null" >
+        #{item.fqUnitSubsVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinRedemptionVol != null" >
+        #{item.fqMinRedemptionVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqMinInterconvertVol != null" >
+        #{item.fqMinInterconvertVol,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqIssueTypeByIndi != null" >
+        #{item.fqIssueTypeByIndi,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqIssueTypeByInst != null" >
+        #{item.fqIssueTypeByInst,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqSubsType != null" >
+        #{item.fqSubsType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqNextTradeDate != null" >
+        #{item.fqNextTradeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqValueLine != null" >
+        #{item.fqValueLine,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqTotalDivident != null" >
+        #{item.fqTotalDivident,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqGuaranteedNav != null" >
+        #{item.fqGuaranteedNav,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundYearIncomeRate != null" >
+        #{item.fqFundYearIncomeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundYearIncomeRateFlag != null" >
+        #{item.fqFundYearIncomeRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqIndiMaxPurchase != null" >
+        #{item.fqIndiMaxPurchase,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqInstMaxPurchase != null" >
+        #{item.fqInstMaxPurchase,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqIndiDayMaxSumBuy != null" >
+        #{item.fqIndiDayMaxSumBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqIndiDayMaxSumRedeem != null" >
+        #{item.fqIndiDayMaxSumRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqInstDayMaxSumRedeem != null" >
+        #{item.fqInstDayMaxSumRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqIndiMaxRedeem != null" >
+        #{item.fqIndiMaxRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqInstMaxRedeem != null" >
+        #{item.fqInstMaxRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqFundDayIncomeFlag != null" >
+        #{item.fqFundDayIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundDayIncome != null" >
+        #{item.fqFundDayIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="item.fqAllowBreachRedempt != null" >
+        #{item.fqAllowBreachRedempt,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundType != null" >
+        #{item.fqFundType,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundTypeName != null" >
+        #{item.fqFundTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqRegistrarName != null" >
+        #{item.fqRegistrarName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundManagerName != null" >
+        #{item.fqFundManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqFundServerTel != null" >
+        #{item.fqFundServerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="item.fqDundInternetAddress != null" >
+        #{item.fqDundInternetAddress,jdbcType=VARCHAR},
+      </if>
+     </trim>
+    </foreach>
+    SELECT 1 FROM DUAL
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.FundQuotTmp" >
+    update D_FUND_QUOT_TMP
+    <set >
+      <if test="fqChannelCode != null" >
+        FQ_CHANNEL_CODE = #{fqChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundName != null" >
+        FQ_FUND_NAME = #{fqFundName,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundCode != null" >
+        FQ_FUND_CODE = #{fqFundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqTotalFundVol != null" >
+        FQ_TOTAL_FUND_VOL = #{fqTotalFundVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundStatus != null" >
+        FQ_FUND_STATUS = #{fqFundStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fqNav != null" >
+        FQ_NAV = #{fqNav,jdbcType=DECIMAL},
+      </if>
+      <if test="fqUpdateDate != null" >
+        FQ_UPDATE_DATE = #{fqUpdateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqNetValueType != null" >
+        FQ_NET_VALUE_TYPE = #{fqNetValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqAccumulativeNav != null" >
+        FQ_ACCUMULATIVE_NAV = #{fqAccumulativeNav,jdbcType=DECIMAL},
+      </if>
+      <if test="fqConvertStatus != null" >
+        FQ_CONVERT_STATUS = #{fqConvertStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fqCurrencyType != null" >
+        FQ_CURRENCY_TYPE = #{fqCurrencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqInstAppSubsAmnt != null" >
+        FQ_INST_APP_SUBS_AMNT = #{fqInstAppSubsAmnt,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinAmountByInst != null" >
+        FQ_MIN_AMOUNT_BY_INST = #{fqMinAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqIpostartDate != null" >
+        FQ_IPOSTART_DATE = #{fqIpostartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqIpoendDate != null" >
+        FQ_IPOEND_DATE = #{fqIpoendDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqIndiAppSubsAmount != null" >
+        FQ_INDI_APP_SUBS_AMOUNT = #{fqIndiAppSubsAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinSubsAmountByIndi != null" >
+        FQ_MIN_SUBS_AMOUNT_BY_INDI = #{fqMinSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqUnitSubsAmountByIndi != null" >
+        FQ_UNIT_SUBS_AMOUNT_BY_INDI = #{fqUnitSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqUnitSubsAmountByInst != null" >
+        FQ_UNIT_SUBS_AMOUNT_BY_INST = #{fqUnitSubsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinBidsAmountByIndi != null" >
+        FQ_MIN_BIDS_AMOUNT_BY_INDI = #{fqMinBidsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinBidsAmountByInst != null" >
+        FQ_MIN_BIDS_AMOUNT_BY_INST = #{fqMinBidsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinAppBidsAmountByIndi != null" >
+        FQ_MIN_APP_BIDS_AMOUNT_BY_INDI = #{fqMinAppBidsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinAppBidsAmountByInst != null" >
+        FQ_MIN_APP_BIDS_AMOUNT_BY_INST = #{fqMinAppBidsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqCollectFeeType != null" >
+        FQ_COLLECT_FEE_TYPE = #{fqCollectFeeType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundIncome != null" >
+        FQ_FUND_INCOME = #{fqFundIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundIncomeFlag != null" >
+        FQ_FUND_INCOME_FLAG = #{fqFundIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqYield != null" >
+        FQ_YIELD = #{fqYield,jdbcType=DECIMAL},
+      </if>
+      <if test="fqYieldFlag != null" >
+        FQ_YIELD_FLAG = #{fqYieldFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqDataGenerate != null" >
+        FQ_DATA_GENERATE = #{fqDataGenerate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fqCtime != null" >
+        FQ_CTIME = #{fqCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fqUtime != null" >
+        FQ_UTIME = #{fqUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fqCuser != null" >
+        FQ_CUSER = #{fqCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="fqUuser != null" >
+        FQ_UUSER = #{fqUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="fqInstFayMaxSumBuy != null" >
+        FQ_INST_FAY_MAX_SUM_BUY = #{fqInstFayMaxSumBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="fqExchangeDate != null" >
+        FQ_EXCHANGE_DATE = #{fqExchangeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqSztSendPath != null" >
+        FQ_SZT_SEND_PATH = #{fqSztSendPath,jdbcType=VARCHAR},
+      </if>
+      <if test="fqCsdcVer != null" >
+        FQ_CSDC_VER = #{fqCsdcVer,jdbcType=VARCHAR},
+      </if>
+      <if test="fqValidFlag != null" >
+        FQ_VALID_FLAG = #{fqValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqBatchNo != null" >
+        FQ_BATCH_NO = #{fqBatchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fqMaxAmountRaised != null" >
+        FQ_MAX_AMOUNT_RAISED = #{fqMaxAmountRaised,jdbcType=VARCHAR},
+      </if>
+      <if test="fqProductType != null" >
+        FQ_PRODUCT_TYPE = #{fqProductType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqTaProductCode != null" >
+        FQ_TA_PRODUCT_CODE = #{fqTaProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqRemainShares != null" >
+        FQ_REMAIN_SHARES = #{fqRemainShares,jdbcType=VARCHAR},
+      </if>
+      <if test="fqMinAccountBalance != null" >
+        FQ_MIN_ACCOUNT_BALANCE = #{fqMinAccountBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="fqPeriodicStatus != null" >
+        FQ_PERIODIC_STATUS = #{fqPeriodicStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fqTransferAgencyStatus != null" >
+        FQ_TRANSFER_AGENCY_STATUS = #{fqTransferAgencyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundSize != null" >
+        FQ_FUND_SIZE = #{fqFundSize,jdbcType=DECIMAL},
+      </if>
+      <if test="fqAnnouncFlag != null" >
+        FQ_ANNOUNC_FLAG = #{fqAnnouncFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqDefDividenDmethod != null" >
+        FQ_DEF_DIVIDEN_DMETHOD = #{fqDefDividenDmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="fqInstAppSubsVol != null" >
+        FQ_INST_APP_SUBS_VOL = #{fqInstAppSubsVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinVolByInst != null" >
+        FQ_MIN_VOL_BY_INST = #{fqMinVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqCustodianCode != null" >
+        FQ_CUSTODIAN_CODE = #{fqCustodianCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqAmountOfPeriodicSubs != null" >
+        FQ_AMOUNT_OF_PERIODIC_SUBS = #{fqAmountOfPeriodicSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="fqDateOfPeriodicSubs != null" >
+        FQ_DATE_OF_PERIODIC_SUBS = #{fqDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="fqMaxRedemptionVol != null" >
+        FQ_MAX_REDEMPTION_VOL = #{fqMaxRedemptionVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundManagerCode != null" >
+        FQ_FUND_MANAGER_CODE = #{fqFundManagerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqIndiAppSubsVol != null" >
+        FQ_INDI_APP_SUBS_VOL = #{fqIndiAppSubsVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinSubsVolByIndi != null" >
+        FQ_MIN_SUBS_VOL_BY_INDI = #{fqMinSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqRegistrarCode != null" >
+        FQ_REGISTRAR_CODE = #{fqRegistrarCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundSponsor != null" >
+        FQ_FUND_SPONSOR = #{fqFundSponsor,jdbcType=VARCHAR},
+      </if>
+      <if test="fqTradingPrice != null" >
+        FQ_TRADING_PRICE = #{fqTradingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFaceValue != null" >
+        FQ_FACE_VALUE = #{fqFaceValue,jdbcType=DECIMAL},
+      </if>
+      <if test="fqDividentDate != null" >
+        FQ_DIVIDENT_DATE = #{fqDividentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqRegistrationDate != null" >
+        FQ_REGISTRATION_DATE = #{fqRegistrationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqXrDate != null" >
+        FQ_XR_DATE = #{fqXrDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqMaxSubsVolByIndi != null" >
+        FQ_MAX_SUBS_VOL_BY_INDI = #{fqMaxSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMaxSubsAmountByIndi != null" >
+        FQ_MAX_SUBS_AMOUNT_BY_INDI = #{fqMaxSubsAmountByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMaxSubsVolByInst != null" >
+        FQ_MAX_SUBS_VOL_BY_INST = #{fqMaxSubsVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMaxSubsAmountByInst != null" >
+        FQ_MAX_SUBS_AMOUNT_BY_INST = #{fqMaxSubsAmountByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqUnitSubsVolByIndi != null" >
+        FQ_UNIT_SUBS_VOL_BY_INDI = #{fqUnitSubsVolByIndi,jdbcType=DECIMAL},
+      </if>
+      <if test="fqUnitSubsVolByInst != null" >
+        FQ_UNIT_SUBS_VOL_BY_INST = #{fqUnitSubsVolByInst,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinRedemptionVol != null" >
+        FQ_MIN_REDEMPTION_VOL = #{fqMinRedemptionVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqMinInterconvertVol != null" >
+        FQ_MIN_INTERCONVERT_VOL = #{fqMinInterconvertVol,jdbcType=DECIMAL},
+      </if>
+      <if test="fqIssueTypeByIndi != null" >
+        FQ_ISSUE_TYPE_BY_INDI = #{fqIssueTypeByIndi,jdbcType=VARCHAR},
+      </if>
+      <if test="fqIssueTypeByInst != null" >
+        FQ_ISSUE_TYPE_BY_INST = #{fqIssueTypeByInst,jdbcType=VARCHAR},
+      </if>
+      <if test="fqSubsType != null" >
+        FQ_SUBS_TYPE = #{fqSubsType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqNextTradeDate != null" >
+        FQ_NEXT_TRADE_DATE = #{fqNextTradeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fqValueLine != null" >
+        FQ_VALUE_LINE = #{fqValueLine,jdbcType=DECIMAL},
+      </if>
+      <if test="fqTotalDivident != null" >
+        FQ_TOTAL_DIVIDENT = #{fqTotalDivident,jdbcType=DECIMAL},
+      </if>
+      <if test="fqGuaranteedNav != null" >
+        FQ_GUARANTEED_NAV = #{fqGuaranteedNav,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundYearIncomeRate != null" >
+        FQ_FUND_YEAR_INCOME_RATE = #{fqFundYearIncomeRate,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundYearIncomeRateFlag != null" >
+        FQ_FUND_YEAR_INCOME_RATE_FLAG = #{fqFundYearIncomeRateFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqIndiMaxPurchase != null" >
+        FQ_INDI_MAX_PURCHASE = #{fqIndiMaxPurchase,jdbcType=DECIMAL},
+      </if>
+      <if test="fqInstMaxPurchase != null" >
+        FQ_INST_MAX_PURCHASE = #{fqInstMaxPurchase,jdbcType=DECIMAL},
+      </if>
+      <if test="fqIndiDayMaxSumBuy != null" >
+        FQ_INDI_DAY_MAX_SUM_BUY = #{fqIndiDayMaxSumBuy,jdbcType=DECIMAL},
+      </if>
+      <if test="fqIndiDayMaxSumRedeem != null" >
+        FQ_INDI_DAY_MAX_SUM_REDEEM = #{fqIndiDayMaxSumRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="fqInstDayMaxSumRedeem != null" >
+        FQ_INST_DAY_MAX_SUM_REDEEM = #{fqInstDayMaxSumRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="fqIndiMaxRedeem != null" >
+        FQ_INDI_MAX_REDEEM = #{fqIndiMaxRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="fqInstMaxRedeem != null" >
+        FQ_INST_MAX_REDEEM = #{fqInstMaxRedeem,jdbcType=DECIMAL},
+      </if>
+      <if test="fqFundDayIncomeFlag != null" >
+        FQ_FUND_DAY_INCOME_FLAG = #{fqFundDayIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundDayIncome != null" >
+        FQ_FUND_DAY_INCOME = #{fqFundDayIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="fqAllowBreachRedempt != null" >
+        FQ_ALLOW_BREACH_REDEMPT = #{fqAllowBreachRedempt,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundType != null" >
+        FQ_FUND_TYPE = #{fqFundType,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundTypeName != null" >
+        FQ_FUND_TYPE_NAME = #{fqFundTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fqRegistrarName != null" >
+        FQ_REGISTRAR_NAME = #{fqRegistrarName,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundManagerName != null" >
+        FQ_FUND_MANAGER_NAME = #{fqFundManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="fqFundServerTel != null" >
+        FQ_FUND_SERVER_TEL = #{fqFundServerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="fqDundInternetAddress != null" >
+        FQ_DUND_INTERNET_ADDRESS = #{fqDundInternetAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FQ_ID = #{fqId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.FundQuotTmp" >
+    update D_FUND_QUOT_TMP
+    set FQ_CHANNEL_CODE = #{fqChannelCode,jdbcType=VARCHAR},
+      FQ_FUND_NAME = #{fqFundName,jdbcType=VARCHAR},
+      FQ_FUND_CODE = #{fqFundCode,jdbcType=VARCHAR},
+      FQ_TOTAL_FUND_VOL = #{fqTotalFundVol,jdbcType=DECIMAL},
+      FQ_FUND_STATUS = #{fqFundStatus,jdbcType=VARCHAR},
+      FQ_NAV = #{fqNav,jdbcType=DECIMAL},
+      FQ_UPDATE_DATE = #{fqUpdateDate,jdbcType=VARCHAR},
+      FQ_NET_VALUE_TYPE = #{fqNetValueType,jdbcType=VARCHAR},
+      FQ_ACCUMULATIVE_NAV = #{fqAccumulativeNav,jdbcType=DECIMAL},
+      FQ_CONVERT_STATUS = #{fqConvertStatus,jdbcType=VARCHAR},
+      FQ_CURRENCY_TYPE = #{fqCurrencyType,jdbcType=VARCHAR},
+      FQ_INST_APP_SUBS_AMNT = #{fqInstAppSubsAmnt,jdbcType=DECIMAL},
+      FQ_MIN_AMOUNT_BY_INST = #{fqMinAmountByInst,jdbcType=DECIMAL},
+      FQ_IPOSTART_DATE = #{fqIpostartDate,jdbcType=VARCHAR},
+      FQ_IPOEND_DATE = #{fqIpoendDate,jdbcType=VARCHAR},
+      FQ_INDI_APP_SUBS_AMOUNT = #{fqIndiAppSubsAmount,jdbcType=DECIMAL},
+      FQ_MIN_SUBS_AMOUNT_BY_INDI = #{fqMinSubsAmountByIndi,jdbcType=DECIMAL},
+      FQ_UNIT_SUBS_AMOUNT_BY_INDI = #{fqUnitSubsAmountByIndi,jdbcType=DECIMAL},
+      FQ_UNIT_SUBS_AMOUNT_BY_INST = #{fqUnitSubsAmountByInst,jdbcType=DECIMAL},
+      FQ_MIN_BIDS_AMOUNT_BY_INDI = #{fqMinBidsAmountByIndi,jdbcType=DECIMAL},
+      FQ_MIN_BIDS_AMOUNT_BY_INST = #{fqMinBidsAmountByInst,jdbcType=DECIMAL},
+      FQ_MIN_APP_BIDS_AMOUNT_BY_INDI = #{fqMinAppBidsAmountByIndi,jdbcType=DECIMAL},
+      FQ_MIN_APP_BIDS_AMOUNT_BY_INST = #{fqMinAppBidsAmountByInst,jdbcType=DECIMAL},
+      FQ_COLLECT_FEE_TYPE = #{fqCollectFeeType,jdbcType=VARCHAR},
+      FQ_FUND_INCOME = #{fqFundIncome,jdbcType=DECIMAL},
+      FQ_FUND_INCOME_FLAG = #{fqFundIncomeFlag,jdbcType=VARCHAR},
+      FQ_YIELD = #{fqYield,jdbcType=DECIMAL},
+      FQ_YIELD_FLAG = #{fqYieldFlag,jdbcType=VARCHAR},
+      FQ_DATA_GENERATE = #{fqDataGenerate,jdbcType=TIMESTAMP},
+      FQ_CTIME = #{fqCtime,jdbcType=TIMESTAMP},
+      FQ_UTIME = #{fqUtime,jdbcType=TIMESTAMP},
+      FQ_CUSER = #{fqCuser,jdbcType=VARCHAR},
+      FQ_UUSER = #{fqUuser,jdbcType=VARCHAR},
+      FQ_INST_FAY_MAX_SUM_BUY = #{fqInstFayMaxSumBuy,jdbcType=DECIMAL},
+      FQ_EXCHANGE_DATE = #{fqExchangeDate,jdbcType=VARCHAR},
+      FQ_SZT_SEND_PATH = #{fqSztSendPath,jdbcType=VARCHAR},
+      FQ_CSDC_VER = #{fqCsdcVer,jdbcType=VARCHAR},
+      FQ_VALID_FLAG = #{fqValidFlag,jdbcType=VARCHAR},
+      FQ_BATCH_NO = #{fqBatchNo,jdbcType=VARCHAR},
+      FQ_MAX_AMOUNT_RAISED = #{fqMaxAmountRaised,jdbcType=VARCHAR},
+      FQ_PRODUCT_TYPE = #{fqProductType,jdbcType=VARCHAR},
+      FQ_TA_PRODUCT_CODE = #{fqTaProductCode,jdbcType=VARCHAR},
+      FQ_REMAIN_SHARES = #{fqRemainShares,jdbcType=VARCHAR},
+      FQ_MIN_ACCOUNT_BALANCE = #{fqMinAccountBalance,jdbcType=VARCHAR},
+      FQ_PERIODIC_STATUS = #{fqPeriodicStatus,jdbcType=VARCHAR},
+      FQ_TRANSFER_AGENCY_STATUS = #{fqTransferAgencyStatus,jdbcType=VARCHAR},
+      FQ_FUND_SIZE = #{fqFundSize,jdbcType=DECIMAL},
+      FQ_ANNOUNC_FLAG = #{fqAnnouncFlag,jdbcType=VARCHAR},
+      FQ_DEF_DIVIDEN_DMETHOD = #{fqDefDividenDmethod,jdbcType=VARCHAR},
+      FQ_INST_APP_SUBS_VOL = #{fqInstAppSubsVol,jdbcType=DECIMAL},
+      FQ_MIN_VOL_BY_INST = #{fqMinVolByInst,jdbcType=DECIMAL},
+      FQ_CUSTODIAN_CODE = #{fqCustodianCode,jdbcType=VARCHAR},
+      FQ_AMOUNT_OF_PERIODIC_SUBS = #{fqAmountOfPeriodicSubs,jdbcType=DECIMAL},
+      FQ_DATE_OF_PERIODIC_SUBS = #{fqDateOfPeriodicSubs,jdbcType=VARCHAR},
+      FQ_MAX_REDEMPTION_VOL = #{fqMaxRedemptionVol,jdbcType=DECIMAL},
+      FQ_FUND_MANAGER_CODE = #{fqFundManagerCode,jdbcType=VARCHAR},
+      FQ_INDI_APP_SUBS_VOL = #{fqIndiAppSubsVol,jdbcType=DECIMAL},
+      FQ_MIN_SUBS_VOL_BY_INDI = #{fqMinSubsVolByIndi,jdbcType=DECIMAL},
+      FQ_REGISTRAR_CODE = #{fqRegistrarCode,jdbcType=VARCHAR},
+      FQ_FUND_SPONSOR = #{fqFundSponsor,jdbcType=VARCHAR},
+      FQ_TRADING_PRICE = #{fqTradingPrice,jdbcType=DECIMAL},
+      FQ_FACE_VALUE = #{fqFaceValue,jdbcType=DECIMAL},
+      FQ_DIVIDENT_DATE = #{fqDividentDate,jdbcType=VARCHAR},
+      FQ_REGISTRATION_DATE = #{fqRegistrationDate,jdbcType=VARCHAR},
+      FQ_XR_DATE = #{fqXrDate,jdbcType=VARCHAR},
+      FQ_MAX_SUBS_VOL_BY_INDI = #{fqMaxSubsVolByIndi,jdbcType=DECIMAL},
+      FQ_MAX_SUBS_AMOUNT_BY_INDI = #{fqMaxSubsAmountByIndi,jdbcType=DECIMAL},
+      FQ_MAX_SUBS_VOL_BY_INST = #{fqMaxSubsVolByInst,jdbcType=DECIMAL},
+      FQ_MAX_SUBS_AMOUNT_BY_INST = #{fqMaxSubsAmountByInst,jdbcType=DECIMAL},
+      FQ_UNIT_SUBS_VOL_BY_INDI = #{fqUnitSubsVolByIndi,jdbcType=DECIMAL},
+      FQ_UNIT_SUBS_VOL_BY_INST = #{fqUnitSubsVolByInst,jdbcType=DECIMAL},
+      FQ_MIN_REDEMPTION_VOL = #{fqMinRedemptionVol,jdbcType=DECIMAL},
+      FQ_MIN_INTERCONVERT_VOL = #{fqMinInterconvertVol,jdbcType=DECIMAL},
+      FQ_ISSUE_TYPE_BY_INDI = #{fqIssueTypeByIndi,jdbcType=VARCHAR},
+      FQ_ISSUE_TYPE_BY_INST = #{fqIssueTypeByInst,jdbcType=VARCHAR},
+      FQ_SUBS_TYPE = #{fqSubsType,jdbcType=VARCHAR},
+      FQ_NEXT_TRADE_DATE = #{fqNextTradeDate,jdbcType=VARCHAR},
+      FQ_VALUE_LINE = #{fqValueLine,jdbcType=DECIMAL},
+      FQ_TOTAL_DIVIDENT = #{fqTotalDivident,jdbcType=DECIMAL},
+      FQ_GUARANTEED_NAV = #{fqGuaranteedNav,jdbcType=DECIMAL},
+      FQ_FUND_YEAR_INCOME_RATE = #{fqFundYearIncomeRate,jdbcType=DECIMAL},
+      FQ_FUND_YEAR_INCOME_RATE_FLAG = #{fqFundYearIncomeRateFlag,jdbcType=VARCHAR},
+      FQ_INDI_MAX_PURCHASE = #{fqIndiMaxPurchase,jdbcType=DECIMAL},
+      FQ_INST_MAX_PURCHASE = #{fqInstMaxPurchase,jdbcType=DECIMAL},
+      FQ_INDI_DAY_MAX_SUM_BUY = #{fqIndiDayMaxSumBuy,jdbcType=DECIMAL},
+      FQ_INDI_DAY_MAX_SUM_REDEEM = #{fqIndiDayMaxSumRedeem,jdbcType=DECIMAL},
+      FQ_INST_DAY_MAX_SUM_REDEEM = #{fqInstDayMaxSumRedeem,jdbcType=DECIMAL},
+      FQ_INDI_MAX_REDEEM = #{fqIndiMaxRedeem,jdbcType=DECIMAL},
+      FQ_INST_MAX_REDEEM = #{fqInstMaxRedeem,jdbcType=DECIMAL},
+      FQ_FUND_DAY_INCOME_FLAG = #{fqFundDayIncomeFlag,jdbcType=VARCHAR},
+      FQ_FUND_DAY_INCOME = #{fqFundDayIncome,jdbcType=DECIMAL},
+      FQ_ALLOW_BREACH_REDEMPT = #{fqAllowBreachRedempt,jdbcType=VARCHAR},
+      FQ_FUND_TYPE = #{fqFundType,jdbcType=VARCHAR},
+      FQ_FUND_TYPE_NAME = #{fqFundTypeName,jdbcType=VARCHAR},
+      FQ_REGISTRAR_NAME = #{fqRegistrarName,jdbcType=VARCHAR},
+      FQ_FUND_MANAGER_NAME = #{fqFundManagerName,jdbcType=VARCHAR},
+      FQ_FUND_SERVER_TEL = #{fqFundServerTel,jdbcType=VARCHAR},
+      FQ_DUND_INTERNET_ADDRESS = #{fqDundInternetAddress,jdbcType=VARCHAR}
+    where FQ_ID = #{fqId,jdbcType=DECIMAL}
+  </update>
+</mapper>

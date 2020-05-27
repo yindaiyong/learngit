@@ -1,0 +1,821 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.DFxqUnresidentDataMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.DFxqUnresidentData" >
+    <id column="FUD_ID" property="fudId" jdbcType="DECIMAL" />
+    <result column="FUD_CHANNEL_CODE" property="fudChannelCode" jdbcType="VARCHAR" />
+    <result column="FUD_ACCOUNTID" property="fudAccountid" jdbcType="VARCHAR" />
+    <result column="FUD_CHANNEL_NAME" property="fudChannelName" jdbcType="VARCHAR" />
+    <result column="FUD_PRODUCT_CODE" property="fudProductCode" jdbcType="VARCHAR" />
+    <result column="FUD_SHARE_CFM_DATE" property="fudShareCfmDate" jdbcType="VARCHAR" />
+    <result column="FUD_SHARE_CFM" property="fudShareCfm" jdbcType="VARCHAR" />
+    <result column="FUD_EMPTY_CODE" property="fudEmptyCode" jdbcType="VARCHAR" />
+    <result column="FUD_PRODUCT_NAME" property="fudProductName" jdbcType="VARCHAR" />
+    <result column="FUD_CUSTOMER_NAME" property="fudCustomerName" jdbcType="VARCHAR" />
+    <result column="FUD_CUSTOMER_TYPE" property="fudCustomerType" jdbcType="VARCHAR" />
+    <result column="FUD_CERTIFICATE_TYPE" property="fudCertificateType" jdbcType="VARCHAR" />
+    <result column="FUD_CERTIFICATE_NO" property="fudCertificateNo" jdbcType="VARCHAR" />
+    <result column="FUD_POST_OFFICE_CODE" property="fudPostOfficeCode" jdbcType="VARCHAR" />
+    <result column="FUD_POST_OFFICE_ADDRESS" property="fudPostOfficeAddress" jdbcType="VARCHAR" />
+    <result column="FUD_TEL_NUMBER" property="fudTelNumber" jdbcType="VARCHAR" />
+    <result column="FUD_PHONE_NUMBER" property="fudPhoneNumber" jdbcType="VARCHAR" />
+    <result column="FUD_PAYMENT_AMOUNT" property="fudPaymentAmount" jdbcType="VARCHAR" />
+    <result column="FUD_BENEFIT_LEVEL" property="fudBenefitLevel" jdbcType="VARCHAR" />
+    <result column="FUD_PAYMENT_DATE" property="fudPaymentDate" jdbcType="VARCHAR" />
+    <result column="FUD_CERTIFICATE_START" property="fudCertificateStart" jdbcType="VARCHAR" />
+    <result column="FUD_CERTIFICATE_END" property="fudCertificateEnd" jdbcType="VARCHAR" />
+    <result column="FUD_CAPITAL_SOURCE" property="fudCapitalSource" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_ADDRESS" property="fudOrgAddress" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_PHONE" property="fudOrgPhone" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_PAY_DATE" property="fudOrgPayDate" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_INFO" property="fudOrgInfo" jdbcType="VARCHAR" />
+    <result column="FUD_PER_INFO" property="fudPerInfo" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_FR" property="fudOrgFr" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_SQJBR" property="fudOrgSqjbr" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_KGGD" property="fudOrgKggd" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_FZR" property="fudOrgFzr" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_OTHER" property="fudOrgOther" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_CUSTOMER_TYPE" property="fudOrgCustomerType" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE" property="fudOrgType" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE1_INFO" property="fudOrgType1Info" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE2_INFO" property="fudOrgType2Info" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE3_INFO" property="fudOrgType3Info" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE4_INFO" property="fudOrgType4Info" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE5_INFO" property="fudOrgType5Info" jdbcType="VARCHAR" />
+    <result column="FUD_ORG_TYPE6_INFO" property="fudOrgType6Info" jdbcType="VARCHAR" />
+    <result column="FUD_VALID_FLAG" property="fudValidFlag" jdbcType="VARCHAR" />
+    <result column="FUD_STATUS" property="fudStatus" jdbcType="VARCHAR" />
+    <result column="FUD_UPLOAD_TIME" property="fudUploadTime" jdbcType="VARCHAR" />
+    <result column="FUD_DOWNLOAD_TIME" property="fudDownloadTime" jdbcType="VARCHAR" />
+    <result column="FUD_CREATE_TIME" property="fudCreateTime" jdbcType="TIMESTAMP" />
+    <result column="FUD_UPDATE_TIME" property="fudUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="FUD_CREATE_USER" property="fudCreateUser" jdbcType="VARCHAR" />
+    <result column="FUD_UPDATE_USER" property="fudUpdateUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    FUD_ID, FUD_CHANNEL_CODE, FUD_ACCOUNTID, FUD_CHANNEL_NAME, FUD_PRODUCT_CODE, FUD_SHARE_CFM_DATE, 
+    FUD_SHARE_CFM, FUD_EMPTY_CODE, FUD_PRODUCT_NAME, FUD_CUSTOMER_NAME, FUD_CUSTOMER_TYPE, 
+    FUD_CERTIFICATE_TYPE, FUD_CERTIFICATE_NO, FUD_POST_OFFICE_CODE, FUD_POST_OFFICE_ADDRESS, 
+    FUD_TEL_NUMBER, FUD_PHONE_NUMBER, FUD_PAYMENT_AMOUNT, FUD_BENEFIT_LEVEL, FUD_PAYMENT_DATE, 
+    FUD_CERTIFICATE_START, FUD_CERTIFICATE_END, FUD_CAPITAL_SOURCE, FUD_ORG_ADDRESS, 
+    FUD_ORG_PHONE, FUD_ORG_PAY_DATE, FUD_ORG_INFO, FUD_PER_INFO, FUD_ORG_FR, FUD_ORG_SQJBR, 
+    FUD_ORG_KGGD, FUD_ORG_FZR, FUD_ORG_OTHER, FUD_ORG_CUSTOMER_TYPE, FUD_ORG_TYPE, FUD_ORG_TYPE1_INFO, 
+    FUD_ORG_TYPE2_INFO, FUD_ORG_TYPE3_INFO, FUD_ORG_TYPE4_INFO, FUD_ORG_TYPE5_INFO, FUD_ORG_TYPE6_INFO, 
+    FUD_VALID_FLAG, FUD_STATUS, FUD_UPLOAD_TIME, FUD_DOWNLOAD_TIME, FUD_CREATE_TIME, 
+    FUD_UPDATE_TIME, FUD_CREATE_USER, FUD_UPDATE_USER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_FXQ_UNRESIDENT_DATA
+    where FUD_ID = #{fudId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from D_FXQ_UNRESIDENT_DATA
+    where FUD_ID = #{fudId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.DFxqUnresidentData" >
+    insert into D_FXQ_UNRESIDENT_DATA (FUD_ID, FUD_CHANNEL_CODE, FUD_ACCOUNTID, 
+      FUD_CHANNEL_NAME, FUD_PRODUCT_CODE, FUD_SHARE_CFM_DATE, 
+      FUD_SHARE_CFM, FUD_EMPTY_CODE, FUD_PRODUCT_NAME, 
+      FUD_CUSTOMER_NAME, FUD_CUSTOMER_TYPE, FUD_CERTIFICATE_TYPE, 
+      FUD_CERTIFICATE_NO, FUD_POST_OFFICE_CODE, FUD_POST_OFFICE_ADDRESS, 
+      FUD_TEL_NUMBER, FUD_PHONE_NUMBER, FUD_PAYMENT_AMOUNT, 
+      FUD_BENEFIT_LEVEL, FUD_PAYMENT_DATE, FUD_CERTIFICATE_START, 
+      FUD_CERTIFICATE_END, FUD_CAPITAL_SOURCE, FUD_ORG_ADDRESS, 
+      FUD_ORG_PHONE, FUD_ORG_PAY_DATE, FUD_ORG_INFO, 
+      FUD_PER_INFO, FUD_ORG_FR, FUD_ORG_SQJBR, 
+      FUD_ORG_KGGD, FUD_ORG_FZR, FUD_ORG_OTHER, 
+      FUD_ORG_CUSTOMER_TYPE, FUD_ORG_TYPE, FUD_ORG_TYPE1_INFO, 
+      FUD_ORG_TYPE2_INFO, FUD_ORG_TYPE3_INFO, FUD_ORG_TYPE4_INFO, 
+      FUD_ORG_TYPE5_INFO, FUD_ORG_TYPE6_INFO, FUD_VALID_FLAG, 
+      FUD_STATUS, FUD_UPLOAD_TIME, FUD_DOWNLOAD_TIME, 
+      FUD_CREATE_TIME, FUD_UPDATE_TIME, FUD_CREATE_USER, 
+      FUD_UPDATE_USER)
+    values (#{fudId,jdbcType=DECIMAL}, #{fudChannelCode,jdbcType=VARCHAR}, #{fudAccountid,jdbcType=VARCHAR}, 
+      #{fudChannelName,jdbcType=VARCHAR}, #{fudProductCode,jdbcType=VARCHAR}, #{fudShareCfmDate,jdbcType=VARCHAR}, 
+      #{fudShareCfm,jdbcType=VARCHAR}, #{fudEmptyCode,jdbcType=VARCHAR}, #{fudProductName,jdbcType=VARCHAR}, 
+      #{fudCustomerName,jdbcType=VARCHAR}, #{fudCustomerType,jdbcType=VARCHAR}, #{fudCertificateType,jdbcType=VARCHAR}, 
+      #{fudCertificateNo,jdbcType=VARCHAR}, #{fudPostOfficeCode,jdbcType=VARCHAR}, #{fudPostOfficeAddress,jdbcType=VARCHAR}, 
+      #{fudTelNumber,jdbcType=VARCHAR}, #{fudPhoneNumber,jdbcType=VARCHAR}, #{fudPaymentAmount,jdbcType=VARCHAR}, 
+      #{fudBenefitLevel,jdbcType=VARCHAR}, #{fudPaymentDate,jdbcType=VARCHAR}, #{fudCertificateStart,jdbcType=VARCHAR}, 
+      #{fudCertificateEnd,jdbcType=VARCHAR}, #{fudCapitalSource,jdbcType=VARCHAR}, #{fudOrgAddress,jdbcType=VARCHAR}, 
+      #{fudOrgPhone,jdbcType=VARCHAR}, #{fudOrgPayDate,jdbcType=VARCHAR}, #{fudOrgInfo,jdbcType=VARCHAR}, 
+      #{fudPerInfo,jdbcType=VARCHAR}, #{fudOrgFr,jdbcType=VARCHAR}, #{fudOrgSqjbr,jdbcType=VARCHAR}, 
+      #{fudOrgKggd,jdbcType=VARCHAR}, #{fudOrgFzr,jdbcType=VARCHAR}, #{fudOrgOther,jdbcType=VARCHAR}, 
+      #{fudOrgCustomerType,jdbcType=VARCHAR}, #{fudOrgType,jdbcType=VARCHAR}, #{fudOrgType1Info,jdbcType=VARCHAR}, 
+      #{fudOrgType2Info,jdbcType=VARCHAR}, #{fudOrgType3Info,jdbcType=VARCHAR}, #{fudOrgType4Info,jdbcType=VARCHAR}, 
+      #{fudOrgType5Info,jdbcType=VARCHAR}, #{fudOrgType6Info,jdbcType=VARCHAR}, #{fudValidFlag,jdbcType=VARCHAR}, 
+      #{fudStatus,jdbcType=VARCHAR}, #{fudUploadTime,jdbcType=VARCHAR}, #{fudDownloadTime,jdbcType=VARCHAR}, 
+      #{fudCreateTime,jdbcType=TIMESTAMP}, #{fudUpdateTime,jdbcType=TIMESTAMP}, #{fudCreateUser,jdbcType=VARCHAR}, 
+      #{fudUpdateUser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.DFxqUnresidentData" >
+    insert into D_FXQ_UNRESIDENT_DATA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fudId != null" >
+        FUD_ID,
+      </if>
+      <if test="fudChannelCode != null" >
+        FUD_CHANNEL_CODE,
+      </if>
+      <if test="fudAccountid != null" >
+        FUD_ACCOUNTID,
+      </if>
+      <if test="fudChannelName != null" >
+        FUD_CHANNEL_NAME,
+      </if>
+      <if test="fudProductCode != null" >
+        FUD_PRODUCT_CODE,
+      </if>
+      <if test="fudShareCfmDate != null" >
+        FUD_SHARE_CFM_DATE,
+      </if>
+      <if test="fudShareCfm != null" >
+        FUD_SHARE_CFM,
+      </if>
+      <if test="fudEmptyCode != null" >
+        FUD_EMPTY_CODE,
+      </if>
+      <if test="fudProductName != null" >
+        FUD_PRODUCT_NAME,
+      </if>
+      <if test="fudCustomerName != null" >
+        FUD_CUSTOMER_NAME,
+      </if>
+      <if test="fudCustomerType != null" >
+        FUD_CUSTOMER_TYPE,
+      </if>
+      <if test="fudCertificateType != null" >
+        FUD_CERTIFICATE_TYPE,
+      </if>
+      <if test="fudCertificateNo != null" >
+        FUD_CERTIFICATE_NO,
+      </if>
+      <if test="fudPostOfficeCode != null" >
+        FUD_POST_OFFICE_CODE,
+      </if>
+      <if test="fudPostOfficeAddress != null" >
+        FUD_POST_OFFICE_ADDRESS,
+      </if>
+      <if test="fudTelNumber != null" >
+        FUD_TEL_NUMBER,
+      </if>
+      <if test="fudPhoneNumber != null" >
+        FUD_PHONE_NUMBER,
+      </if>
+      <if test="fudPaymentAmount != null" >
+        FUD_PAYMENT_AMOUNT,
+      </if>
+      <if test="fudBenefitLevel != null" >
+        FUD_BENEFIT_LEVEL,
+      </if>
+      <if test="fudPaymentDate != null" >
+        FUD_PAYMENT_DATE,
+      </if>
+      <if test="fudCertificateStart != null" >
+        FUD_CERTIFICATE_START,
+      </if>
+      <if test="fudCertificateEnd != null" >
+        FUD_CERTIFICATE_END,
+      </if>
+      <if test="fudCapitalSource != null" >
+        FUD_CAPITAL_SOURCE,
+      </if>
+      <if test="fudOrgAddress != null" >
+        FUD_ORG_ADDRESS,
+      </if>
+      <if test="fudOrgPhone != null" >
+        FUD_ORG_PHONE,
+      </if>
+      <if test="fudOrgPayDate != null" >
+        FUD_ORG_PAY_DATE,
+      </if>
+      <if test="fudOrgInfo != null" >
+        FUD_ORG_INFO,
+      </if>
+      <if test="fudPerInfo != null" >
+        FUD_PER_INFO,
+      </if>
+      <if test="fudOrgFr != null" >
+        FUD_ORG_FR,
+      </if>
+      <if test="fudOrgSqjbr != null" >
+        FUD_ORG_SQJBR,
+      </if>
+      <if test="fudOrgKggd != null" >
+        FUD_ORG_KGGD,
+      </if>
+      <if test="fudOrgFzr != null" >
+        FUD_ORG_FZR,
+      </if>
+      <if test="fudOrgOther != null" >
+        FUD_ORG_OTHER,
+      </if>
+      <if test="fudOrgCustomerType != null" >
+        FUD_ORG_CUSTOMER_TYPE,
+      </if>
+      <if test="fudOrgType != null" >
+        FUD_ORG_TYPE,
+      </if>
+      <if test="fudOrgType1Info != null" >
+        FUD_ORG_TYPE1_INFO,
+      </if>
+      <if test="fudOrgType2Info != null" >
+        FUD_ORG_TYPE2_INFO,
+      </if>
+      <if test="fudOrgType3Info != null" >
+        FUD_ORG_TYPE3_INFO,
+      </if>
+      <if test="fudOrgType4Info != null" >
+        FUD_ORG_TYPE4_INFO,
+      </if>
+      <if test="fudOrgType5Info != null" >
+        FUD_ORG_TYPE5_INFO,
+      </if>
+      <if test="fudOrgType6Info != null" >
+        FUD_ORG_TYPE6_INFO,
+      </if>
+      <if test="fudValidFlag != null" >
+        FUD_VALID_FLAG,
+      </if>
+      <if test="fudStatus != null" >
+        FUD_STATUS,
+      </if>
+      <if test="fudUploadTime != null" >
+        FUD_UPLOAD_TIME,
+      </if>
+      <if test="fudDownloadTime != null" >
+        FUD_DOWNLOAD_TIME,
+      </if>
+      <if test="fudCreateTime != null" >
+        FUD_CREATE_TIME,
+      </if>
+      <if test="fudUpdateTime != null" >
+        FUD_UPDATE_TIME,
+      </if>
+      <if test="fudCreateUser != null" >
+        FUD_CREATE_USER,
+      </if>
+      <if test="fudUpdateUser != null" >
+        FUD_UPDATE_USER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fudId != null" >
+        #{fudId,jdbcType=DECIMAL},
+      </if>
+      <if test="fudChannelCode != null" >
+        #{fudChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudAccountid != null" >
+        #{fudAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="fudChannelName != null" >
+        #{fudChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudProductCode != null" >
+        #{fudProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudShareCfmDate != null" >
+        #{fudShareCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudShareCfm != null" >
+        #{fudShareCfm,jdbcType=VARCHAR},
+      </if>
+      <if test="fudEmptyCode != null" >
+        #{fudEmptyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudProductName != null" >
+        #{fudProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCustomerName != null" >
+        #{fudCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCustomerType != null" >
+        #{fudCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateType != null" >
+        #{fudCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateNo != null" >
+        #{fudCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPostOfficeCode != null" >
+        #{fudPostOfficeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPostOfficeAddress != null" >
+        #{fudPostOfficeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fudTelNumber != null" >
+        #{fudTelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPhoneNumber != null" >
+        #{fudPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPaymentAmount != null" >
+        #{fudPaymentAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="fudBenefitLevel != null" >
+        #{fudBenefitLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPaymentDate != null" >
+        #{fudPaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateStart != null" >
+        #{fudCertificateStart,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateEnd != null" >
+        #{fudCertificateEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCapitalSource != null" >
+        #{fudCapitalSource,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgAddress != null" >
+        #{fudOrgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgPhone != null" >
+        #{fudOrgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgPayDate != null" >
+        #{fudOrgPayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgInfo != null" >
+        #{fudOrgInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPerInfo != null" >
+        #{fudPerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgFr != null" >
+        #{fudOrgFr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgSqjbr != null" >
+        #{fudOrgSqjbr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgKggd != null" >
+        #{fudOrgKggd,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgFzr != null" >
+        #{fudOrgFzr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgOther != null" >
+        #{fudOrgOther,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgCustomerType != null" >
+        #{fudOrgCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType != null" >
+        #{fudOrgType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType1Info != null" >
+        #{fudOrgType1Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType2Info != null" >
+        #{fudOrgType2Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType3Info != null" >
+        #{fudOrgType3Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType4Info != null" >
+        #{fudOrgType4Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType5Info != null" >
+        #{fudOrgType5Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType6Info != null" >
+        #{fudOrgType6Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudValidFlag != null" >
+        #{fudValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fudStatus != null" >
+        #{fudStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fudUploadTime != null" >
+        #{fudUploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fudDownloadTime != null" >
+        #{fudDownloadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCreateTime != null" >
+        #{fudCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fudUpdateTime != null" >
+        #{fudUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fudCreateUser != null" >
+        #{fudCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fudUpdateUser != null" >
+        #{fudUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.DFxqUnresidentData" >
+    update D_FXQ_UNRESIDENT_DATA
+    <set >
+      <if test="fudChannelCode != null" >
+        FUD_CHANNEL_CODE = #{fudChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudAccountid != null" >
+        FUD_ACCOUNTID = #{fudAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="fudChannelName != null" >
+        FUD_CHANNEL_NAME = #{fudChannelName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudProductCode != null" >
+        FUD_PRODUCT_CODE = #{fudProductCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudShareCfmDate != null" >
+        FUD_SHARE_CFM_DATE = #{fudShareCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudShareCfm != null" >
+        FUD_SHARE_CFM = #{fudShareCfm,jdbcType=VARCHAR},
+      </if>
+      <if test="fudEmptyCode != null" >
+        FUD_EMPTY_CODE = #{fudEmptyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudProductName != null" >
+        FUD_PRODUCT_NAME = #{fudProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCustomerName != null" >
+        FUD_CUSTOMER_NAME = #{fudCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCustomerType != null" >
+        FUD_CUSTOMER_TYPE = #{fudCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateType != null" >
+        FUD_CERTIFICATE_TYPE = #{fudCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateNo != null" >
+        FUD_CERTIFICATE_NO = #{fudCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPostOfficeCode != null" >
+        FUD_POST_OFFICE_CODE = #{fudPostOfficeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPostOfficeAddress != null" >
+        FUD_POST_OFFICE_ADDRESS = #{fudPostOfficeAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fudTelNumber != null" >
+        FUD_TEL_NUMBER = #{fudTelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPhoneNumber != null" >
+        FUD_PHONE_NUMBER = #{fudPhoneNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPaymentAmount != null" >
+        FUD_PAYMENT_AMOUNT = #{fudPaymentAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="fudBenefitLevel != null" >
+        FUD_BENEFIT_LEVEL = #{fudBenefitLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPaymentDate != null" >
+        FUD_PAYMENT_DATE = #{fudPaymentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateStart != null" >
+        FUD_CERTIFICATE_START = #{fudCertificateStart,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCertificateEnd != null" >
+        FUD_CERTIFICATE_END = #{fudCertificateEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCapitalSource != null" >
+        FUD_CAPITAL_SOURCE = #{fudCapitalSource,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgAddress != null" >
+        FUD_ORG_ADDRESS = #{fudOrgAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgPhone != null" >
+        FUD_ORG_PHONE = #{fudOrgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgPayDate != null" >
+        FUD_ORG_PAY_DATE = #{fudOrgPayDate,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgInfo != null" >
+        FUD_ORG_INFO = #{fudOrgInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudPerInfo != null" >
+        FUD_PER_INFO = #{fudPerInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgFr != null" >
+        FUD_ORG_FR = #{fudOrgFr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgSqjbr != null" >
+        FUD_ORG_SQJBR = #{fudOrgSqjbr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgKggd != null" >
+        FUD_ORG_KGGD = #{fudOrgKggd,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgFzr != null" >
+        FUD_ORG_FZR = #{fudOrgFzr,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgOther != null" >
+        FUD_ORG_OTHER = #{fudOrgOther,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgCustomerType != null" >
+        FUD_ORG_CUSTOMER_TYPE = #{fudOrgCustomerType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType != null" >
+        FUD_ORG_TYPE = #{fudOrgType,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType1Info != null" >
+        FUD_ORG_TYPE1_INFO = #{fudOrgType1Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType2Info != null" >
+        FUD_ORG_TYPE2_INFO = #{fudOrgType2Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType3Info != null" >
+        FUD_ORG_TYPE3_INFO = #{fudOrgType3Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType4Info != null" >
+        FUD_ORG_TYPE4_INFO = #{fudOrgType4Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType5Info != null" >
+        FUD_ORG_TYPE5_INFO = #{fudOrgType5Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudOrgType6Info != null" >
+        FUD_ORG_TYPE6_INFO = #{fudOrgType6Info,jdbcType=VARCHAR},
+      </if>
+      <if test="fudValidFlag != null" >
+        FUD_VALID_FLAG = #{fudValidFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="fudStatus != null" >
+        FUD_STATUS = #{fudStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="fudUploadTime != null" >
+        FUD_UPLOAD_TIME = #{fudUploadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fudDownloadTime != null" >
+        FUD_DOWNLOAD_TIME = #{fudDownloadTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fudCreateTime != null" >
+        FUD_CREATE_TIME = #{fudCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fudUpdateTime != null" >
+        FUD_UPDATE_TIME = #{fudUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fudCreateUser != null" >
+        FUD_CREATE_USER = #{fudCreateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="fudUpdateUser != null" >
+        FUD_UPDATE_USER = #{fudUpdateUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FUD_ID = #{fudId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.DFxqUnresidentData" >
+    update D_FXQ_UNRESIDENT_DATA
+    set FUD_CHANNEL_CODE = #{fudChannelCode,jdbcType=VARCHAR},
+      FUD_ACCOUNTID = #{fudAccountid,jdbcType=VARCHAR},
+      FUD_CHANNEL_NAME = #{fudChannelName,jdbcType=VARCHAR},
+      FUD_PRODUCT_CODE = #{fudProductCode,jdbcType=VARCHAR},
+      FUD_SHARE_CFM_DATE = #{fudShareCfmDate,jdbcType=VARCHAR},
+      FUD_SHARE_CFM = #{fudShareCfm,jdbcType=VARCHAR},
+      FUD_EMPTY_CODE = #{fudEmptyCode,jdbcType=VARCHAR},
+      FUD_PRODUCT_NAME = #{fudProductName,jdbcType=VARCHAR},
+      FUD_CUSTOMER_NAME = #{fudCustomerName,jdbcType=VARCHAR},
+      FUD_CUSTOMER_TYPE = #{fudCustomerType,jdbcType=VARCHAR},
+      FUD_CERTIFICATE_TYPE = #{fudCertificateType,jdbcType=VARCHAR},
+      FUD_CERTIFICATE_NO = #{fudCertificateNo,jdbcType=VARCHAR},
+      FUD_POST_OFFICE_CODE = #{fudPostOfficeCode,jdbcType=VARCHAR},
+      FUD_POST_OFFICE_ADDRESS = #{fudPostOfficeAddress,jdbcType=VARCHAR},
+      FUD_TEL_NUMBER = #{fudTelNumber,jdbcType=VARCHAR},
+      FUD_PHONE_NUMBER = #{fudPhoneNumber,jdbcType=VARCHAR},
+      FUD_PAYMENT_AMOUNT = #{fudPaymentAmount,jdbcType=VARCHAR},
+      FUD_BENEFIT_LEVEL = #{fudBenefitLevel,jdbcType=VARCHAR},
+      FUD_PAYMENT_DATE = #{fudPaymentDate,jdbcType=VARCHAR},
+      FUD_CERTIFICATE_START = #{fudCertificateStart,jdbcType=VARCHAR},
+      FUD_CERTIFICATE_END = #{fudCertificateEnd,jdbcType=VARCHAR},
+      FUD_CAPITAL_SOURCE = #{fudCapitalSource,jdbcType=VARCHAR},
+      FUD_ORG_ADDRESS = #{fudOrgAddress,jdbcType=VARCHAR},
+      FUD_ORG_PHONE = #{fudOrgPhone,jdbcType=VARCHAR},
+      FUD_ORG_PAY_DATE = #{fudOrgPayDate,jdbcType=VARCHAR},
+      FUD_ORG_INFO = #{fudOrgInfo,jdbcType=VARCHAR},
+      FUD_PER_INFO = #{fudPerInfo,jdbcType=VARCHAR},
+      FUD_ORG_FR = #{fudOrgFr,jdbcType=VARCHAR},
+      FUD_ORG_SQJBR = #{fudOrgSqjbr,jdbcType=VARCHAR},
+      FUD_ORG_KGGD = #{fudOrgKggd,jdbcType=VARCHAR},
+      FUD_ORG_FZR = #{fudOrgFzr,jdbcType=VARCHAR},
+      FUD_ORG_OTHER = #{fudOrgOther,jdbcType=VARCHAR},
+      FUD_ORG_CUSTOMER_TYPE = #{fudOrgCustomerType,jdbcType=VARCHAR},
+      FUD_ORG_TYPE = #{fudOrgType,jdbcType=VARCHAR},
+      FUD_ORG_TYPE1_INFO = #{fudOrgType1Info,jdbcType=VARCHAR},
+      FUD_ORG_TYPE2_INFO = #{fudOrgType2Info,jdbcType=VARCHAR},
+      FUD_ORG_TYPE3_INFO = #{fudOrgType3Info,jdbcType=VARCHAR},
+      FUD_ORG_TYPE4_INFO = #{fudOrgType4Info,jdbcType=VARCHAR},
+      FUD_ORG_TYPE5_INFO = #{fudOrgType5Info,jdbcType=VARCHAR},
+      FUD_ORG_TYPE6_INFO = #{fudOrgType6Info,jdbcType=VARCHAR},
+      FUD_VALID_FLAG = #{fudValidFlag,jdbcType=VARCHAR},
+      FUD_STATUS = #{fudStatus,jdbcType=VARCHAR},
+      FUD_UPLOAD_TIME = #{fudUploadTime,jdbcType=VARCHAR},
+      FUD_DOWNLOAD_TIME = #{fudDownloadTime,jdbcType=VARCHAR},
+      FUD_CREATE_TIME = #{fudCreateTime,jdbcType=TIMESTAMP},
+      FUD_UPDATE_TIME = #{fudUpdateTime,jdbcType=TIMESTAMP},
+      FUD_CREATE_USER = #{fudCreateUser,jdbcType=VARCHAR},
+      FUD_UPDATE_USER = #{fudUpdateUser,jdbcType=VARCHAR}
+    where FUD_ID = #{fudId,jdbcType=DECIMAL}
+  </update>
+
+  <insert id="insertByBatch">
+    insert
+    <foreach collection="list" index="index" item="item" open="All" close="SELECT 1 FROM DUAL">
+      into D_FXQ_UNRESIDENT_DATA (FUD_ID, FUD_CHANNEL_CODE, FUD_ACCOUNTID,
+      FUD_CHANNEL_NAME, FUD_PRODUCT_CODE, FUD_SHARE_CFM_DATE,
+      FUD_SHARE_CFM, FUD_EMPTY_CODE, FUD_PRODUCT_NAME,
+      FUD_CUSTOMER_NAME, FUD_CUSTOMER_TYPE, FUD_CERTIFICATE_TYPE,
+      FUD_CERTIFICATE_NO, FUD_POST_OFFICE_CODE, FUD_POST_OFFICE_ADDRESS,
+      FUD_TEL_NUMBER, FUD_PHONE_NUMBER, FUD_PAYMENT_AMOUNT,
+      FUD_BENEFIT_LEVEL, FUD_PAYMENT_DATE, FUD_CERTIFICATE_START,
+      FUD_CERTIFICATE_END, FUD_CAPITAL_SOURCE, FUD_ORG_ADDRESS,
+      FUD_ORG_PHONE, FUD_ORG_PAY_DATE, FUD_ORG_INFO,
+      FUD_PER_INFO, FUD_ORG_FR, FUD_ORG_SQJBR,
+      FUD_ORG_KGGD, FUD_ORG_FZR, FUD_ORG_OTHER,
+      FUD_ORG_CUSTOMER_TYPE, FUD_ORG_TYPE, FUD_ORG_TYPE1_INFO,
+      FUD_ORG_TYPE2_INFO, FUD_ORG_TYPE3_INFO, FUD_ORG_TYPE4_INFO,
+      FUD_ORG_TYPE5_INFO, FUD_ORG_TYPE6_INFO, FUD_VALID_FLAG,
+      FUD_STATUS, FUD_UPLOAD_TIME, FUD_DOWNLOAD_TIME,
+      FUD_CREATE_TIME, FUD_UPDATE_TIME, FUD_CREATE_USER,
+      FUD_UPDATE_USER)
+      values (#{item.fudId,jdbcType=DECIMAL}, #{item.fudChannelCode,jdbcType=VARCHAR}, #{item.fudAccountid,jdbcType=VARCHAR},
+      #{item.fudChannelName,jdbcType=VARCHAR}, #{item.fudProductCode,jdbcType=VARCHAR}, #{item.fudShareCfmDate,jdbcType=VARCHAR},
+      #{item.fudShareCfm,jdbcType=VARCHAR}, #{item.fudEmptyCode,jdbcType=VARCHAR}, #{item.fudProductName,jdbcType=VARCHAR},
+      #{item.fudCustomerName,jdbcType=VARCHAR}, #{item.fudCustomerType,jdbcType=VARCHAR}, #{item.fudCertificateType,jdbcType=VARCHAR},
+      #{item.fudCertificateNo,jdbcType=VARCHAR}, #{item.fudPostOfficeCode,jdbcType=VARCHAR}, #{item.fudPostOfficeAddress,jdbcType=VARCHAR},
+      #{item.fudTelNumber,jdbcType=VARCHAR}, #{item.fudPhoneNumber,jdbcType=VARCHAR}, #{item.fudPaymentAmount,jdbcType=VARCHAR},
+      #{item.fudBenefitLevel,jdbcType=VARCHAR}, #{item.fudPaymentDate,jdbcType=VARCHAR}, #{item.fudCertificateStart,jdbcType=VARCHAR},
+      #{item.fudCertificateEnd,jdbcType=VARCHAR}, #{item.fudCapitalSource,jdbcType=VARCHAR}, #{item.fudOrgAddress,jdbcType=VARCHAR},
+      #{item.fudOrgPhone,jdbcType=VARCHAR}, #{item.fudOrgPayDate,jdbcType=VARCHAR}, #{item.fudOrgInfo,jdbcType=VARCHAR},
+      #{item.fudPerInfo,jdbcType=VARCHAR}, #{item.fudOrgFr,jdbcType=VARCHAR}, #{item.fudOrgSqjbr,jdbcType=VARCHAR},
+      #{item.fudOrgKggd,jdbcType=VARCHAR}, #{item.fudOrgFzr,jdbcType=VARCHAR}, #{item.fudOrgOther,jdbcType=VARCHAR},
+      #{item.fudOrgCustomerType,jdbcType=VARCHAR}, #{item.fudOrgType,jdbcType=VARCHAR}, #{item.fudOrgType1Info,jdbcType=VARCHAR},
+      #{item.fudOrgType2Info,jdbcType=VARCHAR}, #{item.fudOrgType3Info,jdbcType=VARCHAR}, #{item.fudOrgType4Info,jdbcType=VARCHAR},
+      #{item.fudOrgType5Info,jdbcType=VARCHAR}, #{item.fudOrgType6Info,jdbcType=VARCHAR}, #{item.fudValidFlag,jdbcType=VARCHAR},
+      #{item.fudStatus,jdbcType=VARCHAR}, #{item.fudUploadTime,jdbcType=VARCHAR}, #{item.fudDownloadTime,jdbcType=VARCHAR},
+      SYSDATE, SYSDATE, #{item.fudCreateUser,jdbcType=VARCHAR}, #{item.fudUpdateUser,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <select id="selectDataByType" resultMap="BaseResultMap">
+    select * from D_FXQ_UNRESIDENT_DATA where
+    FUD_CUSTOMER_TYPE = #{type,jdbcType=VARCHAR}
+    <if test="date != null">
+      and FUD_UPLOAD_TIME = #{date,jdbcType=VARCHAR}
+    </if>
+    <if test="channelCode != null">
+      and FUD_CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+    </if>
+
+  </select>
+  <select id="getAllDataToShow" resultMap="BaseResultMap">
+    select
+    *
+    from D_FXQ_UNRESIDENT_DATA t
+    where 1 = 1
+    <if test="condition.type != null and condition.type != 2 ">
+      and t.FUD_CUSTOMER_TYPE = #{condition.type,jdbcType=VARCHAR}
+    </if>
+    <if test="condition.date != null and condition.date != '' ">
+      and t.FUD_UPLOAD_TIME = #{condition.date,jdbcType=VARCHAR}
+    </if>
+    <if test="condition.channelCode != null and condition.channelCode != '' ">
+      and t.FUD_CHANNEL_CODE = #{condition.channelCode,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <resultMap id="BaseResultAccountReq" type="com.sams.custom.model.AccountReq" >
+    <id column="AR_ID" property="arId" jdbcType="DECIMAL" />
+    <result column="AR_CHANNEL_CODE" property="arChannelCode" jdbcType="VARCHAR" />
+    <result column="AR_ADDRESS" property="arAddress" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_CODE" property="arInstReprIdCode" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_TYPE" property="arInstReprIdType" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_NAME" property="arInstReprName" jdbcType="VARCHAR" />
+    <result column="AR_APP_SHEET_SERIAL_NO" property="arAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_TYPE" property="arCertificateType" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_NO" property="arCertificateNo" jdbcType="VARCHAR" />
+    <result column="AR_INVESTOR_NAME" property="arInvestorName" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_DATE" property="arTransactionDate" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_TIME" property="arTransactionTime" jdbcType="VARCHAR" />
+    <result column="AR_INDIVIDUAL_OR_INSTITUTION" property="arIndividualOrInstitution" jdbcType="VARCHAR" />
+    <result column="AR_POST_CODE" property="arPostCode" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_NO" property="arTransactorCertNo" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_TYPE" property="arTransactorCertType" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_NAME" property="arTransactorName" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_ACCOUNT_ID" property="arTransactionAccountId" jdbcType="VARCHAR" />
+    <result column="AR_DISTRIBUTOR_CODE" property="arDistributorCode" jdbcType="VARCHAR" />
+    <result column="AR_BUSINESS_CODE" property="arBusinessCode" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_FM_IN_CLEAR_AGENCY" property="arAcctNoFmInClearAgency" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_F_I_CLEAR_AGENCY" property="arAcctNameFIClearAgency" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY_CODE" property="arClearingAgencyCode" jdbcType="VARCHAR" />
+    <result column="AR_INVESTORS_BIRTHDAY" property="arInvestorsBirthday" jdbcType="VARCHAR" />
+    <result column="AR_DEPOSIT_ACCT" property="arDepositAcct" jdbcType="VARCHAR" />
+    <result column="AR_REGION_CODE" property="arRegionCode" jdbcType="VARCHAR" />
+    <result column="AR_EDUCATION_LEVEL" property="arEducationLevel" jdbcType="VARCHAR" />
+    <result column="AR_EMAIL_ADDRESS" property="arEmailAddress" jdbcType="VARCHAR" />
+    <result column="AR_FAX_NO" property="arFaxNo" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION_CODE" property="arVocationCode" jdbcType="VARCHAR" />
+    <result column="AR_HOME_TEL_NO" property="arHomeTelNo" jdbcType="VARCHAR" />
+    <result column="AR_ANNUAL_INCOME" property="arAnnualIncome" jdbcType="DECIMAL" />
+    <result column="AR_MOBILE_TEL_NO" property="arMobileTelNo" jdbcType="VARCHAR" />
+    <result column="AR_BRANCH_CODE" property="arBranchCode" jdbcType="VARCHAR" />
+    <result column="AR_OFFICE_TEL_NO" property="arOfficeTelNo" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_ABBR" property="arAccountAbbr" jdbcType="VARCHAR" />
+    <result column="AR_CONFIDENTIAL_DOCUMENT_CODE" property="arConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="AR_SEX" property="arSex" jdbcType="VARCHAR" />
+    <result column="AR_SH_SECURITIES_ACCOUNTID" property="arShSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AR_SZ_SECURITIES_ACCOUNTID" property="arSzSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AR_TA_ACCOUNT_ID" property="arTaAccountId" jdbcType="VARCHAR" />
+    <result column="AR_TEL_NO" property="arTelNo" jdbcType="VARCHAR" />
+    <result column="AR_TRADING_METHOD" property="arTradingMethod" jdbcType="VARCHAR" />
+    <result column="AR_MINOR_FLAG" property="arMinorFlag" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_TYPE" property="arDeliverType" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_ID_TYPE" property="arTransactorIdType" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_CARD_ID" property="arAccountCardId" jdbcType="VARCHAR" />
+    <result column="AR_MULTIACCT_FLAG" property="arMultiacctFlag" jdbcType="VARCHAR" />
+    <result column="AR_TARGET_TRANSACT_ACCT_CODE" property="arTargetTransactAcctCode" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_INVE_CLEAR_AGEN" property="arAcctNameInveClearAgen" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_INVE_CLEAR_AGEN" property="arAcctNoInveClearAgen" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY" property="arClearingAgency" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_WAY" property="arDeliverWay" jdbcType="VARCHAR" />
+    <result column="AR_NATIONALITY" property="arNationality" jdbcType="VARCHAR" />
+    <result column="AR_NET_NO" property="arNetNo" jdbcType="VARCHAR" />
+    <result column="AR_BROKER" property="arBroker" jdbcType="VARCHAR" />
+    <result column="AR_CORP_NAME" property="arCorpName" jdbcType="VARCHAR" />
+    <result column="AR_CERT_VALID_DATE" property="arCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_INST_TRAN_CERT_VALID_DATE" property="arInstTranCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_CERT_VALID_DATE" property="arInstReprCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_CLIENT_RISK_RATE" property="arClientRiskRate" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_MANAGE_RANGE" property="arInstReprManageRange" jdbcType="VARCHAR" />
+    <result column="AR_CONTROL_HOLDER" property="arControlHolder" jdbcType="VARCHAR" />
+    <result column="AR_ACTUAL_CONTROLLER" property="arActualController" jdbcType="VARCHAR" />
+    <result column="AR_MARRIAGE_STATUS" property="arMarriageStatus" jdbcType="VARCHAR" />
+    <result column="AR_FAMILY_NUM" property="arFamilyNum" jdbcType="DECIMAL" />
+    <result column="AR_PENATES" property="arPenates" jdbcType="DECIMAL" />
+    <result column="AR_MEDIA_HOBBY" property="arMediaHobby" jdbcType="VARCHAR" />
+    <result column="AR_INSTITUTION_TYPE" property="arInstitutionType" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FIRST_NAME" property="arEnglishFirstName" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FAMLIY_NAME" property="arEnglishFamliyName" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION" property="arVocation" jdbcType="VARCHAR" />
+    <result column="AR_CORPO_PROPERTY" property="arCorpoProperty" jdbcType="VARCHAR" />
+    <result column="AR_STAFF_NUM" property="arStaffNum" jdbcType="DECIMAL" />
+    <result column="AR_HOBBYTYPE" property="arHobbytype" jdbcType="VARCHAR" />
+    <result column="AR_PROVINCE" property="arProvince" jdbcType="VARCHAR" />
+    <result column="AR_CITY" property="arCity" jdbcType="VARCHAR" />
+    <result column="AR_COUNTY" property="arCounty" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON" property="arCommendPerson" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON_TYPE" property="arCommendPersonType" jdbcType="VARCHAR" />
+    <result column="AR_ACCEPT_METHOD" property="arAcceptMethod" jdbcType="VARCHAR" />
+    <result column="AR_FROZEN_CAUSE" property="arFrozenCause" jdbcType="VARCHAR" />
+    <result column="AR_FREEZING_DEADLINE" property="arFreezingDeadline" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_SERIAL_NO" property="arOriginalSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_APP_SHEET_NO" property="arOriginalAppSheetNo" jdbcType="VARCHAR" />
+    <result column="AR_SPECIFICATION" property="arSpecification" jdbcType="VARCHAR" />
+    <result column="AR_VALID_FLAG" property="arValidFlag" jdbcType="VARCHAR" />
+    <result column="AR_TA_SERIAL_NO" property="arTaSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_CTIME" property="arCtime" jdbcType="TIMESTAMP" />
+    <result column="AR_UTIME" property="arUtime" jdbcType="TIMESTAMP" />
+    <result column="AR_CUSER" property="arCuser" jdbcType="VARCHAR" />
+    <result column="AR_UUSER" property="arUuser" jdbcType="VARCHAR" />
+    <result column="AR_TRANS_DATE" property="arTransDate" jdbcType="VARCHAR" />
+    <result column="AR_TA_TRANS_STATUS" property="arTaTransStatus" jdbcType="VARCHAR" />
+    <result column="AR_OPEN_CHANNEL_STAT" property="arOpenChannelStat" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_AccountReq" >
+    AR_ID, AR_CHANNEL_CODE, AR_ADDRESS, AR_INST_REPR_ID_CODE, AR_INST_REPR_ID_TYPE, AR_INST_REPR_NAME,
+    AR_APP_SHEET_SERIAL_NO, AR_CERTIFICATE_TYPE, AR_CERTIFICATE_NO, AR_INVESTOR_NAME,
+    AR_TRANSACTION_DATE, AR_TRANSACTION_TIME, AR_INDIVIDUAL_OR_INSTITUTION, AR_POST_CODE,
+    AR_TRANSACTOR_CERT_NO, AR_TRANSACTOR_CERT_TYPE, AR_TRANSACTOR_NAME, AR_TRANSACTION_ACCOUNT_ID,
+    AR_DISTRIBUTOR_CODE, AR_BUSINESS_CODE, AR_ACCT_NO_FM_IN_CLEAR_AGENCY, AR_ACCT_NAME_F_I_CLEAR_AGENCY,
+    AR_CLEARING_AGENCY_CODE, AR_INVESTORS_BIRTHDAY, AR_DEPOSIT_ACCT, AR_REGION_CODE,
+    AR_EDUCATION_LEVEL, AR_EMAIL_ADDRESS, AR_FAX_NO, AR_VOCATION_CODE, AR_HOME_TEL_NO,
+    AR_ANNUAL_INCOME, AR_MOBILE_TEL_NO, AR_BRANCH_CODE, AR_OFFICE_TEL_NO, AR_ACCOUNT_ABBR,
+    AR_CONFIDENTIAL_DOCUMENT_CODE, AR_SEX, AR_SH_SECURITIES_ACCOUNTID, AR_SZ_SECURITIES_ACCOUNTID,
+    AR_TA_ACCOUNT_ID, AR_TEL_NO, AR_TRADING_METHOD, AR_MINOR_FLAG, AR_DELIVER_TYPE, AR_TRANSACTOR_ID_TYPE,
+    AR_ACCOUNT_CARD_ID, AR_MULTIACCT_FLAG, AR_TARGET_TRANSACT_ACCT_CODE, AR_ACCT_NAME_INVE_CLEAR_AGEN,
+    AR_ACCT_NO_INVE_CLEAR_AGEN, AR_CLEARING_AGENCY, AR_DELIVER_WAY, AR_NATIONALITY, AR_NET_NO,
+    AR_BROKER, AR_CORP_NAME, AR_CERT_VALID_DATE, AR_INST_TRAN_CERT_VALID_DATE, AR_INST_REPR_CERT_VALID_DATE,
+    AR_CLIENT_RISK_RATE, AR_INST_REPR_MANAGE_RANGE, AR_CONTROL_HOLDER, AR_ACTUAL_CONTROLLER,
+    AR_MARRIAGE_STATUS, AR_FAMILY_NUM, AR_PENATES, AR_MEDIA_HOBBY, AR_INSTITUTION_TYPE,
+    AR_ENGLISH_FIRST_NAME, AR_ENGLISH_FAMLIY_NAME, AR_VOCATION, AR_CORPO_PROPERTY, AR_STAFF_NUM,
+    AR_HOBBYTYPE, AR_PROVINCE, AR_CITY, AR_COUNTY, AR_COMMEND_PERSON, AR_COMMEND_PERSON_TYPE,
+    AR_ACCEPT_METHOD, AR_FROZEN_CAUSE, AR_FREEZING_DEADLINE, AR_ORIGINAL_SERIAL_NO, AR_ORIGINAL_APP_SHEET_NO,
+    AR_SPECIFICATION, AR_VALID_FLAG, AR_TA_SERIAL_NO, AR_CTIME, AR_UTIME, AR_CUSER, AR_UUSER,
+    AR_TRANS_DATE, AR_TA_TRANS_STATUS, AR_OPEN_CHANNEL_STAT
+  </sql>
+  <select id="selectAccountReq" resultMap="BaseResultAccountReq">
+    select <include refid="Base_Column_AccountReq"></include>
+    from d_account_req where ar_channel_code = #{channelCode}
+    and ar_certificate_no = #{certId}
+    <if test="certType != null">
+      and ar_certificate_type = #{certType}
+    </if>
+    and Ar_Individual_Or_Institution = #{type}
+    and ar_business_code = '001'
+    and rownum = 1
+  </select>
+  <update id="updateDowloadTime">
+    update D_FXQ_UNRESIDENT_DATA set FUD_DOWNLOAD_TIME = #{dowTime} where
+    FUD_CUSTOMER_TYPE = #{type,jdbcType=VARCHAR}
+    <if test="date != null">
+      and FUD_UPLOAD_TIME = #{date,jdbcType=VARCHAR}
+    </if>
+    <if test="channelCode != null">
+      and FUD_CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+    </if>
+  </update>
+</mapper>

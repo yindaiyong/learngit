@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.FundAccountReconCfmMapper" >
+   <select id="selectByChannelCodeBusinessDateCountCfm" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_FUND_ACCOUNT_RECON_CFM
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RC_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <delete id="deleteByChannelCodeBusinessDateCfm" parameterType="hashMap" >
+    delete from D_FUND_ACCOUNT_RECON_CFM
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RC_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+    </delete>
+    
+  <insert id="insertByBatchCfm"  parameterType="java.util.List" >
+    insert all
+     <foreach collection="list" item="item" index="index">
+     into D_FUND_ACCOUNT_RECON_CFM ( RC_CHANNEL_CODE, RC_TRANS_DATE, 
+      RC_AVAILABLE_VOL, RC_TOTAL_VOL_DISTRIBUTOR_TA, 
+      RC_TRANSACTION_CFM_DATE, RC_FUND_CODE, RC_TRANSACTION_ACCOUNT_ID, 
+      RC_DISTRIBUTOR_CODE, RC_TA_ACCOUNT_ID, RC_TOTAL_FROZEN_VOL, 
+      RC_BRANCH_CODE, RC_TA_SERIAL_NO, RC_TOTAL_BACKEND_LOAD, 
+      RC_SHARE_CLASS, RC_DETAIL_FLAG, RC_ACCOUNT_STATUS, 
+      RC_SHARE_REGISTER_DATE, RC_UNDISTR_MONETARY_INCOME, 
+      RC_UNDISTR_MONETARY_INCOME_F, RC_GUARANTEED_AMOUNT, 
+      RC_SOURCE_TYPE, RC_DEF_DIVIDEND_METHOD, RC_VALID_FLAG, 
+      RC_ERROR_DEC
+      )
+    values (
+    	#{item.CHANNELCODE,jdbcType=VARCHAR},
+ 		#{item.TRANSDATE,jdbcType=VARCHAR},
+    	#{item.AVAILABLEVOL,jdbcType=DECIMAL},
+ 		#{item.TOTALVOLOFDISTRIBUTORINTA,jdbcType=DECIMAL},
+    	#{item.TRANSACTIONCFMDATE,jdbcType=VARCHAR},
+ 		#{item.FUNDCODE,jdbcType=VARCHAR},
+ 		#{item.TRANSACTIONACCOUNTID,jdbcType=VARCHAR},
+    	#{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+ 		#{item.TAACCOUNTID,jdbcType=VARCHAR},
+ 		#{item.TOTALFROZENVOL,jdbcType=DECIMAL},
+    	#{item.BRANCHCODE,jdbcType=VARCHAR},
+ 		#{item.TASERIALNO,jdbcType=VARCHAR},
+		#{item.TOTALBACKENDLOAD,jdbcType=DECIMAL},
+ 	  	#{item.SHARECLASS,jdbcType=VARCHAR},
+ 		#{item.DETAILFLAG,jdbcType=VARCHAR},
+ 		#{item.ACCOUNTSTATUS,jdbcType=VARCHAR},
+    	#{item.SHAREREGISTERDATE,jdbcType=VARCHAR},
+    	#{item.UNDISTRIBUTEMONETARYINCOME,jdbcType=DECIMAL},
+    	#{item.UNDISTRIBUTEMONETARYINCOMEFLAG,jdbcType=VARCHAR},
+ 		#{item.GUARANTEEDAMOUNT,jdbcType=DECIMAL},
+    	#{item.SOURCETYPE,jdbcType=VARCHAR},
+ 		#{item.DEFDIVIDENDMETHOD,jdbcType=VARCHAR},
+ 		#{item.VALIDFLAG,jdbcType=VARCHAR},
+    	#{item.ERRORDEC,jdbcType=VARCHAR}
+      )
+            </foreach>
+      select 1 from dual
+  </insert>
+ 
+  
+   <select id="selectIncome" resultType="hashMap" parameterType="hashMap">
+  	SELECT T.D_CDATE,T.C_FUNDACCO,T.C_FUNDCODE,T.F_INCOME,T.F_REALSHARES FROM TA_TINCOME T WHERE T.C_FUNDCODE=#{C_FUNDCODE,jdbcType=VARCHAR}
+ 	AND T.D_CDATE = TO_DATE(#{D_CDATE,jdbcType=VARCHAR},'YYYYMMDD') AND T.C_FUNDACCO = #{C_FUNDACCO,jdbcType=VARCHAR}
+  </select>
+  
+  
+  <update id="updateGenerateStaAndTime" parameterType="hashMap">
+  	update D_FUND_ACCOUNT_RECON_CFM set RC_GENERATE_STATUS = '01' ,RC_GENERATE_FILE_TIME = sysdate where RC_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND RC_TRANSACTION_cfm_DATE = #{TRANSDATE,jdbcType = VARCHAR}
+  </update>
+  
+  <update id="updateSendStaAndTime" parameterType="hashMap">
+  	update D_FUND_ACCOUNT_RECON_CFM set RC_SEND_STATUS = '01' , RC_SEND_FILE_TIME = sysdate where RC_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND RC_TRANSACTION_cfm_DATE = #{TRANSDATE,jdbcType = VARCHAR} and RC_GENERATE_STATUS = '01'
+  </update>
+  
+  
+  <select id="selectFundAccountReconCfm" parameterType="hashMap" resultType="hashMap">
+  	select 
+    ${SQLNAME}
+    from D_FUND_ACCOUNT_RECON_CFM
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="TRANSDATE != null" >
+      AND  RC_TRANSACTION_CFM_DATE=#{TRANSDATE,jdbcType=VARCHAR}
+    </if>
+    order by rc_fund_code,rc_transaction_account_id 
+  </select>
+  
+  
+  
+  
+  
+  
+  
+    <select id="selectPIPROENDDATEGTTransDate" parameterType="hashMap" resultType="integer">
+  	
+  </select>
+  
+  
+    <select id="selectFixedIncome" parameterType="hashMap" resultType="hashMap">
+		select 
+		#{CHANNELCODE,jdbcType=VARCHAR} CHANNELCODE,
+		#{TRANSDATE,jdbcType=VARCHAR} TRANSDATE,
+		T5.F_REMAINSHARES   AVAILABLEVOL,
+		T5.F_REMAINSHARES TOTALVOLOFDISTRIBUTORINTA,
+		#{TRANSDATE,jdbcType=VARCHAR}  TRANSACTIONCFMDATE,
+		T6.DCI_FUND_CODE  FUNDCODE,
+		T6.DCI_TRANS_ACTION_ACCOUNT  TRANSACTIONACCOUNTID,
+		T6.DCI_DISTRIBUTOR_CODE  DISTRIBUTORCODE,
+		T6.DCI_TA_ACCOUNT_ID  TAACCOUNTID,
+		''  TOTALFROZENVOL,
+		T6.DCI_BRANCH_CODE  BRANCHCODE,
+		to_char(sysdate,'yyyyMMddHHmmss') || seq_taserialno_new.nextval  TASERIALNO,
+		''  TOTALBACKENDLOAD,
+		'0'  SHARECLASS,
+		'0'  DETAILFLAG,
+		''  ACCOUNTSTATUS,
+		''  SHAREREGISTERDATE,
+		'0.00'  UNDISTRIBUTEMONETARYINCOME,
+		'0'  UNDISTRIBUTEMONETARYINCOMEFLAG,
+		''  GUARANTEEDAMOUNT,
+		''  SOURCETYPE,
+		''  DEFDIVIDENDMETHOD
+		 from (
+		select  sum(T3.F_REMAINSHARES)  F_REMAINSHARES,
+		  T4.DCI_TA_ACCOUNT_ID  TAACCOUNTID,
+		  T4.DCI_TRANS_ACTION_ACCOUNT  TRANSACTIONACCOUNTID,
+		  T4.DCI_FUND_CODE  FUNDCODE
+		  from (select *
+		          from (SELECT T.L_CONTRACTSERIALNO,
+		                       T.C_FUNDCODE,
+		                       T.D_SHAREBEGIN,
+                              <!-- t.f_remainshares -->
+                              <!--測試庫增加字段  f_remainshares_sams 11.25郵件-->
+                              t.f_remainshares_sams F_REMAINSHARES
+		                  FROM TJ_CONTRACTDETAILS T, TA_TTRUSTCONTRACTDETAILS T2
+		                 WHERE T.L_CONTRACTSERIALNO = T2.L_SERIALNO
+		                  AND T2.C_TRUSTAGENCYNO = #{CHANNELCODE,jdbcType=VARCHAR}
+		                  ) TT
+		         where exists (select 1
+		                  from (
+		                  <!--create by yindy 函数替换  -->
+		                  select distinct c.CP_TA_PRODUCT_CODE fundcode
+					      from p_product_info p, p_channel_product c
+					     where p.pi_channel_product_code = c.cp_channel_product_code
+					       and p.pi_channel_code=c.cp_channel_code
+					       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+					       and c.cp_valid_flag = '01'
+					       and c.cp_check_state = '01'
+					       <!-- and p.pi_valid_flag not in('00','99','02') -->
+					       and p.pi_valid_flag not in('00','99')
+						   and p.pi_check_state = '01'
+						   and p.pi_product_type in('4','5','6','7','8','9')
+						   	and to_date(p.PI_PRO_SETUP_DATE, 'yyyyMMdd') &lt;to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+						   
+				     		and not exists (
+							 select 1 from ( 
+								 select distinct t.erc_fund_code fundcode  from d_exchange_req_cfm t 
+								 where t.erc_business_code = '142'
+								 and t.erc_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+				     			) tempin where tempin.fundcode = p.pi_channel_product_code
+				     		)
+				     		
+		                  <!-- 替换结束 -->
+		                  ) temp
+		                 where temp.fundcode = TT.C_FUNDCODE)
+		                 and tt.d_sharebegin &lt; to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyy/mm/dd')) T3,D_CONTRACT_INFO T4
+		 where T4.DCI_VALID_FLAG = '01'
+		   and T3.L_CONTRACTSERIALNO = T4.DCI_IN_CONTRACT
+		   and T4.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		 group by T4.DCI_CHANNEL_CODE, t4.DCI_TA_ACCOUNT_ID,T4.DCI_TRANS_ACTION_ACCOUNT,T4.DCI_FUND_CODE) T5,
+		 (select distinct i.DCI_TA_ACCOUNT_ID,
+		                     i.DCI_TRANS_ACTION_ACCOUNT,
+		                     i.DCI_FUND_CODE,
+		                     i.DCI_DISTRIBUTOR_CODE,
+		                     i.DCI_BRANCH_CODE
+		       from (select *                
+            from D_CONTRACT_INFO o
+              where exists (select 1
+                            from (
+                            <!--create by yindy 函数替换  -->
+		                  select distinct c.CP_TA_PRODUCT_CODE fundcode,p.pi_Channel_Product_Code
+					      from p_product_info p, p_channel_product c
+					     where p.pi_channel_product_code = c.cp_channel_product_code
+					       and p.pi_channel_code=c.cp_channel_code
+					       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+					       and c.cp_valid_flag = '01'
+					       and c.cp_check_state = '01'
+					       <!-- and p.pi_valid_flag not in('00','99','02') -->
+					       and p.pi_valid_flag not in('00','99')
+						   and p.pi_check_state = '01'
+						   and p.pi_product_type in('4','5','6','7','8','9')
+						   	and to_date(p.PI_PRO_SETUP_DATE, 'yyyyMMdd') &lt;to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+						   and not exists (
+							 select 1 from ( 
+								 select distinct t.erc_fund_code fundcode  from d_exchange_req_cfm t 
+								 where t.erc_business_code in ('142') 
+								 and t.erc_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+				     			) tempin where tempin.fundcode = p.pi_channel_product_code
+				     		)
+				     		
+		                  <!-- 替换结束 -->
+                            ) temp
+                           where temp.fundcode = o.dci_product_code and o.dci_fund_code = temp.pi_Channel_Product_Code ) AND O.DCI_VALID_FLAG = '01'
+            ) i
+		      where i.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		         group by i.DCI_CHANNEL_CODE, i.DCI_TA_ACCOUNT_ID,i.DCI_TRANS_ACTION_ACCOUNT,i.DCI_FUND_CODE,i.dci_distributor_code,i.dci_branch_code) T6
+		 where   T5.TAACCOUNTID=T6.DCI_TA_ACCOUNT_ID
+		     and T5.TRANSACTIONACCOUNTID=T6.DCI_TRANS_ACTION_ACCOUNT
+		     and T5.FUNDCODE=T6.DCI_FUND_CODE
+  </select>
+  
+  
+  <select id="selectCurrencyFIncome" parameterType="hashMap" resultType="hashMap">
+  		select #{CHANNELCODE,jdbcType=VARCHAR} channelcode,
+		    #{TRANSDATE,jdbcType=VARCHAR} transdate,
+			t5.f_remainshares   availablevol,
+			t5.f_remainshares totalvolofdistributorinta,
+			#{TRANSDATE,jdbcType=VARCHAR}  transactioncfmdate,
+			t6.dci_fund_code  fundcode,
+			t6.dci_trans_action_account  transactionaccountid,
+			t6.dci_distributor_code  distributorcode,
+			t6.dci_ta_account_id  taaccountid,
+			''  totalfrozenvol,
+			t6.dci_branch_code  branchcode,
+			to_char(sysdate,'yyyyMMddHHmmss') || seq_taserialno_new.nextval  taserialno,
+			''  totalbackendload,
+			'0'  shareclass,
+			'0'  detailflag,
+			''  accountstatus,
+			''  shareregisterdate,
+			t5.f_income  undistributemonetaryincome,
+			'0'  undistributemonetaryincomeflag,
+			''  guaranteedamount,
+			''  sourcetype,
+			''  defdividendmethod
+       from (
+           select sum(t3.f_remainshares) f_remainshares,
+           t4.dci_ta_account_id taaccountid,
+           t4.dci_trans_action_account transactionaccountid,
+           t4.dci_fund_code fundcode,
+           sum(t3.f_income) f_income
+           from (select *
+                from (select t.l_contractserialno,
+                             t.c_fundcode,
+                             t.f_remainshares,
+                             t.f_income
+                        from tj_contractfund  t, ta_ttrustcontractdetails t2
+                        where t.l_contractserialno = t2.l_serialno
+                        and t2.c_trustagencyno in (
+					    select t.c_agencyno from ta_ttrustagencyinfo t 
+						where t.c_agencyno = #{CHANNELCODE,jdbcType=VARCHAR} 
+						or t.c_parentcode = #{CHANNELCODE,jdbcType=VARCHAR})
+					  ) TT
+                      where exists (
+				 			select 1 from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+							 and p.pi_channel_code=c.cp_channel_code
+							 and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+							 and c.cp_valid_flag = '01'
+							 and c.cp_check_state = '01'
+							 and p.pi_valid_flag not in('00','99')
+						     and p.pi_check_state = '01'
+						     and p.pi_product_type = #{FUNDTYPE,jdbcType = VARCHAR}
+						     and to_date(p.pi_pro_setup_date, 'yyyyMMdd') &lt;=to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+						     and c.cp_ta_product_code = tt.c_fundcode)
+				) t3,d_contract_info t4
+				 where t4.dci_valid_flag = '01'
+				 and  t3.l_contractserialno = t4.dci_in_contract
+				 and t4.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+                 group by t4.dci_channel_code, 
+				 t4.dci_ta_account_id,
+				 t4.dci_trans_action_account,
+				 t4.dci_fund_code
+	   ) t5,
+       (select distinct i.dci_ta_account_id,
+               i.dci_trans_action_account,
+               i.dci_fund_code,
+               i.dci_distributor_code,
+               i.dci_branch_code,
+               i.dci_product_code
+             from (select * from d_contract_info o
+                         where exists (
+				         select 1  from  p_product_info p, p_channel_product c
+					     where p.pi_channel_product_code = c.cp_channel_product_code
+						 and p.pi_channel_code=c.cp_channel_code
+						 and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+						 and c.cp_valid_flag = '01'
+						 and c.cp_check_state = '01'
+						 and p.pi_valid_flag not in('00','99')
+					     and p.pi_check_state = '01'
+					     and p.pi_product_type = #{FUNDTYPE,jdbcType = VARCHAR}
+						 and to_date(p.pi_pro_setup_date, 'yyyyMMdd') &lt;=to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+						 and c.cp_ta_product_code = o.dci_product_code 
+						 and p.pi_channel_product_code = o.dci_fund_code 
+						 )
+					and o.dci_valid_flag='01'
+                  ) i
+                  where i.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+					group by i.dci_channel_code, 
+					i.dci_ta_account_id,
+					i.dci_trans_action_account,
+					i.dci_fund_code,
+					i.dci_distributor_code,
+					i.dci_branch_code,
+					i.dci_product_code
+		) t6
+        where t5.taaccountid=t6.dci_ta_account_id
+        and t5.transactionaccountid=t6.dci_trans_action_account
+        and t5.fundcode=t6.dci_fund_code
+  </select>
+  
+  
+    <select id="selectCashIncome" parameterType="hashMap" resultType="hashMap">
+   		select 
+   		    #{CHANNELCODE,jdbcType=VARCHAR} CHANNELCODE,
+		    #{TRANSDATE,jdbcType=VARCHAR} TRANSDATE,
+			T5.F_REMAINSHARES   AvailableVol,
+			T5.F_REMAINSHARES TotalVolOfDistributorInTA,
+			#{TRANSDATE,jdbcType=VARCHAR}  TransactionCfmDate,
+			T6.DCI_FUND_CODE  FundCode,
+			T6.DCI_TRANS_ACTION_ACCOUNT  TransactionAccountID,
+			T6.DCI_DISTRIBUTOR_CODE  DistributorCode,
+			T6.DCI_TA_ACCOUNT_ID  TAAccountID,
+			''  TotalFrozenVol,
+			T6.DCI_BRANCH_CODE  BranchCode,
+			to_char(sysdate,'yyyyMMddHHmmss') || seq_taserialno_new.nextval  TASerialNO,
+			''  TotalBackendLoad,
+			'0'  ShareClass,
+			'0'  DetailFlag,
+			''  AccountStatus,
+			''  ShareRegisterDate,
+			T5.F_INCOME  UndistributeMonetaryIncome,
+			'0'  UndistributeMonetaryIncomeFlag,
+			T5.F_NEWINCOME  GuaranteedAmount,
+			''  SourceType,
+			''  DefDividendMethod
+			 from (
+			select sum(T3.F_REMAINSHARES) F_REMAINSHARES,
+		       T4.DCI_TA_ACCOUNT_ID TAACCOUNTID,
+		       T4.DCI_TRANS_ACTION_ACCOUNT TRANSACTIONACCOUNTID,
+		       T4.DCI_FUND_CODE FUNDCODE,
+		       sum(T3.F_INCOME) F_INCOME,
+			   max(T3.F_NEWINCOME) F_NEWINCOME
+			  from (select *
+			          from (SELECT T.L_CONTRACTSERIALNO,
+			                       T.C_FUNDCODE,
+			                       T.F_REMAINSHARES,
+			                       T.F_INCOME,
+			                       <!--20200429 每日收益  -->
+			                       T.F_NEWINCOME
+			                  FROM TJ_CONTRACTFUND  T, TA_TTRUSTCONTRACTDETAILS T2
+			                 WHERE T.L_CONTRACTSERIALNO = T2.L_SERIALNO
+			                   AND T2.C_TRUSTAGENCYNO =#{CHANNELCODE,jdbcType=VARCHAR}) TT
+			         where exists (select 1
+			                  from (
+			                  <!--create by yindy 函数替换  -->
+			                  select distinct c.CP_TA_PRODUCT_CODE fundcode
+						      from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+						       and p.pi_channel_code=c.cp_channel_code
+						       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+						       and c.cp_valid_flag = '01'
+						       and c.cp_check_state = '01'
+						       and p.pi_valid_flag not in('00','99')
+							   and p.pi_check_state = '01'
+							   and p.pi_product_type in('1','2','3')
+			                  <!--替换结束  -->
+			                  ) temp
+			                 where temp.fundcode = TT.C_FUNDCODE)) T3,D_CONTRACT_INFO T4
+			 where T4.DCI_VALID_FLAG = '01'
+			   and  T3.L_CONTRACTSERIALNO = T4.DCI_IN_CONTRACT
+			   and T4.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+			 group by T4.DCI_CHANNEL_CODE, t4.DCI_TA_ACCOUNT_ID,T4.DCI_TRANS_ACTION_ACCOUNT,T4.DCI_FUND_CODE) T5,
+			 (select distinct i.DCI_TA_ACCOUNT_ID,
+			                     i.DCI_TRANS_ACTION_ACCOUNT,
+			                     i.DCI_FUND_CODE,
+			                     i.DCI_DISTRIBUTOR_CODE,
+			                     i.DCI_BRANCH_CODE,
+			                     i.dci_product_code
+			                     <!-- 20200330一个账户多比丰利合同,根据内部合同号分组会查出重复的对账数据 -->
+			                     <!-- ,
+                                 i.dci_in_contract -->
+			       from (select *                
+            from D_CONTRACT_INFO o
+              where exists (select 1
+                            from (
+                            <!--create by yindy 函数替换  -->
+			                  select distinct c.CP_TA_PRODUCT_CODE fundcode
+			                  ,p.pi_channel_product_code 
+						      from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+						       and p.pi_channel_code=c.cp_channel_code
+						       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+						       and c.cp_valid_flag = '01'
+						       and c.cp_check_state = '01'
+						       and p.pi_valid_flag not in('00','99')
+							   and p.pi_check_state = '01'
+							   and p.pi_product_type in('1','2','3')
+			                  <!--替换结束  -->
+                            ) temp
+                           where temp.fundcode = o.dci_product_code and o.dci_valid_flag='01'
+                           and temp.pi_channel_product_code = o.dci_fund_code )
+            ) i
+			      where i.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+			         group by i.DCI_CHANNEL_CODE, i.DCI_TA_ACCOUNT_ID,i.DCI_TRANS_ACTION_ACCOUNT,i.DCI_FUND_CODE,i.dci_distributor_code,i.dci_branch_code,i.dci_product_code<!-- ,i.dci_in_contract -->) T6
+			 where   T5.TAACCOUNTID=T6.DCI_TA_ACCOUNT_ID
+			     and T5.TRANSACTIONACCOUNTID=T6.DCI_TRANS_ACTION_ACCOUNT
+			     and T5.FUNDCODE=T6.DCI_FUND_CODE
+   </select>
+   
+   
+    <select id="selectCheckFixedIncome" parameterType="hashMap" resultType="integer">
+		select count(*) from (
+    select T2.RC_AVAILABLE_VOL-T1.erc_confirmed_vol countflag
+      from  D_FUND_ACCOUNT_RECON_CFM T2,(select nvl(p4.erc_confirmed_vol, p1.erc_confirmed_vol) - nvl(p2.erc_confirmed_vol, 0)-nvl(p3.erc_confirmed_vol, 0) erc_confirmed_vol,
+            p4.erc_channel_code,
+            p4.erc_transaction_account_id,
+            p4.erc_fund_code
+       from (
+            select a.rc_available_vol  erc_confirmed_vol,
+						a.rc_channel_code erc_channel_code,
+						a.rc_fund_code erc_fund_code,
+          a.rc_transaction_account_id erc_transaction_account_id
+           from d_fund_account_recon_cfm a ,p_product_info p 
+			 where a.rc_channel_code = p.pi_channel_code 
+			 and a.rc_fund_code = p.pi_channel_product_code 
+			 and p.pi_product_type in ('4','5','6')
+			 and p.pi_valid_flag not in ('00','99')
+          	and a.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+            and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR} 
+            union 
+            select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+                    c.erc_channel_code,
+                    c.erc_fund_code,
+					c.erc_transaction_account_id
+               from d_exchange_req_cfm c
+              where c.erc_business_code = '130'
+              and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+              and c.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+              and (select p.pi_product_type from p_product_info p where p.pi_channel_code = c.erc_channel_code and p.pi_channel_product_code = c.erc_fund_code and p.pi_valid_flag not in ('00','99')) in ('4','5','6')
+              group by c.erc_channel_code,
+                       c.erc_transaction_account_id,
+                       c.erc_fund_code             
+            )p4
+        left join (select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+                    c.erc_channel_code,
+                    c.erc_transaction_account_id,
+                    c.erc_fund_code
+               from d_exchange_req_cfm c
+              where c.erc_business_code = '130'
+              and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+              group by c.erc_channel_code,
+                       c.erc_transaction_account_id,
+                       c.erc_fund_code) p1
+            on p1.erc_channel_code = p4.erc_channel_code
+            and p1.erc_fund_code = p4.erc_fund_code
+            and p1.erc_transaction_account_id = p4.erc_transaction_account_id
+       
+       left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+                         c.erc_channel_code,
+                         c.erc_transaction_account_id,
+                         c.erc_fund_code
+                    from d_exchange_req_cfm c
+                   where c.erc_business_code = '142'
+                    and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+                    and c.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+                   group by c.erc_channel_code,
+                            c.erc_transaction_account_id,
+                            c.erc_fund_code) p2
+         on p4.erc_channel_code = p2.erc_channel_code
+        and p4.erc_transaction_account_id = p2.erc_transaction_account_id
+        and p4.erc_fund_code = p2.erc_fund_code
+        
+        left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+                         c.erc_channel_code,
+                         c.erc_transaction_account_id,
+                         c.erc_fund_code
+                    from d_exchange_req_cfm c
+                   where c.erc_business_code = '150'
+                   and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+                   and c.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+                   group by c.erc_channel_code,
+                            c.erc_transaction_account_id,
+                            c.erc_fund_code) p3
+         on p4.erc_channel_code = p3.erc_channel_code
+        and p4.erc_transaction_account_id = p3.erc_transaction_account_id
+        and p4.erc_fund_code = p3.erc_fund_code
+    ) T1
+     where T2.rc_channel_code = T1.erc_channel_code
+     and T2.RC_TRANSACTION_ACCOUNT_ID = T1.erc_transaction_account_id
+     and T2.rc_fund_code = T1.erc_fund_code
+     and T2.RC_CHANNEL_CODE=#{CHANNELCODE,jdbcType = VARCHAR}
+     and T2.RC_TRANS_DATE=#{TRANSDATE,jdbcType = VARCHAR}
+     )pp
+where pp.countflag != 0 
+    </select>
+    
+    
+     <select id="selectCheckCashIncome" parameterType="hashMap" resultType="integer">
+	     select count(*) from ( 
+		select T2.RC_AVAILABLE_VOL-T5.erc_confirmed_vol countflag,T5.rc_FUND_code
+						from  D_FUND_ACCOUNT_RECON_CFM T2,
+						( select * from ( select NVL(p1.erc_confirmed_vol,0)+ NVL(p3.erc_confirmed_vol,0) - NVL(p2.erc_confirmed_vol,0) + NVL(P4.RC_AVAILABLE_VOL,0)  erc_confirmed_vol ,
+									p4.rc_channel_code,
+					                p4.rc_transaction_account_id,
+					                p4.rc_fund_code
+						 from (
+								 select a.rc_available_vol,
+												a.rc_transaction_account_id,
+												a.rc_fund_code,
+												a.rc_channel_code
+											 from d_fund_account_recon_cfm a,p_product_info p
+                      							where a.rc_fund_code = p.pi_channel_product_code
+											    and a.rc_channel_code = p.pi_channel_code
+												and p.pi_product_type in ('1', '2' ,'3')
+												and p.pi_valid_flag = '01'
+												and a.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+												and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+								 )p4 left join 
+								 (select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+													c.erc_channel_code,
+													c.erc_transaction_account_id,
+													c.erc_fund_code
+													 from d_exchange_req_cfm c
+													where c.erc_business_code = '022'
+													and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+													and c.erc_return_code='0000'
+													and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') =to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyyMMdd')
+													group by c.erc_channel_code,
+														 c.erc_transaction_account_id,
+														 c.erc_fund_code) p1
+								ON P1.erc_channel_code = p4.rc_channel_code
+								AND p1.erc_transaction_account_id  = p4.rc_transaction_account_id
+								AND p1.erc_fund_code = p4.rc_fund_code             
+						 left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+															 c.erc_channel_code,
+															 c.erc_transaction_account_id,
+															 c.erc_fund_code
+													from d_exchange_req_cfm c
+												 where c.erc_business_code = '024'
+												 and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+												 and c.erc_return_code='0000'
+												 and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') =to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyyMMdd')
+												 group by c.erc_channel_code,
+																	c.erc_transaction_account_id,
+																	c.erc_fund_code) p2
+							 on p4.rc_channel_code = p2.erc_channel_code
+							and p4.rc_transaction_account_id = p2.erc_transaction_account_id
+							and p4.rc_fund_code = p2.erc_fund_code
+										left join (select nvl(sum(c.dc_dividend_amount), 0) erc_confirmed_vol,
+									 c.dc_channel_code,
+									 c.dc_transaction_account_id,
+									 c.dc_fund_code
+							from d_fund_dividend_cfm c
+						 where  c.dc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+						 and to_date(c.dc_trans_date,'yyyyMMdd')=to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyyMMdd')
+						 group by c.dc_channel_code,
+											c.dc_transaction_account_id,
+											c.dc_fund_code) p3
+						 on p4.rc_channel_code = p3.dc_channel_code
+						and p4.rc_transaction_account_id = p3.dc_transaction_account_id
+						and p4.rc_fund_code = p3.dc_fund_code 
+					) T1
+				union 
+				select t3.erc_confirmed_vol,t3.erc_channel_code,t3.erc_transaction_account_id,t3.erc_fund_code  from ( select sum(t.      erc_confirmed_vol) erc_confirmed_vol,
+													t.erc_channel_code,
+													t.erc_transaction_account_id,
+													t.erc_fund_code 
+								from 
+								(select c.*　from d_exchange_req_cfm c
+								where c.erc_business_code = '022'
+													and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+													and c.erc_return_code='0000'
+													and (select p.pi_product_type from p_product_info p where p.pi_channel_code = c.erc_channel_code and p.pi_channel_product_code = c.erc_fund_code and p.pi_valid_flag not in ('00','99')) in ('1','2','3')
+													and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') =to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyyMMdd')
+		                      
+								minus
+								select c.* from d_exchange_req_cfm c, d_fund_account_recon_cfm a
+								where c.erc_channel_code = a.rc_channel_code
+								and c.erc_fund_code = a.rc_fund_code
+								and c.erc_transaction_account_id = a.rc_transaction_account_id 
+								and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+								and c.erc_business_code = '022'
+								and (select p.pi_product_type from p_product_info p where p.pi_channel_code = c.erc_channel_code and p.pi_channel_product_code = c.erc_fund_code and p.pi_valid_flag not in ('00','99')) in ('1','2','3')
+								and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+								and c.erc_return_code='0000'
+								and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') =to_date(#{TRANSDATE,jdbcType = VARCHAR},'yyyyMMdd')
+							 )t
+							 group by t.erc_channel_code,
+														 t.erc_transaction_account_id,
+														 t.erc_fund_code 
+					) t3   
+      )t5
+      where T2.rc_channel_code = T5.rc_channel_code
+       and T2.rc_transaction_account_id = T5.rc_transaction_account_id
+       and T2.rc_fund_code = T5.rc_fund_code
+       and T2.rc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+       and T2.rc_trans_date=#{TRANSDATE,jdbcType = VARCHAR}
+) pp where pp.countflag != 0 
+    </select>
+    
+    <select id="queryAccontReconInfo" parameterType="java.util.Map"  resultType="java.util.Map">
+    	SELECT T.RC_CHANNEL_CODE CHANNELCODE,
+       (SELECT TT.CI_CHANNEL_NAME
+          FROM P_CHANNEL_INFO TT
+         WHERE TT.CI_CHANNEL_CODE = T.RC_CHANNEL_CODE
+           AND ROWNUM = 1) CHANNELNAME,
+		 T.RC_AVAILABLE_VOL AvailableVol,
+		 T.RC_TOTAL_VOL_DISTRIBUTOR_TA TotalVolOfDistributorInTA,
+		 t.rc_undistr_monetary_income UndistributeMonetaryIncome,
+		 t.rc_transaction_cfm_date transactioncfmdate,
+		 T.RC_FUND_CODE FUNDCODE,
+		 T.RC_TRANSACTION_ACCOUNT_ID TRANSACTIONACCOUNTID,
+		 T.RC_DISTRIBUTOR_CODE DistributorCode,
+		 T.RC_TA_ACCOUNT_ID TAAccountID,
+		 T.RC_BRANCH_CODE BranchCode,
+		 T.RC_SHARE_CLASS ShareClass,
+		 T.RC_DETAIL_FLAG DetailFlag
+		  FROM 
+		  <if test="condition.his != null and condition.his != '' ">
+		  	d_fund_account_recon_his
+		  </if>
+		  
+		  <if test="condition.his == null or condition.his == '' ">
+		  	D_FUND_ACCOUNT_RECON_CFM
+		  </if>
+		   T WHERE 1=1
+		  <if test="condition.channelCode != null and condition.channelCode != '' ">
+		  	AND T.RC_CHANNEL_CODE = #{condition.channelCode,jdbcType = VARCHAR}
+		  </if>
+		 <if test="condition.productCode != null and condition.productCode != '' ">
+		  	AND T.RC_FUND_CODE = #{condition.productCode,jdbcType = VARCHAR}
+		  </if>
+		  <if test="condition.transactionAccountId != null and condition.transactionAccountId != '' ">
+		  	AND LOWER(T.RC_TRANSACTION_ACCOUNT_ID) like ('%'|| lower(#{condition.transactionAccountId,jdbcType = VARCHAR}) ||'%')
+		  </if>
+		  <if test="condition.transDate != null and condition.transDate != '' ">
+		  	AND T.RC_TRANS_DATE = replace(#{condition.transDate,jdbcType = VARCHAR},'-','')
+		  </if>
+		  <if test="condition.taAccountId != null and condition.taAccountId != '' ">
+		  	AND LOWER(T.RC_TA_ACCOUNT_ID) like ('%'|| lower(#{condition.taAccountId,jdbcType = VARCHAR}) ||'%')
+		  </if>
+		<choose>
+			<when test="pageInfo.sort != null and pageInfo.sort != '' ">
+				order by ${pageInfo.sort} ${pageInfo.order}
+			</when>
+			<otherwise>
+				order by T.RC_TRANS_DATE desc
+			</otherwise>
+		</choose>
+
+    </select>
+    
+    <select id="queryCheckStockIncome" parameterType="hashMap" resultType="integer" >
+    	select count(*)
+		  from (select T2.RC_AVAILABLE_VOL - T.rc_confirmed_vol countflag,
+		               T.rc_FUND_code
+		          from D_FUND_ACCOUNT_RECON_CFM T2,
+		               (select nvl(p4.rc_confirmed_vol, 0) +
+		                       nvl(p1.erc_confirmed_vol, 0) -
+		                       nvl(p2.erc_confirmed_vol, 0) rc_confirmed_vol,
+		                       p4.rc_channel_code,
+		                       p4.rc_transaction_account_id,
+		                       p4.rc_fund_code
+		                  from (select a.rc_available_vol  rc_confirmed_vol,
+		                               a.rc_channel_code   rc_channel_code,
+																	 a.rc_fund_code rc_fund_code,
+		                               a.rc_transaction_account_id rc_transaction_account_id
+		                          from d_fund_account_recon_cfm a, p_product_info p
+		                         where a.rc_channel_code = p.pi_channel_code
+		                           and a.rc_fund_code = p.pi_channel_product_code
+		                           and p.pi_product_type in ('7','9')
+		                           and p.pi_valid_flag = '01'
+		                           and a.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		                           and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+		                        union
+		                        select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+		                               c.erc_channel_code,
+		                               c.erc_fund_code, c.erc_transaction_account_id
+		                          from d_exchange_req_cfm c
+		                         where c.erc_business_code = '130'
+		                           and (select p.pi_product_type from p_product_info p where p.pi_channel_code = c.erc_channel_code and p.pi_channel_product_code = c.erc_fund_code and p.pi_valid_flag not in ('00','99')) in ('7','9')
+		                           and c.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		                           and c.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+		                         group by c.erc_channel_code,
+		                                  c.erc_transaction_account_id,
+		                                  c.erc_fund_code) p4
+		                  left join (select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+		                                   c.erc_channel_code,
+		                                   c.erc_transaction_account_id,
+		                                   c.erc_fund_code
+		                              from d_exchange_req_cfm c
+		                             where c.erc_business_code = '022'
+		                               and c.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		                               and c.erc_return_code = '0000'
+		                               and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') = to_date(#{TRANSDATE,jdbcType = VARCHAR}, 'yyyyMMdd')
+		                             group by c.erc_channel_code,
+		                                      c.erc_transaction_account_id,
+		                                      c.erc_fund_code) p1
+		                    ON P1.erc_channel_code = p4.rc_channel_code
+		                   AND p1.erc_transaction_account_id =
+		                       p4.rc_transaction_account_id
+		                   AND p1.erc_fund_code = p4.rc_fund_code
+		                  left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+		                                   c.erc_channel_code,
+		                                   c.erc_transaction_account_id,
+		                                   c.erc_fund_code
+		                              from d_exchange_req_cfm c
+		                             where c.erc_business_code = '024'
+		                               and c.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		                               and c.erc_return_code = '0000'
+		                               and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') = to_date(#{TRANSDATE,jdbcType = VARCHAR}, 'yyyyMMdd')
+		                             group by c.erc_channel_code,
+		                                      c.erc_transaction_account_id,
+		                                      c.erc_fund_code) p2
+		                    on p4.rc_channel_code = p2.erc_channel_code
+		                   and p4.rc_transaction_account_id =
+		                       p2.erc_transaction_account_id
+		                   and p4.rc_fund_code = p2.erc_fund_code) t     
+		         where T2.rc_channel_code = T.rc_channel_code
+		           and T2.rc_transaction_account_id = T.rc_transaction_account_id
+		           and T2.rc_fund_code = T.rc_fund_code
+		           and T2.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		           and T2.rc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}) pp
+		 where countflag != 0
+    </select>
+    <select id="queryCheckMultiIncome" parameterType="hashMap" resultType="integer">
+    	select count(*) from (
+       select t2.rc_available_vol - t.rc_confirmed_vol countflag,T.rc_FUND_code
+              from d_fund_account_recon_cfm  t2,
+							( select nvl(p4.rc_confirmed_vol, 0) +
+                           nvl(p1.erc_confirmed_vol, 0) -
+                           nvl(p2.erc_confirmed_vol, 0) rc_confirmed_vol,
+		                       p4.rc_channel_code,
+		                       p4.rc_transaction_account_id,
+                           	   p4.rc_fund_code  from 
+					         (select a.rc_available_vol  rc_confirmed_vol,
+							 a.rc_channel_code   rc_channel_code,
+							 a.rc_fund_code rc_fund_code,
+							 a.rc_transaction_account_id rc_transaction_account_id
+                              from d_fund_account_recon_cfm a, p_product_info p
+                             where a.rc_channel_code = p.pi_channel_code
+                               and a.rc_fund_code = p.pi_channel_product_code
+                               and p.pi_product_type in ('8')
+                               and p.pi_valid_flag = '01'
+                               and a.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+                               and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+							   ) p4
+								left join (select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+											 c.erc_channel_code,
+											 c.erc_transaction_account_id,
+											 c.erc_fund_code
+									from d_exchange_req_cfm c
+								 where c.erc_business_code = '130'
+									 and c.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+									 and c.erc_return_code = '0000'
+									 and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') = to_date(#{TRANSDATE,jdbcType = VARCHAR}, 'yyyyMMdd')
+								 group by c.erc_channel_code,
+								c.erc_transaction_account_id,
+								c.erc_fund_code) p1
+							ON P1.erc_channel_code = p4.rc_channel_code
+						 AND p1.erc_transaction_account_id =
+								 p4.rc_transaction_account_id
+						 AND p1.erc_fund_code = p4.rc_fund_code
+			 left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+								 c.erc_channel_code,
+								 c.erc_transaction_account_id,
+								 c.erc_fund_code
+								 from d_exchange_req_cfm c
+								 where c.erc_business_code = '024'
+									 and c.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+									 and c.erc_return_code = '0000'
+									 and to_date(c.erc_transaction_cfm_date,'yyyyMMdd') = to_date(#{TRANSDATE,jdbcType = VARCHAR}, 'yyyyMMdd')
+								 group by c.erc_channel_code,
+									c.erc_transaction_account_id,
+									c.erc_fund_code) p2
+									on p4.rc_channel_code = p2.erc_channel_code
+								 and p4.rc_transaction_account_id =
+									p2.erc_transaction_account_id
+								 and p4.rc_fund_code = p2.erc_fund_code 
+							) t 
+						 where T2.rc_channel_code = T.rc_channel_code
+						               and T2.rc_transaction_account_id = T.rc_transaction_account_id
+						               and T2.rc_fund_code = T.rc_fund_code
+						               and T2.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+						               and T2.rc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+				) pp where  countflag != 0
+    </select>
+  
+  <select id="queryCheckMoneyFIncome" parameterType="hashMap" resultType="integer">
+  		select count(*) from (
+	    select T2.RC_AVAILABLE_VOL-T1.erc_confirmed_vol countflag
+	      from  D_FUND_ACCOUNT_RECON_CFM T2,(select nvl(p4.erc_confirmed_vol, p1.erc_confirmed_vol) - nvl(p2.erc_confirmed_vol, 0)+nvl(p3.erc_confirmed_vol, 0) erc_confirmed_vol,
+	            p4.erc_channel_code,
+	            p4.erc_transaction_account_id,
+	            p4.erc_fund_code
+	       from (
+	            select a.rc_available_vol  erc_confirmed_vol,
+				       a.rc_channel_code erc_channel_code,
+				       a.rc_fund_code erc_fund_code,
+	                   a.rc_transaction_account_id erc_transaction_account_id
+	           from d_fund_account_recon_cfm a ,p_product_info p 
+				     where a.rc_channel_code = p.pi_channel_code 
+				     and a.rc_fund_code = p.pi_channel_product_code 
+				     and p.pi_product_type = '0'
+				     and p.pi_valid_flag = '01'
+	           and a.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+	           and a.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+	           union 
+	           select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+	                    c.erc_channel_code,
+	                    c.erc_fund_code,
+			            c.erc_transaction_account_id
+	              from d_exchange_req_cfm c
+	              where c.erc_business_code = '130'
+	              and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+	              and c.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+	              and (select p.pi_product_type from p_product_info p 
+				            where p.pi_channel_code = c.erc_channel_code 
+							and p.pi_channel_product_code = c.erc_fund_code 
+							and p.pi_valid_flag not in ('00','99')) = '0'
+	              group by c.erc_channel_code,
+	                       c.erc_transaction_account_id,
+	                       c.erc_fund_code             
+	            )p4
+	        left join (select sum(c.erc_confirmed_vol) erc_confirmed_vol,
+	                    c.erc_channel_code,
+	                    c.erc_transaction_account_id,
+	                    c.erc_fund_code
+	               from d_exchange_req_cfm c
+	               where c.erc_business_code = '130'
+	               and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+	               group by c.erc_channel_code,
+	                       c.erc_transaction_account_id,
+	                       c.erc_fund_code) p1
+	            on p1.erc_channel_code = p4.erc_channel_code
+	            and p1.erc_fund_code = p4.erc_fund_code
+	            and p1.erc_transaction_account_id = p4.erc_transaction_account_id
+	       left join (select nvl(sum(c.erc_confirmed_vol), 0) erc_confirmed_vol,
+	                         c.erc_channel_code,
+	                         c.erc_transaction_account_id,
+	                         c.erc_fund_code
+	                    from d_exchange_req_cfm c
+	                    where c.erc_business_code = '142'
+	                    and c.erc_channel_code=#{CHANNELCODE,jdbcType = VARCHAR}
+	                    group by c.erc_channel_code,
+		                        c.erc_transaction_account_id,
+		                        c.erc_fund_code) p2
+	         on p4.erc_channel_code = p2.erc_channel_code
+	         and p4.erc_transaction_account_id = p2.erc_transaction_account_id
+	         and p4.erc_fund_code = p2.erc_fund_code
+	        left join (
+					     select sum(d.dc_dividend_amount) erc_confirmed_vol, 
+							        d.dc_channel_code erc_channel_code,
+								    d.dc_fund_code erc_fund_code,
+								    d.dc_transaction_account_id erc_transaction_account_id
+							 from d_fund_dividend_cfm d where d.dc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+							 and d.dc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+							 group by d.dc_channel_code,
+							  d.dc_fund_code,
+							  d.dc_transaction_account_id
+					) p3
+	        on p4.erc_channel_code = p3.erc_channel_code
+	        and p4.erc_transaction_account_id = p3.erc_transaction_account_id
+	        and p4.erc_fund_code = p3.erc_fund_code
+	    ) T1
+	     where T2.rc_channel_code = T1.erc_channel_code
+	     and T2.RC_TRANSACTION_ACCOUNT_ID = T1.erc_transaction_account_id
+	     and T2.rc_fund_code = T1.erc_fund_code
+	     and T2.RC_CHANNEL_CODE=#{CHANNELCODE,jdbcType = VARCHAR}
+	     and T2.RC_TRANS_DATE=#{TRANSDATE,jdbcType = VARCHAR}
+	     )pp
+	where pp.countflag >0 
+  </select>
+  
+  <select id="queryHasShareFundAcco" parameterType="Map" resultType="Map">
+  		select t.rc_ta_account_id from d_fund_account_recon_cfm t,p_product_info p 
+		 where t.rc_channel_code = p.pi_channel_code 
+		and t.rc_fund_code = p.pi_channel_product_code 
+		and p.pi_product_type = #{PRODUCTTYPE, jdbcType = VARCHAR}
+		and t.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		and t.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+		and t.rc_available_vol != 0 
+		<!-- 排除掉全额赎回的基金账号  20191216 生产报错了修改-->
+		and  not exists (
+			 select d.er_ta_account_id from d_exchange_req d  
+			 where d.er_business_code = '024' 
+			 and d.er_return_code = '0000'
+			 and d.er_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+			 and d.er_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+			 and t.rc_fund_code =d.er_fund_code 
+			 and t.rc_available_vol = d.er_application_vol 
+			 and t.rc_ta_account_id = d.er_ta_account_id 
+		)
+  </select>
+  
+  <select id="queryCanDividendContract" parameterType="Map" resultType="integer">
+  		select count(1) from d_contract_info n 
+		where n.dci_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		and n.dci_valid_flag = '01'
+		and exists (
+		    select 1 from d_fund_account_recon_cfm t,p_product_info p 
+		    where t.rc_channel_code = p.pi_channel_code 
+		    and t.rc_fund_code = p.pi_channel_product_code 
+		    and p.pi_product_type = #{PRODUCTTYPE, jdbcType = VARCHAR}
+			and t.rc_channel_code = N.DCI_CHANNEL_CODE
+			and t.rc_trans_date = #{LASTDATE,jdbcType = VARCHAR}
+			and n.dci_fund_code = t.rc_fund_code
+			and n.dci_trans_action_account = t.rc_transaction_account_id
+		)
+  </select>
+  <select id="queryAccountReconSamsSerialnoCount" parameterType="map" resultType="integer">
+  	  select count(*)
+      from d_fund_account_recon_cfm t
+      where t.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+      and t.rc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+      group by t.rc_channel_code, t.rc_ta_serial_no
+      having count(*) > 1
+  </select>
+	<!--获取单个合同在交易日是否有对账数据信息-->
+	<select id="selectFundAccountByTransDate" resultType="string">
+	  select RC_AVAILABLE_VOL
+      from d_fund_account_recon_cfm t
+      where t.rc_channel_code = #{channelCode,jdbcType = VARCHAR}
+      and t.rc_fund_code = #{fundCode,jdbcType = VARCHAR}
+      and t.rc_trans_date = #{transDate,jdbcType = VARCHAR}
+      and t.RC_TRANSACTION_ACCOUNT_ID = #{accountId,jdbcType = VARCHAR}
+	</select>
+	
+	<!--把历史数据移到历史库  -->
+	<insert id="insertBackUpAccountRecon" parameterType="map" >
+		insert into d_fund_account_recon_his
+		  (rc_channel_code,
+		   rc_trans_date,
+		   rc_available_vol,
+		   rc_total_vol_distributor_ta,
+		   rc_transaction_cfm_date,
+		   rc_fund_code,
+		   rc_transaction_account_id,
+		   rc_distributor_code,
+		   rc_ta_account_id,
+		   rc_total_frozen_vol,
+		   rc_branch_code,
+		   rc_ta_serial_no,
+		   rc_total_backend_load,
+		   rc_share_class,
+		   rc_detail_flag,
+		   rc_account_status,
+		   rc_share_register_date,
+		   rc_undistr_monetary_income,
+		   rc_undistr_monetary_income_f,
+		   rc_guaranteed_amount,
+		   rc_source_type,
+		   rc_def_dividend_method,
+		   rc_valid_flag,
+		   rc_error_dec,
+		   rc_send_status,
+		   rc_generate_status,
+		   rc_send_file_time,
+		   rc_generate_file_time,
+		   rc_ctime,
+		   rc_utime,
+		   rc_cuser,
+		   rc_uuser)
+		  select rc_channel_code,
+         rc_trans_date,
+         rc_available_vol,
+         rc_total_vol_distributor_ta,
+         rc_transaction_cfm_date,
+         rc_fund_code,
+         rc_transaction_account_id,
+         rc_distributor_code,
+         rc_ta_account_id,
+         rc_total_frozen_vol,
+         rc_branch_code,
+         rc_ta_serial_no,
+         rc_total_backend_load,
+         rc_share_class,
+         rc_detail_flag,
+         rc_account_status,
+         rc_share_register_date,
+         rc_undistr_monetary_income,
+         rc_undistr_monetary_income_f,
+         rc_guaranteed_amount,
+         rc_source_type,
+         rc_def_dividend_method,
+         rc_valid_flag,
+         rc_error_dec,
+         rc_send_status,
+         rc_generate_status,
+         rc_send_file_time,
+         rc_generate_file_time,
+         rc_ctime,
+         rc_utime,
+         rc_cuser,
+         rc_uuser
+    	from d_fund_account_recon_cfm t 
+    	where t.rc_trans_date &lt;to_char(add_months(trunc(sysdate),#{MONTHNUM,jdbcType = VARCHAR}),'yyyymm') || '01'
+    	<if test="channelcode != null and channelCode != '' ">
+    	t.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+    	</if>
+	</insert>
+	
+	
+	<delete id="deleteBackUpAccountRecon" parameterType="map" >
+		delete from d_fund_account_recon_cfm t 
+    	where t.rc_trans_date &lt;to_char(add_months(trunc(sysdate),#{MONTHNUM,jdbcType = VARCHAR}),'yyyymm') || '01'
+    	<if test="channelcode != null and channelCode != '' ">
+    	t.rc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+    	</if>
+	</delete>
+	
+</mapper>

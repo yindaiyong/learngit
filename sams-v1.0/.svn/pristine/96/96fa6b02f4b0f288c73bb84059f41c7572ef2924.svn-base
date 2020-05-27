@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.DayEndTransDateMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.DayEndTransDate" >
+    <id column="DT_ID" property="dtId" jdbcType="DECIMAL" />
+    <result column="DT_CHANNEL_CODE" property="dtChannelCode" jdbcType="VARCHAR" />
+    <result column="DT_LAST_DATE" property="dtLastDate" jdbcType="VARCHAR" />
+    <result column="DT_CURRENT_DATE" property="dtCurrentDate" jdbcType="VARCHAR" />
+    <result column="DT_NEXT_DATE" property="dtNextDate" jdbcType="VARCHAR" />
+    <result column="DT_CTIME" property="dtCtime" jdbcType="TIMESTAMP" />
+    <result column="DT_UTIME" property="dtUtime" jdbcType="TIMESTAMP" />
+    <result column="DT_CUSER" property="dtCuser" jdbcType="VARCHAR" />
+    <result column="DT_UUSER" property="dtUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    DT_ID, DT_CHANNEL_CODE, DT_LAST_DATE, DT_CURRENT_DATE, DT_NEXT_DATE, DT_CTIME, DT_UTIME, 
+    DT_CUSER, DT_UUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_DAYEND_TRANSDATE
+    where DT_ID = #{dtId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_DAYEND_TRANSDATE
+    where DT_ID = #{dtId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.DayEndTransDate" >
+    insert into D_DAYEND_TRANSDATE (DT_ID, DT_CHANNEL_CODE, DT_LAST_DATE, 
+      DT_CURRENT_DATE, DT_NEXT_DATE, DT_CTIME, 
+      DT_UTIME, DT_CUSER, DT_UUSER
+      )
+    values (#{dtId,jdbcType=DECIMAL}, #{dtChannelCode,jdbcType=VARCHAR}, #{dtLastDate,jdbcType=VARCHAR}, 
+      #{dtCurrentDate,jdbcType=VARCHAR}, #{dtNextDate,jdbcType=VARCHAR}, #{dtCtime,jdbcType=TIMESTAMP}, 
+      #{dtUtime,jdbcType=TIMESTAMP}, #{dtCuser,jdbcType=VARCHAR}, #{dtUuser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.DayEndTransDate" >
+    insert into D_DAYEND_TRANSDATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="dtId != null" >
+        DT_ID,
+      </if>
+      <if test="dtChannelCode != null" >
+        DT_CHANNEL_CODE,
+      </if>
+      <if test="dtLastDate != null" >
+        DT_LAST_DATE,
+      </if>
+      <if test="dtCurrentDate != null" >
+        DT_CURRENT_DATE,
+      </if>
+      <if test="dtNextDate != null" >
+        DT_NEXT_DATE,
+      </if>
+      <if test="dtCtime != null" >
+        DT_CTIME,
+      </if>
+      <if test="dtUtime != null" >
+        DT_UTIME,
+      </if>
+      <if test="dtCuser != null" >
+        DT_CUSER,
+      </if>
+      <if test="dtUuser != null" >
+        DT_UUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="dtId != null" >
+        #{dtId,jdbcType=DECIMAL},
+      </if>
+      <if test="dtChannelCode != null" >
+        #{dtChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dtLastDate != null" >
+        #{dtLastDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtCurrentDate != null" >
+        #{dtCurrentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtNextDate != null" >
+        #{dtNextDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtCtime != null" >
+        #{dtCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtUtime != null" >
+        #{dtUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtCuser != null" >
+        #{dtCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dtUuser != null" >
+        #{dtUuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.DayEndTransDate" >
+    update D_DAYEND_TRANSDATE
+    <set >
+      <if test="dtChannelCode != null" >
+        DT_CHANNEL_CODE = #{dtChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dtLastDate != null" >
+        DT_LAST_DATE = #{dtLastDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtCurrentDate != null" >
+        DT_CURRENT_DATE = #{dtCurrentDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtNextDate != null" >
+        DT_NEXT_DATE = #{dtNextDate,jdbcType=VARCHAR},
+      </if>
+      <if test="dtCtime != null" >
+        DT_CTIME = #{dtCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtUtime != null" >
+        DT_UTIME = #{dtUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dtCuser != null" >
+        DT_CUSER = #{dtCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="dtUuser != null" >
+        DT_UUSER = #{dtUuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where DT_ID = #{dtId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.DayEndTransDate" >
+    update D_DAYEND_TRANSDATE
+    set DT_CHANNEL_CODE = #{dtChannelCode,jdbcType=VARCHAR},
+      DT_LAST_DATE = #{dtLastDate,jdbcType=VARCHAR},
+      DT_CURRENT_DATE = #{dtCurrentDate,jdbcType=VARCHAR},
+      DT_NEXT_DATE = #{dtNextDate,jdbcType=VARCHAR},
+      DT_CTIME = #{dtCtime,jdbcType=TIMESTAMP},
+      DT_UTIME = #{dtUtime,jdbcType=TIMESTAMP},
+      DT_CUSER = #{dtCuser,jdbcType=VARCHAR},
+      DT_UUSER = #{dtUuser,jdbcType=VARCHAR}
+    where DT_ID = #{dtId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectByChannelCode" parameterType ="java.lang.String" resultMap="BaseResultMap">
+  	select  
+  	<include refid="Base_Column_List" /> 
+  	from  D_DAYEND_TRANSDATE where dt_channel_code = #{channelCode,jdbcType = VARCHAR}
+  </select>
+  
+  <update id="updateByChannelCode" parameterType="com.sams.custom.model.DayEndTransDate">
+  	update D_DAYEND_TRANSDATE set 
+  	  DT_LAST_DATE = #{dtLastDate,jdbcType=VARCHAR},
+      DT_CURRENT_DATE = #{dtCurrentDate,jdbcType=VARCHAR},
+      DT_NEXT_DATE = #{dtNextDate,jdbcType=VARCHAR}
+      where dt_channel_code = #{dtChannelCode,jdbcType = VARCHAR}
+  </update>
+</mapper>

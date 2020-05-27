@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.RollBackChannelMapper" >
+<!--回滚某个渠道下所有的数据-->
+  <!--删除产品信息表数据-->
+  <delete id="deleteFromProductInfo">
+    delete from p_product_info t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.pi_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除渠道产品关联关系表-->
+  <delete id="deleteFromChannelProduct">
+    delete from p_channel_product t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.cp_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除渠道产品收益率-->
+  <delete id="deleteFromCPR">
+    delete from p_channel_product_relation t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.cpr_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除账户状态-->
+  <delete id="deleteFromAccountStat">
+    delete from d_account_stat t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.as_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除账户状态-->
+  <delete id="deleteFromContractInfo">
+    delete from d_contract_info t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.dci_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除账户申请-->
+  <delete id="deleteFromAccountReq">
+    delete from d_account_req t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.ar_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除账户确认-->
+  <delete id="deleteFromAccountReqCfm">
+    delete from d_account_req_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.arc_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除交易申请-->
+  <delete id="deleteFromExchangeReq">
+    delete from d_exchange_req t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.er_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除交易确认-->
+  <delete id="deleteFromExchangeReqCfm">
+    delete from d_exchange_req_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.erc_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除电子合同申请-->
+  <delete id="deleteFromContractReq">
+    delete from D_CONTRACT_REQ t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.cr_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除电子合同确认-->
+  <delete id="deleteFromContractCfm">
+    delete from d_contract_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.cc_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除非居民申请-->
+  <delete id="deleteFromRTIR">
+    delete from d_resident_tax_inform_req t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.rtir_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除非居民确认-->
+  <delete id="deleteFromRTIC">
+    delete from d_resident_tax_inform_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.rtic_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除分红表数据-->
+  <delete id="deleteFromDividendCfm">
+    delete from d_fund_dividend_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.dc_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除产品非交易日数据-->
+  <delete id="deleteFromPOD">
+    delete from p_product_open_day t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.PO_CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除对账表数据-->
+  <delete id="deleteFromAccountRecon">
+    delete from d_fund_account_recon_cfm t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.rc_CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+  <!--删除26文件数据表数据-->
+  <delete id="deleteFromFundVolCfm">
+  delete from d_fund_vol_detail_cfm t where
+  <choose>
+    <when test="channelCode != null">
+      1 = 1
+    </when>
+    <otherwise>
+      1 != 1
+    </otherwise>
+  </choose>
+  AND t.fvd_channel_code = #{channelCode,jdbcType=VARCHAR}
+</delete>
+  <!--删除账户信息表渠道数据-->
+  <delete id="deleteFromAccountInfo">
+    delete from d_account_info t where
+    <choose>
+      <when test="channelCode != null">
+        1 = 1
+      </when>
+      <otherwise>
+        1 != 1
+      </otherwise>
+    </choose>
+    AND t.ai_channel_code = #{channelCode,jdbcType=VARCHAR}
+  </delete>
+</mapper>

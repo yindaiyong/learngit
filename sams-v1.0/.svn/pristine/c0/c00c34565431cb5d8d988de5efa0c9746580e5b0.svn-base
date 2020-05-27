@@ -1,0 +1,285 @@
+{
+  "total": 37,
+  "rows": [
+	 {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------04确认取值------",
+      "name": "------",
+      "url": "/admin/login"
+	},
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.select022024TradeCount(queryMap)",
+      "name": "",
+      "url": "130.sql"
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list = exchangeReqTmpMapper.select022024TradeCfmList(queryMap)",
+      "name": "",
+      "url": "150.txt"
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectPreMentTradeInfo022Count(selectMap);",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo022(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectPreMentTradeInfo024Count(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "6",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo024(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "7",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> fundConfirmDate = productInfoMapper.queryTransConfirmDay(queryMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "8",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.queryEx020024TradeCount(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "9",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list  = exchangeReqTmpMapper.queryEx022024TradeCfmList(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "10",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectCheckTaTconfirmData(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "11",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectSubscribeResult(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "12",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectSubscribeGQResult(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "13",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectmultiCurrencyResult(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "14",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list  = exchangeReqTmpMapper.queryMuTradeCfmList(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "15",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectCheckExchangereqData(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "16",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectRedeemResult(selectMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "17",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.select130cfmDiffValueCount(queryMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------05对账取值------",
+      "name": "------",
+      "url": "/admin/login"
+    },
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCurrencyFTransCount(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> currencyFList = fundAccountReconCfmMapper.selectCurrencyFIncome(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCheckBusinessCodeCount(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> fixedIncomeList=fundAccountReconCfmMapper.selectFixedIncome(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCheckBusinessCodeCount(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "6",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashIncomeList= fundAccountReconCfmMapper.selectCashIncome(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "7",
+      "errorMsg" : "",
+      "errorMethod" : "List<FundVolDetailCfm> fundVolDetailList = fundVolDetailCfmMapper.getFundVolDetailFromTA(channelCode,transDate, productTypes)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "8",
+      "errorMsg" : "",
+      "errorMethod" : "int count = fundVolDetailCfmMapper.querySetUpDataCount(channelCode,transDate, productTypes)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "9",
+      "errorMsg" : "",
+      "errorMethod" : "int checkRedeem = fundVolDetailCfmMapper.checkRedeemAvailableVol(channelCode,transDate,lastDate,nextDate)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "10",
+      "errorMsg" : "",
+      "errorMethod" : "int checkRedeemCfm = fundVolDetailCfmMapper.checkRedeemCfmTotalVol(channelCode,transDate,lastDate)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "11",
+      "errorMsg" : "",
+      "errorMethod" : "int checkFixedIncome = fundAccountReconCfmMapper.selectCheckFixedIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "12",
+      "errorMsg" : "",
+      "errorMethod" : "int CheckCashIncome = fundAccountReconCfmMapper.selectCheckCashIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "13",
+      "errorMsg" : "",
+      "errorMethod" : "int checkStockIncome = fundAccountReconCfmMapper.queryCheckStockIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "14",
+      "errorMsg" : "",
+      "errorMethod" : "int checkMultiIncome = fundAccountReconCfmMapper.queryCheckMultiIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "15",
+      "errorMsg" : "",
+      "errorMethod" : "int checkMoneyFIncome = fundAccountReconCfmMapper.queryCheckMoneyFIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------06分红取值------",
+      "name": "------",
+      "url": "/admin/login"
+    },
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> rubyIncomeList=contractInfoMapper.selectRubyIncome(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncomeCount=contractInfoMapper.selectCashFixedIncomeCount(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncome=contractInfoMapper.selectCashFixedIncome(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<String> inContracts = fundAccountReconCfmMapper.queryHasShareFundAcco(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncome=contractInfoMapper.selectCashFixedIncome(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    }
+  ]
+}

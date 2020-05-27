@@ -1,0 +1,104 @@
+package com.sams.business.controller;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.MapUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.sams.batchfile.service.FileDataService;
+import com.sams.batchfile.service.ReadFileService;
+import com.sams.common.constant.Const;
+import com.sams.common.web.controller.BaseController;
+import com.sams.custom.mapper.PchannelInfoMapper;
+import com.sams.custom.model.PchannelInfo;
+
+@Controller
+@RequestMapping("/viewFileData")
+public class ViewFileDataController extends BaseController{
+	
+	private static Logger LOGGER = LoggerFactory.getLogger(ViewFileDataController.class);
+	
+	@Autowired
+	private FileDataService fileDataService;
+	
+	@Autowired
+	private ReadFileService readFileService;
+	
+	@Autowired
+	private PchannelInfoMapper pchannelInfoMapper;
+
+	@RequestMapping(method = RequestMethod.GET)
+    public String viewFileData() {
+        return "sys/viewFileData";
+    }
+	
+	/**
+	 * 查看生成文件的数据
+	 * @Title: getFileData   
+	 * @author: yindy 2019年5月15日 上午9:40:36
+	 * @param: @param date
+	 * @param: @param channelId
+	 * @param: @param type
+	 * @param: @return      
+	 * @return: Object      
+	 * @throws
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping( value ="/getFileData", method = RequestMethod.POST)
+	@ResponseBody
+    public Object getFileData(String date,String channelId,String type,Integer page, Integer rows) {
+		Map<String,Object> retMap = new HashMap<String, Object>();
+		List<Map<String,Object>> data = new ArrayList<Map<String,Object>>();
+		date = date.replace("-", "");
+		PchannelInfo channelInfo = pchannelInfoMapper.queryChannelInfoByChannelCode(channelId);
+		if(channelInfo == null){
+			retMap.put("rows",new ArrayList<Map<String,Object>>());
+			retMap.put("total", 0);
+			return retMap;
+		}
+		String filePath = MapUtils.getString(fileDataService.getDictInfo(),"ftplocaldir")+File.separator
+				+Const.FTP_UPLOAD+File.separator+channelId+File.separator+date;
+		LOGGER.info("查看的文件路径为:"+filePath);
+		retMap = readFileService.readFile(filePath,type, date,channelInfo);
+		if(retMap.get("datalist") != null){
+			data = (List<Map<String, Object>>) retMap.get("datalist");
+//			LOGGER.info("查看的文件类型为"+type+",渠道编码为:"+channelId+",数据为:"+data);
+		}
+		int size = (data == null ? 0 : data.size());
+		int start = (page-1)*rows;
+		int end = page*rows;
+
+        List<Map<String, Object>> retList  = new ArrayList<Map<String,Object>>();
+		  for(int i = start;i < (end > size ? size: end ); i++ ){
+		  		retList.add(data.get(i));
+		  }
+		retMap.put("rows", retList);
+		retMap.put("total", size);
+		return retMap;
+    }
+
+    /**
+     * @Description 根据文件类型生成title数据信息
+     * @Author weijunjie
+     * @Date 2019/11/15 11:30
+     **/
+    @RequestMapping( value ="/getFileTitle")
+    @ResponseBody
+    public Object getFileTitle(String type) {
+		System.out.println("-----------------"+type);
+//	    type = null == type?"R2":type;
+        List<Map<String, Object>> cnNameByfundCode = fileDataService.getColumnsTitle(type);
+        return cnNameByfundCode;
+    }
+	
+}

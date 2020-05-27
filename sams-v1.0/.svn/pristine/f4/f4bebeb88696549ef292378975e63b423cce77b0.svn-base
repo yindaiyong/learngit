@@ -1,0 +1,237 @@
+package com.sams.common.utils;
+
+import com.alibaba.fastjson.JSONObject;
+import com.sams.custom.model.result.CreateExcelBean;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.streaming.SXSSFCell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.util.*;
+
+/**
+ * @ClassName PublicCreateExcelUtils
+ * 描述 : 公共创建excel方法
+ * @Author weijunjie
+ * @Date 2020/2/5 13:30
+ */
+public class PublicCreateExcelUtils {
+
+    /**-------------------------------单sheet-------------------------------------**/
+
+    /**
+     * @Description excel列序固定，与标题插入顺序一致
+     * @Author weijunjie
+     * @Date 2020/2/5 13:59
+     **/
+    public static JSONObject createOrderTitle(LinkedHashMap<String,String> titleMap){
+        JSONObject jsonObject = new JSONObject(true);
+        for(String key:titleMap.keySet()){
+            jsonObject.put(key,titleMap.get(key));
+        }
+        return jsonObject;
+    }
+
+    /**
+     * @Description excel数据取值
+     * @Author weijunjie
+     * @Date 2020/2/5 13:59
+     **/
+    public static List<JSONObject> createDataList( List<Map<String,Object>> dataList){
+        List<JSONObject> objects = new ArrayList<>();
+        for(Map map:dataList){
+            JSONObject theMap = JSONObject.parseObject(JSONObject.toJSONString(map));
+            objects.add(theMap);
+        }
+        return objects;
+    }
+
+    /**
+     * @Description 创建workbook (map)
+     * @Author weijunjie
+     * @Date 2020/2/5 13:31
+     **/
+    public static Workbook createWorkbook(LinkedHashMap<String,String> titleMap,Map<String,Integer> widthMap, List<Map<String,Object>> dataList, String sheetName){
+        JSONObject jsonObject = createOrderTitle(titleMap);
+        List<JSONObject> objects = new ArrayList<>();
+        for(Map map:dataList){
+            JSONObject theMap = JSONObject.parseObject(JSONObject.toJSONString(map));
+            objects.add(theMap);
+        }
+        JSONObject widthObj = JSONObject.parseObject(JSONObject.toJSONString(widthMap));
+        return createWorkbook(jsonObject,widthObj,objects,sheetName);
+    }
+
+    /**
+     * @Description 传入数据组装workbook
+     * @Author weijunjie
+     * @Date 2020/1/20 9:04
+     **/
+    public static Workbook createWorkbook(JSONObject titleMap,JSONObject widthMap, List<JSONObject> dataList, String sheetName){
+        SXSSFWorkbook workbook = new SXSSFWorkbook();
+        SXSSFSheet sheet = workbook.createSheet(sheetName);
+        boolean widthFlag = true;
+        if(null == widthMap){
+            widthFlag = false;
+        }
+        //首行写入title数据，获取对应的key值
+        int z = 0;
+        SXSSFRow titleRow = sheet.createRow(0);
+        for(String key:titleMap.keySet()){
+            SXSSFCell cell = titleRow.createCell(z);
+            String val = titleMap.getString(key);
+            if(!widthFlag){
+                sheet.setColumnWidth(z, (val.length()+1) * 2 * 256);
+            }else{
+                int width = widthMap.getInteger(key);
+                sheet.setColumnWidth(z, width);
+            }
+            cell.setCellValue(val);
+            z++;
+        }
+        for(int i = 1;i<=dataList.size();i++){
+            SXSSFRow row = sheet.createRow(i);
+            //按照插入顺序获取对应的所有数据信息
+            JSONObject data = dataList.get(i-1);
+            int j = 0;
+            for(String key:titleMap.keySet()){
+                SXSSFCell cell = row.createCell(j);
+                String val = data.getString(key);
+                cell.setCellValue(val);
+                j++;
+            }
+        }
+        return workbook;
+    }
+
+    /**---------------------------------多sheet-------------------------------**/
+
+    /**
+     * @Description 创建多sheetWorkbook
+     * @Author weijunjie
+     * @Date 2020/2/5 14:10
+     **/
+    public static Workbook createWorkbook(List<CreateExcelBean> createExcelBeans){
+        SXSSFWorkbook workbook = new SXSSFWorkbook();
+        int sheetIndex = 0;
+        for(CreateExcelBean createExcelBean:createExcelBeans){
+            JSONObject titleMap = createOrderTitle(createExcelBean.sheetTitle);
+            List<JSONObject> dataList = createDataList(createExcelBean.dataList);
+            String sheetName = StringUtils.isNotBlank(createExcelBean.getSheetName())
+                    ?createExcelBean.getSheetName():"未命名"+sheetIndex;
+            sheetIndex++;
+            SXSSFSheet sheet = workbook.createSheet(sheetName);
+            JSONObject widthObj = new JSONObject();
+            JSONObject typeObj = new JSONObject();
+            Map<String,Integer> widthMap = createExcelBean.getWidthMap();
+            Map<String,Integer> typeMap = createExcelBean.getTypeMap();
+            //判断是否指定对应列的宽度数据（没有指定默认  根据列标题的长度自适应）
+            boolean widthFlag = true;
+            if(null == widthMap){
+                widthFlag = false;
+            }else{
+                widthObj = JSONObject.parseObject(JSONObject.toJSONString(widthMap));
+            }
+            //判断是否指定对应列的宽度数据（没有指定默认  根据列标题的长度自适应）
+            boolean typeFlag = true;
+            if(null == typeMap){
+                typeFlag = false;
+            }else{
+                typeObj = JSONObject.parseObject(JSONObject.toJSONString(typeMap));
+            }
+            //首行写入title数据，获取对应的key值
+            int z = 0;
+            SXSSFRow titleRow = sheet.createRow(0);
+            for(String key:titleMap.keySet()){
+                SXSSFCell cell = titleRow.createCell(z);
+                String val = titleMap.getString(key);
+                if(!widthFlag){
+                    sheet.setColumnWidth(z, (val.length()+1) * 2 * 256);
+                }else{
+                    int width = widthObj.getInteger(key);
+                    sheet.setColumnWidth(z, width);
+                }
+                if(!typeFlag){
+                    cell.setCellType(Cell.CELL_TYPE_STRING);
+                }else{
+                    int cellType = typeObj.getInteger(key);
+                    cell.setCellType(cellType);
+                }
+                cell.setCellValue(val);
+                z++;
+            }
+            for(int i = 1;i<=dataList.size();i++){
+                SXSSFRow row = sheet.createRow(i);
+                //按照插入顺序获取对应的所有数据信息
+                JSONObject data = dataList.get(i-1);
+                int j = 0;
+                for(String key:titleMap.keySet()){
+                    SXSSFCell cell = row.createCell(j);
+                    String val = data.getString(key);
+                    cell.setCellValue(val);
+                    j++;
+                }
+            }
+        }
+        return workbook;
+    }
+
+    /**
+     * @Description 测试生成调用
+     * @Author weijunjie
+     * @Date 2020/2/5 14:27
+     **/
+    public static void main(String[] args){
+        try {
+            File file = new File("D:\\sams\\testFile\\下载文sss.xlsx");
+            OutputStream out = new FileOutputStream(file);
+            //导出测试
+            ArrayList<CreateExcelBean> createExcelBeans = new ArrayList<>();
+            for(int d = 0;d<3;d++){
+                CreateExcelBean createExcelBean = new CreateExcelBean();
+                LinkedHashMap<String,String> jsonObject = new LinkedHashMap();
+                jsonObject.put("aaa","姓名");
+                jsonObject.put("bbb","年龄");
+                jsonObject.put("ccc","大小");
+                createExcelBean.setSheetTitle(jsonObject);
+                Map<String,Integer> www = new HashMap<>();
+                www.put("aaa",1000);
+                www.put("bbb",2000);
+                www.put("ccc",3000);
+                createExcelBean.setWidthMap(www);
+
+                Map<String,Integer> sss = new HashMap<>();
+                sss.put("aaa",Cell.CELL_TYPE_STRING);
+                sss.put("bbb",Cell.CELL_TYPE_STRING);
+                sss.put("ccc",Cell.CELL_TYPE_STRING);
+                createExcelBean.setTypeMap(sss);
+                ArrayList<Map<String,Object>> jsonObjects = new ArrayList<>();
+
+                for(int i = 0;i<10;i++){
+                    Map<String,Object> json = new HashMap<>();
+                    json.put("aaa","姓名"+i);
+                    json.put("bbb","年龄"+i);
+                    json.put("ccc","大小"+i);
+                    jsonObjects.add(json);
+                }
+                createExcelBean.setDataList(jsonObjects);
+                createExcelBean.setSheetName("sheet"+d);
+                createExcelBeans.add(createExcelBean);
+            }
+            Workbook cccc = PublicCreateExcelUtils.createWorkbook(createExcelBeans);
+            cccc.write(out);
+            out.flush();
+            out.close();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+}

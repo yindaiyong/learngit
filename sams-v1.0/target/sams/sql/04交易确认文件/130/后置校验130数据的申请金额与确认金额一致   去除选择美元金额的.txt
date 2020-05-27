@@ -1,0 +1,18 @@
+-- 后置校验130数据的申请金额与确认金额一致   去除选择美元金额的
+select count(1) from (select nvl(t.erc_application_amount, 0)-nvl(t.erc_confirmed_amount, 0) diffvalue
+           from sams.d_exchange_req_cfm t
+           where t.erc_business_code = '130'
+           and t.erc_channel_code = 'TTTNETGTJA'--CHANNELCODE
+           and t.erc_trans_date = '20200415'--TRANSDATE
+           and exists (
+        select 1 from sams.p_product_info p 
+            where p.pi_channel_code = t.erc_channel_code 
+            and t.erc_fund_code = p.pi_channel_product_code
+            and p.pi_currency_type = '156' 
+        and p.pi_channel_product_code = t.erc_fund_code
+        and p.pi_valid_flag not in ( '00','99')
+        and p.pi_check_state = '01'
+        and p.pi_product_type not in ('8','9')
+          )
+           ) t
+     where diffvalue != 0;

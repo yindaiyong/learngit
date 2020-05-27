@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="S100031" targetNamespace="http://www.example.org/S100031/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/S100031/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/S100031/">
+      <xsd:element name="NewOperation">
+        
+                <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+            </xsd:element>
+      <xsd:element name="NewOperationResponse">
+        
+                <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+            </xsd:element>
+      <xsd:element name="CommonRq" type="tns:S100031Type"></xsd:element>
+      <xsd:element name="CommonRs" type="tns:S100031TypeResponse"></xsd:element>
+
+      <xsd:complexType name="S100031Type">
+      	<xsd:sequence>
+      		<xsd:element name="CommonRqHdr" type="tns:CommonRqHdr"></xsd:element>
+      		<xsd:element name="CommonXmlRq" type="tns:CommonXmlRq"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="CommonRqHdr">
+      	<xsd:sequence>
+      		<xsd:element name="ChannelId" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="8"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="TransCode" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+
+      					<xsd:length value="6"></xsd:length>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="TransDate" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+
+      					<xsd:length value="8"></xsd:length>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="TransTime" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+
+      					<xsd:length value="9"></xsd:length>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="Version" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:minLength value="3"></xsd:minLength>
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="RqUid" minOccurs="0" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="CommonXmlRq">
+      	<xsd:sequence>
+
+      		<xsd:element name="CustName" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      					<xsd:minLength value="1"></xsd:minLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ShortName" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IdentityType" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+
+      					<xsd:length value="1"></xsd:length>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IdentityNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      					<xsd:minLength value="1"></xsd:minLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ProvinceCode" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="4"></xsd:maxLength>
+      					<xsd:minLength value="1"></xsd:minLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="CityNo" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="4"></xsd:maxLength>
+      					<xsd:minLength value="1"></xsd:minLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IdValidBegDate" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IdValidEndDate" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BillSendPass" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+
+      					<xsd:length value="1"></xsd:length>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="MobileNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="24"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="PhoneNo" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="22"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="PhoneNo2" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="22"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="Email" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="FaxNo" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="24"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ZipCode" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="6"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="Address" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="RiskLevel" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="2"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+
+      		<xsd:element name="RiskLevelName" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="EmContact" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="100"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="EmContactPhone" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BindMobile" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:minLength value="1"></xsd:minLength>
+      					<xsd:maxLength value="12"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BindEmail" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BindBankNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="6"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BindBankAcco" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="100"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="BindNameinBank" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:minLength value="100"></xsd:minLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+
+
+
+
+      		<xsd:element name="Password" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="Recommender" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="40"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="CustType" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="1"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="RegCustType" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="2"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IndustryDetail" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="2"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="InstiRegAddr" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="255"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="IndustryIdentityNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="30"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="TaxIdentityNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="30"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="LawName" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="20"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="LawIdentityType" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="1"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="LawIdentityNo" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="30"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="LawIdValidBegDate" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="LawIdValidEndDate" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="Contact" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="20"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ConIdentityType" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="1"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ConNo" minOccurs="1" maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="20"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="ConIdValiddate" minOccurs="1"
+      			maxOccurs="1">
+      			<xsd:simpleType>
+      				<xsd:restriction base="xsd:string">
+      					<xsd:maxLength value="10"></xsd:maxLength>
+      				</xsd:restriction>
+      			</xsd:simpleType>
+      		</xsd:element>
+      		<xsd:element name="OldCustNo" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="QueryPassword" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="OutRequestNo" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="OutSystemFlag" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="OutCustNo" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="BrokerCode" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="EastCustType" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="RegCapital" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ConIdValidDateBeg" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ContrHolderName" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ContrHolderIdType" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ContrhHolderIdNo" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ContrHolderIdValidDateBeg"
+      			type="xsd:string" minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="ContrHolderIdValidDate"
+      			type="xsd:string" minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="CorpName" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="WorkUnitType" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="Flag" type="xsd:string" minOccurs="0"
+      			maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="FundAcco" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="Birthday" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="Nationality" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="Vocation" type="xsd:string"
+      			minOccurs="0" maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="Sex" type="xsd:string" minOccurs="0"
+      			maxOccurs="1">
+      		</xsd:element>
+      		<xsd:element name="IncomeSource" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="S100031TypeResponse">
+      	<xsd:sequence>
+      		<xsd:element name="CommonRsHdr" type="tns:CommonRsHdr"></xsd:element>
+      		<xsd:element name="CommonXmlRs" type="tns:CommonXmlRs"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    
+      <xsd:complexType name="CommonRsHdr">
+      	<xsd:sequence>
+      		<xsd:element name="Version" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+
+      <xsd:complexType name="CommonXmlRs">
+      	<xsd:sequence>
+      		<xsd:element name="RetCode" type="xsd:string"></xsd:element>
+      		<xsd:element name="RetMsg" type="xsd:string"></xsd:element>
+      		<xsd:element name="FundAcco" type="xsd:string"></xsd:element>
+      	</xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="NewOperationRequest">
+    <wsdl:part element="tns:CommonRq" name="Common"/>
+  </wsdl:message>
+  <wsdl:message name="NewOperationResponse">
+    <wsdl:part element="tns:CommonRs" name="Common"/>
+  </wsdl:message>
+  <wsdl:portType name="S100031">
+    <wsdl:operation name="NewOperation">
+      <wsdl:input message="tns:NewOperationRequest"/>
+      <wsdl:output message="tns:NewOperationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="S100031SOAP" type="tns:S100031">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="NewOperation">
+      <soap:operation soapAction="http://www.example.org/S100031/NewOperation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="S100031">
+    <wsdl:port binding="tns:S100031SOAP" name="S100031SOAP">
+      <soap:address location="http://192.168.52.44:7080/sitco/S100031"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

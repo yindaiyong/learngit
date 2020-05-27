@@ -1,0 +1,426 @@
+package com.sams.custom.model;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
+public class DAgentIncomePayData implements Serializable {
+    private BigDecimal aipdId;
+
+    private String aipdProductName;
+
+    private String aipdCustomerName;
+
+    private String aipdCustomerType;
+
+    private String aipdCertificateType;
+
+    private String aipdCertificateNo;
+
+    private String aipdPostOfficeCode;
+
+    private String aipdPostOfficeAddress;
+
+    private String aipdTelNumber;
+
+    private String aipdPhoneNumber;
+
+    private String aipdContactsAddress;
+
+    private String aipdContactsTelNumber;
+
+    private String aipdPaymentAmount;
+
+    private String aipdArrivalAccountDate;
+
+    private String aipdBenefitLevel;
+
+    private String aipdPaymentDate;
+
+    private String aipdCertificateStartTime;
+
+    private String aipdCertificateEndTime;
+
+    private String aipdCountry;
+
+    private String aipdCapitalSource;
+
+    private String aipdIndiInfo;
+
+    private String aipdInstInfo;
+
+    private String aipdInstLegalInfo;
+
+    private String aipdInstAuthInfo;
+
+    private String aipdInstShareInfo;
+
+    private String aipdInstChargeInfo;
+
+    private String aipdProductCode;
+
+    private String aipdChannelCode;
+
+    private String aipdType;
+
+    private String aipdValidFlag;
+
+    private String aipdStatus;
+
+    private String aipdUploadTime;
+
+    private String aipdDownloadTime;
+
+    private Date aipdCreateTime;
+
+    private Date aipdUpdateTime;
+
+    private String aipdCreateUser;
+
+    private String aipdUpdateUser;
+
+    private static final long serialVersionUID = 1L;
+
+    public BigDecimal getAipdId() {
+        return aipdId;
+    }
+
+    public void setAipdId(BigDecimal aipdId) {
+        this.aipdId = aipdId;
+    }
+
+    public String getAipdProductName() {
+        return aipdProductName;
+    }
+
+    public void setAipdProductName(String aipdProductName) {
+        this.aipdProductName = aipdProductName == null ? null : aipdProductName.trim();
+    }
+
+    public String getAipdCustomerName() {
+        return aipdCustomerName;
+    }
+
+    public void setAipdCustomerName(String aipdCustomerName) {
+        this.aipdCustomerName = aipdCustomerName == null ? null : aipdCustomerName.trim();
+    }
+
+    public String getAipdCustomerType() {
+        return aipdCustomerType;
+    }
+
+    public void setAipdCustomerType(String aipdCustomerType) {
+        this.aipdCustomerType = aipdCustomerType == null ? null : aipdCustomerType.trim();
+    }
+
+    public String getAipdCertificateType() {
+        return aipdCertificateType;
+    }
+
+    public void setAipdCertificateType(String aipdCertificateType) {
+        this.aipdCertificateType = aipdCertificateType == null ? null : aipdCertificateType.trim();
+    }
+
+    public String getAipdCertificateNo() {
+        return aipdCertificateNo;
+    }
+
+    public void setAipdCertificateNo(String aipdCertificateNo) {
+        this.aipdCertificateNo = aipdCertificateNo == null ? null : aipdCertificateNo.trim();
+    }
+
+    public String getAipdPostOfficeCode() {
+        return aipdPostOfficeCode;
+    }
+
+    public void setAipdPostOfficeCode(String aipdPostOfficeCode) {
+        this.aipdPostOfficeCode = aipdPostOfficeCode == null ? null : aipdPostOfficeCode.trim();
+    }
+
+    public String getAipdPostOfficeAddress() {
+        return aipdPostOfficeAddress;
+    }
+
+    public void setAipdPostOfficeAddress(String aipdPostOfficeAddress) {
+        this.aipdPostOfficeAddress = aipdPostOfficeAddress == null ? null : aipdPostOfficeAddress.trim();
+    }
+
+    public String getAipdTelNumber() {
+        return aipdTelNumber;
+    }
+
+    public void setAipdTelNumber(String aipdTelNumber) {
+        this.aipdTelNumber = aipdTelNumber == null ? null : aipdTelNumber.trim();
+    }
+
+    public String getAipdPhoneNumber() {
+        return aipdPhoneNumber;
+    }
+
+    public void setAipdPhoneNumber(String aipdPhoneNumber) {
+        this.aipdPhoneNumber = aipdPhoneNumber == null ? null : aipdPhoneNumber.trim();
+    }
+
+    public String getAipdContactsAddress() {
+        return aipdContactsAddress;
+    }
+
+    public void setAipdContactsAddress(String aipdContactsAddress) {
+        this.aipdContactsAddress = aipdContactsAddress == null ? null : aipdContactsAddress.trim();
+    }
+
+    public String getAipdContactsTelNumber() {
+        return aipdContactsTelNumber;
+    }
+
+    public void setAipdContactsTelNumber(String aipdContactsTelNumber) {
+        this.aipdContactsTelNumber = aipdContactsTelNumber == null ? null : aipdContactsTelNumber.trim();
+    }
+
+    public String getAipdPaymentAmount() {
+        return aipdPaymentAmount;
+    }
+
+    public void setAipdPaymentAmount(String aipdPaymentAmount) {
+        this.aipdPaymentAmount = aipdPaymentAmount == null ? null : aipdPaymentAmount.trim();
+    }
+
+    public String getAipdArrivalAccountDate() {
+        return aipdArrivalAccountDate;
+    }
+
+    public void setAipdArrivalAccountDate(String aipdArrivalAccountDate) {
+        this.aipdArrivalAccountDate = aipdArrivalAccountDate == null ? null : aipdArrivalAccountDate.trim();
+    }
+
+    public String getAipdBenefitLevel() {
+        return aipdBenefitLevel;
+    }
+
+    public void setAipdBenefitLevel(String aipdBenefitLevel) {
+        this.aipdBenefitLevel = aipdBenefitLevel == null ? null : aipdBenefitLevel.trim();
+    }
+
+    public String getAipdPaymentDate() {
+        return aipdPaymentDate;
+    }
+
+    public void setAipdPaymentDate(String aipdPaymentDate) {
+        this.aipdPaymentDate = aipdPaymentDate == null ? null : aipdPaymentDate.trim();
+    }
+
+    public String getAipdCertificateStartTime() {
+        return aipdCertificateStartTime;
+    }
+
+    public void setAipdCertificateStartTime(String aipdCertificateStartTime) {
+        this.aipdCertificateStartTime = aipdCertificateStartTime == null ? null : aipdCertificateStartTime.trim();
+    }
+
+    public String getAipdCertificateEndTime() {
+        return aipdCertificateEndTime;
+    }
+
+    public void setAipdCertificateEndTime(String aipdCertificateEndTime) {
+        this.aipdCertificateEndTime = aipdCertificateEndTime == null ? null : aipdCertificateEndTime.trim();
+    }
+
+    public String getAipdCountry() {
+        return aipdCountry;
+    }
+
+    public void setAipdCountry(String aipdCountry) {
+        this.aipdCountry = aipdCountry == null ? null : aipdCountry.trim();
+    }
+
+    public String getAipdCapitalSource() {
+        return aipdCapitalSource;
+    }
+
+    public void setAipdCapitalSource(String aipdCapitalSource) {
+        this.aipdCapitalSource = aipdCapitalSource == null ? null : aipdCapitalSource.trim();
+    }
+
+    public String getAipdIndiInfo() {
+        return aipdIndiInfo;
+    }
+
+    public void setAipdIndiInfo(String aipdIndiInfo) {
+        this.aipdIndiInfo = aipdIndiInfo == null ? null : aipdIndiInfo.trim();
+    }
+
+    public String getAipdInstInfo() {
+        return aipdInstInfo;
+    }
+
+    public void setAipdInstInfo(String aipdInstInfo) {
+        this.aipdInstInfo = aipdInstInfo == null ? null : aipdInstInfo.trim();
+    }
+
+    public String getAipdInstLegalInfo() {
+        return aipdInstLegalInfo;
+    }
+
+    public void setAipdInstLegalInfo(String aipdInstLegalInfo) {
+        this.aipdInstLegalInfo = aipdInstLegalInfo == null ? null : aipdInstLegalInfo.trim();
+    }
+
+    public String getAipdInstAuthInfo() {
+        return aipdInstAuthInfo;
+    }
+
+    public void setAipdInstAuthInfo(String aipdInstAuthInfo) {
+        this.aipdInstAuthInfo = aipdInstAuthInfo == null ? null : aipdInstAuthInfo.trim();
+    }
+
+    public String getAipdInstShareInfo() {
+        return aipdInstShareInfo;
+    }
+
+    public void setAipdInstShareInfo(String aipdInstShareInfo) {
+        this.aipdInstShareInfo = aipdInstShareInfo == null ? null : aipdInstShareInfo.trim();
+    }
+
+    public String getAipdInstChargeInfo() {
+        return aipdInstChargeInfo;
+    }
+
+    public void setAipdInstChargeInfo(String aipdInstChargeInfo) {
+        this.aipdInstChargeInfo = aipdInstChargeInfo == null ? null : aipdInstChargeInfo.trim();
+    }
+
+    public String getAipdProductCode() {
+        return aipdProductCode;
+    }
+
+    public void setAipdProductCode(String aipdProductCode) {
+        this.aipdProductCode = aipdProductCode == null ? null : aipdProductCode.trim();
+    }
+
+    public String getAipdChannelCode() {
+        return aipdChannelCode;
+    }
+
+    public void setAipdChannelCode(String aipdChannelCode) {
+        this.aipdChannelCode = aipdChannelCode == null ? null : aipdChannelCode.trim();
+    }
+
+    public String getAipdType() {
+        return aipdType;
+    }
+
+    public void setAipdType(String aipdType) {
+        this.aipdType = aipdType;
+    }
+
+    public String getAipdValidFlag() {
+        return aipdValidFlag;
+    }
+
+    public void setAipdValidFlag(String aipdValidFlag) {
+        this.aipdValidFlag = aipdValidFlag == null ? null : aipdValidFlag.trim();
+    }
+
+    public String getAipdStatus() {
+        return aipdStatus;
+    }
+
+    public void setAipdStatus(String aipdStatus) {
+        this.aipdStatus = aipdStatus == null ? null : aipdStatus.trim();
+    }
+
+    public String getAipdUploadTime() {
+        return aipdUploadTime;
+    }
+
+    public void setAipdUploadTime(String aipdUploadTime) {
+        this.aipdUploadTime = aipdUploadTime == null ? null : aipdUploadTime.trim();
+    }
+
+    public String getAipdDownloadTime() {
+        return aipdDownloadTime;
+    }
+
+    public void setAipdDownloadTime(String aipdDownloadTime) {
+        this.aipdDownloadTime = aipdDownloadTime == null ? null : aipdDownloadTime.trim();
+    }
+
+    public Date getAipdCreateTime() {
+        return aipdCreateTime;
+    }
+
+    public void setAipdCreateTime(Date aipdCreateTime) {
+        this.aipdCreateTime = aipdCreateTime;
+    }
+
+    public Date getAipdUpdateTime() {
+        return aipdUpdateTime;
+    }
+
+    public void setAipdUpdateTime(Date aipdUpdateTime) {
+        this.aipdUpdateTime = aipdUpdateTime;
+    }
+
+    public String getAipdCreateUser() {
+        return aipdCreateUser;
+    }
+
+    public void setAipdCreateUser(String aipdCreateUser) {
+        this.aipdCreateUser = aipdCreateUser == null ? null : aipdCreateUser.trim();
+    }
+
+    public String getAipdUpdateUser() {
+        return aipdUpdateUser;
+    }
+
+    public void setAipdUpdateUser(String aipdUpdateUser) {
+        this.aipdUpdateUser = aipdUpdateUser == null ? null : aipdUpdateUser.trim();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", aipdId=").append(aipdId);
+        sb.append(", aipdProductName=").append(aipdProductName);
+        sb.append(", aipdCustomerName=").append(aipdCustomerName);
+        sb.append(", aipdCustomerType=").append(aipdCustomerType);
+        sb.append(", aipdCertificateType=").append(aipdCertificateType);
+        sb.append(", aipdCertificateNo=").append(aipdCertificateNo);
+        sb.append(", aipdPostOfficeCode=").append(aipdPostOfficeCode);
+        sb.append(", aipdPostOfficeAddress=").append(aipdPostOfficeAddress);
+        sb.append(", aipdTelNumber=").append(aipdTelNumber);
+        sb.append(", aipdPhoneNumber=").append(aipdPhoneNumber);
+        sb.append(", aipdContactsAddress=").append(aipdContactsAddress);
+        sb.append(", aipdContactsTelNumber=").append(aipdContactsTelNumber);
+        sb.append(", aipdPaymentAmount=").append(aipdPaymentAmount);
+        sb.append(", aipdArrivalAccountDate=").append(aipdArrivalAccountDate);
+        sb.append(", aipdBenefitLevel=").append(aipdBenefitLevel);
+        sb.append(", aipdPaymentDate=").append(aipdPaymentDate);
+        sb.append(", aipdCertificateStartTime=").append(aipdCertificateStartTime);
+        sb.append(", aipdCertificateEndTime=").append(aipdCertificateEndTime);
+        sb.append(", aipdCountry=").append(aipdCountry);
+        sb.append(", aipdCapitalSource=").append(aipdCapitalSource);
+        sb.append(", aipdIndiInfo=").append(aipdIndiInfo);
+        sb.append(", aipdInstInfo=").append(aipdInstInfo);
+        sb.append(", aipdInstLegalInfo=").append(aipdInstLegalInfo);
+        sb.append(", aipdInstAuthInfo=").append(aipdInstAuthInfo);
+        sb.append(", aipdInstShareInfo=").append(aipdInstShareInfo);
+        sb.append(", aipdInstChargeInfo=").append(aipdInstChargeInfo);
+        sb.append(", aipdProductCode=").append(aipdProductCode);
+        sb.append(", aipdChannelCode=").append(aipdChannelCode);
+        sb.append(", aipdValidFlag=").append(aipdValidFlag);
+        sb.append(", aipdStatus=").append(aipdStatus);
+        sb.append(", aipdUploadTime=").append(aipdUploadTime);
+        sb.append(", aipdDownloadTime=").append(aipdDownloadTime);
+        sb.append(", aipdCreateTime=").append(aipdCreateTime);
+        sb.append(", aipdUpdateTime=").append(aipdUpdateTime);
+        sb.append(", aipdCreateUser=").append(aipdCreateUser);
+        sb.append(", aipdUpdateUser=").append(aipdUpdateUser);
+        sb.append(", serialVersionUID=").append(serialVersionUID);
+        sb.append("]");
+        return sb.toString();
+    }
+}

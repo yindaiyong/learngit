@@ -1,0 +1,135 @@
+--150确认数据
+select er_channel_code       		 channelcode,
+    er_trans_date                 businessdate,
+    er_app_sheet_serial_no        appsheetserialno,
+    er_fund_code                  fundcode,
+    er_large_redemption_flag      largeredemptionflag,
+    #{lastdate,jdbctype=varchar}  transactiondate,
+    er_transaction_time           transactiontime,
+    er_transaction_account_id     transactionaccountid,
+    er_distributor_code           distributorcode,
+    #{businesscode,jdbctype=varchar}              businesscode,
+    er_discount_rate_of_comm      discountrateofcommission,
+    er_deposit_acct               depositacct,
+    er_region_code                regioncode,
+    er_currency_type              currencytype,
+    er_branch_code                branchcode,
+    er_original_app_sheet_no      originalappsheetno,
+    er_original_subs_date         originalsubsdate,
+    er_individual_or_institution  individualorinstitution,
+    er_valid_period               validperiod,
+    er_days_redemption_in_advance daysredemptioninadvance,
+    er_redemption_date_in_advance redemptiondateinadvance,
+    er_original_serial_no         originalserialno,
+    er_date_of_periodic_subs      dateofperiodicsubs,
+    er_ta_serial_no               taserialno,
+    er_term_of_periodic_subs      termofperiodicsubs,
+    er_future_buy_date            futurebuydate,
+    er_target_distributor_code    targetdistributorcode,
+    er_charge                     charge,
+    er_target_branch_code         targetbranchcode,
+    er_target_transact_acct_code  targettransactionaccountid,
+    er_target_region_code         targetregioncode,
+    er_dividend_ratio             dividendratio,
+    er_specification              specification,
+    er_code_of_target_fund        codeoftargetfund,
+    er_total_backend_load         totalbackendload,
+    er_share_class                shareclass,
+    er_original_cfm_date          originalcfmdate,
+    er_detail_flag                detailflag,
+    er_original_app_date          originalappdate,
+    er_def_dividend_method        defdividendmethod,
+    er_frozen_cause               frozencause,
+    er_freezing_deadline          freezingdeadline,
+    er_variety_code_periodic_sub  varietycodeofperiodicsubs,
+    er_serial_no_periodic_sub     serialnoofperiodicsubs,
+    er_ration_type                rationtype,
+    er_target_ta_account_id       targettaaccountid,
+    er_target_registrar_code      targetregistrarcode,
+    er_net_no                     netno,
+    er_customer_no                customerno,
+    er_target_share_type          targetsharetype,
+    er_ration_protocol_no         rationprotocolno,
+    er_begin_date_periodic_subs   begindateofperiodicsubs,
+    er_end_date_of_periodic_subs  enddateofperiodicsubs,
+    er_send_day_of_periodic_subs  senddayofperiodicsubs,
+    er_broker                     broker,
+    er_sales_promotion            salespromotion,
+    er_accept_method              acceptmethod,
+    er_force_redemption_type      forceredemptiontype,
+    er_take_income_flag           takeincomeflag,
+    er_purpose_of_pe_subs         purposeofpesubs,
+    er_frequency_of_pe_subs       frequencyofpesubs,
+    er_period_sub_time_unit       periodsubtimeunit,
+    er_batch_num_of_pesubs        batchnumofpesubs,
+    er_capital_mode               capitalmode,
+    er_detail_captical_mode       detailcapticalmode,
+    er_backenload_discount        backenloaddiscount,
+    er_combine_num                combinenum,
+    er_future_subscribe_date      futuresubscribedate,
+    er_trading_method             tradingmethod,
+    er_large_buy_flag             largebuyflag,
+    er_charge_type                chargetype,
+    er_specify_rate_fee           specifyratefee,
+    er_specify_fee                specifyfee,
+    er_pro_yield_type             proyieldtype,
+    er_pro_yield                  proyield,
+    er_in_contract                incontract,
+    er_out_contract               outcontract,
+    er_valid_flag                 validflag,
+    er_return_code                returncode,
+    er_expected_cfm_date          expectedcfmdate,
+    er_error_dec                  errordec,
+    er_ta_product_code            taproductcode,
+    er_batch_no                   batchno,
+    er_ta_account_id          taaccountid,
+   t.f_repaycapital confirmedvol,
+   --20200331 部分返本需要加上分红数据  -->
+   nvl((select nvl(n.f_profit, 0) + nvl(n.f_subinterest, 0) +
+    nvl(n.f_interest, 0) from ta_tprofitdealcurrentdetails n where 
+       exists (
+        select 1 from tj_contractdetails t 
+        where t.l_contractserialno = n.l_contractserialno
+              and t.c_fundacco = n.c_fundacco
+              and t.f_remainshares_sams != 0
+         )
+       and n.l_contractserialno = t.l_contractserialno
+       and n.c_fundacco = t.c_fundacco
+       and n.l_serialno = t.l_serialno
+    ),0)+nvl(t.f_repaycapital,0) confirmedamount,
+    
+    --t.f_repaycapital confirmedamount
+   t.f_repaycapital applicationvol,
+   '' applicationamount,
+   #{transdate,jdbctype=varchar} transactioncfmdate,
+   '' errordetail,
+   #{transdate,jdbctype=varchar} downloaddate,
+   er_ta_serial_no requestno,
+   nvl((select f_netvalue from (select k.f_netvalue,k.c_fundcode from crm_tfundday k order by k.d_date desc )  
+	             where rownum = 1 and   c_fundcode = er_ta_product_code),'1') as nav,
+   '1' fromtaflag,
+    #{transdate,jdbctype=varchar} transdate
+    from ta_tprofitdealcurrentdetails t,  
+		(select *
+		 from (select *
+						 from (select t.*,row_number() over(partition by er_channel_code, er_fund_code, er_ta_account_id, 
+						 er_in_contract order by er_id desc) row_number
+										 from (select * from  d_exchange_req
+														where  er_channel_code=#{channelcode,jdbctype = varchar} and er_valid_flag = '01') t) t1
+						where row_number = 1),
+					p_product_info i
+		where er_channel_code = i.pi_channel_code
+			and er_fund_code = i.pi_channel_product_code
+			and i.pi_product_type = '4'
+			and i.pi_valid_flag in ('01','02')
+			and i.pi_check_state = '01'
+			)
+where t.l_contractserialno = er_in_contract
+and nvl(t.f_repaycapital,0) != 0
+and exists (select 1
+		from ta_tbusinremitmcurrents t2, ta_tremitmoneydetail t3
+		where to_char(t3.d_expectdate, 'yyyymmdd') >= #{lastdate,jdbctype=varchar}
+		and to_char(t3.d_expectdate, 'yyyymmdd') < #{transdate,jdbctype=varchar}
+		and t2.l_businserialno = t.l_serialno
+		and t2.l_remitserialno = t3.l_firstserialno
+		)

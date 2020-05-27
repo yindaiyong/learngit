@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.InterfaceColInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.InterfaceColInfo" >
+    <id column="IC_ID" property="icId" jdbcType="DECIMAL" />
+    <result column="IC_INTERFACE_CODE" property="icInterfaceCode" jdbcType="VARCHAR" />
+    <result column="IC_COL_CODE" property="icColCode" jdbcType="VARCHAR" />
+    <result column="IC_COL_NAME" property="icColName" jdbcType="VARCHAR" />
+    <result column="IC_COL_DESC" property="icColDesc" jdbcType="VARCHAR" />
+    <result column="IC_COL_TYPE" property="icColType" jdbcType="VARCHAR" />
+    <result column="IC_COL_LENGTH" property="icColLength" jdbcType="VARCHAR" />
+    <result column="IC_COL_DECIMAL" property="icColDecimal" jdbcType="VARCHAR" />
+    <result column="IC_REQU_ON_OFF" property="icRequOnOff" jdbcType="VARCHAR" />
+    <result column="IC_COL_REQU" property="icColRequ" jdbcType="VARCHAR" />
+    <result column="IC_COL_DICT" property="icColDict" jdbcType="VARCHAR" />
+    <result column="IC_COL_RULE" property="icColRule" jdbcType="VARCHAR" />
+    <result column="IC_RULE_ON_OFF" property="icRuleOnOff" jdbcType="VARCHAR" />
+    <result column="IC_COL_VALUE" property="icColValue" jdbcType="VARCHAR" />
+    <result column="IC_COL_ORDER" property="icColOrder" jdbcType="VARCHAR" />
+    <result column="IC_CTIME" property="icCtime" jdbcType="TIMESTAMP" />
+    <result column="IC_UTIME" property="icUtime" jdbcType="TIMESTAMP" />
+    <result column="IC_CUSER" property="icCuser" jdbcType="VARCHAR" />
+    <result column="IC_UUSER" property="icUuser" jdbcType="VARCHAR" />
+    <result column="II_INTERFACE_NAME" property="iiInterfaceName" jdbcType="VARCHAR" />
+    <result column="II_INTERFACE_CODE" property="iiInterfaceCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, 
+    IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, 
+    IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER
+  </sql>
+  <select id="selectByInterfaceCode" resultMap="BaseResultMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_INTERFACE_COL_INFO
+    where 1=1
+    <if test="icInterfaceCode != null" > 
+    and TO_NUMBER(IC_INTERFACE_CODE) = TO_NUMBER(#{icInterfaceCode,jdbcType=VARCHAR})
+    </if>
+    <if test="icColName != null" > 
+    and UPPER(IC_COL_NAME) = UPPER(#{icColName,jdbcType=VARCHAR})
+    </if>
+    order by to_number(IC_COL_ORDER) asc
+  </select>
+  
+  
+   <select id="selectByInterfaceCodeList" resultMap="BaseResultMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_INTERFACE_COL_INFO
+    where 1=1
+    <if test="ICINTERFACECODE != null" > 
+    and TO_NUMBER(IC_INTERFACE_CODE) = TO_NUMBER(#{ICINTERFACECODE,jdbcType=VARCHAR})
+    </if>
+    <if test="icColName != null" > 
+    and UPPER(IC_COL_NAME) = UPPER(#{icColName,jdbcType=VARCHAR})
+    </if>
+    order by to_number(IC_COL_ORDER) asc
+    
+  </select>
+   <select id="selectDateList" resultMap="BaseResultMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_INTERFACE_COL_INFO
+    where p.ic_interface_code=TO_NUMBER(#{icInterfaceCode,jdbcType=VARCHAR}) and(p.ic_col_name=#{UpdateDate,jdbcType=VARCHAR} or p.ic_col_name=#{DateOfPeriodicSubs,jdbcType=VARCHAR} or  p.ic_col_name=#{RegistrationDate,jdbcType=VARCHAR} or  p.ic_col_name=#{XRDate,jdbcType=VARCHAR})
+    order by to_number(IC_COL_ORDER) asc
+  </select>
+  
+  <select id="csdcInfoColList" parameterType="java.util.Map"  resultMap="BaseResultMap">
+  	select distinct
+        pici.*,pii.ii_interface_name,pii.ii_interface_code
+        from p_interface_col_info pici left join p_interface_info pii on pii.ii_interface_code = pici.ic_interface_code
+  		<where>
+  			<if test=" condition.iiInterfaceCode != null and condition.iiInterfaceCode !=''">
+  				pii.ii_interface_Code = #{condition.iiInterfaceCode}
+  			</if>
+  			<if test=" condition.icColName != null and condition.icColName !=''">
+  				and LOWER(pici.ic_col_name) like ('%'|| LOWER(#{condition.icColName}) || '%')
+  			</if>
+  		</where>
+  		<if test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by CASE WHEN ${pageInfo.sort} IS NULL THEN TO_DATE('1900/1/1','YYYY/MM/DD')
+              ELSE ${pageInfo.sort}
+         	END desc
+        </if>
+  </select>
+  
+  <!-- 基本的 -->
+  <resultMap id="B_BaseResultMap" type="com.sams.custom.model.InterfaceInfo" >
+    <id column="II_ID" property="iiId" jdbcType="DECIMAL" />
+    <result column="II_INTERFACE_CODE" property="iiInterfaceCode" jdbcType="VARCHAR" />
+    <result column="II_INTERFACE_NAME" property="iiInterfaceName" jdbcType="VARCHAR" />
+    <result column="II_INTERFACE_VER" property="iiInterfaceVer" jdbcType="VARCHAR" />
+    <result column="II_INTERFACE_DESC" property="iiInterfaceDesc" jdbcType="VARCHAR" />
+    <result column="II_CTIME" property="iiCtime" jdbcType="TIMESTAMP" />
+    <result column="II_UTIME" property="iiUtime" jdbcType="TIMESTAMP" />
+    <result column="II_CUSER" property="iiCuser" jdbcType="VARCHAR" />
+    <result column="II_UUSER" property="iiUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="B_Base_Column_List" >
+    II_ID, II_INTERFACE_CODE, II_INTERFACE_NAME, II_INTERFACE_VER, II_INTERFACE_DESC, 
+    II_CTIME, II_UTIME, II_CUSER, II_UUSER
+  </sql>
+  <insert id="insert" parameterType="com.sams.custom.model.InterfaceInfo" >
+    insert into P_INTERFACE_INFO (II_ID, II_INTERFACE_CODE, II_INTERFACE_NAME, 
+      II_INTERFACE_VER, II_INTERFACE_DESC, II_CTIME, 
+      II_UTIME, II_CUSER, II_UUSER
+      )
+    values (#{iiId,jdbcType=DECIMAL}, #{iiInterfaceCode,jdbcType=VARCHAR}, #{iiInterfaceName,jdbcType=VARCHAR}, 
+      #{iiInterfaceVer,jdbcType=VARCHAR}, #{iiInterfaceDesc,jdbcType=VARCHAR}, #{iiCtime,jdbcType=TIMESTAMP}, 
+      #{iiUtime,jdbcType=TIMESTAMP}, #{iiCuser,jdbcType=VARCHAR}, #{iiUuser,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <insert id="insertColInfo" parameterType="com.sams.custom.model.InterfaceColInfo" >
+		insert into p_interface_col_info (IC_INTERFACE_CODE,IC_COL_CODE,IC_COL_NAME,IC_COL_DESC,IC_COL_TYPE,IC_COL_LENGTH,
+		IC_COL_DECIMAL,IC_REQU_ON_OFF,IC_COL_REQU,IC_COL_DICT,IC_COL_RULE,IC_RULE_ON_OFF,IC_COL_VALUE,IC_COL_ORDER,
+		IC_CTIME,IC_UTIME,IC_CUSER,IC_UUSER) values (
+		#{icInterfaceCode,jdbcType=VARCHAR},
+		#{icColCode,jdbcType=VARCHAR},
+		#{icColName,jdbcType=VARCHAR},
+		#{icColDesc,jdbcType=VARCHAR},
+		#{icColType,jdbcType=VARCHAR},
+		#{icColLength,jdbcType=VARCHAR},
+		#{icColDecimal,jdbcType=VARCHAR},
+		#{icRequOnOff,jdbcType=VARCHAR},
+		#{icColRequ,jdbcType=VARCHAR},
+		#{icColDict,jdbcType=VARCHAR},
+		#{icColRule,jdbcType=VARCHAR},
+		#{icRuleOnOff,jdbcType=VARCHAR},
+		#{icColValue,jdbcType=VARCHAR},
+		#{icColOrder,jdbcType=VARCHAR},
+		#{icCtime,jdbcType=VARCHAR},
+		#{icUtime,jdbcType=VARCHAR},
+		#{icCuser,jdbcType=VARCHAR},
+		#{icUuser,jdbcType=VARCHAR}
+		) 	
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.InterfaceInfo" >
+    update P_INTERFACE_INFO
+    set II_INTERFACE_CODE = #{iiInterfaceCode,jdbcType=VARCHAR},
+      II_INTERFACE_NAME = #{iiInterfaceName,jdbcType=VARCHAR},
+      II_INTERFACE_VER = #{iiInterfaceVer,jdbcType=VARCHAR},
+      II_INTERFACE_DESC = #{iiInterfaceDesc,jdbcType=VARCHAR},
+      II_UTIME = #{iiUtime,jdbcType=TIMESTAMP},
+      II_UUSER = #{iiUuser,jdbcType=VARCHAR}
+    where II_ID = #{iiId,jdbcType=DECIMAL}
+  </update>
+  
+  <update id="updateCsdcColInfo" parameterType="com.sams.custom.model.InterfaceColInfo">
+  	update p_interface_col_info set 
+  	ic_Col_Name = #{icColName,jdbcType=VARCHAR},
+	ic_Col_Desc = #{icColDesc,jdbcType=VARCHAR},
+	ic_Col_Type= #{icColType,jdbcType=VARCHAR},
+	ic_Col_Length= #{icColLength,jdbcType=VARCHAR},
+	ic_Col_Decimal= #{icColDecimal,jdbcType=VARCHAR},
+	ic_Requ_On_Off= #{icRequOnOff,jdbcType=VARCHAR},
+	ic_Col_Requ= #{icColRequ,jdbcType=VARCHAR},
+	ic_Col_Dict= #{icColDict,jdbcType=VARCHAR},
+	ic_Col_Rule= #{icColRule,jdbcType=VARCHAR},
+	ic_Rule_On_Off= #{icRuleOnOff,jdbcType=VARCHAR},
+	ic_Col_Value= #{icColValue,jdbcType=VARCHAR},
+  	ic_utime = #{icUtime,jdbcType=VARCHAR},
+  	ic_uuser = #{icUuser,jdbcType=VARCHAR}
+  	where ic_id = #{icId,jdbcType = DECIMAL}
+  </update>
+  
+  <select id="csdcInfoBaseList" parameterType="java.util.Map"  resultMap="B_BaseResultMap">
+  	select
+        <include refid="B_Base_Column_List"/>
+        from p_interface_info
+  		<where>
+  			<if test=" condition.iiInterfaceName != null and condition.iiInterfaceName !=''">
+  				and ii_interface_name like ('%'|| #{condition.iiInterfaceName} || '%')
+  			</if>
+  		</where>
+  		<if test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by CASE WHEN ${pageInfo.sort} IS NULL THEN TO_DATE('1900/1/1','YYYY/MM/DD')
+              ELSE ${pageInfo.sort}
+         	END 
+        </if>
+        <if test="pageInfo.order != null and pageInfo.order != ''">
+            ${pageInfo.order}
+        </if>
+  </select>
+  
+  <select id="queryCsdcBaseInfo" parameterType ="com.sams.custom.model.InterfaceInfo" resultType = "Integer">
+  	select count(1) from p_interface_info where II_INTERFACE_CODE = #{iiInterfaceCode,jdbcType=VARCHAR} 
+  	<if test="iiId != null and iiId != ''">
+  		and ii_id != #{iiId,jdbcType=DECIMAL}
+  	</if>
+  </select>
+  <select id="queryCsdcColInfo" parameterType ="com.sams.custom.model.InterfaceColInfo" resultType = "Integer">
+  	select count(1) from p_interface_col_info where ic_interface_code = #{icInterfaceCode,jdbcType = VARCHAR} 
+  	and LOWER(ic_col_name) = #{icColName,jdbcType = VARCHAR}
+  	<if test="icId != null and icId != ''">
+  		and ic_id != #{icId,jdbcType=DECIMAL}
+  	</if>
+  </select>
+  
+  <select id="queryCsdcBaseInfoByPrimary" parameterType = "java.lang.Long" resultMap = "B_BaseResultMap">
+  	select 
+    <include refid="B_Base_Column_List" />
+    from p_interface_info where ii_id = #{iiId,jdbcType = VARCHAR}
+  </select>
+  
+  <select id="queryCsdcColInfoByPrimary" parameterType = "java.lang.Long" resultMap = "BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from p_interface_col_info where ic_id = #{icId,jdbcType = VARCHAR}
+  </select>
+  
+  <select id="queryBaseCsdcCombox" resultType = "Map">
+		select ii_interface_code  id ,'(' || ii_interface_code|| ')' || ii_interface_name name from p_interface_info group by ii_interface_code,ii_interface_name,ii_interface_ver  
+  </select>
+  <select id="queryMaxOrderByInterfaceCode" parameterType = "String" resultType = "Integer">
+  		select  MAX(to_number(ic_col_order)) from p_interface_col_info where ic_interface_code = #{icInterfaceCode,jdbcType = VARCHAR}
+  </select>
+  
+  <select id="selectNextSequence" resultType = "String">
+  		select sys_common_sequence.nextval from dual
+  </select>
+  
+  <select id="selectRandomSequence" resultType = "Long">
+    select seq_taserialno_new.nextval from dual
+  </select>
+
+  
+  <select id="queryCardTypeCombox" parameterType="String" resultType = "Map">
+  		select dict_code id ,dict_code || ':' || dict_name name FROM sys_dict where dict_pid = (select dict_id from　sys_dict where dict_type = #{type,jdbcType = VARCHAR} )
+  </select>
+  
+  <select id="queryChannelInfoComBox" resultType="Map">
+  		select distinct ci_channel_code id ,ci_channel_name || '(' || ci_channel_code || ')' name  from p_channel_info where ci_check_state='01' and ci_valid_flag = '01'
+  </select>
+  
+  <select id="queryAllChannelInfoComBox" resultType="Map">
+  		select distinct ci_channel_code id ,ci_channel_name || '(' || ci_channel_code || ')' name  from p_channel_info where  (CI_VALID_FLAG !='00' or CI_CHECK_STATE !='01')
+  </select>
+
+    <select id="selectColInfoByCode" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from p_interface_col_info where
+        ic_interface_code = #{code}
+        order by IC_COL_ORDER
+    </select>
+</mapper>
