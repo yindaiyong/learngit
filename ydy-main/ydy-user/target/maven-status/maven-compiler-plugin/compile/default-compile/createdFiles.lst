@@ -1,0 +1,8 @@
+com\user\controller\Ahandler.class
+com\user\controller\LoginController.class
+com\user\mapper\UserDtoMapper.class
+com\user\service\UserService.class
+com\user\UserApplication.class
+com\user\config\ShiroConfigBean.class
+com\user\service\UserServiceImpl.class
+com\user\config\MyShiroRealm.class

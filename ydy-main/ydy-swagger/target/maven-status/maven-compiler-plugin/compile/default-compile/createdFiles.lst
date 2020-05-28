@@ -1,0 +1,3 @@
+com\swagger\controller\SwaggerController.class
+com\swagger\config\SwaggerConfig.class
+com\swagger\SwaggerApplication.class
