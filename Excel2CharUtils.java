@@ -55,7 +55,7 @@ public class Excel2CharUtils {
 	 * @return: void      
 	 * @throws
 	 */
-	public void  createBarChart() throws Exception{
+	public void  createBarChart() throws Exception{ 
 		// 字段名
         List<String> fldNameArr = new ArrayList<String>();
         // 标题
