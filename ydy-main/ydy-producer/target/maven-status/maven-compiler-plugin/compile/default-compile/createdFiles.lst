@@ -1,8 +1,0 @@
-com\producer\util\GenerateUtils.class
-com\producer\util\redisConfig\RedisConfig.class
-com\producer\util\redisConfig\ObjectRedisSerializer.class
-com\producer\ProducerApplication.class
-com\producer\mapper\DrugDtoMapper.class
-com\producer\controller\DrugController.class
-com\producer\service\impl\DrugServiceImpl.class
-com\producer\service\DrugService.class
