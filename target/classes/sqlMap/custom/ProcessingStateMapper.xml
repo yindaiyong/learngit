@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.ProcessingStateMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.ProcessingState" >
+    <id column="PS_ID" property="psId" jdbcType="DECIMAL" />
+    <result column="PS_PROCESS_CODE" property="psProcessCode" jdbcType="VARCHAR" />
+    <result column="PS_CHANNEL_CODE" property="psChannelCode" jdbcType="VARCHAR" />
+    <result column="PS_BRANCH_CODE" property="psBranchCode" jdbcType="VARCHAR" />
+    <result column="PS_PROCESS_STEP" property="psProcessStep" jdbcType="VARCHAR" />
+    <result column="PS_PROCESS_START" property="psProcessStart" jdbcType="VARCHAR" />
+    <result column="PS_PROCESS_START_TIME" property="psProcessStartTime" jdbcType="VARCHAR" />
+    <result column="PS_PROCESS_END_TIME" property="psProcessEndTime" jdbcType="VARCHAR" />
+    <result column="PS_PROCESS_DEC" property="psProcessDec" jdbcType="VARCHAR" />
+    <result column="PS_BUSINESS_DATE" property="psBusinessDate" jdbcType="VARCHAR" />
+    <result column="PS_ERROR_CODE" property="psErrorCode" jdbcType="VARCHAR" />
+    <result column="PS_CTIME" property="psCtime" jdbcType="TIMESTAMP" />
+    <result column="PS_UTIME" property="psUtime" jdbcType="TIMESTAMP" />
+    <result column="PS_CUSER" property="psCuser" jdbcType="VARCHAR" />
+    <result column="PS_UUSER" property="psUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="MarketHandingMap" type="com.sams.custom.model.result.MarketHandingResult" extends="BaseResultMap">
+       <result column="ci_channel_name" property="ciChannelName"  jdbcType="VARCHAR"/>
+       <result column="ci_channel_code" property="ciChannelCode"  jdbcType="VARCHAR"/>
+       <result column="re_error_message" property="reErrorMessage"  jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    PS_ID, PS_PROCESS_CODE, PS_CHANNEL_CODE, PS_BRANCH_CODE, PS_PROCESS_STEP, PS_PROCESS_START, 
+    PS_PROCESS_START_TIME, PS_PROCESS_END_TIME, PS_PROCESS_DEC, PS_BUSINESS_DATE, PS_ERROR_CODE, 
+    PS_CTIME, PS_UTIME, PS_CUSER, PS_UUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_PROCESSING_STATE
+    where PS_ID = #{psId,jdbcType=DECIMAL }
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_PROCESSING_STATE
+    where PS_ID = #{psId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.ProcessingState" >
+    insert into D_PROCESSING_STATE (PS_ID, PS_PROCESS_CODE, PS_CHANNEL_CODE, 
+      PS_BRANCH_CODE, PS_PROCESS_STEP, PS_PROCESS_START, 
+      PS_PROCESS_START_TIME, PS_PROCESS_END_TIME, PS_PROCESS_DEC, 
+      PS_BUSINESS_DATE, PS_ERROR_CODE, PS_CTIME, 
+      PS_UTIME, PS_CUSER, PS_UUSER
+      )
+    values (#{psId,jdbcType=DECIMAL}, #{psProcessCode,jdbcType=VARCHAR}, #{psChannelCode,jdbcType=VARCHAR}, 
+      #{psBranchCode,jdbcType=VARCHAR}, #{psProcessStep,jdbcType=VARCHAR}, #{psProcessStart,jdbcType=VARCHAR}, 
+      #{psProcessStartTime,jdbcType=VARCHAR}, #{psProcessEndTime,jdbcType=VARCHAR}, #{psProcessDec,jdbcType=VARCHAR}, 
+      #{psBusinessDate,jdbcType=VARCHAR}, #{psErrorCode,jdbcType=VARCHAR}, #{psCtime,jdbcType=TIMESTAMP}, 
+      #{psUtime,jdbcType=TIMESTAMP}, #{psCuser,jdbcType=VARCHAR}, #{psUuser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.ProcessingState" >
+    insert into D_PROCESSING_STATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        PS_ID,
+      </if>
+      <if test="psProcessCode != null" >
+        PS_PROCESS_CODE,
+      </if>
+      <if test="psChannelCode != null" >
+        PS_CHANNEL_CODE,
+      </if>
+      <if test="psBranchCode != null" >
+        PS_BRANCH_CODE,
+      </if>
+      <if test="psProcessStep != null" >
+        PS_PROCESS_STEP,
+      </if>
+      <if test="psProcessStart != null" >
+        PS_PROCESS_START,
+      </if>
+      <if test="psProcessStartTime != null" >
+        PS_PROCESS_START_TIME,
+      </if>
+      <if test="psProcessEndTime != null" >
+        PS_PROCESS_END_TIME,
+      </if>
+      <if test="psProcessDec != null" >
+        PS_PROCESS_DEC,
+      </if>
+      <if test="psBusinessDate != null" >
+        PS_BUSINESS_DATE,
+      </if>
+      <if test="psErrorCode != null" >
+        PS_ERROR_CODE,
+      </if>
+      <if test="psCtime != null" >
+        PS_CTIME,
+      </if>
+      <if test="psUtime != null" >
+        PS_UTIME,
+      </if>
+      <if test="psCuser != null" >
+        PS_CUSER,
+      </if>
+      <if test="psUuser != null" >
+        PS_UUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="psId != null" >
+        #{psId,jdbcType=DECIMAL},
+      </if>
+      <if test="psProcessCode != null" >
+        #{psProcessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psChannelCode != null" >
+        #{psChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psBranchCode != null" >
+        #{psBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStep != null" >
+        #{psProcessStep,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStart != null" >
+        #{psProcessStart,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStartTime != null" >
+        #{psProcessStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessEndTime != null" >
+        #{psProcessEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessDec != null" >
+        #{psProcessDec,jdbcType=VARCHAR},
+      </if>
+      <if test="psBusinessDate != null" >
+        #{psBusinessDate,jdbcType=VARCHAR},
+      </if>
+      <if test="psErrorCode != null" >
+        #{psErrorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psCtime != null" >
+        #{psCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="psUtime != null" >
+        #{psUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="psCuser != null" >
+        #{psCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="psUuser != null" >
+        #{psUuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.ProcessingState" >
+    update D_PROCESSING_STATE
+    <set >
+      <if test="psProcessCode != null" >
+        PS_PROCESS_CODE = #{psProcessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psChannelCode != null" >
+        PS_CHANNEL_CODE = #{psChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psBranchCode != null" >
+        PS_BRANCH_CODE = #{psBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStep != null" >
+        PS_PROCESS_STEP = #{psProcessStep,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStart != null" >
+        PS_PROCESS_START = #{psProcessStart,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessStartTime != null" >
+        PS_PROCESS_START_TIME = #{psProcessStartTime,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessEndTime != null" >
+        PS_PROCESS_END_TIME = #{psProcessEndTime,jdbcType=VARCHAR},
+      </if>
+      <if test="psProcessDec != null" >
+        PS_PROCESS_DEC = #{psProcessDec,jdbcType=VARCHAR},
+      </if>
+      <if test="psBusinessDate != null" >
+        PS_BUSINESS_DATE = #{psBusinessDate,jdbcType=VARCHAR},
+      </if>
+      <if test="psErrorCode != null" >
+        PS_ERROR_CODE = #{psErrorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="psCtime != null" >
+        PS_CTIME = #{psCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="psUtime != null" >
+        PS_UTIME = #{psUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="psCuser != null" >
+        PS_CUSER = #{psCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="psUuser != null" >
+        PS_UUSER = #{psUuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PS_ID = #{psId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.ProcessingState" >
+    update D_PROCESSING_STATE
+    set PS_PROCESS_CODE = #{psProcessCode,jdbcType=VARCHAR},
+      PS_CHANNEL_CODE = #{psChannelCode,jdbcType=VARCHAR},
+      PS_BRANCH_CODE = #{psBranchCode,jdbcType=VARCHAR},
+      PS_PROCESS_STEP = #{psProcessStep,jdbcType=VARCHAR},
+      PS_PROCESS_START = #{psProcessStart,jdbcType=VARCHAR},
+      PS_PROCESS_START_TIME = #{psProcessStartTime,jdbcType=VARCHAR},
+      PS_PROCESS_END_TIME = #{psProcessEndTime,jdbcType=VARCHAR},
+      PS_PROCESS_DEC = #{psProcessDec,jdbcType=VARCHAR},
+      PS_BUSINESS_DATE = #{psBusinessDate,jdbcType=VARCHAR},
+      PS_ERROR_CODE = #{psErrorCode,jdbcType=VARCHAR},
+      PS_CTIME = #{psCtime,jdbcType=TIMESTAMP},
+      PS_UTIME = #{psUtime,jdbcType=TIMESTAMP},
+      PS_CUSER = #{psCuser,jdbcType=VARCHAR},
+      PS_UUSER = #{psUuser,jdbcType=VARCHAR}
+    where PS_ID = #{psId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="findMarketHandingCondition" parameterType="java.util.Map"  resultMap="MarketHandingMap">
+			   select 
+			         CI_CHANNEL_CODE  psChannelCode,
+			         ps_Business_Date psBusinessDate,
+			         ci_channel_name  ciChannelName,
+			         ps_process_step  psProcessStep,
+			         ps_process_start psProcessStart,
+			         re_error_message reErrorMessage,
+			         PS_BUSINESS_DATE,
+			         PS_PROCESS_START 
+			    from (select t.*,
+			                 row_number() over(partition by ci_channel_code, ps_Business_Date order by ps_id desc) row_number
+			            from (select b.*, a.*, c.re_error_message
+			                    from (
+			                           select distinct f.ci_channel_code,f.ci_channel_name
+			                            from (select *
+			                                    from p_channel_info
+			                                   where ci_valid_flag = '01' and ci_check_state='01'
+			                                     ) f left join 
+			                                 (select *
+			                                    from p_product_info 
+			                                    where pi_valid_flag !='99'
+			                                    and pi_valid_flag !='00'
+			                                    and pi_check_state ='01'
+			                                  ) g
+			                           on f.ci_channel_code=g.pi_channel_code
+			                  ) b
+			            left join (select * from d_processing_state where ps_branch_code = '000000'
+			             <if test=" condition.tradeDate != null and condition.tradeDate != ''  ">
+			                 and PS_BUSINESS_DATE = ${condition.tradeDate}
+			             </if>) a
+			              on a.ps_channel_code = b.ci_channel_code
+			            left join d_runing_error c
+			              on a.ps_error_code = c.re_error_code) t) t1
+			   where row_number = 1
+			   
+			   <if test=" condition.psProcessStart != null and condition.psProcessStart != ''  ">
+			       and PS_PROCESS_START =  ${condition.psProcessStart}
+			   </if>
+			   
+			   <if test=" condition.channelCode != null and condition.channelCode != ''  ">
+			       and CI_CHANNEL_CODE =  #{condition.channelCode}
+			   </if>
+			        
+			   <if test="pageInfo.sort != null and pageInfo.sort != ''">
+			       order by ${pageInfo.sort} ${pageInfo.order}
+			   </if>
+      
+<!--       select
+        <include refid="Base_Column_List"/>
+        , b.ci_channel_name,b.ci_channel_code, c.re_error_message
+        from d_processing_state a
+        left join p_channel_info b
+          on a.ps_channel_code = b.ci_channel_code
+        left join d_runing_error c
+          on a.ps_error_code = c.re_error_code
+        where a.ps_branch_code = '000000' 
+        <if test=" condition.tradeDate != null and condition.tradeDate != ''  ">
+                and a.PS_BUSINESS_DATE = ${condition.tradeDate}
+        </if>
+        
+        <if test=" condition.psProcessStart != null and condition.psProcessStart != ''  ">
+                and a.PS_PROCESS_START =  ${condition.psProcessStart}
+        </if>
+        
+        <if test="pageInfo.sort != null and pageInfo.sort != ''">
+                order by ${pageInfo.sort} ${pageInfo.order}
+        </if> -->
+    </select>
+    
+    <select id="findMarketHandingHistory" parameterType="java.util.Map"  resultMap="MarketHandingMap">
+   select distinct
+          CI_CHANNEL_CODE  psChannelCode,
+          nvl(fm_Business_Date,'') psBusinessDate,
+          ci_channel_name  ciChannelName,
+          case   
+              when nvl(fm_Business_Date,' ') = ' ' then '00'
+              when fm_Business_Date !=' ' then '04'
+              end psProcessStep ,       
+          case   
+               when nvl(fm_Business_Date,' ') = ' ' then '00'
+              when fm_Business_Date !=' ' then '01'
+              end psProcessStart ,      
+          case   
+              when nvl(fm_Business_Date,' ') = ' ' then '无行情数据'
+              when fm_Business_Date !=' ' then ' '
+              end reErrorMessage 
+from (select distinct ci_channel_code,ci_channel_name
+  from (select *
+          from p_channel_info t,
+               (select *
+                  from (select t.*,
+                               row_number() over(partition by cp_channel_product_code order by cp_id desc) row_number
+                          from (select *
+                                  from p_channel_product
+                                 where cp_check_state = '01') t) t1
+                 where row_number = 1) p
+         where t.ci_channel_code = p.cp_channel_code
+           and t.ci_check_state = '01'
+           and t.ci_valid_flag = '01'
+           and p.cp_check_state = '01') t1,
+       p_product_info i
+ where t1.cp_channel_product_code = i.pi_channel_product_code
+   and i.pi_check_state = '01'
+   and i.PI_VALID_FLAG != '99')left join  d_fund_market_cfm  on ci_channel_code=fm_channel_code  where 1=1   
+        <if test=" condition.tradeDate != null and condition.tradeDate != ''  ">
+                and fm_Business_Date = ${condition.tradeDate}
+        </if>
+        
+        <if test=" condition.psProcessStart != null and condition.psProcessStart != ''  ">
+                and PS_PROCESS_START = '01'
+        </if>
+        
+        <if test="pageInfo.sort != null and pageInfo.sort != ''">
+                order by ${pageInfo.sort} ${pageInfo.order}
+        </if>
+        
+        <if test=" condition.channelCode != null and condition.channelCode != ''  ">
+			       and CI_CHANNEL_CODE =  #{condition.channelCode}
+	    </if>
+    </select>
+    
+     <select id="findMarketHandGuiList" parameterType="String"  resultMap="MarketHandingMap">
+      select
+        <include refid="Base_Column_List"/>
+        , b.ci_channel_name,b.ci_channel_code, c.re_error_message
+        from d_processing_state a
+        left join p_channel_info b
+          on a.ps_channel_code = b.ci_channel_code
+        left join d_runing_error c
+          on a.ps_error_code = c.re_error_code
+        where a.ps_branch_code = '000000' and a.PS_BUSINESS_DATE = #{tradeDate}
+    </select>
+    
+    <select id="checkChannelCodeList"  parameterType="hashMap"  resultType="String">
+      select distinct t.ps_channel_code 
+    from d_processing_state t,(select a.psi_process_code
+     from (select *
+             from p_process_step_info p
+            where p.psi_flow_code =#{FLOWCODE,jdbcType=VARCHAR}
+            order by p.psi_process_code desc) a
+    where rownum = 1)b
+   where t.ps_branch_code = #{FLOWCODE,jdbcType=VARCHAR}
+     and t.ps_business_date =#{TRANSDATE,jdbcType=VARCHAR}
+     and t.ps_process_start='01'
+     and t.ps_process_code=b.psi_process_code
+    </select>
+</mapper>

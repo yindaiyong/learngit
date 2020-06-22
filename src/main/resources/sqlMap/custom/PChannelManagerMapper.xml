@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.PChannelManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.PChannelManager" >
+    <id column="CM_ID" property="cmId" jdbcType="DECIMAL" />
+    <result column="CM_CHANNEL_CODE" property="cmChannelCode" jdbcType="VARCHAR" />
+    <result column="CM_MANAGER_CODE" property="cmManagerCode" jdbcType="VARCHAR" />
+    <result column="CM_MANAGER_NAME" property="cmManagerName" jdbcType="VARCHAR" />
+    <result column="CM_START_DATE" property="cmStartDate" jdbcType="VARCHAR" />
+    <result column="CM_END_DATE" property="cmEndDate" jdbcType="VARCHAR" />
+    <result column="CM_CHECK_STATE" property="cmCheckState" jdbcType="VARCHAR" />
+    <result column="CM_CTIME" property="cmCtime" jdbcType="TIMESTAMP" />
+    <result column="CM_UTIME" property="cmUtime" jdbcType="TIMESTAMP" />
+    <result column="CM_CUSER" property="cmCuser" jdbcType="VARCHAR" />
+    <result column="CM_UUSER" property="cmUuser" jdbcType="VARCHAR" />
+    <result column="CM_ACTION" property="cmAction" jdbcType="VARCHAR" />
+    <result column="CM_VALID_FLAG" property="cmValidFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  	
+  <resultMap id="channelManagerMap" type="com.sams.custom.model.result.ChannelManagerResult" extends="BaseResultMap">
+       <result column="CI_CHANNEL_NAME" property="ciChannelName" jdbcType="VARCHAR"/>
+       <result column="CI_BIZ_MANAGER_PHONE" property="ciBizManagerPhone"  jdbcType="VARCHAR"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    CM_ID, CM_CHANNEL_CODE, CM_MANAGER_CODE, CM_MANAGER_NAME, CM_START_DATE, CM_END_DATE, 
+    CM_CHECK_STATE, CM_CTIME, CM_UTIME, CM_CUSER, CM_UUSER,CM_ACTION,CM_VALID_FLAG
+  </sql>
+  
+  <sql id="BaseColumnName" >
+   <!--created by wangchao 20200610 前端排序控件属性控制效果的优化 -->
+    CM_ID CMID, 
+    CM_CHANNEL_CODE CMCHANNELCODE, 
+    CM_MANAGER_CODE CMMANAGERCODE, 
+    CM_MANAGER_NAME CMMANAGERNAME, 
+    CM_START_DATE CMSTARTDATE, 
+    CM_END_DATE CMENDDATE, 
+    CM_CHECK_STATE CMCHECKSTATE, 
+    CM_CTIME CMCTIME, 
+    CM_UTIME CMUTIME, 
+    CM_CUSER CMCUSER, 
+    CM_UUSER CMUUSER,
+    CM_ACTION CMACTION,
+    CM_VALID_FLAG CMVALIDFLAG
+  </sql>
+  
+  <select id="selectByPrimaryKey1" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_CHANNEL_MANAGER
+    where CM_ID = #{cmId,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectByChannelCode" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from P_CHANNEL_MANAGER
+    where CM_CHANNEL_CODE = #{channelCode,jdbcType=VARCHAR} and (#{tradeDate,jdbcType=VARCHAR} between to_date(CM_START_DATE,'yyyymmdd') and to_date(CM_END_DATE,'yyyymmdd'))
+  </select>
+  
+  <delete id="deleteByPrimaryKey1" parameterType="java.lang.Long" >
+    delete from P_CHANNEL_MANAGER
+    where CM_ID = #{cmId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert1" parameterType="com.sams.custom.model.PChannelManager" >
+    insert into P_CHANNEL_MANAGER (CM_ID, CM_CHANNEL_CODE, CM_MANAGER_CODE, 
+      CM_MANAGER_NAME, CM_START_DATE, CM_END_DATE, 
+      CM_CHECK_STATE, CM_CTIME, CM_UTIME, 
+      CM_CUSER, CM_UUSER,CM_ACTION,CM_VALID_FLAG)
+    values (#{cmId,jdbcType=DECIMAL}, #{cmChannelCode,jdbcType=VARCHAR}, #{cmManagerCode,jdbcType=VARCHAR}, 
+      #{cmManagerName,jdbcType=VARCHAR}, #{cmStartDate,jdbcType=VARCHAR}, #{cmEndDate,jdbcType=VARCHAR}, 
+      #{cmCheckState,jdbcType=VARCHAR}, #{cmCtime,jdbcType=TIMESTAMP}, #{cmUtime,jdbcType=TIMESTAMP}, 
+      #{cmCuser,jdbcType=VARCHAR}, #{cmUuser,jdbcType=VARCHAR},#{cmAction,jdbcType=VARCHAR},#{cmValidFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective1" parameterType="com.sams.custom.model.PChannelManager" >
+    insert into P_CHANNEL_MANAGER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmId != null" >
+        CM_ID,
+      </if>
+      <if test="cmChannelCode != null" >
+        CM_CHANNEL_CODE,
+      </if>
+      <if test="cmManagerCode != null" >
+        CM_MANAGER_CODE,
+      </if>
+      <if test="cmManagerName != null" >
+        CM_MANAGER_NAME,
+      </if>
+      <if test="cmStartDate != null" >
+        CM_START_DATE,
+      </if>
+      <if test="cmEndDate != null" >
+        CM_END_DATE,
+      </if>
+      <if test="cmCheckState != null" >
+        CM_CHECK_STATE,
+      </if>
+      <if test="cmCtime != null" >
+        CM_CTIME,
+      </if>
+      <if test="cmUtime != null" >
+        CM_UTIME,
+      </if>
+      <if test="cmCuser != null" >
+        CM_CUSER,
+      </if>
+      <if test="cmUuser != null" >
+        CM_UUSER,
+      </if>
+      <if test="cmAction!= null" >
+        CM_ACTION,
+      </if>
+       <if test="cmValidFlag null" >
+        CM_VALID_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmId != null" >
+        #{cmId,jdbcType=DECIMAL},
+      </if>
+      <if test="cmChannelCode != null" >
+        #{cmChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmManagerCode != null" >
+        #{cmManagerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmManagerName != null" >
+        #{cmManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmStartDate != null" >
+        #{cmStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmEndDate != null" >
+        #{cmEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCheckState != null" >
+        #{cmCheckState,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCtime != null" >
+        #{cmCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmUtime != null" >
+        #{cmUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmCuser != null" >
+        #{cmCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="cmUuser != null" >
+        #{cmUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="cmAction != null" >
+        #{cmAction,jdbcType=VARCHAR},
+      </if>
+      <if test="cmValidFlag null" >
+        #{cmValidFlag,jdbcType=VARCHAR},,
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective1" parameterType="com.sams.custom.model.PChannelManager" >
+    update P_CHANNEL_MANAGER
+    <set >
+      <if test="cmChannelCode != null" >
+        CM_CHANNEL_CODE = #{cmChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmManagerCode != null" >
+        CM_MANAGER_CODE = #{cmManagerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cmManagerName != null" >
+        CM_MANAGER_NAME = #{cmManagerName,jdbcType=VARCHAR},
+      </if>
+      <if test="cmStartDate != null" >
+        CM_START_DATE = #{cmStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmEndDate != null" >
+        CM_END_DATE = #{cmEndDate,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCheckState != null" >
+        CM_CHECK_STATE = #{cmCheckState,jdbcType=VARCHAR},
+      </if>
+      <if test="cmCtime != null" >
+        CM_CTIME = #{cmCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmUtime != null" >
+        CM_UTIME = #{cmUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cmCuser != null" >
+        CM_CUSER = #{cmCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="cmUuser != null" >
+        CM_UUSER = #{cmUuser,jdbcType=VARCHAR},
+      </if>
+       <if test="cmAction != null" >
+        CM_ACTION = #{cmAction,jdbcType=VARCHAR},
+      </if>
+      <if test="cmValidFlag != null" >
+        CM_VALID_FLAG = #{cmValidFlag,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where CM_ID = #{cmId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey1" parameterType="com.sams.custom.model.PChannelManager" >
+    update P_CHANNEL_MANAGER
+    set CM_CHANNEL_CODE = #{cmChannelCode,jdbcType=VARCHAR},
+      CM_MANAGER_CODE = #{cmManagerCode,jdbcType=VARCHAR},
+      CM_MANAGER_NAME = #{cmManagerName,jdbcType=VARCHAR},
+      CM_START_DATE = #{cmStartDate,jdbcType=VARCHAR},
+      CM_END_DATE = #{cmEndDate,jdbcType=VARCHAR},
+      CM_CHECK_STATE = #{cmCheckState,jdbcType=VARCHAR},
+      CM_CTIME = #{cmCtime,jdbcType=TIMESTAMP},
+      CM_UTIME = #{cmUtime,jdbcType=TIMESTAMP},
+      CM_CUSER = #{cmCuser,jdbcType=VARCHAR},
+      CM_UUSER = #{cmUuser,jdbcType=VARCHAR},
+      CM_ACTION = #{cmAction,jdbcType=VARCHAR},
+      CM_VALID_FLAG = #{cmValidFlag,jdbcType=VARCHAR}
+    where CM_ID = #{cmId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="findChannelManagerCondition" parameterType="java.util.Map"  resultMap="channelManagerMap">
+         select * from (select
+        <include refid="BaseColumnName"/>
+        ,b.c_phone ciBizManagerPhone , c.ci_channel_name ciChannelName
+         from p_channel_manager a
+         left join ta_tbroker b
+              on a.cm_manager_code = b.c_brokercode
+         left join p_channel_info c
+              on a.cm_channel_code = c.ci_channel_code
+    where c.ci_valid_flag = '01' and c.ci_check_state = '01'
+    ) where (CMVALIDFLAG !='00' or CMCHECKSTATE !='01')
+    <if test=" condition.cmChannelCode != null and condition.cmChannelCode != ''  ">
+                and CMCHANNELCODE = #{condition.cmChannelCode}
+        </if>
+        <if test=" condition.cmManagerName != null and condition.cmManagerName != ''  ">
+                and CMMANAGERNAME = #{condition.cmManagerName} 
+        </if>
+        <if test=" condition.ciBizManagerPhone != null and condition.ciBizManagerPhone != '' ">
+                and CPHONE = #{condition.ciBizManagerPhone} 
+        </if>
+        <if test=" condition.cmValidFlag != null and condition.cmValidFlag != '' ">
+                 <if test=" condition.cmValidFlag == '01' ">
+                and CMVALIDFLAG =  #{condition.cmValidFlag}  
+                 </if>
+                 
+                 <if test=" condition.cmValidFlag == '10' ">
+                and CMVALIDFLAG in ('00','10') 
+                 </if>
+        </if>
+        <if test=" condition.cmCheckState != null and condition.cmCheckState != '' ">
+                and CMCHECKSTATE =   #{condition.cmCheckState} 
+        </if>
+        <if test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by ${pageInfo.sort} ${pageInfo.order}
+        </if>
+    </select>
+    
+      <select id="selectChannelManagerResult" parameterType="String"  resultMap="channelManagerMap">
+        select
+        <include refid="Base_Column_List"/>
+        ,CI_CHANNEL_Name,CI_BIZ_MANAGER_PHONE,CI_VALID_FLAG
+        from p_channel_manager, p_channel_info 
+        where 1=1
+        	    and  cm_channel_code = ci_channel_code
+                and  cm_id = #{cmId}
+                and ci_valid_flag = '01' and ci_check_state = '01'
+    </select>
+    
+     <select id="selectTaManager" resultType="Map">
+           select c_brokercode CODE,c_brokername || '(' || c_brokercode || ')' NAME  from ta_tbroker 
+    </select>
+    
+    <select id="selectChannelManagerCount" resultType="int" parameterType="map" >
+       select count(*) from p_channel_manager  where cm_channel_code= #{channelCode}  and cm_manager_code= #{managerCode}  and cm_valid_flag='01'
+    </select>
+  	
+</mapper>

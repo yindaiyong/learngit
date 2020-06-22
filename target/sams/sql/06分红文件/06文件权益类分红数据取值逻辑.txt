@@ -1,0 +1,134 @@
+--06文件权益类分红数据取值逻辑
+select * from (
+    select tt.f_repaycapital REPAYCAPITAL,
+    tt.f_profit PROFIT,
+    tt.f_subinterest SUBINTEREST,
+    tt.f_interest INTEREST,
+    'SHTP' || tt.L_SERIALNO AS TASERIALNO,
+    tt.F_CURBENEFITSHARES,
+    decode((select p.PI_CURRENCY_TYPE
+    from p_product_info p, p_channel_product c
+    where p.pi_channel_product_code =
+    c.cp_channel_product_code
+    and p.pi_channel_code = c.cp_channel_code
+    and c.cp_channel_code = T2.dci_channel_code
+    and c.cp_valid_flag = '01'
+    and c.cp_check_state = '01'
+    and p.pi_valid_flag not in ('00', '99')
+    and p.pi_check_state = '01'
+    and c.cp_channel_product_code = T2.dci_fund_code
+    and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+    '156',
+    nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+    nvl(tt.F_INTEREST, 0.00)),
+    '840',
+    nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+    nvl(tt.F_INTEREST, 0.00)) DIVIDENDAMOUNT,
+    decode((select p.PI_CURRENCY_TYPE
+    from p_product_info p, p_channel_product c
+    where p.pi_channel_product_code =
+    c.cp_channel_product_code
+    and p.pi_channel_code = c.cp_channel_code
+    and c.cp_channel_code = T2.dci_channel_code
+    and c.cp_valid_flag = '01'
+    and c.cp_check_state = '01'
+    and p.pi_valid_flag not in ('00', '99')
+    and p.pi_check_state = '01'
+    and c.cp_channel_product_code = T2.dci_fund_code
+    and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+    '156',
+    nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+    nvl(tt.F_INTEREST, 0.00)),
+    '840',
+    nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+    nvl(tt.F_INTEREST, 0.00)) CONFIRMEDAMOUNT,
+    nvl(tt.F_CURBENEFITSHARES, 0.00) BASISFORCALCULATINGDIVIDEND,
+    T2.dci_in_contract || '20190906' AS REQUESTNO,
+    '20200522' DOPDATE,
+    T2.dci_in_contract INCONTRACT,
+    T2.dci_fund_code,
+    T2.DCI_PRODUCT_CODE TAFUNDCODE,
+    '' CHARGE,
+    '' AGENCYFEE,
+    '' TRANSFERFEE,
+    '' SHARECLASS,
+    '' DRAWBONUSUNIT,
+    '' DIVIDENDTYPE,
+    '' ACHIEVEMENTPAY,
+    '' ACHIEVEMENTCOMPEN,
+    '' NAV,
+    '' BUSINESSCODE,
+    '' DIVIDENDPERUNIT,
+    '1' DEFDIVIDENDMETHOD,
+    '' DEPOSITACCT,
+    '' REGIONCODE,
+    '' TOTALFROZENVOL,
+    '' OTHERFEE1,
+    '' OTHERFEE2,
+    '' INDIVIDUALORINSTITUTION,
+    '' DIVIDENDRATIO,
+    '' STAMPDUTY,
+    '' FROZENBALANCE,
+    '' FEECALCULATOR,
+    '' FROZENSHARESFORREINVEST,
+    '' ORIGINALAPPSHEETNO,
+    (select p.PI_CURRENCY_TYPE
+    from p_product_info p, p_channel_product c
+    where p.pi_channel_product_code = c.cp_channel_product_code
+    and p.pi_channel_code = c.cp_channel_code
+    and c.cp_channel_code = T2.dci_channel_code
+    and c.cp_valid_flag = '01'
+    and c.cp_check_state = '01'
+    and p.pi_valid_flag not in ('00', '99')
+    and p.pi_check_state = '01'
+    and c.cp_channel_product_code = T2.dci_fund_code
+    and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+    '' VOLOFDIVIDENDFORREINVESTMENT,
+    '20200522' TRANSACTIONCFMDATE,--TRANSDATE
+    '20200522' DIVIDENTDATE,--TRANSDATE
+    '20200522' XRDATE,--TRANSDATE
+    '20200522' REGISTRATIONDATE,--TRANSDATE
+    '20200522' DOWNLOADDATE,--TRANSDATE
+    T2.dci_fund_code FUNDCODE,
+    T2.dci_channel_code CHANNELCODE,
+    '20200521' LASTDATE,
+    '0000' RETURNCODE,
+    T2.DCI_TRANS_ACTION_ACCOUNT    TRANSACTIONACCOUNTID,
+    T2.DCI_TA_ACCOUNT_ID    TAACCOUNTID,
+    T2.DCI_DISTRIBUTOR_CODE    DISTRIBUTORCODE,
+    T2.DCI_BRANCH_CODE    BRANCHCODE,
+    T2.DCI_PRODUCT_CODE
+    from
+    (select t.*, te.f_sumecbalance
+    from ta_tprofitdealcurrentdetails t left join
+    ta_texchangecurrentsdetails  te
+    on t.l_serialno = te.l_businserialno
+    where exists
+    (select 1
+    from ta_tbusinremitmcurrents t2, ta_tremitmoneydetail t3
+    where t2.l_businserialno = t.l_serialno
+    and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') >= '20200521'--LASTDATE
+    and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') <'20200522'--TRANSDATE
+    and t2.l_remitserialno = t3.l_firstserialno
+    -- created by 王超 20200427 加入划款成功的标志条件，防止划款失败的数据也被取出 -->
+        and t3.c_status <> '4')  )TT,  d_contract_info  T2
+    where TT.l_contractserialno = T2.DCI_IN_CONTRACT
+    and T2.DCI_CHANNEL_CODE = 'TTTNETB3') jj--CHANNELCODE
+    where exists (select 1
+    from (
+    --create by yindy 函数修改  -->
+    select distinct c.CP_TA_PRODUCT_CODE fundcode
+    ,p.pi_channel_product_code
+    from p_product_info p, p_channel_product c
+    where p.pi_channel_product_code = c.cp_channel_product_code
+    and p.pi_channel_code=c.cp_channel_code
+    and c.cp_channel_code = 'TTTNETB3'--CHANNELCODE
+    and c.cp_valid_flag = '01'
+    and c.cp_check_state = '01'
+    and p.pi_valid_flag not in('00','99')
+    and p.pi_check_state = '01'
+    and p.pi_product_type='7'--PRODUCTTYPE
+    -- 修改结束 -->
+    ) temp
+    where temp.fundcode = jj.DCI_PRODUCT_CODE
+		and jj.dci_fund_code = temp.pi_channel_product_code)

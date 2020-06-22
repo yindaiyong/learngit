@@ -1,0 +1,59 @@
+with tab3 as
+ (select r.c_requestno
+    from datacenter.ta_trequest@sams_dc_dblink r
+   where exists (select 1
+             from sams.d_exchange_req_cfm t
+             where t.erc_business_code in ('022', '130')
+             and t.erc_return_code = '0000'
+             and exists
+           (select 1
+                     from sams.p_product_info p
+                     where p.pi_channel_code = t.erc_channel_code
+                     and t.erc_channel_code = 'TTTNETB3'
+                     and p.pi_channel_product_code = t.erc_fund_code
+                     and p.pi_valid_flag not in ('00', '99')
+                     and p.pi_pro_setup_date <'20200519'
+                     and p.pi_product_type in ('8')
+                  )
+  and t.erc_ta_serial_no = r.c_outrequestno)
+)
+select /*+ ordered use_nl(r,t2)*/
+   t1.dci_channel_code fvd_channel_code,
+   '20200519' fvd_trans_date,
+   t2.f_shares_valid fvd_available_vol,
+   -- t2.f_shares_all fvd_total_vol_of_distributor, -->
+   --20200402 修改为取上一日的总份额    因为赎回确认出确认前一日做确认,总分额会减少  -->
+   t2.f_remainshares_last fvd_total_vol_of_distributor,
+   to_char(t2.d_cdate, 'YYYYMMDD') fvd_transaction_cfm_date,
+   t1.dci_fund_code fvd_fund_code,
+   t1.dci_trans_action_account fvd_transaction_account_id,
+   t1.dci_distributor_code fvd_distributor_code,
+   t1.dci_ta_account_id fvd_ta_account_id,
+   t2.f_shares_frozen fvd_total_frozen_vol,
+   t1.dci_branch_code fvd_branch_code,
+   t2.c_cserialno fvd_ta_serial_no,
+   '0' fvd_total_backend_load,
+   '0' fvd_share_class,
+   t2.c_detailflag fvd_detail_flag,
+   '1' fvd_account_status,
+   to_char(t2.d_registdate, 'YYYYMMDD') fvd_share_register_date,
+   '' fvd_undistribute_monetary,
+   '' fvd_undistribute_monetary_flag,
+   '' fvd_guaranteed_amount,
+   t2.c_sourcetype fvd_source_type,
+   '' fvd_def_dividend_method,
+   to_char(t2.d_allowredeemdate, 'YYYYMMDD') fvd_allow_redempt_date
+     from tab3 t3, datacenter.v_shares_status@sams_dc_dblink t2, sams.d_contract_info t1
+    where t1.dci_in_contract = t2.l_contractserialno
+     and t1.dci_product_code = t2.c_fundcode
+     and t1.dci_channel_code = 'TTTNETB3'
+     and t1.dci_valid_flag = '01'
+     and t3.c_requestno = t2.c_requestno
+     and exists (select 1
+          from sams.p_product_info p
+          where p.pi_channel_code = t1.dci_channel_code
+           and p.pi_channel_product_code = t1.dci_fund_code
+           and p.pi_valid_flag not in ('00', '99')
+           and p.pi_pro_setup_date < '20200519'
+           and p.pi_product_type in ('8')
+           );

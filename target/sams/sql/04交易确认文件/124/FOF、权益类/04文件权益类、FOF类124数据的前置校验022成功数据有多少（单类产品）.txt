@@ -1,0 +1,16 @@
+--04文件权益类、FOF类124数据的前置校验024成功数据有多少（单类产品）
+
+select count(1)
+  from sams.d_exchange_req t
+ where er_channel_code = 'TTTNETGTJA' -- CHANNELCODE
+   and er_return_code = '0000'
+   and er_business_code = '024' --BUSINESSCODE
+      -- <if test="CFMDATELIST != null">
+   AND
+      -- <foreach collection="CFMDATELIST" index="index" item="item" separator="or" open="(" close=")">
+       （
+        (ER_FUND_CODE = 'GJ2003'AND ER_TRANS_DATE = '20200422')
+         or 
+        (ER_FUND_CODE = 'GJ2002' AND ER_TRANS_DATE = '20200422') 
+        ） --FUNDCODE TRANSDATE   
+--  </foreach>

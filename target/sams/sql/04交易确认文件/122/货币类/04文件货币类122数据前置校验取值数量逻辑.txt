@@ -1,0 +1,23 @@
+--04文件丰利BD、红七122数据前置校验取值数量逻辑
+
+select count(*)
+              from sams.d_exchange_req e,
+                   (select distinct c.cp_ta_product_code fundcode 
+                   ,P.pi_channel_product_code
+                      from sams.p_product_info p, sams.p_channel_product c
+                     where p.pi_channel_product_code = c.cp_channel_product_code
+                       and p.pi_channel_code = c.cp_channel_code
+                       and c.cp_channel_code = 'TTTNETB3'--CHANNELCODE
+                       and c.cp_valid_flag = '01'
+                       and c.cp_check_state = '01'
+                       and p.pi_valid_flag not in ('00', '99')
+                       and p.pi_check_state = '01'
+                       and p.pi_product_type = '1') T2--PRODUCTTYPE
+             where e.er_ta_product_code = T2.fundcode 
+               and e.er_fund_code = T2.pi_channel_product_code
+               and e.ER_RETURN_CODE = '0000'
+               and e.er_channel_code = 'TTTNETB3'--CHANNELCODE
+               and e.er_trans_date = '20200521'--LASTDATE
+               and e.er_business_code = '022'
+               and (er_prement_data_stat = '0' or er_prement_data_stat is null)
+               and e.ER_VALID_FLAG = '01'

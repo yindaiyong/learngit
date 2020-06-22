@@ -1,0 +1,9 @@
+select count(1)
+  from sams.d_exchange_req t
+ where er_channel_code = 'TTTNETB3' -- CHANNELCODE
+   and er_return_code = '0000'
+   and er_business_code = '020' --BUSINESSCODE      
+   and ((er_fund_code = 'PFQD07' and er_trans_date <= '20200521') --FUNDCODE OPENDAY(开放日最大的那天<确认日期)
+       or (er_fund_code = 'PFQD06' and er_trans_date <= '20200520') --FUNDCODE OPENDAY(开放日最大的那天<确认日期)
+       )
+   and er_prement_data_stat != 3

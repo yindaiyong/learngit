@@ -1,0 +1,1189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.ContractInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.ContractInfo" >
+    <id column="DCI_ID" property="dciId" jdbcType="DECIMAL" />
+    <result column="DCI_TA_ACCOUNT_ID" property="dciTaAccountId" jdbcType="VARCHAR" />
+    <result column="DCI_FUND_CODE" property="dciFundCode" jdbcType="VARCHAR" />
+    <result column="DCI_IN_CONTRACT" property="dciInContract" jdbcType="VARCHAR" />
+    <result column="DCI_OUT_CONTRACT" property="dciOutContract" jdbcType="VARCHAR" />
+    <result column="DCI_TRANS_ACTION_ACCOUNT" property="dciTransActionAccount" jdbcType="VARCHAR" />
+    <result column="DCI_DISTRIBUTOR_CODE" property="dciDistributorCode" jdbcType="VARCHAR" />
+    <result column="DCI_BRANCH_CODE" property="dciBranchCode" jdbcType="VARCHAR" />
+    <result column="DCI_CHANNEL_CODE" property="dciChannelCode" jdbcType="VARCHAR" />
+    <result column="DCI_BATCH_NO" property="dciBatchNo" jdbcType="VARCHAR" />
+    <result column="DCI_PRODUCT_CODE" property="dciProductCode" jdbcType="VARCHAR" />
+    <result column="DCI_APP_SHEET_SERIAL_NO" property="dciAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="DCI_CTIME" property="dciCtime" jdbcType="TIMESTAMP" />
+    <result column="DCI_UTIME" property="dciUtime" jdbcType="TIMESTAMP" /> 
+    <result column="DCI_CUSER" property="dciCuser" jdbcType="VARCHAR" />
+    <result column="DCI_UUSER" property="dciUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+		 DCI_ID id,
+         DCI_TA_ACCOUNT_ID TAACCOUNTID,
+         DCI_FUND_CODE FUNDCODE,
+         DCI_IN_CONTRACT INCONTRACT,
+         DCI_OUT_CONTRACT OUTCONTRACT,
+         DCI_TRANS_ACTION_ACCOUNT TRANSACTIONACCOUNT,
+         DCI_DISTRIBUTOR_CODE DISTRIBUTORCODE,
+         DCI_BRANCH_CODE BRANCHCODE,
+         DCI_CHANNEL_CODE CHANNELCODE,
+         DCI_BATCH_NO BATCHNO,
+         DCI_PRODUCT_CODE PRODUCTCODE,
+         DCI_APP_SHEET_SERIAL_NO APPSHEETSERIALNO
+  </sql>
+   
+  <update id="updateContractFlag"  parameterType="hashMap" >
+    update D_CONTRACT_INFO
+    set DCI_VALID_FLAG = #{DELETEFLAG,jdbcType=VARCHAR}
+    where DCI_IN_CONTRACT = #{SERIALNO,jdbcType=VARCHAR},
+    and DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+    and DCI_FUND_CODE = #{FUNDCODE,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 99 系统删除，98 手工删除 -->
+  <update id="updateContractFlagAndMsg"  parameterType="java.util.List" >
+  <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+      update D_CONTRACT_INFO n
+	    <set> 
+		        n.DCI_VALID_FLAG = '99',
+		        n.dci_process_dec='合同到期',
+		        n.dci_uuser='sams',
+		        n.dci_utime=sysdate 
+	     </set>
+	    where n.DCI_IN_CONTRACT = #{item.INCONTRACT,jdbcType=VARCHAR}
+	    and n.DCI_CHANNEL_CODE = #{item.CHANNELCODE,jdbcType=VARCHAR}
+	    and n.DCI_FUND_CODE = #{item.FUNDCODE,jdbcType=VARCHAR}
+	    and n.dci_valid_flag = '01'
+	    and exists (
+       		select t.f_remainshares_sams F_REMAINSHARES  from 
+         	TJ_CONTRACTDETAILS T, TA_TTRUSTCONTRACTDETAILS T2 WHERE T.L_CONTRACTSERIALNO=T2.L_SERIALNO 
+	        AND T.C_FUNDCODE =n.DCI_PRODUCT_CODE
+        and T.L_CONTRACTSERIALNO = n.DCI_IN_CONTRACT 
+        and T.C_TRUSTCONTRACTID = n.DCI_OUT_CONTRACT 
+		and f_remainshares_sams = 0 
+    	)
+	    </foreach>
+  </update>
+  
+  <update id="updateContractFlagAndMsgforF"  parameterType="java.util.List" >
+  <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+      update D_CONTRACT_INFO n
+	    <set> 
+		        n.DCI_VALID_FLAG = '99',
+		        n.dci_process_dec='合同到期',
+		        n.dci_uuser='sams',
+		        n.dci_utime=sysdate 
+	     </set>
+	    where n.DCI_IN_CONTRACT = #{item.INCONTRACT,jdbcType=VARCHAR}
+	    and n.DCI_CHANNEL_CODE = #{item.CHANNELCODE,jdbcType=VARCHAR}
+	    and n.DCI_FUND_CODE = #{item.FUNDCODE,jdbcType=VARCHAR}
+	    and n.dci_valid_flag = '01'
+	    and exists (
+       		select t.f_remainshares
+			from tj_contractfund  t, ta_ttrustcontractdetails t2
+			where t.l_contractserialno = t2.l_serialno
+			and t2.c_trustagencyno in (
+		    select t.c_agencyno from ta_ttrustagencyinfo t 
+			where t.c_parentcode = #{item.CHANNELCODE,jdbcType=VARCHAR})
+			and T.C_FUNDCODE =n.DCI_PRODUCT_CODE
+			and t.l_contractserialno = n.dci_in_contract
+			and t.f_remainshares = 0 
+    	)
+	    </foreach>
+  </update>
+  
+  <update id="updateContractForFof" parameterType="java.util.List">
+  	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+      update D_CONTRACT_INFO n
+	    <set> 
+		        n.DCI_VALID_FLAG = '00',
+		        n.dci_process_dec='没有份额',
+		        n.dci_uuser='sams',
+		        n.dci_utime=sysdate 
+	     </set>
+	    where n.DCI_IN_CONTRACT = #{item.INCONTRACT,jdbcType=VARCHAR}
+	    and n.DCI_CHANNEL_CODE = #{item.CHANNELCODE,jdbcType=VARCHAR}
+	    and n.DCI_FUND_CODE = #{item.FUNDCODE,jdbcType=VARCHAR}
+	    and n.DCI_OUT_CONTRACT = #{item.OUTCONTRACT,jdbcType=VARCHAR}
+	    </foreach>
+  </update>
+  
+  <update id="upContractFlagForCloseAcco" parameterType="com.sams.custom.model.AccountStat" >
+  <!--销户修改合同标识  -->
+ 	 update D_CONTRACT_INFO n
+	    set n.DCI_VALID_FLAG = '99',<!-- 99 系统删除，98 手工删除 -->
+	        n.dci_process_dec='用户销户',
+	        n.dci_uuser='sams',
+	        n.dci_utime=sysdate
+	    where DCI_TA_ACCOUNT_ID = #{asTaAccountId,jdbcType= VARCHAR}
+	    and DCI_TRANS_ACTION_ACCOUNT = #{asTransactionAccountId,jdbcType= VARCHAR}
+	    and DCI_CHANNEL_CODE = #{asChannelCode,jdbcType= VARCHAR}
+  </update>
+  
+  <update id="upReturnBackContract" parameterType="java.util.List" >
+	<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">	
+		update d_contract_info t
+		   set t.dci_valid_flag = '00'
+		 where t.dci_channel_code =#{item.CHANNELCODE,jdbcType= VARCHAR}
+		   and t.dci_insert_date = #{item.BUSINESSDATE,jdbcType= VARCHAR}
+		   and t.dci_trans_action_account = #{item.TRANSACTIONACCOUNTID,jdbcType= VARCHAR}
+		   and t.dci_in_contract = #{item.INCONTRACT,jdbcType= VARCHAR}
+    </foreach>
+  </update>
+
+	<select id="selectContractInfo" resultType="hashMap" parameterType="hashMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM d_contract_info 
+		WHERE 1=1 AND dci_valid_flag='01'
+		<if test="TAACCOUNTID != null">
+			and DCI_TA_ACCOUNT_ID = #{TAACCOUNTID,jdbcType=VARCHAR}
+		</if>
+		<if test="FUNDCODE != null">
+			and DCI_PRODUCT_CODE = #{FUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="CHANNELCODE != null">
+			and DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="INCONTRACT != null">
+			and DCI_IN_CONTRACT = #{INCONTRACT,jdbcType=VARCHAR}
+		</if>
+
+		<if test="TRANSACTIONACCOUNTID != null">
+			and DCI_TRANS_ACTION_ACCOUNT = #{TRANSACTIONACCOUNTID,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="selectContractInfoList" resultType="hashMap" parameterType="hashMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM d_contract_info 
+		WHERE 1=1 AND dci_valid_flag='01'
+		<if test="TAACCOUNTID != null">
+			and DCI_TA_ACCOUNT_ID = #{TAACCOUNTID,jdbcType=VARCHAR}
+		</if>
+		<if test="FUNDCODE != null">
+			and DCI_FUND_CODE = #{FUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="CHANNELCODE != null">
+			and DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="TAFUNDCODE != null">
+			and DCI_PRODUCT_CODE= #{TAFUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="TRANSACTIONACCOUNT != null">
+			and DCI_TRANS_ACTION_ACCOUNT = #{TRANSACTIONACCOUNT,jdbcType=VARCHAR}
+		</if>
+		<if test="INCONTRACT != null">
+			and DCI_IN_CONTRACT = #{INCONTRACT,jdbcType=VARCHAR}
+		</if>
+<!-- 		<if test="OUTCONTRACT != null">
+			and DCI_OUT_CONTRACT = #{OUTCONTRACT,jdbcType=VARCHAR}
+		</if> -->
+	</select>
+	
+	<select id="selectContractList" resultType="hashMap" parameterType="hashMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM d_contract_info 
+		WHERE 1=1 AND dci_valid_flag='01'
+		<if test="TAACCOUNTID != null">
+			and DCI_TA_ACCOUNT_ID = #{TAACCOUNTID,jdbcType=VARCHAR}
+		</if>
+		<if test="FUNDCODE != null">
+			and DCI_FUND_CODE = #{FUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="CHANNELCODE != null">
+			and DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="TAFUNDCODE != null">
+			and DCI_PRODUCT_CODE= #{TAFUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="TRANSACTIONACCOUNT != null">
+			and DCI_TRANS_ACTION_ACCOUNT = #{TRANSACTIONACCOUNT,jdbcType=VARCHAR}
+		</if>
+		<if test="INCONTRACT != null">
+			and DCI_IN_CONTRACT = #{INCONTRACT,jdbcType=VARCHAR}
+		</if>
+		<if test="OUTCONTRACT != null">
+			and DCI_OUT_CONTRACT = #{OUTCONTRACT,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	
+	<select id="selectFirstTradeContractInfo" resultType="Map" parameterType="hashMap">
+		 select r.dci_in_contract  incontract,r.DCI_OUT_CONTRACT outcontract
+              from d_contract_info r
+             where 
+             	   <!-- r.dci_process_dec = '0'
+               and  -->
+               r.dci_valid_flag='01'
+               and r.dci_ta_account_id = #{TAACCOUNTID,jdbcType=VARCHAR}
+               and r.dci_trans_action_account = #{TRANSACTIONACCOUNT,jdbcType=VARCHAR}
+               and r.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+               and r.dci_product_code = #{FUNDCODE,jdbcType=VARCHAR}
+               and rownum=1
+   			   order by dci_ctime asc
+	</select>
+	
+	
+	 <insert id="insertContractInfo"  parameterType="hashMap" >
+	 	INSERT INTO D_CONTRACT_INFO
+		  (
+			   DCI_TA_ACCOUNT_ID,
+			   DCI_FUND_CODE,
+			   DCI_IN_CONTRACT,
+			   DCI_OUT_CONTRACT,
+			   DCI_TRANS_ACTION_ACCOUNT,
+			   DCI_DISTRIBUTOR_CODE,
+			   DCI_BRANCH_CODE,
+			   DCI_BATCH_NO,
+			   DCI_CHANNEL_CODE,
+			   DCI_PRODUCT_CODE,
+			   DCI_APP_SHEET_SERIAL_NO,
+			   DCI_VALID_FLAG,
+			   DCI_INSERT_DATE,
+			   DCI_CUSER,
+			   DCI_CTIME
+		   )VALUES(
+		    #{TAACCOUNTID,jdbcType=VARCHAR},
+		    #{FUNDCODE,jdbcType=VARCHAR},
+		    #{INCONTRACT,jdbcType=VARCHAR},
+		    #{OUTCONTRACT,jdbcType=VARCHAR},
+		    #{TRANSACTIONACCOUNT,jdbcType=VARCHAR},
+		    #{DISTRIBUTORCODE,jdbcType=VARCHAR},
+		    #{BRANCHCODE,jdbcType=VARCHAR},
+		    #{BATCHNO,jdbcType=VARCHAR},
+		    #{CHANNELCODE,jdbcType=VARCHAR},
+		    #{PRODUCTCODE,jdbcType=VARCHAR},
+		    #{APPSHEETSERIALNO,jdbcType=VARCHAR},
+		    #{VALIDFLAG,jdbcType=VARCHAR},
+		    #{INSERTDATE,jdbcType=VARCHAR},
+		    'sams',
+		    sysdate
+		    )
+	 </insert>
+	 
+	 <select id="selectSalesFund"  resultType="string" parameterType="hashMap">
+			select distinct c.CP_TA_PRODUCT_CODE fundcode
+			     from p_product_info p, p_channel_product c, d_contract_info d
+	         where p.pi_channel_product_code = c.cp_channel_product_code
+	           and p.pi_channel_code=c.cp_channel_code
+	           and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+			       and c.cp_valid_flag = '01'
+			       and c.cp_check_state = '01'
+			       and p.pi_valid_flag not in('00','99')
+				   and p.pi_check_state = '01'
+				   and p.pi_product_type in('4','5','6','7','8','9')
+				   and d.dci_valid_flag = '01'
+	         	   and d.dci_channel_code = p.pi_channel_code
+				   and p.pi_channel_product_code = d.dci_fund_code
+				   and d.dci_product_code = c.cp_ta_product_code
+			   and not exists (
+			     select 1 from ( 
+					 select distinct t.erc_fund_code fundcode  from d_exchange_req_cfm t 
+					 where t.erc_business_code in ('142') 
+					 and t.erc_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+				 ) temp where temp.fundcode = p.pi_channel_product_code
+			   )
+			   	and to_date(p.PI_PRO_SETUP_DATE, 'yyyyMMdd') &lt;to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+	 </select>
+	 <select id="queryCurrencyFFund" resultType="string" parameterType="hashMap">
+	 	select distinct c.cp_ta_product_code fundcode
+           from p_product_info p, p_channel_product c, d_contract_info d
+           where p.pi_channel_product_code = c.cp_channel_product_code
+           and p.pi_channel_code=c.cp_channel_code
+           and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+           and c.cp_valid_flag = '01'
+           and c.cp_check_state = '01'
+           and p.pi_valid_flag not in('00','99')
+           and p.pi_check_state = '01'
+           and p.pi_product_type = #{FUNDTYPE,jdbcType = VARCHAR}
+           and d.dci_valid_flag = '01'
+		   and to_date(p.pi_pro_setup_date, 'yyyyMMdd') &lt;=to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+           and d.dci_channel_code = p.pi_channel_code
+           and p.pi_channel_product_code = d.dci_fund_code
+           and d.dci_product_code = c.cp_ta_product_code
+           and not exists (
+			 select 1 from d_exchange_req_cfm t 
+			 where t.erc_business_code in ('142') 
+			 and t.erc_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		     and t.erc_fund_code = p.pi_channel_product_code
+           )
+	 </select>
+	 
+	<select id="selectSalesFundDividend"  resultType="string" parameterType="hashMap">
+			select distinct c.CP_TA_PRODUCT_CODE fundcode
+		      from p_product_info p, p_channel_product c
+		     where p.pi_channel_product_code = c.cp_channel_product_code
+		       and p.pi_channel_code=c.cp_channel_code
+		       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		       and c.cp_valid_flag = '01'
+		       and c.cp_check_state = '01'
+		       and p.pi_valid_flag not in('00','99')
+			   and p.pi_check_state = '01'
+			   and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+	 </select>
+	 
+	 	<select id="selectSalesFund123"  resultType="string" parameterType="hashMap">
+	 select distinct c.CP_TA_PRODUCT_CODE fundcode
+		      from p_product_info p, p_channel_product c
+		     where p.pi_channel_product_code = c.cp_channel_product_code
+		       and p.pi_channel_code=c.cp_channel_code
+		       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		       and c.cp_valid_flag = '01'
+		       and c.cp_check_state = '01'
+		       and p.pi_valid_flag not in('00','99')
+			   and p.pi_check_state = '01'
+			   and p.pi_product_type in('1','2','3')
+	 </select>
+	 
+	 
+	 
+	 <select id="selectInContracts" resultType="string" parameterType="hashMap">
+		select c.dci_in_contract incontract
+		          from d_contract_info c
+		         where exists (select 1
+		                  from (
+		                  	<!--create by yindy 修改函数  -->
+		                  	select distinct c.CP_TA_PRODUCT_CODE fundcode
+		                  	,p.pi_channel_product_code 
+						      from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+						       and p.pi_channel_code=c.cp_channel_code
+						       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+						       and c.cp_valid_flag = '01'
+						       and c.cp_check_state = '01'
+						       and p.pi_valid_flag not in('00','99')
+							   and p.pi_check_state = '01'
+							    and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+		                  	<!--函数结束  -->
+		                  ) temp
+		                 where temp.fundcode = c.DCI_PRODUCT_CODE
+		                 and temp.pi_channel_product_code = c.dci_fund_code)
+		           and c.dci_valid_flag = '01'
+		           and c.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		           
+		           <if test="PRODUCTTYPE==1 or PRODUCTTYPE==2 or PRODUCTTYPE==3">
+				     and c.dci_insert_date &lt;#{LASTDATE,jdbcType=VARCHAR}
+				   </if>
+	 </select>
+	 
+	 <select id="selectFixedIncome" resultType="hashMap" parameterType="hashMap">
+	select * from (
+select tt.f_repaycapital REPAYCAPITAL,
+               tt.f_profit PROFIT,
+               tt.f_subinterest SUBINTEREST,
+               tt.f_interest INTEREST,
+               'SHTP' || tt.L_SERIALNO AS TASERIALNO,
+               tt.F_CURBENEFITSHARES,
+               nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+               nvl(tt.F_INTEREST, 0.00) DIVIDENDAMOUNT,
+               nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+               nvl(tt.F_INTEREST, 0.00) CONFIRMEDAMOUNT,
+               nvl(tt.F_CURBENEFITSHARES, 0.00) BASISFORCALCULATINGDIVIDEND,
+               T2.dci_in_contract || '20190906' AS REQUESTNO,
+               #{TRANSDATE,jdbcType=VARCHAR} DOPDATE,
+               T2.dci_in_contract INCONTRACT,
+               T2.dci_fund_code,
+		 	   T2.DCI_PRODUCT_CODE TAFUNDCODE,
+               '' CHARGE,
+               '' AGENCYFEE,
+               '' TRANSFERFEE,
+               '' SHARECLASS,
+               '' DRAWBONUSUNIT,
+               '' DIVIDENDTYPE,
+               '' ACHIEVEMENTPAY,
+               '' ACHIEVEMENTCOMPEN, 
+               '' NAV,
+               '' BUSINESSCODE,
+               '' DIVIDENDPERUNIT,
+               '1' DEFDIVIDENDMETHOD,
+               '' DEPOSITACCT,
+               '' REGIONCODE,
+               '' TOTALFROZENVOL,
+               '' OTHERFEE1,
+               '' OTHERFEE2,
+               '' INDIVIDUALORINSTITUTION,
+               '' DIVIDENDRATIO,
+               '' STAMPDUTY,
+               '' FROZENBALANCE,
+               '' FEECALCULATOR,
+               '' FROZENSHARESFORREINVEST,
+               '' ORIGINALAPPSHEETNO,
+               (select p.PI_CURRENCY_TYPE
+                  from p_product_info p, p_channel_product c
+                 where p.pi_channel_product_code = c.cp_channel_product_code
+                   and p.pi_channel_code = c.cp_channel_code
+                   and c.cp_channel_code = T2.dci_channel_code
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in ('00', '99')
+                   and p.pi_check_state = '01'
+                   and c.cp_channel_product_code = T2.dci_fund_code
+                   and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+		       '' VOLOFDIVIDENDFORREINVESTMENT,
+		       #{TRANSDATE,jdbcType= VARCHAR} TRANSACTIONCFMDATE,
+		       #{TRANSDATE,jdbcType= VARCHAR} DIVIDENTDATE,
+		       #{TRANSDATE,jdbcType= VARCHAR} XRDATE,
+		       #{TRANSDATE,jdbcType= VARCHAR} REGISTRATIONDATE,
+		       #{TRANSDATE,jdbcType= VARCHAR} DOWNLOADDATE,
+		       T2.dci_fund_code FUNDCODE,
+		       T2.dci_channel_code CHANNELCODE,
+		       #{LASTDATE,jdbcType= VARCHAR} LASTDATE,
+		       '0000' RETURNCODE, 
+			   T2.DCI_TRANS_ACTION_ACCOUNT	  TRANSACTIONACCOUNTID,
+			   T2.DCI_TA_ACCOUNT_ID	  TAACCOUNTID,
+			   T2.DCI_DISTRIBUTOR_CODE	  DISTRIBUTORCODE,
+			   T2.DCI_BRANCH_CODE	  BRANCHCODE,
+			   T2.DCI_PRODUCT_CODE
+  from  
+     (select * 
+     from ta_tprofitdealcurrentdetails t
+    where  exists
+ (select 1
+          from ta_tbusinremitmcurrents t2, ta_tremitmoneydetail t3
+         where t2.l_businserialno = t.l_serialno
+            and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') &gt;= #{LASTDATE,jdbcType=VARCHAR}
+            and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') &lt;#{TRANSDATE,jdbcType=VARCHAR}
+            and t2.l_remitserialno = t3.l_firstserialno
+            <!-- created by 王超 20200427 加入划款成功的标志条件，防止划款失败的数据也被取出 -->
+            and t3.c_status &lt;&gt; '4')
+		 )TT,  d_contract_info  T2
+  where TT.l_contractserialno = T2.DCI_IN_CONTRACT
+  and tt.c_fundacco = t2.dci_ta_account_id
+  and T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}) jj
+   where exists (select 1
+		                  from (
+		                  <!--create by yindy 函数修改  -->
+		                  select distinct c.CP_TA_PRODUCT_CODE fundcode
+		                  ,p.pi_channel_product_code 
+					      from p_product_info p, p_channel_product c
+					     where p.pi_channel_product_code = c.cp_channel_product_code
+					       and p.pi_channel_code=c.cp_channel_code
+					       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+					       and c.cp_valid_flag = '01'
+					       and c.cp_check_state = '01'
+					       and p.pi_valid_flag not in('00','99')
+						   and p.pi_check_state = '01'
+						   and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+		                  <!-- 修改结束 -->
+		                  ) temp
+		                 where temp.fundcode = jj.DCI_PRODUCT_CODE
+		                 and jj.dci_fund_code = temp.pi_channel_product_code)
+	<!-- 分红确认金额为0,不取出来 -->	                
+	and nvl(jj.dividendamount,0) != 0  
+	
+	<!-- 20200331 过滤掉部分返本的分红 -->
+	and not exists (
+		select n.dci_fund_code,
+	       n.dci_in_contract,
+	       n.dci_out_contract,
+	       n.dci_trans_action_account,
+	       n.dci_ta_account_id,
+	       n.dci_product_code
+		  from d_exchange_req_cfm t, d_contract_info n
+		   where t.erc_channel_code = n.dci_channel_code
+		   and t.erc_app_sheet_serial_no = n.dci_app_sheet_serial_no
+		   and t.erc_transaction_account_id = n.dci_trans_action_account
+		   and t.erc_fund_code = n.dci_fund_code
+		   and t.erc_return_code = '0000'
+		   and t.erc_business_code = '150'
+		   and n.dci_valid_flag = '01'
+		   and t.erc_trans_date = #{TRANSDATE,jdbcType=VARCHAR}
+		   and t.erc_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		   and exists (
+				select 1 from tj_contractdetails t where  t.c_fundcode =n.dci_product_code
+	            and t.l_contractserialno = n.dci_in_contract
+	            and t.c_trustcontractid = n.dci_out_contract
+	            and t.c_fundacco = n.dci_ta_account_id
+	            and t.f_remainshares_sams != 0
+		   )
+		   and n.dci_in_contract = jj.INCONTRACT
+	       and n.dci_trans_action_account = jj.TRANSACTIONACCOUNTID
+	       and n.dci_ta_account_id = jj.TAACCOUNTID
+	       and n.dci_product_code = jj.DCI_PRODUCT_CODE
+	       and n.dci_fund_code = jj.dci_fund_code
+	)              
+	</select>
+	
+	
+	<select id="selectRubyIncomeCount" resultType="hashMap" parameterType="hashMap">
+			       SELECT
+			  T.L_CONTRACTSERIALNO
+		    FROM TA_TSHARECURRENTS T,d_contract_info T2
+		    WHERE exists (select 1
+		          from (
+		          <!-- create by yindy 函数修改 -->
+					select c.dci_in_contract incontract
+			          from d_contract_info c
+			         where exists (select 1
+			                  from (
+			                  	<!--create by yindy 修改函数  -->
+			                  	select distinct c.CP_TA_PRODUCT_CODE fundcode
+			                  	,P.pi_channel_product_code 
+							      from p_product_info p, p_channel_product c
+							     where p.pi_channel_product_code = c.cp_channel_product_code
+							       and p.pi_channel_code=c.cp_channel_code
+							       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+	                   and c.cp_valid_flag = '01'
+	                   and c.cp_check_state = '01'
+	                   and p.pi_valid_flag not in('00','99')
+	                 and p.pi_check_state = '01'
+	                  and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+	                        <!--函数结束  -->
+	                      ) temp
+	                     where temp.fundcode = c.DCI_PRODUCT_CODE
+	                     and temp.pi_channel_product_code = c.dci_fund_code)
+	               and c.dci_valid_flag = '01'
+	               and c.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}		          
+		          <!-- 函数结束 -->
+        ) tempout
+		     where tempout.incontract = T.L_CONTRACTSERIALNO )
+			 AND T.C_BUSINFLAG='74'
+       AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+       AND T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+       AND T2.DCI_VALID_FLAG='01'
+		    <if test="LASTDATE != NULL">
+				 and to_char(T.D_REQUESTDATE, 'yyyyMM') &gt;= to_char(to_date(#{LASTDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+				 and to_char(T.D_REQUESTDATE, 'yyyyMM') &lt; to_char(to_date(#{TRANSDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+			</if>
+       group by T.L_CONTRACTSERIALNO having count(*)>1
+	</select>
+	
+	<select id="selectRubyIncome" resultType="hashMap" parameterType="hashMap">
+		SELECT
+			  nvl(T.F_LASTSHARES,0.00)-nvl(T.F_OCCURSHARES,0.00) BASISFORCALCULATINGDIVIDEND,
+			  T.F_OCCURSHARES VOLOFDIVIDENDFORREINVESTMENT,
+			  T.F_OCCURSHARES DIVIDENDAMOUNT,
+			  T.C_REQUESTNO  REQUESTNO,
+			  T.C_REQUESTNO  TASERIALNO,
+		      '' CHARGE,
+		      '' AGENCYFEE,
+		      '' TRANSFERFEE,
+		      '' SHARECLASS,
+		      '' DRAWBONUSUNIT,
+		      2 DIVIDENDTYPE,
+		      '' ACHIEVEMENTPAY,
+		      '' ACHIEVEMENTCOMPEN,
+		      '' NAV,
+		      '' BUSINESSCODE,
+		      '' DIVIDENDPERUNIT,
+		      0  DEFDIVIDENDMETHOD,
+		      0  CONFIRMEDAMOUNT,
+			  '' DEPOSITACCT,
+			  '' REGIONCODE,
+			  '' TOTALFROZENVOL,
+			  '' OTHERFEE1,
+			  '' OTHERFEE2,
+			  '' INDIVIDUALORINSTITUTION,
+			  '' DIVIDENDRATIO,
+			  '' STAMPDUTY,
+			  '' FROZENBALANCE,
+			  '' FEECALCULATOR,
+			  '' FROZENSHARESFORREINVEST,
+			  '' ORIGINALAPPSHEETNO,
+		      (select p.PI_CURRENCY_TYPE 
+      from p_product_info p, p_channel_product c
+     where p.pi_channel_product_code = c.cp_channel_product_code
+     <if test="BATCHNOONOFF == 1">
+       and p.pi_batch_no=c.cp_batch_no
+       and c.cp_batch_no=T2.DCI_BATCH_NO
+       </if>
+       and p.pi_channel_code=c.cp_channel_code
+       and c.cp_channel_code =T2.dci_channel_code
+       and c.cp_valid_flag = '01'
+       and c.cp_check_state = '01'
+       and p.pi_valid_flag not in('00','99')
+       and p.pi_check_state = '01'
+       and c.cp_channel_product_code=T2.dci_fund_code
+       and c.cp_ta_product_code=T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+		      #{TRANSDATE,jdbcType=VARCHAR} TRANSACTIONCFMDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} DIVIDENTDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} XRDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} REGISTRATIONDATE,
+		      #{TRANSDATE,jdbcType= VARCHAR} DOWNLOADDATE,
+		      T2.dci_fund_code  FUNDCODE,
+		      T2.dci_channel_code CHANNELCODE,
+		      #{TRANSDATE,jdbcType=VARCHAR} LASTDATE,
+		      '0000' RETURNCODE,
+		      T2.DCI_TRANS_ACTION_ACCOUNT	  TRANSACTIONACCOUNTID,
+			   T2.DCI_TA_ACCOUNT_ID	  TAACCOUNTID,
+			   T2.DCI_DISTRIBUTOR_CODE	  DISTRIBUTORCODE,
+			   T2.DCI_BRANCH_CODE	  BRANCHCODE,
+			   T2.DCI_IN_CONTRACT	  INCONTRACT 
+		    FROM TA_TSHARECURRENTS T,D_CONTRACT_INFO T2
+		    WHERE exists (select 1
+		          from (
+		          <!--create by yindy 修改函数  -->
+		          select c.dci_in_contract incontract
+		          from d_contract_info c
+		          where exists (select 1
+		                  from (
+		                  	<!--create by yindy 修改函数  -->
+		                  	select distinct c.CP_TA_PRODUCT_CODE fundcode
+		                  	,p.pi_channel_product_code 
+						      from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+						       and p.pi_channel_code=c.cp_channel_code
+						       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                  and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+                        <!--函数结束  -->
+                      ) temp
+                     where temp.fundcode = c.DCI_PRODUCT_CODE
+                     and temp.pi_channel_product_code = c.dci_fund_code )
+                 and c.dci_valid_flag = '01'
+                 and c.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		          <!--函数结束  -->
+		          ) tempout
+		         where tempout.incontract = T.L_CONTRACTSERIALNO )
+			 AND T.C_BUSINFLAG='74'
+			 AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+       		 AND T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+       		 AND T2.DCI_VALID_FLAG='01'
+		    <if test="LASTDATE != NULL">
+				 and to_char(T.D_REQUESTDATE, 'yyyyMM') = to_char(to_date(#{LASTDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+			</if>
+	</select>
+	
+	 <select id="selectCashFixedIncomeCount" resultType="hashMap" parameterType="hashMap">
+	 	       SELECT
+				  T.L_CONTRACTSERIALNO
+			    FROM TA_TSHARECURRENTS T,D_CONTRACT_INFO T2
+			    WHERE exists (select 1
+			          from (
+			          <!--create by yindy 函数开始 -->
+			          select c.dci_in_contract incontract
+				          from d_contract_info c
+				         where exists (select 1
+				                  from (
+				                  	<!--create by yindy 修改函数  -->
+				                  	select distinct c.CP_TA_PRODUCT_CODE fundcode
+				                  	,p.pi_channel_product_code 
+								      from p_product_info p, p_channel_product c
+								     where p.pi_channel_product_code = c.cp_channel_product_code
+								       and p.pi_channel_code=c.cp_channel_code
+								       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		                   and c.cp_valid_flag = '01'
+		                   and c.cp_check_state = '01'
+		                   and p.pi_valid_flag not in('00','99')
+		                 and p.pi_check_state = '01'
+		                <!--  and p.pi_product_type in('4','5','6') -->
+		                  and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+		                        <!--函数结束  -->
+		                      ) temp
+		                     where temp.fundcode = c.DCI_PRODUCT_CODE
+		                     and temp.pi_channel_product_code = c.dci_fund_code )
+		               and c.dci_valid_flag = '01'
+		               and c.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+			          <!-- 函数结束 -->
+			          ) tempout
+			         where tempout.incontract = T.L_CONTRACTSERIALNO )
+				 AND T.C_BUSINFLAG='74'
+	       AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+	       AND T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+	       AND T2.DCI_VALID_FLAG='01'
+			    <if test="LASTDATE != NULL">
+					 and to_char(T.D_REQUESTDATE, 'yyyyMM') = to_char(to_date(#{LASTDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+				</if>
+	       group by T.L_CONTRACTSERIALNO having count(*)>1
+	 </select>
+	 
+	 <select id="selectCashFixedIncome" resultType="hashMap" parameterType="hashMap">
+		 SELECT
+			  T.F_LASTSHARES-T.F_OCCURSHARES BASISFORCALCULATINGDIVIDEND,
+			  T.F_OCCURSHARES VOLOFDIVIDENDFORREINVESTMENT,
+			  T.F_OCCURSHARES DIVIDENDAMOUNT,
+			  T.C_REQUESTNO  REQUESTNO,
+			  T.C_REQUESTNO  TASERIALNO,
+		      '' CHARGE,
+		      '' AGENCYFEE,
+		      '' TRANSFERFEE,
+		      '' SHARECLASS,
+		      '' DRAWBONUSUNIT,
+		      2 DIVIDENDTYPE,
+		      '' ACHIEVEMENTPAY,
+		      '' ACHIEVEMENTCOMPEN,
+		      '' NAV,
+		      '' BUSINESSCODE,
+		      '' DIVIDENDPERUNIT,
+		      0  DEFDIVIDENDMETHOD,
+		      0  CONFIRMEDAMOUNT,
+			  '' DEPOSITACCT,
+			  '' REGIONCODE,
+			  '' TOTALFROZENVOL,
+			  '' OTHERFEE1,
+			  '' OTHERFEE2,
+			  '' INDIVIDUALORINSTITUTION,
+			  '' DIVIDENDRATIO,
+			  '' STAMPDUTY,
+			  '' FROZENBALANCE,
+			  '' FEECALCULATOR,
+			  '' FROZENSHARESFORREINVEST,
+			  '' ORIGINALAPPSHEETNO,
+		      (select p.PI_CURRENCY_TYPE 
+      from p_product_info p, p_channel_product c
+     where p.pi_channel_product_code = c.cp_channel_product_code
+       and c.cp_channel_code =T2.dci_channel_code
+       and p.pi_channel_code=c.cp_channel_code
+       <if test="BATCHNOONOFF == 1">
+       and p.pi_batch_no=c.cp_batch_no
+       and c.cp_batch_no=T2.DCI_BATCH_NO
+       </if>
+       and c.cp_valid_flag = '01'
+       and c.cp_check_state = '01'
+       and p.pi_valid_flag not in('00','99')
+       and p.pi_check_state = '01'
+       and c.cp_channel_product_code=T2.dci_fund_code
+       and c.cp_ta_product_code=T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+		      #{TRANSDATE,jdbcType=VARCHAR} TRANSACTIONCFMDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} DIVIDENTDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} XRDATE,
+		      #{TRANSDATE,jdbcType=VARCHAR} REGISTRATIONDATE,
+		      #{TRANSDATE,jdbcType= VARCHAR} DOWNLOADDATE,
+		      T2.dci_fund_code  FUNDCODE,
+		      T2.dci_channel_code CHANNELCODE,
+		      #{LASTDATE,jdbcType=VARCHAR} LASTDATE,
+		      '0000' RETURNCODE,
+		      T2.DCI_TRANS_ACTION_ACCOUNT	  TRANSACTIONACCOUNTID,
+			   T2.DCI_TA_ACCOUNT_ID	  TAACCOUNTID,
+			   T2.DCI_DISTRIBUTOR_CODE	  DISTRIBUTORCODE,
+			   T2.DCI_BRANCH_CODE	  BRANCHCODE,
+			   T2.DCI_IN_CONTRACT     INCONTRACT
+		    FROM TA_TSHARECURRENTS T,D_CONTRACT_INFO T2
+		    WHERE exists (select 1
+		          from (
+		          <!--create by yindy 修改函数  -->
+		          select c.dci_in_contract incontract
+		          from d_contract_info c
+		         where exists (select 1
+		                  from (
+		                  	<!--create by yindy 修改函数  -->
+		                  	select distinct c.CP_TA_PRODUCT_CODE fundcode
+		                  	,p.pi_channel_product_code 
+						      from p_product_info p, p_channel_product c
+						     where p.pi_channel_product_code = c.cp_channel_product_code
+						       and p.pi_channel_code=c.cp_channel_code
+						       and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                <!--  and p.pi_product_type in('4','5','6') -->
+                  and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+                        <!--函数结束  -->
+                      ) temp
+                     where temp.fundcode = c.DCI_PRODUCT_CODE
+                     and temp.pi_channel_product_code = c.dci_fund_code )
+               and c.dci_valid_flag = '01'
+               and c.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		          <!-- 修改函数 -->
+		          ) tempout
+		         where tempout.incontract = T.L_CONTRACTSERIALNO )
+		    AND T.C_BUSINFLAG='74'
+		    AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+       		AND T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+       		AND T2.DCI_VALID_FLAG='01'
+		    AND to_char(T.D_REQUESTDATE, 'yyyyMM') = to_char(to_date(#{TRANSDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+	</select>
+	
+	<select id="queryCurrencyFDividend" parameterType="map" resultType="map">
+		select
+		  t.f_lastshares-t.f_occurshares basisforcalculatingdividend,
+		  t.f_occurshares volofdividendforreinvestment,
+		  t.f_occurshares dividendamount,
+		  t.c_requestno  requestno,
+		  t.c_requestno  taserialno,
+	      '' charge,
+	      '' agencyfee,
+	      '' transferfee,
+	      '' shareclass,
+	      '' drawbonusunit,
+	      2 dividendtype,
+	      '' achievementpay,
+	      '' achievementcompen,
+	      '' nav,
+	      '' businesscode,
+	      '' dividendperunit,
+	      0  defdividendmethod,
+	      0  confirmedamount,
+		  '' depositacct,
+		  '' regioncode,
+		  '' totalfrozenvol,
+		  '' otherfee1,
+		  '' otherfee2,
+		  '' individualorinstitution,
+		  '' dividendratio,
+		  '' stampduty,
+		  '' frozenbalance,
+		  '' feecalculator,
+		  '' frozensharesforreinvest,
+		  '' originalappsheetno,
+	    (select p.pi_currency_type 
+	      from p_product_info p, p_channel_product c
+	      where p.pi_channel_product_code = c.cp_channel_product_code
+	       and c.cp_channel_code =t2.dci_channel_code
+	       and p.pi_channel_code=c.cp_channel_code
+	       and c.cp_valid_flag = '01'
+	       and c.cp_check_state = '01'
+	       and p.pi_valid_flag not in('00','99')
+	       and p.pi_check_state = '01'
+	       and c.cp_channel_product_code=t2.dci_fund_code
+	       and c.cp_ta_product_code=t2.dci_product_code) currencytype,
+	      #{TRANSDATE,jdbcType=VARCHAR} transactioncfmdate,
+	      #{TRANSDATE,jdbcType=VARCHAR} dividentdate,
+	      #{TRANSDATE,jdbcType=VARCHAR} xrdate,
+	      #{TRANSDATE,jdbcType=VARCHAR} registrationdate,
+	      #{TRANSDATE,jdbcType= VARCHAR} downloaddate,
+	      t2.dci_fund_code  fundcode,
+	      t2.dci_channel_code channelcode,
+	      #{LASTDATE,jdbcType=VARCHAR} lastdate,
+	      '0000' returncode,
+          t2.dci_trans_action_account    transactionaccountid,
+          t2.dci_ta_account_id    taaccountid,
+          t2.dci_distributor_code    distributorcode,
+          t2.dci_branch_code    branchcode,
+          t2.dci_in_contract     incontract
+          from ta_tsharecurrents t,d_contract_info t2
+          WHERE exists (
+		      select 1 from  d_contract_info o  where exists (
+		         select 1 from p_product_info p, p_channel_product c
+					 where p.pi_channel_product_code = c.cp_channel_product_code
+					 and p.pi_channel_code=c.cp_channel_code
+					 and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+					 and c.cp_valid_flag = '01'
+					 and c.cp_check_state = '01'
+					 and p.pi_valid_flag not in('00','99')
+					 and p.pi_check_state = '01'
+					 and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR} 
+					 and c.cp_ta_product_code = o.dci_product_code
+					 and p.pi_channel_product_code = o.dci_fund_code 
+					 and to_date(p.pi_pro_setup_date, 'yyyymmdd') &lt;to_date(#{TRANSDATE, jdbcType = VARCHAR}, 'yyyyMMdd')
+						 )
+			and o.dci_valid_flag = '01'
+			and o.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+			and o.dci_in_contract = T.L_CONTRACTSERIALNO )
+		  and t.c_businflag='74'
+		  and t2.dci_in_contract=t.l_contractserialno
+          and t2.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+          and t2.dci_valid_flag='01'
+          and to_char(t.d_requestdate, 'yyyyMM') = to_char(to_date(#{TRANSDATE,jdbcType=VARCHAR},'yyyyMMdd'),'yyyyMM')
+	</select>
+	
+  <delete id="deleteContractInfo"  parameterType="hashMap" >
+    DELETE FROM D_CONTRACT_INFO
+       WHERE DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+       AND   DCI_INSERT_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+  </delete>
+
+	<select id="selectFixedIncomeGQ" resultType="hashMap" parameterType="hashMap">
+		select * from (
+		select tt.f_repaycapital REPAYCAPITAL,
+		tt.f_profit PROFIT,
+		tt.f_subinterest SUBINTEREST,
+		tt.f_interest INTEREST,
+		'SHTP' || tt.L_SERIALNO AS TASERIALNO,
+		tt.F_CURBENEFITSHARES,
+		decode((select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code =
+		c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+		'156',
+		nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)),
+		'840',
+		nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)) DIVIDENDAMOUNT,
+		decode((select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code =
+		c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+		'156',
+		nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)),
+		'840',
+		nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)) CONFIRMEDAMOUNT,
+		nvl(tt.F_CURBENEFITSHARES, 0.00) BASISFORCALCULATINGDIVIDEND,
+		T2.dci_in_contract || '20190906' AS REQUESTNO,
+		#{TRANSDATE,jdbcType=VARCHAR} DOPDATE,
+		T2.dci_in_contract INCONTRACT,
+		T2.dci_fund_code,
+		T2.DCI_PRODUCT_CODE TAFUNDCODE,
+		'' CHARGE,
+		'' AGENCYFEE,
+		'' TRANSFERFEE,
+		'' SHARECLASS,
+		'' DRAWBONUSUNIT,
+		'' DIVIDENDTYPE,
+		'' ACHIEVEMENTPAY,
+		'' ACHIEVEMENTCOMPEN,
+		'' NAV,
+		'' BUSINESSCODE,
+		'' DIVIDENDPERUNIT,
+		'1' DEFDIVIDENDMETHOD,
+		'' DEPOSITACCT,
+		'' REGIONCODE,
+		'' TOTALFROZENVOL,
+		'' OTHERFEE1,
+		'' OTHERFEE2,
+		'' INDIVIDUALORINSTITUTION,
+		'' DIVIDENDRATIO,
+		'' STAMPDUTY,
+		'' FROZENBALANCE,
+		'' FEECALCULATOR,
+		'' FROZENSHARESFORREINVEST,
+		'' ORIGINALAPPSHEETNO,
+		(select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code = c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+		'' VOLOFDIVIDENDFORREINVESTMENT,
+		#{TRANSDATE,jdbcType= VARCHAR} TRANSACTIONCFMDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} DIVIDENTDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} XRDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} REGISTRATIONDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} DOWNLOADDATE,
+		T2.dci_fund_code FUNDCODE,
+		T2.dci_channel_code CHANNELCODE,
+		#{LASTDATE,jdbcType= VARCHAR} LASTDATE,
+		'0000' RETURNCODE,
+		T2.DCI_TRANS_ACTION_ACCOUNT	  TRANSACTIONACCOUNTID,
+		T2.DCI_TA_ACCOUNT_ID	  TAACCOUNTID,
+		T2.DCI_DISTRIBUTOR_CODE	  DISTRIBUTORCODE,
+		T2.DCI_BRANCH_CODE	  BRANCHCODE,
+		T2.DCI_PRODUCT_CODE
+		from
+		(select t.*, te.f_sumecbalance
+		from ta_tprofitdealcurrentdetails t left join
+		ta_texchangecurrentsdetails  te
+		on t.l_serialno = te.l_businserialno
+		where exists
+		(select 1
+		from ta_tbusinremitmcurrents t2, ta_tremitmoneydetail t3
+		where t2.l_businserialno = t.l_serialno
+		and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') &gt;= #{LASTDATE,jdbcType=VARCHAR}
+		and TO_CHAR(t3.d_expectdate, 'YYYYMMDD') &lt;#{TRANSDATE,jdbcType=VARCHAR}
+		and t2.l_remitserialno = t3.l_firstserialno
+		<!-- created by 王超 20200427 加入划款成功的标志条件，防止划款失败的数据也被取出 -->
+        and t3.c_status &lt;&gt; '4')  )TT,  d_contract_info  T2
+		where TT.l_contractserialno = T2.DCI_IN_CONTRACT
+		and T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}) jj
+		where exists (select 1
+		from (
+		<!--create by yindy 函数修改  -->
+		select distinct c.CP_TA_PRODUCT_CODE fundcode
+		,p.pi_channel_product_code
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code = c.cp_channel_product_code
+		and p.pi_channel_code=c.cp_channel_code
+		and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in('00','99')
+		and p.pi_check_state = '01'
+		and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR}
+		<!-- 修改结束 -->
+		) temp
+		where temp.fundcode = jj.DCI_PRODUCT_CODE
+		and jj.dci_fund_code = temp.pi_channel_product_code)
+	</select>
+	
+	<select id="selectmultiCurrencyIncome" resultType="hashMap" parameterType="hashMap" >
+		select * from (
+		select tt.f_repaycapital REPAYCAPITAL,
+		tt.f_profit PROFIT,
+		tt.f_subinterest SUBINTEREST,
+		tt.f_interest INTEREST,
+		'SHTP' || tt.L_SERIALNO AS TASERIALNO,
+		tt.F_CURBENEFITSHARES,
+		decode((select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code =
+		c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+		'156',
+		nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)),
+		'840',
+		nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)) DIVIDENDAMOUNT,
+		decode((select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code =
+		c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE),
+		'156',
+		nvl(tt.f_sumecbalance,nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)),
+		'840',
+		nvl(tt.F_PROFIT, 0.00) + nvl(tt.F_SUBINTEREST, 0.00) +
+		nvl(tt.F_INTEREST, 0.00)) CONFIRMEDAMOUNT,
+		nvl(tt.F_CURBENEFITSHARES, 0.00) BASISFORCALCULATINGDIVIDEND,
+		T2.dci_in_contract || '20190906' AS REQUESTNO,
+		#{TRANSDATE,jdbcType=VARCHAR} DOPDATE,
+		T2.dci_in_contract INCONTRACT,
+		T2.dci_fund_code,
+		T2.DCI_PRODUCT_CODE TAFUNDCODE,
+		'' CHARGE,
+		'' AGENCYFEE,
+		'' TRANSFERFEE,
+		'' SHARECLASS,
+		'' DRAWBONUSUNIT,
+		'' DIVIDENDTYPE,
+		'' ACHIEVEMENTPAY,
+		'' ACHIEVEMENTCOMPEN,
+		'' NAV,
+		'' BUSINESSCODE,
+		'' DIVIDENDPERUNIT,
+		'1' DEFDIVIDENDMETHOD,
+		'' DEPOSITACCT,
+		'' REGIONCODE,
+		'' TOTALFROZENVOL,
+		'' OTHERFEE1,
+		'' OTHERFEE2,
+		'' INDIVIDUALORINSTITUTION,
+		'' DIVIDENDRATIO,
+		'' STAMPDUTY,
+		'' FROZENBALANCE,
+		'' FEECALCULATOR,
+		'' FROZENSHARESFORREINVEST,
+		'' ORIGINALAPPSHEETNO,
+		(select p.PI_CURRENCY_TYPE
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code = c.cp_channel_product_code
+		and p.pi_channel_code = c.cp_channel_code
+		and c.cp_channel_code = T2.dci_channel_code
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in ('00', '99')
+		and p.pi_check_state = '01'
+		and c.cp_channel_product_code = T2.dci_fund_code
+		and c.cp_ta_product_code = T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+		'' VOLOFDIVIDENDFORREINVESTMENT,
+		#{TRANSDATE,jdbcType= VARCHAR} TRANSACTIONCFMDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} DIVIDENTDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} XRDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} REGISTRATIONDATE,
+		#{TRANSDATE,jdbcType= VARCHAR} DOWNLOADDATE,
+		T2.dci_fund_code FUNDCODE,
+		T2.dci_channel_code CHANNELCODE,
+		#{LASTDATE,jdbcType= VARCHAR} LASTDATE,
+		'0000' RETURNCODE,
+		T2.DCI_TRANS_ACTION_ACCOUNT	  TRANSACTIONACCOUNTID,
+		T2.DCI_TA_ACCOUNT_ID	  TAACCOUNTID,
+		T2.DCI_DISTRIBUTOR_CODE	  DISTRIBUTORCODE,
+		T2.DCI_BRANCH_CODE	  BRANCHCODE,
+		T2.DCI_PRODUCT_CODE
+		from
+		(select t.f_profit ,
+			t.f_subinterest,
+			t.f_interest,
+			t.L_SERIALNO,
+			t.F_CURBENEFITSHARES,
+			t.f_sumbalance,
+			t.f_sumecbalance,
+			t.l_contractserialno,
+			t.d_expectdate,
+			t.f_repaycapital
+			from ta_vprofitdealcurrentdetails t 
+			where t.d_expectdate &gt;= to_date(#{LASTDATE,jdbcType=VARCHAR},'yyyymmdd')
+			and t.d_expectdate &lt; to_date(#{TRANSDATE,jdbcType=VARCHAR},'yyyymmdd'))TT,  d_contract_info  T2
+		where TT.l_contractserialno = T2.DCI_IN_CONTRACT
+		and T2.DCI_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}) jj
+		where exists (select 1
+		from (
+		<!--create by yindy 函数修改  -->
+		select distinct c.CP_TA_PRODUCT_CODE fundcode
+		,p.pi_channel_product_code
+		from p_product_info p, p_channel_product c
+		where p.pi_channel_product_code = c.cp_channel_product_code
+		and p.pi_channel_code=c.cp_channel_code
+		and c.cp_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		and c.cp_valid_flag = '01'
+		and c.cp_check_state = '01'
+		and p.pi_valid_flag not in('00','99')
+		and p.pi_check_state = '01'
+		and p.pi_product_type=#{PRODUCTTYPE, jdbcType = VARCHAR}
+		<!-- 修改结束 -->
+		) temp
+		where temp.fundcode = jj.DCI_PRODUCT_CODE
+		and jj.dci_fund_code = temp.pi_channel_product_code)
+	</select>
+	<select id="querySumAppliCationVol" parameterType="map" resultType="String">
+		select nvl(sum(t.er_application_vol),0) vol from d_exchange_req t 
+			where t.er_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+			and t.er_fund_code = #{FUNDCODE,jdbcType=VARCHAR}
+			and t.er_trans_date = #{TRANSDATE,jdbcType=VARCHAR}
+			and t.er_transaction_account_id = #{TRANSACTIONACCOUNTID,jdbcType=VARCHAR}
+			and t.er_valid_flag = '01'
+			and t.er_business_code = '024'
+	</select>
+	
+	<select id="select052TransIsFirst" parameterType="map" resultType="int">
+		select count(1) from d_contract_info t 
+		where t.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		and t.dci_fund_code = #{FUNDCODE,jdbcType=VARCHAR}
+		and t.dci_in_contract = #{INCONTRACT,jdbcType=VARCHAR}
+		and t.dci_out_contract = #{OUTCONTRACT,jdbcType=VARCHAR}
+		and t.dci_trans_action_account = #{TRANSACTIONACCOUNTID,jdbcType=VARCHAR}
+		and t.dci_insert_date = #{BUSINESSDATE,jdbcType=VARCHAR} 
+	</select>
+	<update id="update052Contract" parameterType="map">
+		update d_contract_info t 
+		set t.dci_valid_flag = '99',
+		t.dci_process_dec = '撤单交易'
+		where t.dci_channel_code = #{CHANNELCODE,jdbcType=VARCHAR}
+		and t.dci_fund_code = #{FUNDCODE,jdbcType=VARCHAR}
+		and t.dci_in_contract = #{INCONTRACT,jdbcType=VARCHAR}
+		and t.dci_out_contract = #{OUTCONTRACT,jdbcType=VARCHAR}
+		and t.dci_trans_action_account = #{TRANSACTIONACCOUNTID,jdbcType=VARCHAR}
+		and t.dci_insert_date = #{TRANSDATE,jdbcType=VARCHAR} 
+		and t.dci_product_code = #{TAPRODUCTCODE,jdbcType=VARCHAR}
+	</update>
+</mapper>
