@@ -1,0 +1,51 @@
+--26文件可用份额校验 该渠道，该产品，该客户的上一日可用份额的和-上一日赎回份额 = 今日可用份额的和（过滤掉可赎回日期是下一个工作日的记录）
+select count(1)
+  from (select tt.availableVol - ttt.availableVol countflag
+          from (select nvl(t1.availableVol, 0) - nvl(t2.applicationvol, 0) availableVol,
+                       t1.fvd_channel_code,
+                       t1.fvd_fund_code,
+                       t1.fvd_transaction_account_id
+                  from (select sum(t.fvd_available_vol) availableVol,
+                               t.fvd_channel_code,
+                               t.fvd_fund_code,
+                               t.fvd_transaction_account_id
+                          from d_fund_vol_detail_cfm t
+                         where t.fvd_channel_code = 'TTTNETB3'--CHANNELCODE
+                           and t.fvd_trans_date = '20200522'--LASTDATE
+                         group by t.fvd_channel_code,
+                                  t.fvd_fund_code,
+                                  t.fvd_transaction_account_id) t1
+                   
+         left join (select sum(e.er_application_vol) applicationvol,
+             e.er_channel_code,
+             e.er_fund_code,
+             e.er_transaction_account_id
+            from d_exchange_req e
+           where e.er_channel_code = 'TTTNETB3'--CHANNELCODE
+             and e.er_trans_date = '20200522'--LASTDATE
+             and e.er_business_code = '024'
+             and e.er_return_code = '0000'
+             and e.er_valid_flag = '01'
+               group by e.er_channel_code,
+              e.er_fund_code,
+              e.er_transaction_account_id)  t2 
+            on   t2.er_channel_code = t1.fvd_channel_code
+            and t2.er_fund_code = t1.fvd_fund_code
+            and t2.er_transaction_account_id = t1.fvd_transaction_account_id      
+            ) tt,
+                    (select sum(t.fvd_available_vol) availableVol,
+                           t.fvd_channel_code,
+                           t.fvd_fund_code,
+                           t.fvd_transaction_account_id
+                      from d_fund_vol_detail_cfm t
+                     where t.fvd_channel_code = 'TTTNETB3'--CHANNELCODE
+                       and t.fvd_trans_date = '20200525'--TRANSDATE
+               and nvl(t.fvd_rel_allow_redempt_date,t.fvd_allow_redempt_date) != '20200526'--NEXTDATE
+                     group by t.fvd_channel_code,
+                              t.fvd_fund_code,
+                              t.fvd_transaction_account_id) ttt
+                    
+         where ttt.fvd_channel_code = tt.fvd_channel_code
+           and ttt.fvd_fund_code = tt.fvd_fund_code
+           and ttt.fvd_transaction_account_id = tt.fvd_transaction_account_id) pp
+ where pp.countflag != 0

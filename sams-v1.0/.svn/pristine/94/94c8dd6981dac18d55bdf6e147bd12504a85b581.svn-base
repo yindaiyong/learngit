@@ -1,0 +1,730 @@
+prompt Importing table p_interface_col_info...
+set feedback off
+set define off
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2668, '04000020', '00001', 'AppSheetSerialNo', '申请单编号', 'A', '24', '0', '00', '0', null, null, '00', null, '1', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2547, '04000021', '00001', 'AppSheetSerialNo', '申请单编号', 'A', '24', '0', '00', '0', null, null, '00', null, '1', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2548, '04000021', '00002', 'TransactionCfmDate', '交易确认日期', 'A', '8', '0', '00', '0', null, null, '00', null, '2', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2669, '04000020', '00002', 'TransactionCfmDate', '交易确认日期', 'A', '8', '0', '00', '0', null, null, '00', null, '2', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2549, '04000021', '00003', 'CurrencyType', '结算币种', 'A', '3', '0', '00', '0', null, null, '00', null, '3', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2670, '04000020', '00003', 'CurrencyType', '结算币种', 'A', '3', '0', '00', '0', null, null, '00', null, '3', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2671, '04000020', '00004', 'ConfirmedVol', '基金账户交易确认份数', 'N', '16', '2', '00', '0', null, null, '00', null, '4', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2550, '04000021', '00004', 'ConfirmedVol', '基金账户交易确认份数', 'N', '16', '2', '00', '0', null, null, '00', null, '4', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2672, '04000020', '00005', 'ConfirmedAmount', '每笔交易确认金额', 'N', '16', '2', '00', '0', null, null, '00', null, '5', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2551, '04000021', '00005', 'ConfirmedAmount', '每笔交易确认金额', 'N', '16', '2', '00', '0', null, null, '00', null, '5', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2673, '04000020', '00006', 'FundCode', '基金代码', 'C', '6', '0', '00', '0', null, null, '00', null, '6', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2552, '04000021', '00006', 'FundCode', '基金代码', 'C', '6', '0', '00', '0', null, null, '00', null, '6', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2674, '04000020', '00007', 'LargeRedemptionFlag', '巨额赎回处理标志', 'A', '1', '0', '00', '0', null, null, '00', null, '7', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2553, '04000021', '00007', 'LargeRedemptionFlag', '巨额赎回处理标志', 'A', '1', '0', '00', '0', null, null, '00', null, '7', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2554, '04000021', '00008', 'TransactionDate', '交易发生日期', 'A', '8', '0', '00', '0', null, null, '00', null, '8', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2675, '04000020', '00008', 'TransactionDate', '交易发生日期', 'A', '8', '0', '00', '0', null, null, '00', null, '8', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2676, '04000020', '00009', 'TransactionTime', '交易发生时间', 'A', '6', '0', '00', '0', null, null, '00', null, '9', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2555, '04000021', '00009', 'TransactionTime', '交易发生时间', 'A', '6', '0', '00', '0', null, null, '00', null, '9', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2556, '04000021', '00010', 'ReturnCode', '交易处理返回代码', 'A', '4', '0', '00', '0', null, null, '00', null, '10', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2677, '04000020', '00010', 'ReturnCode', '交易处理返回代码', 'A', '4', '0', '00', '0', null, null, '00', null, '10', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2557, '04000021', '00011', 'TransactionAccountID', '投资人基金交易帐号', 'A', '17', '0', '00', '0', null, null, '00', null, '11', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2678, '04000020', '00011', 'TransactionAccountID', '投资人基金交易帐号', 'A', '17', '0', '00', '0', null, null, '00', null, '11', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2558, '04000021', '00012', 'DistributorCode', '销售人代码', 'C', '9', '0', '00', '0', null, null, '00', null, '12', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2679, '04000020', '00012', 'DistributorCode', '销售人代码', 'C', '9', '0', '00', '0', null, null, '00', null, '12', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2559, '04000021', '00013', 'ApplicationVol', '申请基金份数', 'N', '16', '2', '00', '0', null, null, '00', null, '13', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2680, '04000020', '00013', 'ApplicationVol', '申请基金份数', 'N', '16', '2', '00', '0', null, null, '00', null, '13', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2560, '04000021', '00014', 'ApplicationAmount', '申请金额', 'N', '16', '2', '00', '0', null, null, '00', null, '14', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2681, '04000020', '00014', 'ApplicationAmount', '申请金额', 'N', '16', '2', '00', '0', null, null, '00', null, '14', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2561, '04000021', '00015', 'BusinessCode', '业务代码', 'A', '3', '0', '00', '0', null, null, '00', null, '15', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2682, '04000020', '00015', 'BusinessCode', '业务代码', 'A', '3', '0', '00', '0', null, null, '00', null, '15', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2562, '04000021', '00016', 'TAAccountID', '投资人基金帐号', 'A', '12', '0', '00', '0', null, null, '00', null, '16', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2683, '04000020', '00016', 'TAAccountID', '投资人基金帐号', 'A', '12', '0', '00', '0', null, null, '00', null, '16', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2563, '04000021', '00017', 'TASerialNO', 'TA确认交易流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '17', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2684, '04000020', '00017', 'TASerialNO', 'TA确认交易流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '17', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2564, '04000021', '00018', 'BusinessFinishFlag', '业务过程完全结束标识', 'C', '1', '0', '00', '0', null, null, '00', null, '18', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2685, '04000020', '00018', 'BusinessFinishFlag', '业务过程完全结束标识', 'C', '1', '0', '00', '0', null, null, '00', null, '18', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2686, '04000020', '00019', 'DiscountRateOfCommission', '销售佣金折扣率', 'N', '5', '4', '00', '0', null, null, '00', null, '19', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2565, '04000021', '00019', 'DiscountRateOfCommission', '销售佣金折扣率', 'N', '5', '4', '00', '0', null, null, '00', null, '19', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2566, '04000021', '00020', 'DepositAcct', '投资人在销售人处用于交易的资金帐号', 'C', '19', '0', '00', '0', null, null, '00', null, '20', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2687, '04000020', '00020', 'DepositAcct', '投资人在销售人处用于交易的资金帐号', 'C', '19', '0', '00', '0', null, null, '00', null, '20', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2567, '04000021', '00021', 'RegionCode', '交易所在地区编号', 'A', '4', '0', '00', '0', null, null, '00', null, '21', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2688, '04000020', '00021', 'RegionCode', '交易所在地区编号', 'A', '4', '0', '00', '0', null, null, '00', null, '21', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2568, '04000021', '00022', 'DownLoaddate', '交易数据下传日期', 'A', '8', '0', '00', '0', null, null, '00', null, '22', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2689, '04000020', '00022', 'DownLoaddate', '交易数据下传日期', 'A', '8', '0', '00', '0', null, null, '00', null, '22', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2569, '04000021', '00023', 'Charge', '手续费', 'N', '10', '2', '00', '0', null, null, '00', null, '23', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2690, '04000020', '00023', 'Charge', '手续费', 'N', '10', '2', '00', '0', null, null, '00', null, '23', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2570, '04000021', '00024', 'AgencyFee', '代理费', 'N', '10', '2', '00', '0', null, null, '00', null, '24', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2691, '04000020', '00024', 'AgencyFee', '代理费', 'N', '10', '2', '00', '0', null, null, '00', null, '24', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2571, '04000021', '00025', 'NAV', '基金单位净值', 'N', '7', '4', '00', '0', null, null, '00', null, '25', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2692, '04000020', '00025', 'NAV', '基金单位净值', 'N', '7', '4', '00', '0', null, null, '00', null, '25', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2572, '04000021', '00026', 'BranchCode', '网点号码', 'C', '9', '0', '00', '0', null, null, '00', null, '26', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2693, '04000020', '00026', 'BranchCode', '网点号码', 'C', '9', '0', '00', '0', null, null, '00', null, '26', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2573, '04000021', '00027', 'OriginalAppSheetNo', '原申请单编号', 'A', '24', '0', '00', '0', null, null, '00', null, '27', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2694, '04000020', '00027', 'OriginalAppSheetNo', '原申请单编号', 'A', '24', '0', '00', '0', null, null, '00', null, '27', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2574, '04000021', '00028', 'OriginalSubsDate', '原申购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '28', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2695, '04000020', '00028', 'OriginalSubsDate', '原申购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '28', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2696, '04000020', '00029', 'OtherFee1', '其他费用1', 'N', '10', '2', '00', '0', null, null, '00', null, '29', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2575, '04000021', '00029', 'OtherFee1', '其他费用1', 'N', '10', '2', '00', '0', null, null, '00', null, '29', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2576, '04000021', '00030', 'IndividualOrInstitution', '个人/机构标志 ', 'A', '1', '0', '00', '0', null, null, '00', null, '30', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2697, '04000020', '00030', 'IndividualOrInstitution', '个人/机构标志 ', 'A', '1', '0', '00', '0', null, null, '00', null, '30', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2577, '04000021', '00031', 'RedemptionDateInAdvance', '预约赎回日期', 'A', '8', '0', '00', '0', null, null, '00', null, '31', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2698, '04000020', '00031', 'RedemptionDateInAdvance', '预约赎回日期', 'A', '8', '0', '00', '0', null, null, '00', null, '31', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2578, '04000021', '00032', 'StampDuty', '印花税', 'N', '16', '2', '00', '0', null, null, '00', null, '32', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2699, '04000020', '00032', 'StampDuty', '印花税', 'N', '16', '2', '00', '0', null, null, '00', null, '32', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2579, '04000021', '00033', 'ValidPeriod', '交易申请有效天数', 'N', '2', '0', '00', '0', null, null, '00', null, '33', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2700, '04000020', '00033', 'ValidPeriod', '交易申请有效天数', 'N', '2', '0', '00', '0', null, null, '00', null, '33', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2580, '04000021', '00034', 'RateFee', '费率', 'N', '9', '8', '00', '0', null, null, '00', null, '34', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2701, '04000020', '00034', 'RateFee', '费率', 'N', '9', '8', '00', '0', null, null, '00', null, '34', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2581, '04000021', '00035', 'TotalBackendLoad', '交易后端收费总额', 'N', '16', '2', '00', '0', null, null, '00', null, '35', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2702, '04000020', '00035', 'TotalBackendLoad', '交易后端收费总额', 'N', '16', '2', '00', '0', null, null, '00', null, '35', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2582, '04000021', '00036', 'OriginalSerialNo', 'TA的原确认流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '36', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2703, '04000020', '00036', 'OriginalSerialNo', 'TA的原确认流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '36', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2583, '04000021', '00037', 'Specification', '摘要/说明', 'C', '60', '0', '00', '0', null, null, '00', null, '37', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2704, '04000020', '00037', 'Specification', '摘要/说明', 'C', '60', '0', '00', '0', null, null, '00', null, '37', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2584, '04000021', '00038', 'DateOfPeriodicSubs', '定期定额申购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '38', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2705, '04000020', '00038', 'DateOfPeriodicSubs', '定期定额申购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '38', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2706, '04000020', '00039', 'TargetDistributorCode', '对方销售人代码', 'C', '9', '0', '00', '0', null, null, '00', null, '39', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2585, '04000021', '00039', 'TargetDistributorCode', '对方销售人代码', 'C', '9', '0', '00', '0', null, null, '00', null, '39', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2586, '04000021', '00040', 'TargetBranchCode', '对方网点号', 'C', '9', '0', '00', '0', null, null, '00', null, '40', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2707, '04000020', '00040', 'TargetBranchCode', '对方网点号', 'C', '9', '0', '00', '0', null, null, '00', null, '40', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2587, '04000021', '00041', 'TargetTransactionAccountID', '对方销售人处投资人基金交易帐号', 'A', '17', '0', '00', '0', null, null, '00', null, '41', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2708, '04000020', '00041', 'TargetTransactionAccountID', '对方销售人处投资人基金交易帐号', 'A', '17', '0', '00', '0', null, null, '00', null, '41', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2588, '04000021', '00042', 'TargetRegionCode', '对方所在地区编号', 'A', '4', '0', '00', '0', null, null, '00', null, '42', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2709, '04000020', '00042', 'TargetRegionCode', '对方所在地区编号', 'A', '4', '0', '00', '0', null, null, '00', null, '42', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2589, '04000021', '00043', 'TransferDirection', '转入/转出标识', 'A', '1', '0', '00', '0', null, null, '00', null, '43', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2710, '04000020', '00043', 'TransferDirection', '转入/转出标识', 'A', '1', '0', '00', '0', null, null, '00', null, '43', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2590, '04000021', '00044', 'DefDividendMethod', '默认分红方式', 'A', '1', '0', '00', '0', null, null, '00', null, '44', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2711, '04000020', '00044', 'DefDividendMethod', '默认分红方式', 'A', '1', '0', '00', '0', null, null, '00', null, '44', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2591, '04000021', '00045', 'DividendRatio', '红利比例', 'N', '16', '2', '00', '0', null, null, '00', null, '45', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2712, '04000020', '00045', 'DividendRatio', '红利比例', 'N', '16', '2', '00', '0', null, null, '00', null, '45', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2592, '04000021', '00046', 'Interest', '基金账户利息金额', 'N', '10', '2', '00', '0', null, null, '00', null, '46', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2713, '04000020', '00046', 'Interest', '基金账户利息金额', 'N', '10', '2', '00', '0', null, null, '00', null, '46', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2593, '04000021', '00047', 'VolumeByInterest', '利息产生的基金份数', 'N', '16', '2', '00', '0', null, null, '00', null, '47', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2714, '04000020', '00047', 'VolumeByInterest', '利息产生的基金份数', 'N', '16', '2', '00', '0', null, null, '00', null, '47', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2594, '04000021', '00048', 'InterestTax', '利息税', 'N', '16', '2', '00', '0', null, null, '00', null, '48', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2715, '04000020', '00048', 'InterestTax', '利息税', 'N', '16', '2', '00', '0', null, null, '00', null, '48', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2716, '04000020', '00049', 'TradingPrice', '交易价格', 'N', '7', '4', '00', '0', null, null, '00', null, '49', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2595, '04000021', '00049', 'TradingPrice', '交易价格', 'N', '7', '4', '00', '0', null, null, '00', null, '49', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2596, '04000021', '00050', 'FreezingDeadline', '冻结截止日期', 'A', '8', '0', '00', '0', null, null, '00', null, '50', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2717, '04000020', '00050', 'FreezingDeadline', '冻结截止日期', 'A', '8', '0', '00', '0', null, null, '00', null, '50', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2597, '04000021', '00051', 'FrozenCause', '冻结原因', 'A', '1', '0', '00', '0', null, null, '00', null, '51', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2718, '04000020', '00051', 'FrozenCause', '冻结原因', 'A', '1', '0', '00', '0', null, null, '00', null, '51', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2598, '04000021', '00052', 'Tax', '税金', 'N', '16', '2', '00', '0', null, null, '00', null, '52', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2719, '04000020', '00052', 'Tax', '税金', 'N', '16', '2', '00', '0', null, null, '00', null, '52', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2599, '04000021', '00053', 'TargetNAV', '目标基金的单位净值', 'N', '7', '4', '00', '0', null, null, '00', null, '53', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2720, '04000020', '00053', 'TargetNAV', '目标基金的单位净值', 'N', '7', '4', '00', '0', null, null, '00', null, '53', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2600, '04000021', '00054', 'TargetFundPrice', '目标基金的价格', 'N', '7', '4', '00', '0', null, null, '00', null, '54', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2721, '04000020', '00054', 'TargetFundPrice', '目标基金的价格', 'N', '7', '4', '00', '0', null, null, '00', null, '54', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2601, '04000021', '00055', 'CfmVolOfTargetFund', '目标基金的确认份数', 'N', '16', '2', '00', '0', null, null, '00', null, '55', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2722, '04000020', '00055', 'CfmVolOfTargetFund', '目标基金的确认份数', 'N', '16', '2', '00', '0', null, null, '00', null, '55', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2602, '04000021', '00056', 'MinFee', '最少收费', 'N', '10', '2', '00', '0', null, null, '00', null, '56', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2723, '04000020', '00056', 'MinFee', '最少收费', 'N', '10', '2', '00', '0', null, null, '00', null, '56', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2603, '04000021', '00057', 'OtherFee2', '其他费用2', 'N', '16', '2', '00', '0', null, null, '00', null, '57', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2724, '04000020', '00057', 'OtherFee2', '其他费用2', 'N', '16', '2', '00', '0', null, null, '00', null, '57', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2604, '04000021', '00058', 'OriginalAppDate', '原申请日期', 'A', '8', '0', '00', '0', null, null, '00', null, '58', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2725, '04000020', '00058', 'OriginalAppDate', '原申请日期', 'A', '8', '0', '00', '0', null, null, '00', null, '58', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2726, '04000020', '00059', 'TransferFee', '过户费', 'N', '10', '2', '00', '0', null, null, '00', null, '59', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2605, '04000021', '00059', 'TransferFee', '过户费', 'N', '10', '2', '00', '0', null, null, '00', null, '59', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2606, '04000021', '00060', 'FromTAFlag', '是否注册登记人发起业务标志', 'A', '1', '0', '00', '0', null, null, '00', null, '60', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2727, '04000020', '00060', 'FromTAFlag', '是否注册登记人发起业务标志', 'A', '1', '0', '00', '0', null, null, '00', null, '60', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2607, '04000021', '00061', 'ShareClass', '收费类别', 'C', '1', '0', '00', '0', null, null, '00', null, '61', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2728, '04000020', '00061', 'ShareClass', '收费类别', 'C', '1', '0', '00', '0', null, null, '00', null, '61', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2608, '04000021', '00062', 'DetailFlag', '数据明细标志', 'C', '1', '0', '00', '0', null, null, '00', null, '62', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2729, '04000020', '00062', 'DetailFlag', '数据明细标志', 'C', '1', '0', '00', '0', null, null, '00', null, '62', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2609, '04000021', '00063', 'RedemptionInAdvanceFlag', '预约赎回标志', 'A', '1', '0', '00', '0', null, null, '00', null, '63', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2730, '04000020', '00063', 'RedemptionInAdvanceFlag', '预约赎回标志', 'A', '1', '0', '00', '0', null, null, '00', null, '63', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2610, '04000021', '00064', 'FrozenMethod', '冻结方式', 'A', '1', '0', '00', '0', null, null, '00', null, '64', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2731, '04000020', '00064', 'FrozenMethod', '冻结方式', 'A', '1', '0', '00', '0', null, null, '00', null, '64', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2611, '04000021', '00065', 'OriginalCfmDate', 'TA的原确认日期', 'A', '8', '0', '00', '0', null, null, '00', null, '65', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2732, '04000020', '00065', 'OriginalCfmDate', 'TA的原确认日期', 'A', '8', '0', '00', '0', null, null, '00', null, '65', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2612, '04000021', '00066', 'RedemptionReason', '强行赎回原因', 'A', '1', '0', '00', '0', null, null, '00', null, '66', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2733, '04000020', '00066', 'RedemptionReason', '强行赎回原因', 'A', '1', '0', '00', '0', null, null, '00', null, '66', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2613, '04000021', '00067', 'CodeOfTargetFund', '转换时的目标基金代码', 'A', '6', '0', '00', '0', null, null, '00', null, '67', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2734, '04000020', '00067', 'CodeOfTargetFund', '转换时的目标基金代码', 'A', '6', '0', '00', '0', null, null, '00', null, '67', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2735, '04000020', '00068', 'TotalTransFee', '交易确认费用合计', 'N', '10', '2', '00', '0', null, null, '00', null, '68', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2614, '04000021', '00068', 'TotalTransFee', '交易确认费用合计', 'N', '10', '2', '00', '0', null, null, '00', null, '68', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2615, '04000021', '00069', 'VarietyCodeOfPeriodicSubs', '定时定额品种代码', 'C', '5', '0', '00', '0', null, null, '00', null, '69', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2736, '04000020', '00069', 'VarietyCodeOfPeriodicSubs', '定时定额品种代码', 'C', '5', '0', '00', '0', null, null, '00', null, '69', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2616, '04000021', '00070', 'SerialNoOfPeriodicSubs', '定时定额申购序号', 'C', '5', '0', '00', '0', null, null, '00', null, '70', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2737, '04000020', '00070', 'SerialNoOfPeriodicSubs', '定时定额申购序号', 'C', '5', '0', '00', '0', null, null, '00', null, '70', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2738, '04000020', '00071', 'RationType', '定期定额种类', 'C', '1', '0', '00', '0', null, null, '00', null, '71', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2617, '04000021', '00071', 'RationType', '定期定额种类', 'C', '1', '0', '00', '0', null, null, '00', null, '71', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2618, '04000021', '00072', 'TargetTAAccountID', '对方基金账号', 'C', '12', '0', '00', '0', null, null, '00', null, '72', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2739, '04000020', '00072', 'TargetTAAccountID', '对方基金账号', 'C', '12', '0', '00', '0', null, null, '00', null, '72', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2740, '04000020', '00073', 'TargetRegistrarCode', '对方TA代码', 'C', '2', '0', '00', '0', null, null, '00', null, '73', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2619, '04000021', '00073', 'TargetRegistrarCode', '对方TA代码', 'C', '2', '0', '00', '0', null, null, '00', null, '73', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2741, '04000020', '00074', 'NetNo', '操作（清算）网点编号', 'C', '9', '0', '00', '0', null, null, '00', null, '74', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2620, '04000021', '00074', 'NetNo', '操作（清算）网点编号', 'C', '9', '0', '00', '0', null, null, '00', null, '74', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2621, '04000021', '00075', 'CustomerNo', 'TA客户编号', 'C', '12', '0', '00', '0', null, null, '00', null, '75', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2742, '04000020', '00075', 'CustomerNo', 'TA客户编号', 'C', '12', '0', '00', '0', null, null, '00', null, '75', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2743, '04000020', '00076', 'TargetShareType', '对方基金份额类别', 'C', '1', '0', '00', '0', null, null, '00', null, '76', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2622, '04000021', '00076', 'TargetShareType', '对方基金份额类别', 'C', '1', '0', '00', '0', null, null, '00', null, '76', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2744, '04000020', '00077', 'RationProtocolNo', '定期定额协议号', 'C', '20', '0', '00', '0', null, null, '00', null, '77', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2623, '04000021', '00077', 'RationProtocolNo', '定期定额协议号', 'C', '20', '0', '00', '0', null, null, '00', null, '77', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2745, '04000020', '00078', 'BeginDateOfPeriodicSubs', '定时定额申购起始日期', 'A', '8', '0', '00', '0', null, null, '00', null, '78', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2624, '04000021', '00078', 'BeginDateOfPeriodicSubs', '定时定额申购起始日期', 'A', '8', '0', '00', '0', null, null, '00', null, '78', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2625, '04000021', '00079', 'EndDateOfPeriodicSubs', '定时定额申购终止日期', 'A', '8', '0', '00', '0', null, null, '00', null, '79', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2746, '04000020', '00079', 'EndDateOfPeriodicSubs', '定时定额申购终止日期', 'A', '8', '0', '00', '0', null, null, '00', null, '79', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2626, '04000021', '00080', 'SendDayOfPeriodicSubs', '定时定额申购每月发送日', 'N', '2', '0', '00', '0', null, null, '00', null, '80', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2747, '04000020', '00080', 'SendDayOfPeriodicSubs', '定时定额申购每月发送日', 'N', '2', '0', '00', '0', null, null, '00', null, '80', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2627, '04000021', '00081', 'Broker', '经纪人', 'C', '12', '0', '00', '0', null, null, '00', null, '81', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2748, '04000020', '00081', 'Broker', '经纪人', 'C', '12', '0', '00', '0', null, null, '00', null, '81', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2628, '04000021', '00082', 'SalesPromotion', '促销活动代码', 'C', '3', '0', '00', '0', null, null, '00', null, '82', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2749, '04000020', '00082', 'SalesPromotion', '促销活动代码', 'C', '3', '0', '00', '0', null, null, '00', null, '82', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2629, '04000021', '00083', 'AcceptMethod', '受理方式', 'C', '1', '0', '00', '0', null, null, '00', null, '83', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2750, '04000020', '00083', 'AcceptMethod', '受理方式', 'C', '1', '0', '00', '0', null, null, '00', null, '83', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2630, '04000021', '00084', 'ForceRedemptionType', '强制赎回类型', 'C', '1', '0', '00', '0', null, null, '00', null, '84', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2751, '04000020', '00084', 'ForceRedemptionType', '强制赎回类型', 'C', '1', '0', '00', '0', null, null, '00', null, '84', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2752, '04000020', '00085', 'AlternationDate', '最后更新日', 'A', '8', '0', '00', '0', null, null, '00', null, '85', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2631, '04000021', '00085', 'AlternationDate', '最后更新日', 'A', '8', '0', '00', '0', null, null, '00', null, '85', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2753, '04000020', '00086', 'TakeIncomeFlag', '带走收益标志', 'C', '1', '0', '00', '0', null, null, '00', null, '86', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2632, '04000021', '00086', 'TakeIncomeFlag', '带走收益标志', 'C', '1', '0', '00', '0', null, null, '00', null, '86', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2754, '04000020', '00087', 'PurposeOfPeSubs', '定投目的', 'C', '40', '0', '00', '0', null, null, '00', null, '87', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2633, '04000021', '00087', 'PurposeOfPeSubs', '定投目的', 'C', '40', '0', '00', '0', null, null, '00', null, '87', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2755, '04000020', '00088', 'FrequencyOfPeSubs', '定投频率', 'N', '5', '0', '00', '0', null, null, '00', null, '88', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2634, '04000021', '00088', 'FrequencyOfPeSubs', '定投频率', 'N', '5', '0', '00', '0', null, null, '00', null, '88', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2635, '04000021', '00089', 'PeriodSubTimeUnit', '定投周期单位', 'C', '1', '0', '00', '0', null, null, '00', null, '89', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2756, '04000020', '00089', 'PeriodSubTimeUnit', '定投周期单位', 'C', '1', '0', '00', '0', null, null, '00', null, '89', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2757, '04000020', '00090', 'BatchNumOfPeSubs', '定投期数', 'N', '16', '2', '00', '0', null, null, '00', null, '90', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2636, '04000021', '00090', 'BatchNumOfPeSubs', '定投期数', 'N', '16', '2', '00', '0', null, null, '00', null, '90', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2637, '04000021', '00091', 'CapitalMode', '资金方式', 'C', '2', '0', '00', '0', null, null, '00', null, '91', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2758, '04000020', '00091', 'CapitalMode', '资金方式', 'C', '2', '0', '00', '0', null, null, '00', null, '91', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2638, '04000021', '00092', 'DetailCapticalMode', '明细资金方式', 'C', '2', '0', '00', '0', null, null, '00', null, '92', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2759, '04000020', '00092', 'DetailCapticalMode', '明细资金方式', 'C', '2', '0', '00', '0', null, null, '00', null, '92', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2639, '04000021', '00093', 'BackenloadDiscount', '补差费折扣率', 'N', '5', '4', '00', '0', null, null, '00', null, '93', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2760, '04000020', '00093', 'BackenloadDiscount', '补差费折扣率', 'N', '5', '4', '00', '0', null, null, '00', null, '93', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2761, '04000020', '00094', 'CombineNum', '组合编号', 'C', '6', '0', '00', '0', null, null, '00', null, '94', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2640, '04000021', '00094', 'CombineNum', '组合编号', 'C', '6', '0', '00', '0', null, null, '00', null, '94', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2762, '04000020', '00095', 'RefundAmount', '退款金额', 'N', '16', '2', '00', '0', null, null, '00', null, '95', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2641, '04000021', '00095', 'RefundAmount', '退款金额', 'N', '16', '2', '00', '0', null, null, '00', null, '95', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2763, '04000020', '00096', 'SalePercent', '配售比例', 'N', '8', '5', '00', '0', null, null, '00', null, '96', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2642, '04000021', '00096', 'SalePercent', '配售比例', 'N', '8', '5', '00', '0', null, null, '00', null, '96', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2764, '04000020', '00097', 'ManagerRealRatio', '实际计算折扣', 'N', '7', '4', '00', '0', null, null, '00', null, '97', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2643, '04000021', '00097', 'ManagerRealRatio', '实际计算折扣', 'N', '7', '4', '00', '0', null, null, '00', null, '97', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2765, '04000020', '00098', 'ChangeFee', '转换费', 'N', '16', '2', '00', '0', null, null, '00', null, '98', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2644, '04000021', '00098', 'ChangeFee', '转换费', 'N', '16', '2', '00', '0', null, null, '00', null, '98', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2645, '04000021', '00099', 'RecuperateFee', '补差费', 'N', '16', '2', '00', '0', null, null, '00', null, '99', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2766, '04000020', '00099', 'RecuperateFee', '补差费', 'N', '16', '2', '00', '0', null, null, '00', null, '99', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2767, '04000020', '00100', 'AchievementPay', '业绩报酬', 'N', '16', '2', '00', '0', null, null, '00', null, '100', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2646, '04000021', '00100', 'AchievementPay', '业绩报酬', 'N', '16', '2', '00', '0', null, null, '00', null, '100', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2647, '04000021', '00101', 'AchievementCompen', '业绩补偿', 'N', '16', '2', '00', '0', null, null, '00', null, '101', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2768, '04000020', '00101', 'AchievementCompen', '业绩补偿', 'N', '16', '2', '00', '0', null, null, '00', null, '101', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2769, '04000020', '00102', 'SharesAdjustmentFlag', '份额强制调整标志', 'C', '1', '0', '00', '0', null, null, '00', null, '102', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2648, '04000021', '00102', 'SharesAdjustmentFlag', '份额强制调整标志', 'C', '1', '0', '00', '0', null, null, '00', null, '102', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2770, '04000020', '00103', 'GeneralTASerialNO', '总TA确认流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '103', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2649, '04000021', '00103', 'GeneralTASerialNO', '总TA确认流水号', 'A', '20', '0', '00', '0', null, null, '00', null, '103', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2650, '04000021', '00104', 'UndistributeMonetaryIncome', '货币基金未付收益金额', 'N', '16', '2', '00', '0', null, null, '00', null, '104', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2771, '04000020', '00104', 'UndistributeMonetaryIncome', '货币基金未付收益金额', 'N', '16', '2', '00', '0', null, null, '00', null, '104', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2651, '04000021', '00105', 'UndistributeMonetaryIncomeFlag', '货币基金未付收益金额正负', 'C', '1', '0', '00', '0', null, null, '00', null, '105', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2772, '04000020', '00105', 'UndistributeMonetaryIncomeFlag', '货币基金未付收益金额正负', 'C', '1', '0', '00', '0', null, null, '00', null, '105', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2652, '04000021', '00106', 'BreachFee', '违约金', 'N', '16', '2', '00', '0', null, null, '00', null, '106', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2773, '04000020', '00106', 'BreachFee', '违约金', 'N', '16', '2', '00', '0', null, null, '00', null, '106', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2653, '04000021', '00107', 'BreachFeeBackToFund', '违约金归基金资产金额', 'N', '16', '2', '00', '0', null, null, '00', null, '107', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2774, '04000020', '00107', 'BreachFeeBackToFund', '违约金归基金资产金额', 'N', '16', '2', '00', '0', null, null, '00', null, '107', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2654, '04000021', '00108', 'PunishFee', '惩罚性费用', 'N', '16', '2', '00', '0', null, null, '00', null, '108', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2775, '04000020', '00108', 'PunishFee', '惩罚性费用', 'N', '16', '2', '00', '0', null, null, '00', null, '108', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2776, '04000020', '00109', 'TradingMethod', '使用的交易手段', 'C', '8', '0', '00', '0', null, null, '00', null, '109', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2655, '04000021', '00109', 'TradingMethod', '使用的交易手段', 'C', '8', '0', '00', '0', null, null, '00', null, '109', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2777, '04000020', '00110', 'ChangeAgencyFee', '转换代理费', 'N', '16', '2', '00', '0', null, null, '00', null, '110', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2656, '04000021', '00110', 'ChangeAgencyFee', '转换代理费', 'N', '16', '2', '00', '0', null, null, '00', null, '110', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2657, '04000021', '00111', 'RecuperateAgencyFee', '补差代理费', 'N', '16', '2', '00', '0', null, null, '00', null, '111', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2778, '04000020', '00111', 'RecuperateAgencyFee', '补差代理费', 'N', '16', '2', '00', '0', null, null, '00', null, '111', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2779, '04000020', '00112', 'ErrorDetail', '出错详细信息', 'C', '60', '0', '00', '0', null, null, '00', null, '112', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2658, '04000021', '00112', 'ErrorDetail', '出错详细信息', 'C', '60', '0', '00', '0', null, null, '00', null, '112', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2780, '04000020', '00113', 'LargeBuyFlag', '巨额购买处理标志', 'A', '1', '0', '00', '0', null, null, '00', null, '113', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2659, '04000021', '00113', 'LargeBuyFlag', '巨额购买处理标志', 'A', '1', '0', '00', '0', null, null, '00', null, '113', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2660, '04000021', '00114', 'RaiseInterest', '认购期间利息', 'N', '16', '2', '00', '0', null, null, '00', null, '114', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2781, '04000020', '00114', 'RaiseInterest', '认购期间利息', 'N', '16', '2', '00', '0', null, null, '00', null, '114', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2661, '04000021', '00115', 'FeeCalculator', '计费人', 'A', '1', '0', '00', '0', null, null, '00', null, '115', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2782, '04000020', '00115', 'FeeCalculator', '计费人', 'A', '1', '0', '00', '0', null, null, '00', null, '115', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2662, '04000021', '00116', 'ShareRegisterDate', '份额注册日期', 'A', '8', '0', '00', '0', null, null, '00', null, '116', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2783, '04000020', '00116', 'ShareRegisterDate', '份额注册日期', 'A', '8', '0', '00', '0', null, null, '00', null, '116', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2663, '04000021', '00117', 'TotalFrozenVol', '基金冻结总份数', 'N', '16', '2', '00', '0', null, null, '00', null, '117', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2784, '04000020', '00117', 'TotalFrozenVol', '基金冻结总份数', 'N', '16', '2', '00', '0', null, null, '00', null, '117', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2664, '04000021', '00118', 'FundVolBalance', '基金份数余额', 'N', '16', '2', '00', '0', null, null, '00', null, '118', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2785, '04000020', '00118', 'FundVolBalance', '基金份数余额', 'N', '16', '2', '00', '0', null, null, '00', null, '118', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2665, '04000021', '00119', 'FrozenBalance', '冻结金额', 'N', '16', '2', '00', '0', null, null, '00', null, '119', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2786, '04000020', '00119', 'FrozenBalance', '冻结金额', 'N', '16', '2', '00', '0', null, null, '00', null, '119', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2666, '04000021', '00120', 'FutureSubscribeDate', '指定认购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '120', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2787, '04000020', '00120', 'FutureSubscribeDate', '指定认购日期', 'A', '8', '0', '00', '0', null, null, '00', null, '120', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2788, '04000020', '00121', 'TransferDateThroughClearingAgency', '清算资金经清算人划出日期 ', 'A', '8', '0', '00', '0', null, null, '00', null, '121', null, null, null, null);
+
+insert into p_interface_col_info (IC_ID, IC_INTERFACE_CODE, IC_COL_CODE, IC_COL_NAME, IC_COL_DESC, IC_COL_TYPE, IC_COL_LENGTH, IC_COL_DECIMAL, IC_REQU_ON_OFF, IC_COL_REQU, IC_COL_DICT, IC_COL_RULE, IC_RULE_ON_OFF, IC_COL_VALUE, IC_COL_ORDER, IC_CTIME, IC_UTIME, IC_CUSER, IC_UUSER)
+values (2667, '04000021', '00121', 'TransferDateThroughClearingAgency', '清算资金经清算人划出日期 ', 'A', '8', '0', '00', '0', null, null, '00', null, '121', null, null, null, null);
+
+prompt Done.

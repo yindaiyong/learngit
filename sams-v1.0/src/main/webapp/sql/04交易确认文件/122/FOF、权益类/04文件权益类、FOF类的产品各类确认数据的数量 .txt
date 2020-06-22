@@ -1,0 +1,34 @@
+--04文件权益类、FOF类的产品各类确认数据的数量 
+
+select distinct t.pi_channel_product_code fundcode,
+                nvl(t.pi_pro_cfm_way, '1') cfmday,
+                -- 查询开放日期和确认日期配置数量-->
+                (select count(1)
+                   from sams.p_product_open_day o
+                  where o.po_channel_code = t.pi_channel_code
+                    and o.po_product_code = t.pi_channel_product_code
+                    and o.po_open_day_type = '022') open022count,
+                (select count(1)
+                   from sams.p_product_open_day o
+                  where o.po_channel_code = t.pi_channel_code
+                    and o.po_product_code = t.pi_channel_product_code
+                    and o.po_open_day_type = '024') open024count,
+                (select count(1)
+                   from sams.p_product_open_day o
+                  where o.po_channel_code = t.pi_channel_code
+                    and o.po_product_code = t.pi_channel_product_code
+                    and o.po_open_day_type = '130') confirm130count,
+                (select count(1)
+                   from sams.p_product_open_day o
+                  where o.po_channel_code = t.pi_channel_code
+                    and o.po_product_code = t.pi_channel_product_code
+                    and o.po_open_day_type = '124') confirm124count
+  from sams.p_product_info t, sams.p_channel_product p
+ where p.cp_channel_code = t.pi_channel_code
+   and t.pi_channel_product_code = p.cp_channel_product_code
+   and t.pi_product_type = '9' --PRODUCTTYPE
+   and t.pi_valid_flag not in ('00', '99')
+   and t.pi_check_state = '01'
+   and p.cp_valid_flag = '01'
+   and p.cp_check_state = '01'
+   and t.pi_channel_code = 'TTTNETGTJA' --CHANNELCODE

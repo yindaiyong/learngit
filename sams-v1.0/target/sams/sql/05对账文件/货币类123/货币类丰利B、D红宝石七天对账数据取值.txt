@@ -1,0 +1,95 @@
+--货币类对账数据取值（1,2,3）
+--注释：原数据取值时按照的内部合同号进行的分组，但由于东方有特殊情况，单个用户有多个合同的情况，所以将内部合同号的分组去掉了
+select 
+      'TTTNETB3' CHANNELCODE,--CHANNELCODE
+      '20200525' TRANSDATE,--TRANSDATE
+      T5.F_REMAINSHARES   AvailableVol,
+      T5.F_REMAINSHARES TotalVolOfDistributorInTA,
+      '20200525'  TransactionCfmDate,----TRANSDATE
+      T6.DCI_FUND_CODE  FundCode,
+      T6.DCI_TRANS_ACTION_ACCOUNT  TransactionAccountID,
+      T6.DCI_DISTRIBUTOR_CODE  DistributorCode,
+      T6.DCI_TA_ACCOUNT_ID  TAAccountID,
+      ''  TotalFrozenVol,
+      T6.DCI_BRANCH_CODE  BranchCode,
+      to_char(sysdate,'yyyyMMddHHmmss') || seq_taserialno_new.nextval  TASerialNO,
+      ''  TotalBackendLoad,
+      '0'  ShareClass,
+      '0'  DetailFlag,
+      ''  AccountStatus,
+      ''  ShareRegisterDate,
+      T5.F_INCOME  UndistributeMonetaryIncome,
+      '0'  UndistributeMonetaryIncomeFlag,
+      nvl(T5.F_NEWINCOME,0)  GuaranteedAmount,--只有浦发有值，其他为空
+      ''  SourceType,
+      ''  DefDividendMethod
+       from (
+      select sum(T3.F_REMAINSHARES) F_REMAINSHARES,
+           T4.DCI_TA_ACCOUNT_ID TAACCOUNTID,
+           T4.DCI_TRANS_ACTION_ACCOUNT TRANSACTIONACCOUNTID,
+           T4.DCI_FUND_CODE FUNDCODE,
+           sum(T3.F_INCOME) F_INCOME,
+           max(T3.F_NEWINCOME) F_NEWINCOME        
+        from (select *
+                from (SELECT T.L_CONTRACTSERIALNO,
+                             T.C_FUNDCODE,
+                             T.F_REMAINSHARES,
+                             T.F_INCOME,
+                             --20200429 每日收益  -->
+			                       T.F_NEWINCOME
+                        FROM TJ_CONTRACTFUND  T, TA_TTRUSTCONTRACTDETAILS T2
+                       WHERE T.L_CONTRACTSERIALNO = T2.L_SERIALNO
+                         AND T2.C_TRUSTAGENCYNO ='TTTNETB3') TT----CHANNELCODE
+               where exists (select 1
+                        from (
+                        --create by yindy 函数替换  -->
+                        select distinct c.CP_TA_PRODUCT_CODE fundcode
+                  from p_product_info p, p_channel_product c
+                 where p.pi_channel_product_code = c.cp_channel_product_code
+                   and p.pi_channel_code=c.cp_channel_code
+                   and c.cp_channel_code = 'TTTNETB3'----CHANNELCODE
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                 and p.pi_product_type in('1','2','3')
+                        --替换结束  -->
+                        ) temp
+                       where temp.fundcode = TT.C_FUNDCODE)) T3,D_CONTRACT_INFO T4
+       where T4.DCI_VALID_FLAG = '01'
+         and  T3.L_CONTRACTSERIALNO = T4.DCI_IN_CONTRACT
+         and T4.DCI_CHANNEL_CODE = 'TTTNETB3'----CHANNELCODE
+       group by T4.DCI_CHANNEL_CODE, t4.DCI_TA_ACCOUNT_ID,T4.DCI_TRANS_ACTION_ACCOUNT,T4.DCI_FUND_CODE) T5,
+       (select distinct i.DCI_TA_ACCOUNT_ID,
+                           i.DCI_TRANS_ACTION_ACCOUNT,
+                           i.DCI_FUND_CODE,
+                           i.DCI_DISTRIBUTOR_CODE,
+                           i.DCI_BRANCH_CODE,
+                           i.dci_product_code
+                           --i.dci_in_contract
+             from (select *                
+            from D_CONTRACT_INFO o
+              where exists (select 1
+                            from (
+                            --create by yindy 函数替换  -->
+                        select distinct c.CP_TA_PRODUCT_CODE fundcode
+                        ,p.pi_channel_product_code 
+                  from p_product_info p, p_channel_product c
+                 where p.pi_channel_product_code = c.cp_channel_product_code
+                   and p.pi_channel_code=c.cp_channel_code
+                   and c.cp_channel_code = 'TTTNETB3'----CHANNELCODE
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                 and p.pi_product_type in('1','2','3')
+                        --替换结束  -->
+                            ) temp
+                           where temp.fundcode = o.dci_product_code and o.dci_valid_flag='01'
+                           and temp.pi_channel_product_code = o.dci_fund_code )
+            ) i
+            where i.DCI_CHANNEL_CODE = 'TTTNETB3'----CHANNELCODE
+               group by i.DCI_CHANNEL_CODE, i.DCI_TA_ACCOUNT_ID,i.DCI_TRANS_ACTION_ACCOUNT,i.DCI_FUND_CODE,i.dci_distributor_code,i.dci_branch_code,i.dci_product_code) T6--,i.dci_in_contract
+       where   T5.TAACCOUNTID=T6.DCI_TA_ACCOUNT_ID
+           and T5.TRANSACTIONACCOUNTID=T6.DCI_TRANS_ACTION_ACCOUNT
+           and T5.FUNDCODE=T6.DCI_FUND_CODE

@@ -1,0 +1,111 @@
+package com.sams.test1;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
+import com.sams.batchfile.common.*;
+import com.sams.batchfile.service.*;
+import com.sams.common.constant.Const;
+import com.sams.common.ftp.FTPUtils;
+import com.sams.common.scanner.SpringUtils;
+import com.sams.common.utils.PublicCreateExcelUtils;
+import com.sams.common.utils.StringUtils;
+import com.sams.common.web.PageInfo;
+import com.sams.custom.mapper.*;
+import com.sams.custom.model.*;
+import com.sams.custom.model.result.UnResidentInfoRes;
+import com.sams.sys.service.SysDictService;
+import com.sams.sys.service.SysUserService;
+import com.sams.wsdl.impl.CallS100434;
+import org.apache.commons.collections.MapUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeanWrapper;
+import org.springframework.beans.BeanWrapperImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {
+		"classpath:spring-mvc.xml",
+		"classpath:spring-config.xml"
+})
+@WebAppConfiguration
+public class BaseTest {
+
+	protected ApplicationContext applicationContext;
+	
+	
+	@Autowired
+	private ExchangeReqTmpMapper exchangeReqTmpMapper;
+	 @Test
+	    public void test124(){
+	    	List<Map<String, Object>> fundDatelist = new ArrayList<Map<String, Object>>();
+			Map<String, Object> query = new HashMap<String, Object>();
+			Map<String, Object> m1 = new HashMap<String, Object>();
+			Map<String, Object> m2 = new HashMap<String, Object>();
+			m1.put("FUNDCODE", "PFQD07");
+			m2.put("FUNDCODE", "I07600");
+			fundDatelist.add(m1);
+			fundDatelist.add(m2);
+			query.put("CHANNELCODE", "TTTNETB3");
+			query.put("FUNDDATELIST", fundDatelist);
+			query.put("BUSINESSCODE", Const.BUSINESS_024);
+			query.put("TRANSDATE", "20200602");
+			int count = exchangeReqTmpMapper.queryEx020024TradeCount(query);
+			System.out.println("--------------queryEx020024TradeCount"+count);
+			List<Map<String, Object>> list  = exchangeReqTmpMapper.queryEx022024TradeCfmList(query);   
+			System.out.println("--------------queryEx022024TradeCfmList"+list);
+
+	 }
+	 
+	 @Test
+	    public void test130(){
+	    	List<Map<String, Object>> fundDatelist = new ArrayList<Map<String, Object>>();
+			Map<String, Object> query = new HashMap<String, Object>();
+			Map<String, Object> m1 = new HashMap<String, Object>();
+			Map<String, Object> m2 = new HashMap<String, Object>();
+			m1.put("FUNDCODE", "PFQD07");
+			m2.put("FUNDCODE", "I07600");
+			fundDatelist.add(m1);
+			fundDatelist.add(m2);
+			query.put("CHANNELCODE", "TTTNETB3");
+			query.put("FUNDDATELIST", fundDatelist);
+			query.put("BUSINESSCODE", Const.BUSINESS_020);
+			query.put("TRANSDATE", "20200602");
+			query.put("PRODUCTTYPE", "8");
+			query.put("LASTDATE", "20200601");
+			int count = exchangeReqTmpMapper.queryEx020024TradeCount(query);
+			System.out.println("--------------queryEx020024TradeCount130确认数量"+count);
+			List<Map<String, Object>> list  = exchangeReqTmpMapper.queryMuTradeCfmList(query);   
+			System.out.println("--------------queryMuTradeCfmList130确认数据"+list);
+
+	 }
+	 
+	
+}

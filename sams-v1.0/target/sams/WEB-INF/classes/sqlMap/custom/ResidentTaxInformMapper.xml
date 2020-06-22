@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.ResidentTaxInformMapper" >
+  <sql id="Base_Column_List_Tmp" >
+		 rti_channel_code 	 CHANNELCODE ,
+		 rti_trans_date	 BUSINESSDATE,
+		 rti_app_sheet_serial_no	 APPSHEETSERIALNO,
+		 rti_transaction_date	 TRANSACTIONDATE,
+		 rti_transaction_time	 TRANSACTIONTIME, 
+		 rti_distributor_code	 DISTRIBUTORCODE,
+		 rti_branch_code	 BRANCHCODE,
+		 rti_ta_account_id	 TAACCOUNTID,
+		 rti_individual_or_institution	 INDIVIDUALORINSTITUTION,
+		 rti_original_app_date	 ORIGINALAPPDATE,
+		 rti_original_app_sheet_no	 ORIGINALAPPSHEETNO,
+		 rti_survey_method	 SURVEYMETHOD,
+		 rti_get_invest_cer_flag	 GETINVESTCERFLAG,
+		 rti_non_resi_flag	 NONRESIFLAG,
+		 rti_chinese_name	 CHINESENAME,
+		 rti_english_famliy_name2	 ENGLISHFAMLIYNAME2,
+		 rti_english_first_name2	 ENGLISHFIRSTNAME2,
+		 rti_english_name	 ENGLISHNAME,
+		 rti_sex	 SEX,
+		 rti_address_type	 ADDRESSTYPE,
+		 rti_living_country	 LIVINGCOUNTRY,
+		 rti_living_address	 LIVINGADDRESS,
+		 rti_living_address2	 LIVINGADDRESS2,
+		 rti_living_address3	 LIVINGADDRESS3,
+		 rti_living_address4	 LIVINGADDRESS4,
+		 rti_birth_date	 BIRTHDATE,
+		 rti_birth_country	 BIRTHCOUNTRY,
+		 rti_birth_country_eng_name	 BIRTHCOUNTRYENGNAME,
+		 rti_birth_city	 BIRTHCITY,
+		 rti_reg_region_code	 REGREGIONCODE,
+		 rti_tax_country	 TAXCOUNTRY,
+		 rti_tax_id	 TAXID,
+		 rti_specification	 SPECIFICATION,
+		 rti_passive_non_fin_flag	 PASSIVENONFINFLAG,
+		 rti_have_non_res_con_flag	 HAVENONRESCONFLAG,
+		 rti_chinese_name2	 CHINESENAME2,
+		 rti_english_famliy_name3	 ENGLISHFAMLIYNAME3,
+		 rti_english_first_name3	 ENGLISHFIRSTNAME3,
+		 rti_controller_type	 CONTROLLERTYPE,
+		 rti_con_non_resi_flag	 CONNONRESIFLAG,
+		 rti_con_share_ratio	 CONSHARERATIO,
+		 rti_living_country2	 LIVINGCOUNTRY2,
+		 rti_living_address5	 LIVINGADDRESS5,
+		 rti_living_address6	 LIVINGADDRESS6,
+		 rti_living_address7	 LIVINGADDRESS7,
+		 rti_living_address8	 LIVINGADDRESS8,
+		 rti_reg_region_code2	 REGREGIONCODE2,
+		 rti_birth_date2	 BIRTHDATE2,
+		 rti_birth_country2	 BIRTHCOUNTRY2,
+		 rti_birth_cou_eng_name2	 BIRTHCOUENGNAME2,
+		 rti_birth_city2	 BIRTHCITY2,
+		 rti_tax_country2	 TAXCOUNTRY2,
+		 rti_tax_id2	 TAXID2,
+		 rti_specification2	 SPECIFICATION2,
+		 rti_add_flag	 ADDFLAG,
+		 rti_reserved_field1	 RESERVEDFIELD1,
+		 rti_reserved_field2	 RESERVEDFIELD2,
+		 rti_reserved_field3	 RESERVEDFIELD3,
+		 rti_reserved_field4	 RESERVEDFIELD4,
+		 rti_reserved_field5	 RESERVEDFIELD5,
+		 rti_reserved_field6	 RESERVEDFIELD6,
+		 rti_ctime	 rti_ctime,
+		 rti_utime	 rti_utime,
+		 rti_cuser	 rti_cuser,
+		 rti_uuser	 rti_uuser
+  </sql>
+  
+    <sql id="Base_Column_List_Req" >
+		 rtir_channel_code 	 CHANNELCODE ,
+		 rtir_trans_date	 BUSINESSDATE,
+		 rtir_app_sheet_serial_no	 APPSHEETSERIALNO,
+		 rtir_transaction_date	 TRANSACTIONDATE,
+		 rtir_transaction_time	 TRANSACTIONTIME,
+		 rtir_distributor_code	 DISTRIBUTORCODE,
+		 rtir_branch_code	 BRANCHCODE,
+		 rtir_ta_account_id	 TAACCOUNTID,
+		 rtir_individual_or_institution	 INDIVIDUALORINSTITUTION,
+		 rtir_original_app_date	 ORIGINALAPPDATE,
+		 rtir_original_app_sheet_no	 ORIGINALAPPSHEETNO,
+		 rtir_survey_method	 SURVEYMETHOD,
+		 rtir_get_invest_cer_flag	 GETINVESTCERFLAG,
+		 rtir_non_resi_flag	 NONRESIFLAG,
+		 rtir_chinese_name	 CHINESENAME,
+		 rtir_english_famliy_name2	 ENGLISHFAMLIYNAME2,
+		 rtir_english_first_name2	 ENGLISHFIRSTNAME2,
+		 rtir_english_name	 ENGLISHNAME,
+		 rtir_sex	 SEX,
+		 rtir_address_type	 ADDRESSTYPE,
+		 rtir_living_country	 LIVINGCOUNTRY,
+		 rtir_living_address	 LIVINGADDRESS,
+		 rtir_living_address2	 LIVINGADDRESS2,
+		 rtir_living_address3	 LIVINGADDRESS3,
+		 rtir_living_address4	 LIVINGADDRESS4,
+		 rtir_birth_date	 BIRTHDATE,
+		 rtir_birth_country	 BIRTHCOUNTRY,
+		 rtir_birth_country_eng_name	 BIRTHCOUNTRYENGNAME,
+		 rtir_birth_city	 BIRTHCITY,
+		 rtir_reg_region_code	 REGREGIONCODE,
+		 rtir_tax_country	 TAXCOUNTRY,
+		 rtir_tax_id	 TAXID,
+		 rtir_specification	 SPECIFICATION,
+		 rtir_passive_non_fin_flag	 PASSIVENONFINFLAG,
+		 rtir_have_non_res_con_flag	 HAVENONRESCONFLAG,
+		 rtir_chinese_name2	 CHINESENAME2,
+		 rtir_english_famliy_name3	 ENGLISHFAMLIYNAME3,
+		 rtir_english_first_name3	 ENGLISHFIRSTNAME3,
+		 rtir_controller_type	 CONTROLLERTYPE,
+		 rtir_con_non_resi_flag	 CONNONRESIFLAG,
+		 rtir_con_share_ratio	 CONSHARERATIO,
+		 rtir_living_country2	 LIVINGCOUNTRY2,
+		 rtir_living_address5	 LIVINGADDRESS5,
+		 rtir_living_address6	 LIVINGADDRESS6,
+		 rtir_living_address7	 LIVINGADDRESS7,
+		 rtir_living_address8	 LIVINGADDRESS8,
+		 rtir_reg_region_code2	 REGREGIONCODE2,
+		 rtir_birth_date2	 BIRTHDATE2,
+		 rtir_birth_country2	 BIRTHCOUNTRY2,
+		 rtir_birth_cou_eng_name2	 BIRTHCOUENGNAME2,
+		 rtir_birth_city2	 BIRTHCITY2,
+		 rtir_tax_country2	 TAXCOUNTRY2,
+		 rtir_tax_id2	 TAXID2,
+		 rtir_specification2	 SPECIFICATION2,
+		 rtir_add_flag	 ADDFLAG,
+		 rtir_reserved_field1	 RESERVEDFIELD1,
+		 rtir_reserved_field2	 RESERVEDFIELD2,
+		 rtir_reserved_field3	 RESERVEDFIELD3,
+		 rtir_reserved_field4	 RESERVEDFIELD4,
+		 rtir_reserved_field5	 RESERVEDFIELD5,
+		 rtir_reserved_field6	 RESERVEDFIELD6,
+		 rtir_valid_flag  VALIDFLAG,
+		 rtir_error_dec ERRORDEC,
+		 rtir_ctime	 rtir_ctime,
+		 rtir_utime	 rtir_utime,
+		 rtir_cuser	 rtir_cuser,
+		 rtir_uuser	 rtir_uuser
+  </sql>
+  
+  <delete id="deleteTresidentTaxInformTmpDate" parameterType="hashMap" >
+    delete from D_RESIDENT_TAX_INFORM_TMP
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTI_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTI_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  
+  <delete id="deleteTresidentTaxInformReqDate" parameterType="hashMap" >
+    delete from D_RESIDENT_TAX_INFORM_REQ
+    where
+	  <choose>
+		  <when test="CHANNELCODE != null">
+			  1 = 1
+		  </when>
+		  <otherwise>
+			  1 != 1
+		  </otherwise>
+	  </choose>
+    <if test="CHANNELCODE != null" >
+      AND  RTIR_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTIR_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  
+  <delete id="deleteTresidentTaxInformCfmDate" parameterType="hashMap" >
+    delete from D_RESIDENT_TAX_INFORM_CFM
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTIC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTIC_TRANSACTION_CFM_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </delete> 
+  
+  <select id="selecTresidentTaxInformTmpCount" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_RESIDENT_TAX_INFORM_TMP
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTI_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTI_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="selecTresidentTaxInformReqCount" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_RESIDENT_TAX_INFORM_REQ
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTIR_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTIR_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="selecTresidentTaxInformCfmCount" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_RESIDENT_TAX_INFORM_CFM
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTIC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTIC_TRANSACTION_CFM_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <insert id="insertByBatchTresidentTaxInformTmp"  parameterType="java.util.List" >
+    insert all
+     <foreach collection="list" item="item" index="index">
+     into D_RESIDENT_TAX_INFORM_TMP (RTI_CHANNEL_CODE,RTI_TRANS_DATE,RTI_APP_SHEET_SERIAL_NO, RTI_TRANSACTION_DATE, RTI_TRANSACTION_TIME, 
+    RTI_DISTRIBUTOR_CODE, RTI_BRANCH_CODE, RTI_TA_ACCOUNT_ID, RTI_INDIVIDUAL_OR_INSTITUTION, 
+    RTI_ORIGINAL_APP_DATE, RTI_ORIGINAL_APP_SHEET_NO, RTI_SURVEY_METHOD, RTI_GET_INVEST_CER_FLAG, 
+    RTI_NON_RESI_FLAG, RTI_CHINESE_NAME, RTI_ENGLISH_FAMLIY_NAME2, RTI_ENGLISH_FIRST_NAME2, 
+    RTI_ENGLISH_NAME, RTI_SEX, RTI_ADDRESS_TYPE, RTI_LIVING_COUNTRY, RTI_LIVING_ADDRESS, 
+    RTI_LIVING_ADDRESS2, RTI_LIVING_ADDRESS3, RTI_LIVING_ADDRESS4, RTI_BIRTH_DATE, RTI_BIRTH_COUNTRY, 
+    RTI_BIRTH_COUNTRY_ENG_NAME, RTI_BIRTH_CITY, RTI_REG_REGION_CODE, RTI_TAX_COUNTRY, 
+    RTI_TAX_ID, RTI_SPECIFICATION, RTI_PASSIVE_NON_FIN_FLAG, RTI_HAVE_NON_RES_CON_FLAG, 
+    RTI_CHINESE_NAME2, RTI_ENGLISH_FAMLIY_NAME3, RTI_ENGLISH_FIRST_NAME3, RTI_CONTROLLER_TYPE, 
+    RTI_CON_NON_RESI_FLAG, RTI_CON_SHARE_RATIO, RTI_LIVING_COUNTRY2, RTI_LIVING_ADDRESS5, 
+    RTI_LIVING_ADDRESS6, RTI_LIVING_ADDRESS7, RTI_LIVING_ADDRESS8, RTI_REG_REGION_CODE2, 
+    RTI_BIRTH_DATE2, RTI_BIRTH_COUNTRY2, RTI_BIRTH_COU_ENG_NAME2, RTI_BIRTH_CITY2, RTI_TAX_COUNTRY2, 
+    RTI_TAX_ID2, RTI_SPECIFICATION2, RTI_ADD_FLAG, RTI_RESERVED_FIELD1, RTI_RESERVED_FIELD2, 
+    RTI_RESERVED_FIELD3, RTI_RESERVED_FIELD4, RTI_RESERVED_FIELD5, RTI_RESERVED_FIELD6
+      )
+    values (
+     	#{item.CHANNELCODE,jdbcType=VARCHAR},
+		#{item.BUSINESSDATE,jdbcType=VARCHAR},
+		#{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+		#{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+		#{item.TRANSACTIONTIME,jdbcType=VARCHAR},
+		#{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+		#{item.BRANCHCODE,jdbcType=VARCHAR},
+		#{item.TAACCOUNTID,jdbcType=VARCHAR},
+		#{item.INDIVIDUALORINSTITUTION,jdbcType=VARCHAR},
+		#{item.ORIGINALAPPDATE,jdbcType=VARCHAR},
+		#{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+		#{item.SURVEYMETHOD,jdbcType=VARCHAR},
+		#{item.GETINVESTCERFLAG,jdbcType=VARCHAR},
+		#{item.NONRESIFLAG,jdbcType=VARCHAR},
+		#{item.CHINESENAME,jdbcType=VARCHAR},
+		#{item.ENGLISHFAMLIYNAME2,jdbcType=VARCHAR},
+		#{item.ENGLISHFIRSTNAME2,jdbcType=VARCHAR},
+		#{item.ENGLISHNAME,jdbcType=VARCHAR},
+		#{item.SEX,jdbcType=VARCHAR},
+		#{item.ADDRESSTYPE,jdbcType=VARCHAR},
+		#{item.LIVINGCOUNTRY,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS2,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS3,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS4,jdbcType=VARCHAR},
+		#{item.BIRTHDATE,jdbcType=VARCHAR},
+		#{item.BIRTHCOUNTRY,jdbcType=VARCHAR},
+		#{item.BIRTHCOUNTRYENGNAME,jdbcType=VARCHAR},
+		#{item.BIRTHCITY,jdbcType=VARCHAR},
+		#{item.REGREGIONCODE,jdbcType=VARCHAR},
+		#{item.TAXCOUNTRY,jdbcType=VARCHAR},
+		#{item.TAXID,jdbcType=VARCHAR},
+		#{item.SPECIFICATION,jdbcType=VARCHAR},
+		#{item.PASSIVENONFINFLAG,jdbcType=VARCHAR},
+		#{item.HAVENONRESCONFLAG,jdbcType=VARCHAR},
+		#{item.CHINESENAME2,jdbcType=VARCHAR},
+		#{item.ENGLISHFAMLIYNAME3,jdbcType=VARCHAR},
+		#{item.ENGLISHFIRSTNAME3,jdbcType=VARCHAR},
+		#{item.CONTROLLERTYPE,jdbcType=VARCHAR},
+		#{item.CONNONRESIFLAG,jdbcType=VARCHAR},
+		#{item.CONSHARERATIO,jdbcType=DECIMAL},
+		#{item.LIVINGCOUNTRY2,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS5,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS6,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS7,jdbcType=VARCHAR},
+		#{item.LIVINGADDRESS8,jdbcType=VARCHAR},
+		#{item.REGREGIONCODE2,jdbcType=VARCHAR},
+		#{item.BIRTHDATE2,jdbcType=VARCHAR},
+		#{item.BIRTHCOUNTRY2,jdbcType=VARCHAR},
+		#{item.BIRTHCOUENGNAME2,jdbcType=VARCHAR},
+		#{item.BIRTHCITY2,jdbcType=VARCHAR},
+		#{item.TAXCOUNTRY2,jdbcType=VARCHAR},
+		#{item.TAXID2,jdbcType=VARCHAR},
+		#{item.SPECIFICATION2,jdbcType=VARCHAR},
+		#{item.ADDFLAG,jdbcType=VARCHAR},
+		#{item.RESERVEDFIELD1,jdbcType=VARCHAR},
+		#{item.RESERVEDFIELD2,jdbcType=VARCHAR},
+		#{item.RESERVEDFIELD3,jdbcType=VARCHAR},
+		#{item.RESERVEDFIELD4,jdbcType=DECIMAL},
+		#{item.RESERVEDFIELD5,jdbcType=DECIMAL},
+		#{item.RESERVEDFIELD6,jdbcType=VARCHAR}
+	 )
+      </foreach>
+      select 1 from dual
+  </insert>
+  
+   <insert id="insertByBatchTresidentTaxInformReq"  parameterType="java.util.List" >
+    insert all
+     <foreach collection="list" item="item" index="index">
+     into D_RESIDENT_TAX_INFORM_REQ (  rtir_channel_code,
+			 rtir_trans_date,rtir_app_sheet_serial_no,rtir_transaction_date,rtir_transaction_time,
+			 rtir_distributor_code,rtir_branch_code,rtir_ta_account_id,rtir_individual_or_institution,
+			 rtir_original_app_date,rtir_original_app_sheet_no,rtir_survey_method,rtir_get_invest_cer_flag,
+			 rtir_non_resi_flag,rtir_chinese_name,rtir_english_name,rtir_english_first_name2,rtir_english_famliy_name2,
+			 rtir_sex,rtir_address_type,rtir_living_country,rtir_living_address,rtir_living_address2,
+			 rtir_living_address3,rtir_living_address4,rtir_birth_date,rtir_birth_country,rtir_birth_country_eng_name,
+			 rtir_birth_city,rtir_reg_region_code,rtir_tax_country,rtir_tax_id,rtir_specification,rtir_passive_non_fin_flag,
+			 rtir_have_non_res_con_flag,rtir_chinese_name2,rtir_english_famliy_name3,rtir_english_first_name3,rtir_controller_type,
+			 rtir_con_non_resi_flag,rtir_con_share_ratio,rtir_living_country2,rtir_living_address5,rtir_living_address6,
+			 rtir_living_address7,rtir_living_address8,rtir_reg_region_code2,rtir_birth_date2,rtir_birth_country2,
+			 rtir_birth_cou_eng_name2,rtir_birth_city2,rtir_tax_country2,rtir_tax_id2,rtir_specification2,rtir_add_flag,
+			 rtir_reserved_field1,rtir_reserved_field2,rtir_reserved_field3,rtir_reserved_field4,rtir_reserved_field5,
+			 rtir_reserved_field6,rtir_valid_flag,rtir_error_dec
+      )values (
+			#{item.CHANNELCODE,jdbcType=VARCHAR},
+			#{item.BUSINESSDATE,jdbcType=VARCHAR},
+			#{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+			#{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+			#{item.TRANSACTIONTIME,jdbcType=VARCHAR},
+			#{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+			#{item.BRANCHCODE,jdbcType=VARCHAR},
+			#{item.TAACCOUNTID,jdbcType=VARCHAR},
+			#{item.INDIVIDUALORINSTITUTION,jdbcType=VARCHAR},
+			#{item.ORIGINALAPPDATE,jdbcType=VARCHAR},
+			#{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+			#{item.SURVEYMETHOD,jdbcType=VARCHAR},
+			#{item.GETINVESTCERFLAG,jdbcType=VARCHAR},
+			#{item.NONRESIFLAG,jdbcType=VARCHAR},
+			#{item.CHINESENAME,jdbcType=VARCHAR},
+			#{item.ENGLISHNAME,jdbcType=VARCHAR},
+			#{item.ENGLISHFIRSTNAME2,jdbcType=VARCHAR},
+			#{item.ENGLISHFAMLIYNAME2,jdbcType=VARCHAR},
+			#{item.SEX,jdbcType=VARCHAR},
+			#{item.ADDRESSTYPE,jdbcType=VARCHAR},
+			#{item.LIVINGCOUNTRY,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS2,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS3,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS4,jdbcType=VARCHAR},
+			#{item.BIRTHDATE,jdbcType=VARCHAR},
+			#{item.BIRTHCOUNTRY,jdbcType=VARCHAR},
+			#{item.BIRTHCOUNTRYENGNAME,jdbcType=VARCHAR},
+			#{item.BIRTHCITY,jdbcType=VARCHAR},
+			#{item.REGREGIONCODE,jdbcType=VARCHAR},
+			#{item.TAXCOUNTRY,jdbcType=VARCHAR},
+			#{item.TAXID,jdbcType=VARCHAR},
+			#{item.SPECIFICATION,jdbcType=VARCHAR},
+			#{item.PASSIVENONFINFLAG,jdbcType=VARCHAR},
+			#{item.HAVENONRESCONFLAG,jdbcType=VARCHAR},
+			#{item.CHINESENAME2,jdbcType=VARCHAR},
+			#{item.ENGLISHFAMLIYNAME3,jdbcType=VARCHAR},
+			#{item.ENGLISHFIRSTNAME3,jdbcType=VARCHAR},
+			#{item.CONTROLLERTYPE,jdbcType=VARCHAR},
+			#{item.CONNONRESIFLAG,jdbcType=VARCHAR},
+			#{item.CONSHARERATIO,jdbcType=DECIMAL},
+			#{item.LIVINGCOUNTRY2,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS5,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS6,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS7,jdbcType=VARCHAR},
+			#{item.LIVINGADDRESS8,jdbcType=VARCHAR},
+			#{item.REGREGIONCODE2,jdbcType=VARCHAR},
+			#{item.BIRTHDATE2,jdbcType=VARCHAR},
+			#{item.BIRTHCOUNTRY2,jdbcType=VARCHAR},
+			#{item.BIRTHCOUENGNAME2,jdbcType=VARCHAR},
+			#{item.BIRTHCITY2,jdbcType=VARCHAR},
+			#{item.TAXCOUNTRY2,jdbcType=VARCHAR},
+			#{item.TAXID2,jdbcType=VARCHAR},
+			#{item.SPECIFICATION2,jdbcType=VARCHAR},
+			#{item.ADDFLAG,jdbcType=VARCHAR},
+			#{item.RESERVEDFIELD1,jdbcType=VARCHAR},
+			#{item.RESERVEDFIELD2,jdbcType=VARCHAR},
+			#{item.RESERVEDFIELD3,jdbcType=VARCHAR},
+			#{item.RESERVEDFIELD4,jdbcType=DECIMAL},
+			#{item.RESERVEDFIELD5,jdbcType=DECIMAL},
+			#{item.RESERVEDFIELD6,jdbcType=VARCHAR},
+			#{item.VALIDFLAG,jdbcType=VARCHAR},
+			#{item.ERRORDEC,jdbcType=VARCHAR}
+			)
+      </foreach>
+      select 1 from dual
+  </insert>
+	
+  <insert id="insertByBatchTresidentTaxInformCfm"  parameterType="java.util.List" >
+    insert all
+     <foreach collection="list" item="item" index="index">
+       into D_RESIDENT_TAX_INFORM_CFM (RTIC_CHANNEL_CODE,RTIC_TRANS_DATE,RTIC_APP_SHEET_SERIAL_NO,
+    	RTIC_TRANSACTION_DATE,RTIC_TRANSACTION_CFM_DATE,RTIC_TA_SERIAL_NO,RTIC_RETURN_CODE,RTIC_ERROR_DETAIL,
+		RTIC_RESERVED_FIELD1,RTIC_RESERVED_FIELD2,RTIC_RESERVED_FIELD3
+      )values ( 
+		 #{item.CHANNELCODE,jdbcType=VARCHAR},
+		 #{item.BUSINESSDATE,jdbcType=VARCHAR},
+		 #{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+		 #{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+		 #{item.TRANSACTIONCFMDATE,jdbcType=VARCHAR},
+		 #{item.TASERIALNO,jdbcType=VARCHAR},
+		 #{item.RETURNCODE,jdbcType=VARCHAR},
+		 #{item.ERRORDETAIL,jdbcType=VARCHAR},
+		 #{item.RESERVEDFIELD1,jdbcType=VARCHAR},
+		 #{item.RESERVEDFIELD2,jdbcType=VARCHAR},
+		 #{item.RESERVEDFIELD3,jdbcType=VARCHAR}
+      )
+      </foreach>
+      select 1 from dual
+  </insert> 
+  
+  <select id="selectResidentTaxInformTmp" resultType = "hashMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List_Tmp"></include> 
+    from D_RESIDENT_TAX_INFORM_TMP
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTI_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTI_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="selectResidentTaxInformReq" resultType = "hashMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List_Req"></include> 
+    from D_RESIDENT_TAX_INFORM_REQ
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTIR_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  RTIR_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <select id="selectResidentTaxInformCfm" parameterType="hashMap" resultType="hashMap">
+  	select 
+    ${SQLNAME}
+    from d_resident_tax_inform_cfm
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  RTIC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="TRANSDATE != null" >
+      AND  RTIC_TRANS_DATE=#{TRANSDATE,jdbcType=VARCHAR}
+    </if>
+    order by rtic_transaction_date
+  </select>
+  
+  
+  <update id="updateGenerateStaAndTime" parameterType="hashMap">
+  	update d_resident_tax_inform_cfm set RTIC_GENERATE_STATUS = '01' ,RTIC_GENERATE_FILE_TIME = sysdate where RTIC_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND RTIC_TRANS_DATE = #{TRANSDATE,jdbcType = VARCHAR}
+  </update>
+  
+  <update id="updateSendStaAndTime" parameterType="hashMap">
+  	update d_resident_tax_inform_cfm set RTIC_SEND_STATUS = '01' , RTIC_SEND_FILE_TIME = sysdate where RTIC_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND RTIC_TRANS_DATE = #{TRANSDATE,jdbcType = VARCHAR} and RTIC_GENERATE_STATUS = '01'
+  </update>
+	<!--获取当前符合条件的非居民用户信息展示-->
+	<sql id="Un_Resident_Info_Column">
+		t.RTIR_APP_SHEET_SERIAL_NO as appSheetSerialNo,
+		t.RTIR_TRANSACTION_DATE as transactionDate,
+		t.RTIR_TRANSACTION_TIME as transactionTime,
+		t.RTIR_DISTRIBUTOR_CODE as distributorCode,
+		t.RTIR_CHANNEL_CODE as branchCode,
+		t.RTIR_INDIVIDUAL_OR_INSTITUTION as individualOrInstitution,
+		t.RTIR_SURVEY_METHOD as surveyMethod,
+		t.RTIR_GET_INVEST_CER_FLAG as getInvestCerFlag,
+		t.RTIR_CON_NON_RESI_FLAG as nonResiFlag,
+		t.RTIR_LIVING_COUNTRY as livingCountry,
+		t.RTIR_LIVING_ADDRESS as livingAddress3,
+		t.RTIR_TAX_COUNTRY as taxCountry,
+		t.RTIR_add_flag as addFlag,
+		t.RTIR_ERROR_DEC as errorDec,
+		t.RTIR_CHANNEL_CODE as channelCode
+	</sql>
+	<resultMap id="UnResident_Info_Res" type="com.sams.custom.model.result.UnResidentInfoRes">
+		<result column="appSheetSerialNo" property="appSheetSerialNo" jdbcType="VARCHAR" />
+		<result column="transactionDate" property="transactionDate" jdbcType="VARCHAR" />
+		<result column="transactionTime" property="transactionTime" jdbcType="VARCHAR" />
+		<result column="distributorCode" property="distributorCode" jdbcType="VARCHAR" />
+		<result column="branchCode" property="branchCode" jdbcType="VARCHAR" />
+		<result column="individualOrInstitution" property="individualOrInstitution" jdbcType="VARCHAR" />
+		<result column="surveyMethod" property="surveyMethod" jdbcType="VARCHAR" />
+		<result column="getInvestCerFlag" property="getInvestCerFlag" jdbcType="VARCHAR" />
+		<result column="livingCountry" property="livingCountry" jdbcType="VARCHAR" />
+		<result column="livingAddress3" property="livingAddress3" jdbcType="VARCHAR" />
+		<result column="taxCountry" property="taxCountry" jdbcType="VARCHAR" />
+		<result column="addFlag" property="addFlag" jdbcType="VARCHAR" />
+        <result column="errorDec" property="errorDec" jdbcType="VARCHAR" />
+		<result column="channelCode" property="channelCode" jdbcType="VARCHAR" />
+	</resultMap>
+  <select id="selectUnResidentInfo" resultMap="UnResident_Info_Res">
+	  select
+	  <include refid="Un_Resident_Info_Column"/>
+	  from d_resident_tax_inform_req t
+	  where 1 = 1
+	  <if test="condition.ciChannelCode != null and condition.ciChannelCode != ''  ">
+		  AND t.RTIR_CHANNEL_CODE like  ('%'|| #{condition.ciChannelCode} ||'%')
+	  </if>
+	  <if test="condition.transDate != null and condition.transDate != ''  ">
+		  AND t.RTIR_TRANS_DATE = #{condition.transDate}
+	  </if>
+	  <if test="pageInfo.sort != null and pageInfo.sort != ''">
+		  order by ${pageInfo.sort} ${pageInfo.order}
+	  </if>
+  </select>
+	<select id="queryResidentSamsSerialnoCount" parameterType="map" resultType="integer">
+		  select count(*)
+        from d_resident_tax_inform_cfm t
+        where t.rtic_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+        and t.rtic_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+        group by t.rtic_channel_code, t.rtic_ta_serial_no
+        having count(*) > 1
+	</select>
+
+    <resultMap id="BaseAllResultMap" type="com.sams.custom.model.DResidentTaxInformReq" >
+        <id column="RTIR_ID" property="rtirId" jdbcType="DECIMAL" />
+        <result column="RTIR_CHANNEL_CODE" property="rtirChannelCode" jdbcType="VARCHAR" />
+        <result column="RTIR_APP_SHEET_SERIAL_NO" property="rtirAppSheetSerialNo" jdbcType="VARCHAR" />
+        <result column="RTIR_TRANSACTION_DATE" property="rtirTransactionDate" jdbcType="VARCHAR" />
+        <result column="RTIR_TRANSACTION_TIME" property="rtirTransactionTime" jdbcType="VARCHAR" />
+        <result column="RTIR_DISTRIBUTOR_CODE" property="rtirDistributorCode" jdbcType="VARCHAR" />
+        <result column="RTIR_BRANCH_CODE" property="rtirBranchCode" jdbcType="VARCHAR" />
+        <result column="RTIR_TA_ACCOUNT_ID" property="rtirTaAccountId" jdbcType="VARCHAR" />
+        <result column="RTIR_INDIVIDUAL_OR_INSTITUTION" property="rtirIndividualOrInstitution" jdbcType="VARCHAR" />
+        <result column="RTIR_ORIGINAL_APP_DATE" property="rtirOriginalAppDate" jdbcType="VARCHAR" />
+        <result column="RTIR_ORIGINAL_APP_SHEET_NO" property="rtirOriginalAppSheetNo" jdbcType="VARCHAR" />
+        <result column="RTIR_SURVEY_METHOD" property="rtirSurveyMethod" jdbcType="VARCHAR" />
+        <result column="RTIR_GET_INVEST_CER_FLAG" property="rtirGetInvestCerFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_NON_RESI_FLAG" property="rtirNonResiFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_CHINESE_NAME" property="rtirChineseName" jdbcType="VARCHAR" />
+        <result column="RTIR_ENGLISH_NAME" property="rtirEnglishName" jdbcType="VARCHAR" />
+        <result column="RTIR_ENGLISH_FIRST_NAME2" property="rtirEnglishFirstName2" jdbcType="VARCHAR" />
+        <result column="RTIR_ENGLISH_FAMLIY_NAME2" property="rtirEnglishFamliyName2" jdbcType="VARCHAR" />
+        <result column="RTIR_SEX" property="rtirSex" jdbcType="VARCHAR" />
+        <result column="RTIR_ADDRESS_TYPE" property="rtirAddressType" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_COUNTRY" property="rtirLivingCountry" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS" property="rtirLivingAddress" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS2" property="rtirLivingAddress2" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS3" property="rtirLivingAddress3" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS4" property="rtirLivingAddress4" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_DATE" property="rtirBirthDate" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_COUNTRY" property="rtirBirthCountry" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_COUNTRY_ENG_NAME" property="rtirBirthCountryEngName" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_CITY" property="rtirBirthCity" jdbcType="VARCHAR" />
+        <result column="RTIR_REG_REGION_CODE" property="rtirRegRegionCode" jdbcType="VARCHAR" />
+        <result column="RTIR_TAX_COUNTRY" property="rtirTaxCountry" jdbcType="VARCHAR" />
+        <result column="RTIR_TAX_ID" property="rtirTaxId" jdbcType="VARCHAR" />
+        <result column="RTIR_SPECIFICATION" property="rtirSpecification" jdbcType="VARCHAR" />
+        <result column="RTIR_PASSIVE_NON_FIN_FLAG" property="rtirPassiveNonFinFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_HAVE_NON_RES_CON_FLAG" property="rtirHaveNonResConFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_CHINESE_NAME2" property="rtirChineseName2" jdbcType="VARCHAR" />
+        <result column="RTIR_ENGLISH_FAMLIY_NAME3" property="rtirEnglishFamliyName3" jdbcType="VARCHAR" />
+        <result column="RTIR_ENGLISH_FIRST_NAME3" property="rtirEnglishFirstName3" jdbcType="VARCHAR" />
+        <result column="RTIR_CONTROLLER_TYPE" property="rtirControllerType" jdbcType="VARCHAR" />
+        <result column="RTIR_CON_NON_RESI_FLAG" property="rtirConNonResiFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_CON_SHARE_RATIO" property="rtirConShareRatio" jdbcType="DECIMAL" />
+        <result column="RTIR_LIVING_COUNTRY2" property="rtirLivingCountry2" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS5" property="rtirLivingAddress5" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS6" property="rtirLivingAddress6" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS7" property="rtirLivingAddress7" jdbcType="VARCHAR" />
+        <result column="RTIR_LIVING_ADDRESS8" property="rtirLivingAddress8" jdbcType="VARCHAR" />
+        <result column="RTIR_REG_REGION_CODE2" property="rtirRegRegionCode2" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_DATE2" property="rtirBirthDate2" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_COUNTRY2" property="rtirBirthCountry2" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_COU_ENG_NAME2" property="rtirBirthCouEngName2" jdbcType="VARCHAR" />
+        <result column="RTIR_BIRTH_CITY2" property="rtirBirthCity2" jdbcType="VARCHAR" />
+        <result column="RTIR_TAX_COUNTRY2" property="rtirTaxCountry2" jdbcType="VARCHAR" />
+        <result column="RTIR_TAX_ID2" property="rtirTaxId2" jdbcType="VARCHAR" />
+        <result column="RTIR_SPECIFICATION2" property="rtirSpecification2" jdbcType="VARCHAR" />
+        <result column="RTIR_ADD_FLAG" property="rtirAddFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_RESERVED_FIELD1" property="rtirReservedField1" jdbcType="VARCHAR" />
+        <result column="RTIR_RESERVED_FIELD2" property="rtirReservedField2" jdbcType="VARCHAR" />
+        <result column="RTIR_RESERVED_FIELD3" property="rtirReservedField3" jdbcType="VARCHAR" />
+        <result column="RTIR_RESERVED_FIELD4" property="rtirReservedField4" jdbcType="DECIMAL" />
+        <result column="RTIR_RESERVED_FIELD5" property="rtirReservedField5" jdbcType="DECIMAL" />
+        <result column="RTIR_RESERVED_FIELD6" property="rtirReservedField6" jdbcType="VARCHAR" />
+        <result column="RTIR_VALID_FLAG" property="rtirValidFlag" jdbcType="VARCHAR" />
+        <result column="RTIR_CTIME" property="rtirCtime" jdbcType="TIMESTAMP" />
+        <result column="RTIR_UTIME" property="rtirUtime" jdbcType="TIMESTAMP" />
+        <result column="RTIR_CUSER" property="rtirCuser" jdbcType="VARCHAR" />
+        <result column="RTIR_UUSER" property="rtirUuser" jdbcType="VARCHAR" />
+        <result column="RTIR_TRANS_DATE" property="rtirTransDate" jdbcType="VARCHAR" />
+        <result column="RTIR_ERROR_DEC" property="rtirErrorDec" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_All_Column_List" >
+    RTIR_ID, RTIR_CHANNEL_CODE, RTIR_APP_SHEET_SERIAL_NO, RTIR_TRANSACTION_DATE, RTIR_TRANSACTION_TIME,
+    RTIR_DISTRIBUTOR_CODE, RTIR_BRANCH_CODE, RTIR_TA_ACCOUNT_ID, RTIR_INDIVIDUAL_OR_INSTITUTION,
+    RTIR_ORIGINAL_APP_DATE, RTIR_ORIGINAL_APP_SHEET_NO, RTIR_SURVEY_METHOD, RTIR_GET_INVEST_CER_FLAG,
+    RTIR_NON_RESI_FLAG, RTIR_CHINESE_NAME, RTIR_ENGLISH_NAME, RTIR_ENGLISH_FIRST_NAME2,
+    RTIR_ENGLISH_FAMLIY_NAME2, RTIR_SEX, RTIR_ADDRESS_TYPE, RTIR_LIVING_COUNTRY, RTIR_LIVING_ADDRESS,
+    RTIR_LIVING_ADDRESS2, RTIR_LIVING_ADDRESS3, RTIR_LIVING_ADDRESS4, RTIR_BIRTH_DATE,
+    RTIR_BIRTH_COUNTRY, RTIR_BIRTH_COUNTRY_ENG_NAME, RTIR_BIRTH_CITY, RTIR_REG_REGION_CODE,
+    RTIR_TAX_COUNTRY, RTIR_TAX_ID, RTIR_SPECIFICATION, RTIR_PASSIVE_NON_FIN_FLAG, RTIR_HAVE_NON_RES_CON_FLAG,
+    RTIR_CHINESE_NAME2, RTIR_ENGLISH_FAMLIY_NAME3, RTIR_ENGLISH_FIRST_NAME3, RTIR_CONTROLLER_TYPE,
+    RTIR_CON_NON_RESI_FLAG, RTIR_CON_SHARE_RATIO, RTIR_LIVING_COUNTRY2, RTIR_LIVING_ADDRESS5,
+    RTIR_LIVING_ADDRESS6, RTIR_LIVING_ADDRESS7, RTIR_LIVING_ADDRESS8, RTIR_REG_REGION_CODE2,
+    RTIR_BIRTH_DATE2, RTIR_BIRTH_COUNTRY2, RTIR_BIRTH_COU_ENG_NAME2, RTIR_BIRTH_CITY2,
+    RTIR_TAX_COUNTRY2, RTIR_TAX_ID2, RTIR_SPECIFICATION2, RTIR_ADD_FLAG, RTIR_RESERVED_FIELD1,
+    RTIR_RESERVED_FIELD2, RTIR_RESERVED_FIELD3, RTIR_RESERVED_FIELD4, RTIR_RESERVED_FIELD5,
+    RTIR_RESERVED_FIELD6, RTIR_VALID_FLAG, RTIR_CTIME, RTIR_UTIME, RTIR_CUSER, RTIR_UUSER,
+    RTIR_TRANS_DATE, RTIR_ERROR_DEC
+  </sql>
+    <select id="selectResidentTaxInfo" resultMap="BaseAllResultMap">
+        select
+        <include refid="Base_All_Column_List"/>
+        from d_resident_tax_inform_req t
+        where 1 = 1
+        and RTIR_TA_ACCOUNT_ID = #{accountId}
+        and RTIR_INDIVIDUAL_OR_INSTITUTION = #{type}
+        and RTIR_CHANNEL_CODE = #{channelCode}
+        and rownum = 1
+    </select>
+
+</mapper>

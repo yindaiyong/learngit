@@ -1,0 +1,20 @@
+--04文件多币种美月盈124数据前置校验取值数量逻辑
+
+select count(1) from sams.d_exchange_req t 
+      where er_channel_code = 'TTTNETB3'-- CHANNELCODE
+      and er_return_code = '0000'
+        and er_business_code = '024'--BUSINESSCODE      
+        and 
+       (
+         (er_fund_code = 'PFQD07' and er_trans_date <='20200521' )--FUNDCODE OPENDAY(开放日最大的那天<确认日期)
+       or(er_fund_code = 'PFQD06' and er_trans_date <='20200520' )--FUNDCODE OPENDAY(开放日最大的那天<确认日期)
+       )
+        and not exists (
+        select 1 from sams.d_exchange_req_cfm c 
+        where c.erc_channel_code = t.er_channel_code 
+        and t.er_app_sheet_serial_no = c.erc_app_sheet_serial_no 
+        and t.er_fund_code = c.erc_fund_code 
+        and c.erc_business_code = '024'--BUSINESSCODE
+        and c.erc_send_status = '01'
+			)
+  	

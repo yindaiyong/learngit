@@ -1,0 +1,100 @@
+ --06货币类取值逻辑
+ SELECT
+        T.F_LASTSHARES-T.F_OCCURSHARES BASISFORCALCULATINGDIVIDEND,
+        T.F_OCCURSHARES VOLOFDIVIDENDFORREINVESTMENT,
+        T.F_OCCURSHARES DIVIDENDAMOUNT,
+        T.C_REQUESTNO  REQUESTNO,
+        T.C_REQUESTNO  TASERIALNO,
+          '' CHARGE,
+          '' AGENCYFEE,
+          '' TRANSFERFEE,
+          '' SHARECLASS,
+          '' DRAWBONUSUNIT,
+          2 DIVIDENDTYPE,
+          '' ACHIEVEMENTPAY,
+          '' ACHIEVEMENTCOMPEN,
+          '' NAV,
+          '' BUSINESSCODE,
+          '' DIVIDENDPERUNIT,
+          0  DEFDIVIDENDMETHOD,
+          0  CONFIRMEDAMOUNT,
+        '' DEPOSITACCT,
+        '' REGIONCODE,
+        '' TOTALFROZENVOL,
+        '' OTHERFEE1,
+        '' OTHERFEE2,
+        '' INDIVIDUALORINSTITUTION,
+        '' DIVIDENDRATIO,
+        '' STAMPDUTY,
+        '' FROZENBALANCE,
+        '' FEECALCULATOR,
+        '' FROZENSHARESFORREINVEST,
+        '' ORIGINALAPPSHEETNO,
+          (select p.PI_CURRENCY_TYPE 
+      from sams.p_product_info p, sams.p_channel_product c
+     where p.pi_channel_product_code = c.cp_channel_product_code
+       and c.cp_channel_code =T2.dci_channel_code
+       and p.pi_channel_code=c.cp_channel_code
+       and c.cp_valid_flag = '01'
+       and c.cp_check_state = '01'
+       and p.pi_valid_flag not in('00','99')
+       and p.pi_check_state = '01'
+       and c.cp_channel_product_code=T2.dci_fund_code
+       and c.cp_ta_product_code=T2.DCI_PRODUCT_CODE) CURRENCYTYPE,
+          '20200413' TRANSACTIONCFMDATE,
+          '20200413' DIVIDENTDATE,
+          '20200413' XRDATE,
+          '20200413' REGISTRATIONDATE,
+          '20200413' DOWNLOADDATE,
+          T2.dci_fund_code  FUNDCODE,
+          T2.dci_channel_code CHANNELCODE,
+          '20200410' LASTDATE,
+          '0000' RETURNCODE,
+          T2.DCI_TRANS_ACTION_ACCOUNT    TRANSACTIONACCOUNTID,
+         T2.DCI_TA_ACCOUNT_ID    TAACCOUNTID,
+         T2.DCI_DISTRIBUTOR_CODE    DISTRIBUTORCODE,
+         T2.DCI_BRANCH_CODE    BRANCHCODE,
+         T2.DCI_IN_CONTRACT     INCONTRACT
+        FROM datacenter.TA_TSHARECURRENTS@sams_dc_dblink T,sams.D_CONTRACT_INFO T2
+        WHERE exists (select 1
+              from (
+              --create by yindy 修改函数  -->
+              select c.dci_in_contract incontract
+              from sams.d_contract_info c
+             where exists (select 1
+                      from (
+                        --create by yindy 修改函数  -->
+                        select distinct c.CP_TA_PRODUCT_CODE fundcode
+                        ,p.pi_channel_product_code 
+                  from sams.p_product_info p, sams.p_channel_product c
+                 where p.pi_channel_product_code = c.cp_channel_product_code
+                   and p.pi_channel_code=c.cp_channel_code
+                   and c.cp_channel_code = 'TTTNETB6'
+                   and c.cp_valid_flag = '01'
+                   and c.cp_check_state = '01'
+                   and p.pi_valid_flag not in('00','99')
+                 and p.pi_check_state = '01'
+                --  and p.pi_product_type in('4','5','6') -->
+                  and p.pi_product_type='3' 
+                        --函数结束  -->
+                      ) temp
+                     where temp.fundcode = c.DCI_PRODUCT_CODE
+                     and temp.pi_channel_product_code = c.dci_fund_code )
+               and c.dci_valid_flag = '01'
+               and c.dci_channel_code = 'TTTNETB6'
+              -- 修改函数 -->
+              ) tempout
+             where tempout.incontract = T.L_CONTRACTSERIALNO )
+        AND T.C_BUSINFLAG='74'
+        AND T2.DCI_IN_CONTRACT=T.L_CONTRACTSERIALNO
+           AND T2.DCI_CHANNEL_CODE = 'TTTNETB6'
+           AND T2.DCI_VALID_FLAG='01'
+        AND to_char(T.D_REQUESTDATE, 'yyyyMM') = to_char(to_date('20200413','yyyyMMdd'),'yyyyMM')
+--TA表     TA_TSHARECURRENTS T   
+--条件：T.C_BUSINFLAG='74'  代销合同=T.L_CONTRACTSERIALNO
+
+--字段：nvl(T.F_LASTSHARES,0.00)-nvl(T.F_OCCURSHARES,0.00) BASISFORCALCULATINGDIVIDEND,
+        --T.F_OCCURSHARES VOLOFDIVIDENDFORREINVESTMENT,
+        --T.F_OCCURSHARES DIVIDENDAMOUNT,
+        --T.C_REQUESTNO  REQUESTNO,
+        --T.C_REQUESTNO  TASERIALNO,

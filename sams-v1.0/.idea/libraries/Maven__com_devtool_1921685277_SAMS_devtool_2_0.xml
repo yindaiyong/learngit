@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.devtool.1921685277.SAMS:devtool:2.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/devtool/1921685277/SAMS/devtool/2.0/devtool-2.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/devtool/1921685277/SAMS/devtool/2.0/devtool-2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/devtool/1921685277/SAMS/devtool/2.0/devtool-2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

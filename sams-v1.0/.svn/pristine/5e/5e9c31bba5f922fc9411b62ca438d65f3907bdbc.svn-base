@@ -1,0 +1,306 @@
+{
+  "total": 37,
+  "rows": [
+	 {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------04确认取值------",
+      "name": "------",
+      "url": "/admin/login"
+	},
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo020(selectMap)",
+      "name": "04文件120取值逻辑（所有的120）.txt",
+      "url": "04文件120取值逻辑（所有的120）.txt"
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo022(selectMap)",
+      "name": "04文件122取值逻辑.txt",
+      "url": "04文件122取值逻辑.txt"
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list = exchangeReqTmpMapper.select022024TradeCfmList(queryMap)",
+      "name": "04文件FOF、权益类122数据取值逻辑.txt",
+      "url": "04文件FOF、权益类122数据取值逻辑.txt"
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo022(selectMap)",
+      "name": "04文件货币类122取值逻辑.txt",
+      "url": "04文件货币类122取值逻辑.txt"
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectPreMentTradeInfo024Count(selectMap)",
+      "name": "04文件货币类122数据前置校验取值数量逻辑.txt",
+      "url": "04文件货币类122数据前置校验取值数量逻辑.txt"
+    },
+    {
+      "id": "6",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectPreMentTradeInfo024(selectMap)",
+      "name": "04文件权益类、FOF类122数据的前置校验022成功数据有多少（单类产品）.txt",
+      "url": "04文件权益类、FOF类122数据的前置校验022成功数据有多少（单类产品）.txt"
+    },
+    {
+      "id": "7",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> fundConfirmDate = productInfoMapper.queryTransConfirmDay(queryMap)",
+      "name": "04文件124取值逻辑.txt",
+      "url": "04文件124取值逻辑.txt"
+    },
+    {
+      "id": "8",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.queryEx020024TradeCount(query)",
+      "name": "04文件FOF、权益类124数据取值逻辑.txt",
+      "url": "04文件FOF、权益类124数据取值逻辑.txt"
+    },
+    {
+      "id": "9",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list  = exchangeReqTmpMapper.queryEx022024TradeCfmList(query)",
+      "name": "04文件多币种美月盈124数据前置校验取值数量逻辑.txt",
+      "url": "04文件多币种美月盈124数据前置校验取值数量逻辑.txt"
+    },
+    {
+      "id": "10",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectCheckTaTconfirmData(selectMap)",
+      "name": "04文件多币种美月盈124数据取值逻辑.txt",
+      "url": "04文件多币种美月盈124数据取值逻辑.txt"
+    },
+    {
+      "id": "11",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectSubscribeResult(selectMap)",
+      "name": "04文件货币类124前置校验数量取值.txt",
+      "url": "04文件货币类124前置校验数量取值.txt"
+    },
+    {
+      "id": "12",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectSubscribeGQResult(selectMap)",
+      "name": "04文件货币类124取值逻辑.txt",
+      "url": "04文件货币类124取值逻辑.txt"
+    },
+    {
+      "id": "13",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectmultiCurrencyResult(selectMap)",
+      "name": "04文件权益类、FOF类124数据的前置校验022成功数据有多少（单类产品）.txt",
+      "url": "04文件权益类、FOF类124数据的前置校验022成功数据有多少（单类产品）.txt"
+    },
+    {
+      "id": "14",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String, Object>> list  = exchangeReqTmpMapper.queryMuTradeCfmList(query)",
+      "name": "04文件T+N、封闭净值类产品的142数据取值逻辑.txt",
+      "url": "04文件T+N、封闭净值类产品的142数据取值逻辑.txt"
+    },
+    {
+      "id": "15",
+      "errorMsg" : "",
+      "errorMethod" : "int checkTaTconfirmData= exchangeReqTmpMapper.selectCheckExchangereqData(selectMap)",
+      "name": "04文件固收类150取值.txt",
+      "url": "04文件固收类150取值.txt"
+    },
+    {
+      "id": "16",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoList = exchangeReqTmpMapper.selectRedeemResult(selectMap)",
+      "name": "04文件固收类150取值.txt",
+      "url": "04文件固收类150取值.txt"
+    },
+    {
+      "id": "17",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> tradeInfoListError = exchangeReqTmpMapper.selectPreMentTradeInfoError(selectMap)",
+      "name": "04文件取所有的错误数据（所有的交易申请失败T+1给）.txt",
+      "url": "04文件取所有的错误数据（所有的交易申请失败T+1给）.txt"
+    },
+    {
+      "id": "18",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.select130cfmDiffValueCount(queryMap)",
+      "name": "04文件权益类、FOF类的产品各类确认数据的数量 .txt",
+      "url": "04文件权益类、FOF类的产品各类确认数据的数量 .txt"
+    },
+    {
+      "id": "18",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.select130cfmDiffValueCount(queryMap)",
+      "name": "04文件固收、T+N、封闭净值类130前置校验数量取值.txt",
+      "url": "04文件固收、T+N、封闭净值类130前置校验数量取值.txt"
+    },
+    {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------05对账取值------",
+      "name": "------",
+      "url": "/admin/login"
+    },
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCurrencyFTransCount(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> currencyFList = fundAccountReconCfmMapper.selectCurrencyFIncome(query)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCheckBusinessCodeCount(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> fixedIncomeList=fundAccountReconCfmMapper.selectFixedIncome(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "int count = exchangeReqTmpMapper.selectCheckBusinessCodeCount(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "6",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashIncomeList= fundAccountReconCfmMapper.selectCashIncome(inputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "7",
+      "errorMsg" : "",
+      "errorMethod" : "List<FundVolDetailCfm> fundVolDetailList = fundVolDetailCfmMapper.getFundVolDetailFromTA(channelCode,transDate, productTypes)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "8",
+      "errorMsg" : "",
+      "errorMethod" : "int count = fundVolDetailCfmMapper.querySetUpDataCount(channelCode,transDate, productTypes)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "9",
+      "errorMsg" : "",
+      "errorMethod" : "int checkRedeem = fundVolDetailCfmMapper.checkRedeemAvailableVol(channelCode,transDate,lastDate,nextDate)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "10",
+      "errorMsg" : "",
+      "errorMethod" : "int checkRedeemCfm = fundVolDetailCfmMapper.checkRedeemCfmTotalVol(channelCode,transDate,lastDate)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "11",
+      "errorMsg" : "",
+      "errorMethod" : "int checkFixedIncome = fundAccountReconCfmMapper.selectCheckFixedIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "12",
+      "errorMsg" : "",
+      "errorMethod" : "int CheckCashIncome = fundAccountReconCfmMapper.selectCheckCashIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "13",
+      "errorMsg" : "",
+      "errorMethod" : "int checkStockIncome = fundAccountReconCfmMapper.queryCheckStockIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "14",
+      "errorMsg" : "",
+      "errorMethod" : "int checkMultiIncome = fundAccountReconCfmMapper.queryCheckMultiIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "15",
+      "errorMsg" : "",
+      "errorMethod" : "int checkMoneyFIncome = fundAccountReconCfmMapper.queryCheckMoneyFIncome(checkInputMap)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "------06分红取值------",
+      "name": "------",
+      "url": "/admin/login"
+    },
+    {
+      "id": "1",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> rubyIncomeList=contractInfoMapper.selectRubyIncome(fixedIncomeParam)",
+      "name": "06货币类分红取值逻辑.txt",
+      "url": "06货币类分红取值逻辑.txt"
+    },
+    {
+      "id": "2",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncomeCount=contractInfoMapper.selectCashFixedIncomeCount(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "3",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncome=contractInfoMapper.selectCashFixedIncome(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "4",
+      "errorMsg" : "",
+      "errorMethod" : "List<String> inContracts = fundAccountReconCfmMapper.queryHasShareFundAcco(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "5",
+      "errorMsg" : "",
+      "errorMethod" : "List<Map<String,Object>> cashFixedIncome=contractInfoMapper.selectCashFixedIncome(fixedIncomeParam)",
+      "name": "",
+      "url": ""
+    },
+    {
+      "id": "------",
+      "errorMsg" : "------",
+      "errorMethod" : "-------开放式基金业务数据交换协议171204版.pdf-----",
+      "name": "开放式基金业务数据交换协议171204版.pdf",
+      "url": "开放式基金业务数据交换协议171204版.pdf"
+    }
+  ]
+}

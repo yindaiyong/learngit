@@ -1,0 +1,118 @@
+package com.sams.bizParameterManage.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.sams.batchfile.service.ProTypeOpenDayService;
+import com.sams.common.web.controller.BaseController;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @ClassName:
+ * @Description:产品类型工作日设置
+ * @author:
+ * @date:
+ */
+@Controller
+@RequestMapping(value = "/productType")
+public class ProductTypeOpenController extends BaseController{
+
+
+    @Autowired
+    private ProTypeOpenDayService proTypeOpenDayService;
+    
+    
+    /**
+     * 返回产品类型工作日配置界面
+     * @Title: productTypePage
+     * @author: yindy 2020/6/17 13:52
+     * @param: []
+     * @return: java.lang.String
+     * @throws
+     */
+    @RequestMapping()
+    public String productTypePage(Model model){
+    	//用于复核时判断
+    	model.addAttribute("userName",getCurrentUser().getLoginName());
+        return "sys/bizParameterManage/productType/productTypeOpenList";
+    }
+
+    /**
+     * 查询产品类型工作日配置界面产品类型下拉
+     * @Title: getProductTypeCombox   
+     * @author: yindy 2020年6月17日 下午2:57:14
+     * @param: @return      
+     * @return: Object      
+     * @throws
+     */
+    @RequestMapping(value = "/getProductTypeCombox")
+    @ResponseBody
+    public Object getProductTypeCombox(){
+        List<Map<String,Object>> list = proTypeOpenDayService.getProductTypeCombox();
+        return JSON.toJSON(list);
+    }
+    
+    /**
+     * 获得界面配置数据  
+     * @Title: getDateList   
+     * @author: yindy 2020年6月18日 上午9:26:15
+     * @param: @param productType
+     * @param: @param yearVal
+     * @param: @param type
+     * @param: @return      
+     * @return: Object      
+     * @throws
+     */
+    @RequestMapping("/getDateList")
+    @ResponseBody
+    public Object getDateList(String productType,String yearVal,String type){
+    	Map<String, Object> map = getMonthAndDayList(productType,yearVal,type);
+    	Object object = map.get("dateList");
+    	return object;
+    }
+    /**
+     * 获得界面月份状态数据   
+     * @Title: getMonInfoList   
+     * @author: yindy 2020年6月18日 上午9:26:42
+     * @param: @param productType
+     * @param: @param yearVal
+     * @param: @param type
+     * @param: @return      
+     * @return: Object      
+     * @throws
+     */
+	@RequestMapping("/getMonInfoList")
+    @ResponseBody
+    public Object getMonInfoList(String productType,String yearVal,String type){
+    	Map<String, Object> map = getMonthAndDayList(productType,yearVal,type);
+    	Object object = map.get("monInfoList");
+    	return object;
+    }
+	
+	/**
+	 * 日期数据和月份状态组合   
+	 * @Title: getMonthAndDayList   
+	 * @author: yindy 2020年6月18日 上午9:27:23
+	 * @param: @param productType
+	 * @param: @param yearVal
+	 * @param: @param type
+	 * @param: @return      
+	 * @return: Map<String,Object>      
+	 * @throws
+	 */
+    public Map<String, Object> getMonthAndDayList(String productType,String yearVal, String type) {
+		return proTypeOpenDayService.getMonthAndDayList(productType,yearVal,type);
+	}
+    
+    @RequestMapping("/addPage")
+    public String addPage(){
+    	return "sys/bizParameterManage/productType/productTypeOpenAdd";
+    }
+
+}

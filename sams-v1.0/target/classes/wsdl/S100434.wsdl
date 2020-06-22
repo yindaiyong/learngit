@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions name="S100434" targetNamespace="http://www.example.org/S100434/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/S100434/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/S100434/">
+	
+      <xsd:element name="CommonRs" type="tns:S100434TypeResponse"></xsd:element>
+        <xsd:complexType name="S100434TypeResponse">
+          <xsd:sequence>
+          	<xsd:element name="CommonRsHdr" type="tns:CommonRsHdr" />
+          	<xsd:element name="CommonXmlRs" type="tns:CommonXmlRs"></xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+        
+            <xsd:element name="CommonRq" type="tns:S100434Type"></xsd:element>
+            
+            <xsd:complexType name="S100434Type">
+            	<xsd:sequence>
+            		<xsd:element name="CommonRqHdr" type="tns:CommonRqHdr"></xsd:element>
+            		<xsd:element name="CommonXmlRq" type="tns:CommonXmlRq"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="CommonRqHdr">
+            	<xsd:sequence>
+            		<xsd:element name="ChannelId" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:maxLength value="40"></xsd:maxLength>
+            					<xsd:minLength value="1"></xsd:minLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="TransCode" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:length value="6"></xsd:length>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="TransDate" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:length value="8"></xsd:length>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="TransTime" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:length value="9"></xsd:length>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="Version" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:minLength value="3"></xsd:minLength>
+            					<xsd:maxLength value="10"></xsd:maxLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="RqUid" maxOccurs="1"
+            			minOccurs="0">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:maxLength value="40"></xsd:maxLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            
+            <xsd:complexType name="CommonXmlRq">
+            	<xsd:sequence>
+            		<xsd:element name="actflag" minOccurs="1"
+            			maxOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+
+
+
+
+
+
+
+
+
+            		<xsd:element name="chengoutsum" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="contractserialno"
+            			type="xsd:string" minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="crmauditor" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="crmaudittime" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="crmoperator" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="custname" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="deductfare" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="deductfaretype" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="exceedflag" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="faretype" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="fundcode" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="isredeemall" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="manualfare" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="othercode" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="outrequestno" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="outsystemflag" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="redeembalance" type="xsd:string"
+            			minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="redeemprofit"
+            			type="xsd:string" minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="redeemshares"
+            			type="xsd:string" minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="redeemtype" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+            		<xsd:element name="requestdate" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+            		<xsd:element name="toprofitclass"
+            			type="xsd:string" minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="totrustcontractid"
+            			type="xsd:string" minOccurs="0" maxOccurs="1">
+            		</xsd:element>
+            		<xsd:element name="trustcontractid" type="xsd:string" minOccurs="0" maxOccurs="1"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    
+            <xsd:complexType name="CommonRsHdr">
+            	<xsd:sequence>
+            		<xsd:element name="Version" minOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:minLength value="3"></xsd:minLength>
+            					<xsd:maxLength value="10"></xsd:maxLength>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+            
+            <xsd:complexType name="CommonXmlRs">
+            	<xsd:sequence>
+            		<xsd:element name="RetCode" minOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            					<xsd:length value="4"></xsd:length>
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+            		<xsd:element name="RetMsg" minOccurs="1">
+            			<xsd:simpleType>
+            				<xsd:restriction base="xsd:string">
+            				</xsd:restriction>
+            			</xsd:simpleType>
+            		</xsd:element>
+
+            		<xsd:element name="requestno" type="xsd:string"></xsd:element>
+            		<xsd:element name="reserveno" type="xsd:string"></xsd:element>
+            	</xsd:sequence>
+            </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="S100434Request">
+    <wsdl:part element="tns:CommonRq" name="Common" />
+  </wsdl:message>
+  <wsdl:message name="S100434Response">
+    <wsdl:part element="tns:CommonRs" name="Common"/>
+  </wsdl:message>
+  <wsdl:portType name="S100434">
+    <wsdl:operation name="S100434">
+      <wsdl:input message="tns:S100434Request"/>
+      <wsdl:output message="tns:S100434Response"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="S100434SOAP" type="tns:S100434">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="S100434">
+      <soap:operation soapAction="http://www.example.org/S100434/S100434"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="S100434">
+    <wsdl:port binding="tns:S100434SOAP" name="S100434SOAP">
+      <soap:address location="http://192.168.52.44:7080/sitco/S100434"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

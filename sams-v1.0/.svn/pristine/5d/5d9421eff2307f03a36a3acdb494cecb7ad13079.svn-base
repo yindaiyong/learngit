@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.DealInfoEditMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.DealInfoEdit" >
+    <id column="IVE_ID" property="iveId" jdbcType="DECIMAL" />
+    <result column="IVE_CHANNEL_CODE" property="iveChannelCode" jdbcType="VARCHAR" />
+    <result column="IVE_TRANS_DATE" property="iveTransDate" jdbcType="VARCHAR" />
+    <result column="IVE_APP_SHEET_SERIAL_NO" property="iveAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="IVE_COL_NAME" property="iveColName" jdbcType="VARCHAR" />
+    <result column="IVE_COL_CODE" property="iveColCode" jdbcType="VARCHAR" />
+    <result column="IVE_COL_VALUE" property="iveColValue" jdbcType="VARCHAR" />
+    <result column="IVE_NEW_COL_VALUE" property="iveNewColValue" jdbcType="VARCHAR" />
+    <result column="IVE_TABLE_NAME" property="iveTableName" jdbcType="VARCHAR" />
+    <result column="IVE_CTIME" property="iveCtime" jdbcType="TIMESTAMP" />
+    <result column="IVE_UTIME" property="iveUtime" jdbcType="TIMESTAMP" />
+    <result column="IVE_CUSER" property="iveCuser" jdbcType="VARCHAR" />
+    <result column="IVE_UUSER" property="iveUuser" jdbcType="VARCHAR" />
+    <result column="IVE_COL_LENGTH" property="iveColLength" jdbcType="VARCHAR" />
+    <result column="IVE_VALID_FLAG" property="iveValidFlag" jdbcType="VARCHAR" />
+    <result column="IVE_ERROR_DEC" property="iveErrorDec" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    IVE_ID, IVE_CHANNEL_CODE, IVE_TRANS_DATE, IVE_APP_SHEET_SERIAL_NO, IVE_COL_NAME, 
+    IVE_COL_VALUE, IVE_NEW_COL_VALUE, IVE_TABLE_NAME, IVE_CTIME, IVE_UTIME, IVE_CUSER, 
+    IVE_UUSER,IVE_COL_CODE,IVE_COL_LENGTH,IVE_ERROR_DEC,IVE_VALID_FLAG
+  </sql>
+  
+  
+      <select id="findInfoCondition" parameterType="java.util.Map"  resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from d_deal_info_val_edit
+        <where>
+        <if test=" condition.iveChannelCode != null and condition.iveChannelCode != ''  ">
+                and ive_channel_code like  ('%'|| #{condition.iveChannelCode} ||'%')
+        </if>
+        <if test=" condition.iveTransDate != null and condition.iveTransDate != '' ">
+                and ive_trans_date =  replace(#{condition.iveTransDate},'-','')
+        </if>
+        <if test=" condition.iveTableName != null and condition.iveTableName != '' ">
+                and ive_table_name =  #{condition.iveTableName}
+        </if>
+        </where>
+            order by ive_utime,ive_ctime desc
+    </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_DEAL_INFO_VAL_EDIT
+    where IVE_ID = #{iveId,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectTableColName"  resultType="hashMap" parameterType="hashMap">
+	select t.table_name,t.COLUMN_NAME from user_tab_columns t where 
+	t.table_name=#{TABLENAME,jdbcType=VARCHAR}
+	and substr(replace(t.COLUMN_NAME,'_',''),4)=#{COLCODE,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateTagTable" parameterType="hashMap" >
+    update ${TABLENAME}
+    set ${COLCODE} = #{COLVALUE,jdbcType = VARCHAR}
+    where ${CONDITION}
+  </update>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_DEAL_INFO_VAL_EDIT
+    where IVE_ID = #{iveId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.DealInfoEdit" >
+    insert into D_DEAL_INFO_VAL_EDIT (IVE_CHANNEL_CODE, IVE_TRANS_DATE, 
+      IVE_APP_SHEET_SERIAL_NO, IVE_COL_NAME, IVE_COL_VALUE, 
+      IVE_NEW_COL_VALUE, IVE_TABLE_NAME, IVE_CTIME, IVE_VALID_FLAG,
+      IVE_UTIME, IVE_CUSER, IVE_UUSER,IVE_COL_CODE,IVE_COL_LENGTH,IVE_ERROR_DEC
+      )
+    values (#{iveChannelCode,jdbcType=VARCHAR}, #{iveTransDate,jdbcType=VARCHAR}, 
+      #{iveAppSheetSerialNo,jdbcType=VARCHAR}, #{iveColName,jdbcType=VARCHAR}, #{iveColValue,jdbcType=VARCHAR}, 
+      #{iveNewColValue,jdbcType=VARCHAR}, #{iveTableName,jdbcType=VARCHAR}, #{iveCtime,jdbcType=TIMESTAMP},#{iveValidFlag,jdbcType=TIMESTAMP}, 
+      #{iveUtime,jdbcType=TIMESTAMP}, #{iveCuser,jdbcType=VARCHAR}, #{iveUuser,jdbcType=VARCHAR},
+      #{iveColCode,jdbcType=VARCHAR},#{iveColLength,jdbcType=VARCHAR},#{iveErrorDec,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.DealInfoEdit" >
+    insert into D_DEAL_INFO_VAL_EDIT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iveId != null" >
+        IVE_ID,
+      </if>
+       <if test="iveColCode != null" >
+        IVE_COL_CODE,
+      </if>
+      <if test="iveChannelCode != null" >
+        IVE_CHANNEL_CODE,
+      </if>
+      <if test="iveTransDate != null" >
+        IVE_TRANS_DATE,
+      </if>
+      <if test="iveAppSheetSerialNo != null" >
+        IVE_APP_SHEET_SERIAL_NO,
+      </if>
+      <if test="iveColName != null" >
+        IVE_COL_NAME,
+      </if>
+      <if test="iveColValue != null" >
+        IVE_COL_VALUE,
+      </if>
+      <if test="iveNewColValue != null" >
+        IVE_NEW_COL_VALUE,
+      </if>
+      <if test="iveTableName != null" >
+        IVE_TABLE_NAME,
+      </if>
+      <if test="iveCtime != null" >
+        IVE_CTIME,
+      </if>
+      <if test="iveUtime != null" >
+        IVE_UTIME,
+      </if>
+      <if test="iveCuser != null" >
+        IVE_CUSER,
+      </if>
+      <if test="iveUuser != null" >
+        IVE_UUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iveId != null" >
+        #{iveId,jdbcType=DECIMAL},
+      </if>
+       <if test="iveColCode != null" >
+        #{iveColCode,jdbcType=VARCHAR},
+      </if>
+      <if test="iveChannelCode != null" >
+        #{iveChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="iveTransDate != null" >
+        #{iveTransDate,jdbcType=VARCHAR},
+      </if>
+      <if test="iveAppSheetSerialNo != null" >
+        #{iveAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="iveColName != null" >
+        #{iveColName,jdbcType=VARCHAR},
+      </if>
+      <if test="iveColValue != null" >
+        #{iveColValue,jdbcType=VARCHAR},
+      </if>
+      <if test="iveNewColValue != null" >
+        #{iveNewColValue,jdbcType=VARCHAR},
+      </if>
+      <if test="iveTableName != null" >
+        #{iveTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="iveCtime != null" >
+        #{iveCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iveUtime != null" >
+        #{iveUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iveCuser != null" >
+        #{iveCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="iveUuser != null" >
+        #{iveUuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.DealInfoEdit" >
+    update D_DEAL_INFO_VAL_EDIT
+    <set >
+      <if test="iveChannelCode != null" >
+        IVE_CHANNEL_CODE = #{iveChannelCode,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="iveColCode != null" >
+       IVE_COL_CODE= #{iveColCode,jdbcType=VARCHAR},
+      </if>
+      
+      <if test="iveTransDate != null" >
+        IVE_TRANS_DATE = #{iveTransDate,jdbcType=VARCHAR},
+      </if>
+      <if test="iveAppSheetSerialNo != null" >
+        IVE_APP_SHEET_SERIAL_NO = #{iveAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="iveColName != null" >
+        IVE_COL_NAME = #{iveColName,jdbcType=VARCHAR},
+      </if>
+      <if test="iveColValue != null" >
+        IVE_COL_VALUE = #{iveColValue,jdbcType=VARCHAR},
+      </if>
+      <if test="iveNewColValue != null" >
+        IVE_NEW_COL_VALUE = #{iveNewColValue,jdbcType=VARCHAR},
+      </if>
+      <if test="iveTableName != null" >
+        IVE_TABLE_NAME = #{iveTableName,jdbcType=VARCHAR},
+      </if>
+      <if test="iveCtime != null" >
+        IVE_CTIME = #{iveCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iveUtime != null" >
+        IVE_UTIME = #{iveUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iveCuser != null" >
+        IVE_CUSER = #{iveCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="iveUuser != null" >
+        IVE_UUSER = #{iveUuser,jdbcType=VARCHAR},
+      </if>
+      <if test="iveValidFlag != null" >
+        IVE_VALID_FLAG = #{iveValidFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IVE_ID = #{iveId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.DealInfoEdit" >
+    update D_DEAL_INFO_VAL_EDIT
+    set IVE_CHANNEL_CODE = #{iveChannelCode,jdbcType=VARCHAR},
+      IVE_TRANS_DATE = #{iveTransDate,jdbcType=VARCHAR},
+      IVE_APP_SHEET_SERIAL_NO = #{iveAppSheetSerialNo,jdbcType=VARCHAR},
+      IVE_COL_NAME = #{iveColName,jdbcType=VARCHAR},
+      IVE_COL_VALUE = #{iveColValue,jdbcType=VARCHAR},
+      IVE_NEW_COL_VALUE = #{iveNewColValue,jdbcType=VARCHAR},
+      IVE_TABLE_NAME = #{iveTableName,jdbcType=VARCHAR},
+      IVE_CTIME = #{iveCtime,jdbcType=TIMESTAMP},
+      IVE_UTIME = #{iveUtime,jdbcType=TIMESTAMP},
+      IVE_CUSER = #{iveCuser,jdbcType=VARCHAR},
+      IVE_UUSER = #{iveUuser,jdbcType=VARCHAR},
+     IVE_COL_CODE= #{iveColCode,jdbcType=VARCHAR}
+    where IVE_ID = #{iveId,jdbcType=DECIMAL}
+  </update>
+  
+  <select id="selectinfoByIds" resultMap = "BaseResultMap">
+  	select 
+    <include refid="Base_Column_List" />
+    from D_DEAL_INFO_VAL_EDIT
+    where IVE_ID in 
+    <foreach collection="ciIdss" item="id" index="index"
+            open="(" close=")" separator=",">
+            #{id}
+    </foreach>
+  </select>
+
+	<update id="checkInfo" parameterType="java.util.List">
+		<foreach collection="check" item="item" index="index" open="begin" close=";end;" separator=";">
+			update d_deal_info_val_edit
+			set IVE_VALID_FLAG = #{item.iveValidFlag,jdbcType = VARCHAR},
+			IVE_UUSER = #{item.iveUuser,jdbcType = VARCHAR},
+			IVE_UTIME = sysdate
+			where IVE_ID = #{item.iveId,jdbcType = VARCHAR}
+		</foreach>
+	</update>
+  
+  
+</mapper>

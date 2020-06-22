@@ -1,0 +1,1926 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.AccountInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.AccountInfo" >
+    <id column="AI_ID" property="aiId" jdbcType="DECIMAL" />
+    <result column="AI_CHANNEL_CODE" property="aiChannelCode" jdbcType="VARCHAR" />
+    <result column="AI_ADDRESS" property="aiAddress" jdbcType="VARCHAR" />
+    <result column="AI_INST_REPR_ID_CODE" property="aiInstReprIdCode" jdbcType="VARCHAR" />
+    <result column="AI_INST_REPR_ID_TYPE" property="aiInstReprIdType" jdbcType="VARCHAR" />
+    <result column="AI_INST_REPR_NAME" property="aiInstReprName" jdbcType="VARCHAR" />
+    <result column="AI_APP_SHEET_SERIAL_NO" property="aiAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="AI_CERTIFICATE_TYPE" property="aiCertificateType" jdbcType="VARCHAR" />
+    <result column="AI_CERTIFICATE_NO" property="aiCertificateNo" jdbcType="VARCHAR" />
+    <result column="AI_INVESTOR_NAME" property="aiInvestorName" jdbcType="OTHER" />
+    <result column="AI_TRANSACTION_DATE" property="aiTransactionDate" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTION_TIME" property="aiTransactionTime" jdbcType="VARCHAR" />
+    <result column="AI_INDIVIDUAL_OR_INSTITUTION" property="aiIndividualOrInstitution" jdbcType="VARCHAR" />
+    <result column="AI_POST_CODE" property="aiPostCode" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTOR_CERT_NO" property="aiTransactorCertNo" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTOR_CERT_TYPE" property="aiTransactorCertType" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTOR_NAME" property="aiTransactorName" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTION_ACCOUNT_ID" property="aiTransactionAccountId" jdbcType="VARCHAR" />
+    <result column="AI_DISTRIBUTOR_CODE" property="aiDistributorCode" jdbcType="VARCHAR" />
+    <result column="AI_BUSINESS_CODE" property="aiBusinessCode" jdbcType="VARCHAR" />
+    <result column="AI_ACCT_NO_FM_IN_CLEAI_AGENCY" property="aiAcctNoFmInCleaiAgency" jdbcType="VARCHAR" />
+    <result column="AI_ACCT_NAME_F_I_CLEAI_AGENCY" property="aiAcctNameFICleaiAgency" jdbcType="VARCHAR" />
+    <result column="AI_CLEARING_AGENCY_CODE" property="aiClearingAgencyCode" jdbcType="VARCHAR" />
+    <result column="AI_INVESTORS_BIRTHDAY" property="aiInvestorsBirthday" jdbcType="VARCHAR" />
+    <result column="AI_DEPOSIT_ACCT" property="aiDepositAcct" jdbcType="VARCHAR" />
+    <result column="AI_REGION_CODE" property="aiRegionCode" jdbcType="VARCHAR" />
+    <result column="AI_EDUCATION_LEVEL" property="aiEducationLevel" jdbcType="VARCHAR" />
+    <result column="AI_EMAIL_ADDRESS" property="aiEmailAddress" jdbcType="VARCHAR" />
+    <result column="AI_FAX_NO" property="aiFaxNo" jdbcType="VARCHAR" />
+    <result column="AI_VOCATION_CODE" property="aiVocationCode" jdbcType="VARCHAR" />
+    <result column="AI_HOME_TEL_NO" property="aiHomeTelNo" jdbcType="VARCHAR" />
+    <result column="AI_ANNUAL_INCOME" property="aiAnnualIncome" jdbcType="DECIMAL" />
+    <result column="AI_MOBILE_TEL_NO" property="aiMobileTelNo" jdbcType="VARCHAR" />
+    <result column="AI_BRANCH_CODE" property="aiBranchCode" jdbcType="VARCHAR" />
+    <result column="AI_OFFICE_TEL_NO" property="aiOfficeTelNo" jdbcType="VARCHAR" />
+    <result column="AI_ACCOUNT_ABBR" property="aiAccountAbbr" jdbcType="VARCHAR" />
+    <result column="AI_CONFIDENTIAL_DOCUMENT_CODE" property="aiConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="AI_SEX" property="aiSex" jdbcType="VARCHAR" />
+    <result column="AI_SH_SECURITIES_ACCOUNTID" property="aiShSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AI_SZ_SECURITIES_ACCOUNTID" property="aiSzSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AI_TA_ACCOUNT_ID" property="aiTaAccountId" jdbcType="VARCHAR" />
+    <result column="AI_TEL_NO" property="aiTelNo" jdbcType="VARCHAR" />
+    <result column="AI_TRADING_METHOD" property="aiTradingMethod" jdbcType="VARCHAR" />
+    <result column="AI_MINOR_FLAG" property="aiMinorFlag" jdbcType="VARCHAR" />
+    <result column="AI_DELIVER_TYPE" property="aiDeliverType" jdbcType="VARCHAR" />
+    <result column="AI_TRANSACTOR_ID_TYPE" property="aiTransactorIdType" jdbcType="VARCHAR" />
+    <result column="AI_ACCOUNT_CARD_ID" property="aiAccountCardId" jdbcType="VARCHAR" />
+    <result column="AI_MULTIACCT_FLAG" property="aiMultiacctFlag" jdbcType="VARCHAR" />
+    <result column="AI_TARGET_TRANSACT_ACCT_CODE" property="aiTargetTransactAcctCode" jdbcType="VARCHAR" />
+    <result column="AI_ACCT_NAME_INVE_CLEAI_AGEN" property="aiAcctNameInveCleaiAgen" jdbcType="VARCHAR" />
+    <result column="AI_ACCT_NO_INVE_CLEAI_AGEN" property="aiAcctNoInveCleaiAgen" jdbcType="VARCHAR" />
+    <result column="AI_CLEARING_AGENCY" property="aiClearingAgency" jdbcType="VARCHAR" />
+    <result column="AI_DELIVER_WAY" property="aiDeliverWay" jdbcType="VARCHAR" />
+    <result column="AI_NATIONALITY" property="aiNationality" jdbcType="VARCHAR" />
+    <result column="AI_NET_NO" property="aiNetNo" jdbcType="VARCHAR" />
+    <result column="AI_BROKER" property="aiBroker" jdbcType="VARCHAR" />
+    <result column="AI_CORP_NAME" property="aiCorpName" jdbcType="VARCHAR" />
+    <result column="AI_CERT_VALID_DATE" property="aiCertValidDate" jdbcType="VARCHAR" />
+    <result column="AI_INST_TRAN_CERT_VALID_DATE" property="aiInstTranCertValidDate" jdbcType="VARCHAR" />
+    <result column="AI_INST_REPR_CERT_VALID_DATE" property="aiInstReprCertValidDate" jdbcType="VARCHAR" />
+    <result column="AI_CLIENT_RISK_RATE" property="aiClientRiskRate" jdbcType="VARCHAR" />
+    <result column="AI_INST_REPR_MANAGE_RANGE" property="aiInstReprManageRange" jdbcType="VARCHAR" />
+    <result column="AI_CONTROL_HOLDER" property="aiControlHolder" jdbcType="VARCHAR" />
+    <result column="AI_ACTUAL_CONTROLLER" property="aiActualController" jdbcType="VARCHAR" />
+    <result column="AI_MARRIAGE_STATUS" property="aiMarriageStatus" jdbcType="VARCHAR" />
+    <result column="AI_FAMILY_NUM" property="aiFamilyNum" jdbcType="DECIMAL" />
+    <result column="AI_PENATES" property="aiPenates" jdbcType="DECIMAL" />
+    <result column="AI_MEDIA_HOBBY" property="aiMediaHobby" jdbcType="VARCHAR" />
+    <result column="AI_INSTITUTION_TYPE" property="aiInstitutionType" jdbcType="VARCHAR" />
+    <result column="AI_ENGLISH_FIRST_NAME" property="aiEnglishFirstName" jdbcType="VARCHAR" />
+    <result column="AI_ENGLISH_FAMLIY_NAME" property="aiEnglishFamliyName" jdbcType="VARCHAR" />
+    <result column="AI_VOCATION" property="aiVocation" jdbcType="VARCHAR" />
+    <result column="AI_CORPO_PROPERTY" property="aiCorpoProperty" jdbcType="VARCHAR" />
+    <result column="AI_STAFF_NUM" property="aiStaffNum" jdbcType="DECIMAL" />
+    <result column="AI_HOBBYTYPE" property="aiHobbytype" jdbcType="VARCHAR" />
+    <result column="AI_PROVINCE" property="aiProvince" jdbcType="VARCHAR" />
+    <result column="AI_CITY" property="aiCity" jdbcType="VARCHAR" />
+    <result column="AI_COUNTY" property="aiCounty" jdbcType="VARCHAR" />
+    <result column="AI_COMMEND_PERSON" property="aiCommendPerson" jdbcType="VARCHAR" />
+    <result column="AI_COMMEND_PERSON_TYPE" property="aiCommendPersonType" jdbcType="VARCHAR" />
+    <result column="AI_ACCEPT_METHOD" property="aiAcceptMethod" jdbcType="VARCHAR" />
+    <result column="AI_FROZEN_CAUSE" property="aiFrozenCause" jdbcType="VARCHAR" />
+    <result column="AI_FREEZING_DEADLINE" property="aiFreezingDeadline" jdbcType="VARCHAR" />
+    <result column="AI_ORIGINAL_SERIAL_NO" property="aiOriginalSerialNo" jdbcType="VARCHAR" />
+    <result column="AI_ORIGINAL_APP_SHEET_NO" property="aiOriginalAppSheetNo" jdbcType="VARCHAR" />
+    <result column="AI_SPECIFICATION" property="aiSpecification" jdbcType="VARCHAR" />
+    <result column="AI_CTIME" property="aiCtime" jdbcType="TIMESTAMP" />
+    <result column="AI_UTIME" property="aiUtime" jdbcType="TIMESTAMP" />
+    <result column="AI_CUSER" property="aiCuser" jdbcType="VARCHAR" />
+    <result column="AI_UUSER" property="aiUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    AI_ID, AI_CHANNEL_CODE, AI_ADDRESS, AI_INST_REPR_ID_CODE, AI_INST_REPR_ID_TYPE, AI_INST_REPR_NAME, 
+    AI_APP_SHEET_SERIAL_NO, AI_CERTIFICATE_TYPE, AI_CERTIFICATE_NO, AI_INVESTOR_NAME, 
+    AI_TRANSACTION_DATE, AI_TRANSACTION_TIME, AI_INDIVIDUAL_OR_INSTITUTION, AI_POST_CODE, 
+    AI_TRANSACTOR_CERT_NO, AI_TRANSACTOR_CERT_TYPE, AI_TRANSACTOR_NAME, AI_TRANSACTION_ACCOUNT_ID, 
+    AI_DISTRIBUTOR_CODE, AI_BUSINESS_CODE, AI_ACCT_NO_FM_IN_CLEAI_AGENCY, AI_ACCT_NAME_F_I_CLEAI_AGENCY, 
+    AI_CLEARING_AGENCY_CODE, AI_INVESTORS_BIRTHDAY, AI_DEPOSIT_ACCT, AI_REGION_CODE, 
+    AI_EDUCATION_LEVEL, AI_EMAIL_ADDRESS, AI_FAX_NO, AI_VOCATION_CODE, AI_HOME_TEL_NO, 
+    AI_ANNUAL_INCOME, AI_MOBILE_TEL_NO, AI_BRANCH_CODE, AI_OFFICE_TEL_NO, AI_ACCOUNT_ABBR, 
+    AI_CONFIDENTIAL_DOCUMENT_CODE, AI_SEX, AI_SH_SECURITIES_ACCOUNTID, AI_SZ_SECURITIES_ACCOUNTID, 
+    AI_TA_ACCOUNT_ID, AI_TEL_NO, AI_TRADING_METHOD, AI_MINOR_FLAG, AI_DELIVER_TYPE, AI_TRANSACTOR_ID_TYPE, 
+    AI_ACCOUNT_CARD_ID, AI_MULTIACCT_FLAG, AI_TARGET_TRANSACT_ACCT_CODE, AI_ACCT_NAME_INVE_CLEAI_AGEN, 
+    AI_ACCT_NO_INVE_CLEAI_AGEN, AI_CLEARING_AGENCY, AI_DELIVER_WAY, AI_NATIONALITY, AI_NET_NO, 
+    AI_BROKER, AI_CORP_NAME, AI_CERT_VALID_DATE, AI_INST_TRAN_CERT_VALID_DATE, AI_INST_REPR_CERT_VALID_DATE, 
+    AI_CLIENT_RISK_RATE, AI_INST_REPR_MANAGE_RANGE, AI_CONTROL_HOLDER, AI_ACTUAL_CONTROLLER, 
+    AI_MARRIAGE_STATUS, AI_FAMILY_NUM, AI_PENATES, AI_MEDIA_HOBBY, AI_INSTITUTION_TYPE, 
+    AI_ENGLISH_FIRST_NAME, AI_ENGLISH_FAMLIY_NAME, AI_VOCATION, AI_CORPO_PROPERTY, AI_STAFF_NUM, 
+    AI_HOBBYTYPE, AI_PROVINCE, AI_CITY, AI_COUNTY, AI_COMMEND_PERSON, AI_COMMEND_PERSON_TYPE, 
+    AI_ACCEPT_METHOD, AI_FROZEN_CAUSE, AI_FREEZING_DEADLINE, AI_ORIGINAL_SERIAL_NO, AI_ORIGINAL_APP_SHEET_NO, 
+    AI_SPECIFICATION, AI_CTIME, AI_UTIME, AI_CUSER, AI_UUSER
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_ACCOUNT_INFO
+    where AI_ID = #{aiId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_ACCOUNT_INFO
+    where AI_ID = #{aiId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.AccountInfo" >
+    insert into D_ACCOUNT_INFO (AI_ID, AI_CHANNEL_CODE, AI_ADDRESS, 
+      AI_INST_REPR_ID_CODE, AI_INST_REPR_ID_TYPE, AI_INST_REPR_NAME, 
+      AI_APP_SHEET_SERIAL_NO, AI_CERTIFICATE_TYPE, 
+      AI_CERTIFICATE_NO, AI_INVESTOR_NAME, AI_TRANSACTION_DATE, 
+      AI_TRANSACTION_TIME, AI_INDIVIDUAL_OR_INSTITUTION, 
+      AI_POST_CODE, AI_TRANSACTOR_CERT_NO, AI_TRANSACTOR_CERT_TYPE, 
+      AI_TRANSACTOR_NAME, AI_TRANSACTION_ACCOUNT_ID, 
+      AI_DISTRIBUTOR_CODE, AI_BUSINESS_CODE, AI_ACCT_NO_FM_IN_CLEAI_AGENCY, 
+      AI_ACCT_NAME_F_I_CLEAI_AGENCY, AI_CLEARING_AGENCY_CODE, 
+      AI_INVESTORS_BIRTHDAY, AI_DEPOSIT_ACCT, AI_REGION_CODE, 
+      AI_EDUCATION_LEVEL, AI_EMAIL_ADDRESS, AI_FAX_NO, 
+      AI_VOCATION_CODE, AI_HOME_TEL_NO, AI_ANNUAL_INCOME, 
+      AI_MOBILE_TEL_NO, AI_BRANCH_CODE, AI_OFFICE_TEL_NO, 
+      AI_ACCOUNT_ABBR, AI_CONFIDENTIAL_DOCUMENT_CODE, 
+      AI_SEX, AI_SH_SECURITIES_ACCOUNTID, AI_SZ_SECURITIES_ACCOUNTID, 
+      AI_TA_ACCOUNT_ID, AI_TEL_NO, AI_TRADING_METHOD, 
+      AI_MINOR_FLAG, AI_DELIVER_TYPE, AI_TRANSACTOR_ID_TYPE, 
+      AI_ACCOUNT_CARD_ID, AI_MULTIACCT_FLAG, AI_TARGET_TRANSACT_ACCT_CODE, 
+      AI_ACCT_NAME_INVE_CLEAI_AGEN, AI_ACCT_NO_INVE_CLEAI_AGEN, 
+      AI_CLEARING_AGENCY, AI_DELIVER_WAY, AI_NATIONALITY, 
+      AI_NET_NO, AI_BROKER, AI_CORP_NAME, 
+      AI_CERT_VALID_DATE, AI_INST_TRAN_CERT_VALID_DATE, 
+      AI_INST_REPR_CERT_VALID_DATE, AI_CLIENT_RISK_RATE, 
+      AI_INST_REPR_MANAGE_RANGE, AI_CONTROL_HOLDER, 
+      AI_ACTUAL_CONTROLLER, AI_MARRIAGE_STATUS, AI_FAMILY_NUM, 
+      AI_PENATES, AI_MEDIA_HOBBY, AI_INSTITUTION_TYPE, 
+      AI_ENGLISH_FIRST_NAME, AI_ENGLISH_FAMLIY_NAME, 
+      AI_VOCATION, AI_CORPO_PROPERTY, AI_STAFF_NUM, 
+      AI_HOBBYTYPE, AI_PROVINCE, AI_CITY, 
+      AI_COUNTY, AI_COMMEND_PERSON, AI_COMMEND_PERSON_TYPE, 
+      AI_ACCEPT_METHOD, AI_FROZEN_CAUSE, AI_FREEZING_DEADLINE, 
+      AI_ORIGINAL_SERIAL_NO, AI_ORIGINAL_APP_SHEET_NO, 
+      AI_SPECIFICATION, AI_CTIME, AI_UTIME, 
+      AI_CUSER, AI_UUSER)
+    values (#{aiId,jdbcType=DECIMAL}, #{aiChannelCode,jdbcType=VARCHAR}, #{aiAddress,jdbcType=VARCHAR}, 
+      #{aiInstReprIdCode,jdbcType=VARCHAR}, #{aiInstReprIdType,jdbcType=VARCHAR}, #{aiInstReprName,jdbcType=VARCHAR}, 
+      #{aiAppSheetSerialNo,jdbcType=VARCHAR}, #{aiCertificateType,jdbcType=VARCHAR}, 
+      #{aiCertificateNo,jdbcType=VARCHAR}, #{aiInvestorName,jdbcType=OTHER}, #{aiTransactionDate,jdbcType=VARCHAR}, 
+      #{aiTransactionTime,jdbcType=VARCHAR}, #{aiIndividualOrInstitution,jdbcType=VARCHAR}, 
+      #{aiPostCode,jdbcType=VARCHAR}, #{aiTransactorCertNo,jdbcType=VARCHAR}, #{aiTransactorCertType,jdbcType=VARCHAR}, 
+      #{aiTransactorName,jdbcType=VARCHAR}, #{aiTransactionAccountId,jdbcType=VARCHAR}, 
+      #{aiDistributorCode,jdbcType=VARCHAR}, #{aiBusinessCode,jdbcType=VARCHAR}, #{aiAcctNoFmInCleaiAgency,jdbcType=VARCHAR}, 
+      #{aiAcctNameFICleaiAgency,jdbcType=VARCHAR}, #{aiClearingAgencyCode,jdbcType=VARCHAR}, 
+      #{aiInvestorsBirthday,jdbcType=VARCHAR}, #{aiDepositAcct,jdbcType=VARCHAR}, #{aiRegionCode,jdbcType=VARCHAR}, 
+      #{aiEducationLevel,jdbcType=VARCHAR}, #{aiEmailAddress,jdbcType=VARCHAR}, #{aiFaxNo,jdbcType=VARCHAR}, 
+      #{aiVocationCode,jdbcType=VARCHAR}, #{aiHomeTelNo,jdbcType=VARCHAR}, #{aiAnnualIncome,jdbcType=DECIMAL}, 
+      #{aiMobileTelNo,jdbcType=VARCHAR}, #{aiBranchCode,jdbcType=VARCHAR}, #{aiOfficeTelNo,jdbcType=VARCHAR}, 
+      #{aiAccountAbbr,jdbcType=VARCHAR}, #{aiConfidentialDocumentCode,jdbcType=VARCHAR}, 
+      #{aiSex,jdbcType=VARCHAR}, #{aiShSecuritiesAccountid,jdbcType=VARCHAR}, #{aiSzSecuritiesAccountid,jdbcType=VARCHAR}, 
+      #{aiTaAccountId,jdbcType=VARCHAR}, #{aiTelNo,jdbcType=VARCHAR}, #{aiTradingMethod,jdbcType=VARCHAR}, 
+      #{aiMinorFlag,jdbcType=VARCHAR}, #{aiDeliverType,jdbcType=VARCHAR}, #{aiTransactorIdType,jdbcType=VARCHAR}, 
+      #{aiAccountCardId,jdbcType=VARCHAR}, #{aiMultiacctFlag,jdbcType=VARCHAR}, #{aiTargetTransactAcctCode,jdbcType=VARCHAR}, 
+      #{aiAcctNameInveCleaiAgen,jdbcType=VARCHAR}, #{aiAcctNoInveCleaiAgen,jdbcType=VARCHAR}, 
+      #{aiClearingAgency,jdbcType=VARCHAR}, #{aiDeliverWay,jdbcType=VARCHAR}, #{aiNationality,jdbcType=VARCHAR}, 
+      #{aiNetNo,jdbcType=VARCHAR}, #{aiBroker,jdbcType=VARCHAR}, #{aiCorpName,jdbcType=VARCHAR}, 
+      #{aiCertValidDate,jdbcType=VARCHAR}, #{aiInstTranCertValidDate,jdbcType=VARCHAR}, 
+      #{aiInstReprCertValidDate,jdbcType=VARCHAR}, #{aiClientRiskRate,jdbcType=VARCHAR}, 
+      #{aiInstReprManageRange,jdbcType=VARCHAR}, #{aiControlHolder,jdbcType=VARCHAR}, 
+      #{aiActualController,jdbcType=VARCHAR}, #{aiMarriageStatus,jdbcType=VARCHAR}, #{aiFamilyNum,jdbcType=DECIMAL}, 
+      #{aiPenates,jdbcType=DECIMAL}, #{aiMediaHobby,jdbcType=VARCHAR}, #{aiInstitutionType,jdbcType=VARCHAR}, 
+      #{aiEnglishFirstName,jdbcType=VARCHAR}, #{aiEnglishFamliyName,jdbcType=VARCHAR}, 
+      #{aiVocation,jdbcType=VARCHAR}, #{aiCorpoProperty,jdbcType=VARCHAR}, #{aiStaffNum,jdbcType=DECIMAL}, 
+      #{aiHobbytype,jdbcType=VARCHAR}, #{aiProvince,jdbcType=VARCHAR}, #{aiCity,jdbcType=VARCHAR}, 
+      #{aiCounty,jdbcType=VARCHAR}, #{aiCommendPerson,jdbcType=VARCHAR}, #{aiCommendPersonType,jdbcType=VARCHAR}, 
+      #{aiAcceptMethod,jdbcType=VARCHAR}, #{aiFrozenCause,jdbcType=VARCHAR}, #{aiFreezingDeadline,jdbcType=VARCHAR}, 
+      #{aiOriginalSerialNo,jdbcType=VARCHAR}, #{aiOriginalAppSheetNo,jdbcType=VARCHAR}, 
+      #{aiSpecification,jdbcType=VARCHAR}, #{aiCtime,jdbcType=TIMESTAMP}, #{aiUtime,jdbcType=TIMESTAMP}, 
+      #{aiCuser,jdbcType=VARCHAR}, #{aiUuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.AccountInfo" >
+    insert into D_ACCOUNT_INFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="aiId != null" >
+        AI_ID,
+      </if>
+      <if test="aiChannelCode != null" >
+        AI_CHANNEL_CODE,
+      </if>
+      <if test="aiAddress != null" >
+        AI_ADDRESS,
+      </if>
+      <if test="aiInstReprIdCode != null" >
+        AI_INST_REPR_ID_CODE,
+      </if>
+      <if test="aiInstReprIdType != null" >
+        AI_INST_REPR_ID_TYPE,
+      </if>
+      <if test="aiInstReprName != null" >
+        AI_INST_REPR_NAME,
+      </if>
+      <if test="aiAppSheetSerialNo != null" >
+        AI_APP_SHEET_SERIAL_NO,
+      </if>
+      <if test="aiCertificateType != null" >
+        AI_CERTIFICATE_TYPE,
+      </if>
+      <if test="aiCertificateNo != null" >
+        AI_CERTIFICATE_NO,
+      </if>
+      <if test="aiInvestorName != null" >
+        AI_INVESTOR_NAME,
+      </if>
+      <if test="aiTransactionDate != null" >
+        AI_TRANSACTION_DATE,
+      </if>
+      <if test="aiTransactionTime != null" >
+        AI_TRANSACTION_TIME,
+      </if>
+      <if test="aiIndividualOrInstitution != null" >
+        AI_INDIVIDUAL_OR_INSTITUTION,
+      </if>
+      <if test="aiPostCode != null" >
+        AI_POST_CODE,
+      </if>
+      <if test="aiTransactorCertNo != null" >
+        AI_TRANSACTOR_CERT_NO,
+      </if>
+      <if test="aiTransactorCertType != null" >
+        AI_TRANSACTOR_CERT_TYPE,
+      </if>
+      <if test="aiTransactorName != null" >
+        AI_TRANSACTOR_NAME,
+      </if>
+      <if test="aiTransactionAccountId != null" >
+        AI_TRANSACTION_ACCOUNT_ID,
+      </if>
+      <if test="aiDistributorCode != null" >
+        AI_DISTRIBUTOR_CODE,
+      </if>
+      <if test="aiBusinessCode != null" >
+        AI_BUSINESS_CODE,
+      </if>
+      <if test="aiAcctNoFmInCleaiAgency != null" >
+        AI_ACCT_NO_FM_IN_CLEAI_AGENCY,
+      </if>
+      <if test="aiAcctNameFICleaiAgency != null" >
+        AI_ACCT_NAME_F_I_CLEAI_AGENCY,
+      </if>
+      <if test="aiClearingAgencyCode != null" >
+        AI_CLEARING_AGENCY_CODE,
+      </if>
+      <if test="aiInvestorsBirthday != null" >
+        AI_INVESTORS_BIRTHDAY,
+      </if>
+      <if test="aiDepositAcct != null" >
+        AI_DEPOSIT_ACCT,
+      </if>
+      <if test="aiRegionCode != null" >
+        AI_REGION_CODE,
+      </if>
+      <if test="aiEducationLevel != null" >
+        AI_EDUCATION_LEVEL,
+      </if>
+      <if test="aiEmailAddress != null" >
+        AI_EMAIL_ADDRESS,
+      </if>
+      <if test="aiFaxNo != null" >
+        AI_FAX_NO,
+      </if>
+      <if test="aiVocationCode != null" >
+        AI_VOCATION_CODE,
+      </if>
+      <if test="aiHomeTelNo != null" >
+        AI_HOME_TEL_NO,
+      </if>
+      <if test="aiAnnualIncome != null" >
+        AI_ANNUAL_INCOME,
+      </if>
+      <if test="aiMobileTelNo != null" >
+        AI_MOBILE_TEL_NO,
+      </if>
+      <if test="aiBranchCode != null" >
+        AI_BRANCH_CODE,
+      </if>
+      <if test="aiOfficeTelNo != null" >
+        AI_OFFICE_TEL_NO,
+      </if>
+      <if test="aiAccountAbbr != null" >
+        AI_ACCOUNT_ABBR,
+      </if>
+      <if test="aiConfidentialDocumentCode != null" >
+        AI_CONFIDENTIAL_DOCUMENT_CODE,
+      </if>
+      <if test="aiSex != null" >
+        AI_SEX,
+      </if>
+      <if test="aiShSecuritiesAccountid != null" >
+        AI_SH_SECURITIES_ACCOUNTID,
+      </if>
+      <if test="aiSzSecuritiesAccountid != null" >
+        AI_SZ_SECURITIES_ACCOUNTID,
+      </if>
+      <if test="aiTaAccountId != null" >
+        AI_TA_ACCOUNT_ID,
+      </if>
+      <if test="aiTelNo != null" >
+        AI_TEL_NO,
+      </if>
+      <if test="aiTradingMethod != null" >
+        AI_TRADING_METHOD,
+      </if>
+      <if test="aiMinorFlag != null" >
+        AI_MINOR_FLAG,
+      </if>
+      <if test="aiDeliverType != null" >
+        AI_DELIVER_TYPE,
+      </if>
+      <if test="aiTransactorIdType != null" >
+        AI_TRANSACTOR_ID_TYPE,
+      </if>
+      <if test="aiAccountCardId != null" >
+        AI_ACCOUNT_CARD_ID,
+      </if>
+      <if test="aiMultiacctFlag != null" >
+        AI_MULTIACCT_FLAG,
+      </if>
+      <if test="aiTargetTransactAcctCode != null" >
+        AI_TARGET_TRANSACT_ACCT_CODE,
+      </if>
+      <if test="aiAcctNameInveCleaiAgen != null" >
+        AI_ACCT_NAME_INVE_CLEAI_AGEN,
+      </if>
+      <if test="aiAcctNoInveCleaiAgen != null" >
+        AI_ACCT_NO_INVE_CLEAI_AGEN,
+      </if>
+      <if test="aiClearingAgency != null" >
+        AI_CLEARING_AGENCY,
+      </if>
+      <if test="aiDeliverWay != null" >
+        AI_DELIVER_WAY,
+      </if>
+      <if test="aiNationality != null" >
+        AI_NATIONALITY,
+      </if>
+      <if test="aiNetNo != null" >
+        AI_NET_NO,
+      </if>
+      <if test="aiBroker != null" >
+        AI_BROKER,
+      </if>
+      <if test="aiCorpName != null" >
+        AI_CORP_NAME,
+      </if>
+      <if test="aiCertValidDate != null" >
+        AI_CERT_VALID_DATE,
+      </if>
+      <if test="aiInstTranCertValidDate != null" >
+        AI_INST_TRAN_CERT_VALID_DATE,
+      </if>
+      <if test="aiInstReprCertValidDate != null" >
+        AI_INST_REPR_CERT_VALID_DATE,
+      </if>
+      <if test="aiClientRiskRate != null" >
+        AI_CLIENT_RISK_RATE,
+      </if>
+      <if test="aiInstReprManageRange != null" >
+        AI_INST_REPR_MANAGE_RANGE,
+      </if>
+      <if test="aiControlHolder != null" >
+        AI_CONTROL_HOLDER,
+      </if>
+      <if test="aiActualController != null" >
+        AI_ACTUAL_CONTROLLER,
+      </if>
+      <if test="aiMarriageStatus != null" >
+        AI_MARRIAGE_STATUS,
+      </if>
+      <if test="aiFamilyNum != null" >
+        AI_FAMILY_NUM,
+      </if>
+      <if test="aiPenates != null" >
+        AI_PENATES,
+      </if>
+      <if test="aiMediaHobby != null" >
+        AI_MEDIA_HOBBY,
+      </if>
+      <if test="aiInstitutionType != null" >
+        AI_INSTITUTION_TYPE,
+      </if>
+      <if test="aiEnglishFirstName != null" >
+        AI_ENGLISH_FIRST_NAME,
+      </if>
+      <if test="aiEnglishFamliyName != null" >
+        AI_ENGLISH_FAMLIY_NAME,
+      </if>
+      <if test="aiVocation != null" >
+        AI_VOCATION,
+      </if>
+      <if test="aiCorpoProperty != null" >
+        AI_CORPO_PROPERTY,
+      </if>
+      <if test="aiStaffNum != null" >
+        AI_STAFF_NUM,
+      </if>
+      <if test="aiHobbytype != null" >
+        AI_HOBBYTYPE,
+      </if>
+      <if test="aiProvince != null" >
+        AI_PROVINCE,
+      </if>
+      <if test="aiCity != null" >
+        AI_CITY,
+      </if>
+      <if test="aiCounty != null" >
+        AI_COUNTY,
+      </if>
+      <if test="aiCommendPerson != null" >
+        AI_COMMEND_PERSON,
+      </if>
+      <if test="aiCommendPersonType != null" >
+        AI_COMMEND_PERSON_TYPE,
+      </if>
+      <if test="aiAcceptMethod != null" >
+        AI_ACCEPT_METHOD,
+      </if>
+      <if test="aiFrozenCause != null" >
+        AI_FROZEN_CAUSE,
+      </if>
+      <if test="aiFreezingDeadline != null" >
+        AI_FREEZING_DEADLINE,
+      </if>
+      <if test="aiOriginalSerialNo != null" >
+        AI_ORIGINAL_SERIAL_NO,
+      </if>
+      <if test="aiOriginalAppSheetNo != null" >
+        AI_ORIGINAL_APP_SHEET_NO,
+      </if>
+      <if test="aiSpecification != null" >
+        AI_SPECIFICATION,
+      </if>
+      <if test="aiCtime != null" >
+        AI_CTIME,
+      </if>
+      <if test="aiUtime != null" >
+        AI_UTIME,
+      </if>
+      <if test="aiCuser != null" >
+        AI_CUSER,
+      </if>
+      <if test="aiUuser != null" >
+        AI_UUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="aiId != null" >
+        #{aiId,jdbcType=DECIMAL},
+      </if>
+      <if test="aiChannelCode != null" >
+        #{aiChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAddress != null" >
+        #{aiAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprIdCode != null" >
+        #{aiInstReprIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprIdType != null" >
+        #{aiInstReprIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprName != null" >
+        #{aiInstReprName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAppSheetSerialNo != null" >
+        #{aiAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertificateType != null" >
+        #{aiCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertificateNo != null" >
+        #{aiCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInvestorName != null" >
+        #{aiInvestorName,jdbcType=OTHER},
+      </if>
+      <if test="aiTransactionDate != null" >
+        #{aiTransactionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactionTime != null" >
+        #{aiTransactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="aiIndividualOrInstitution != null" >
+        #{aiIndividualOrInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="aiPostCode != null" >
+        #{aiPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorCertNo != null" >
+        #{aiTransactorCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorCertType != null" >
+        #{aiTransactorCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorName != null" >
+        #{aiTransactorName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactionAccountId != null" >
+        #{aiTransactionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDistributorCode != null" >
+        #{aiDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBusinessCode != null" >
+        #{aiBusinessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNoFmInCleaiAgency != null" >
+        #{aiAcctNoFmInCleaiAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNameFICleaiAgency != null" >
+        #{aiAcctNameFICleaiAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClearingAgencyCode != null" >
+        #{aiClearingAgencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInvestorsBirthday != null" >
+        #{aiInvestorsBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDepositAcct != null" >
+        #{aiDepositAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRegionCode != null" >
+        #{aiRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEducationLevel != null" >
+        #{aiEducationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEmailAddress != null" >
+        #{aiEmailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFaxNo != null" >
+        #{aiFaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiVocationCode != null" >
+        #{aiVocationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiHomeTelNo != null" >
+        #{aiHomeTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAnnualIncome != null" >
+        #{aiAnnualIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="aiMobileTelNo != null" >
+        #{aiMobileTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBranchCode != null" >
+        #{aiBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOfficeTelNo != null" >
+        #{aiOfficeTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAccountAbbr != null" >
+        #{aiAccountAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="aiConfidentialDocumentCode != null" >
+        #{aiConfidentialDocumentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSex != null" >
+        #{aiSex,jdbcType=VARCHAR},
+      </if>
+      <if test="aiShSecuritiesAccountid != null" >
+        #{aiShSecuritiesAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSzSecuritiesAccountid != null" >
+        #{aiSzSecuritiesAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTaAccountId != null" >
+        #{aiTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTelNo != null" >
+        #{aiTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTradingMethod != null" >
+        #{aiTradingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMinorFlag != null" >
+        #{aiMinorFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDeliverType != null" >
+        #{aiDeliverType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorIdType != null" >
+        #{aiTransactorIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAccountCardId != null" >
+        #{aiAccountCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMultiacctFlag != null" >
+        #{aiMultiacctFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTargetTransactAcctCode != null" >
+        #{aiTargetTransactAcctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNameInveCleaiAgen != null" >
+        #{aiAcctNameInveCleaiAgen,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNoInveCleaiAgen != null" >
+        #{aiAcctNoInveCleaiAgen,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClearingAgency != null" >
+        #{aiClearingAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDeliverWay != null" >
+        #{aiDeliverWay,jdbcType=VARCHAR},
+      </if>
+      <if test="aiNationality != null" >
+        #{aiNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="aiNetNo != null" >
+        #{aiNetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBroker != null" >
+        #{aiBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCorpName != null" >
+        #{aiCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertValidDate != null" >
+        #{aiCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstTranCertValidDate != null" >
+        #{aiInstTranCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprCertValidDate != null" >
+        #{aiInstReprCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClientRiskRate != null" >
+        #{aiClientRiskRate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprManageRange != null" >
+        #{aiInstReprManageRange,jdbcType=VARCHAR},
+      </if>
+      <if test="aiControlHolder != null" >
+        #{aiControlHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="aiActualController != null" >
+        #{aiActualController,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMarriageStatus != null" >
+        #{aiMarriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFamilyNum != null" >
+        #{aiFamilyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="aiPenates != null" >
+        #{aiPenates,jdbcType=DECIMAL},
+      </if>
+      <if test="aiMediaHobby != null" >
+        #{aiMediaHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstitutionType != null" >
+        #{aiInstitutionType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEnglishFirstName != null" >
+        #{aiEnglishFirstName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEnglishFamliyName != null" >
+        #{aiEnglishFamliyName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiVocation != null" >
+        #{aiVocation,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCorpoProperty != null" >
+        #{aiCorpoProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="aiStaffNum != null" >
+        #{aiStaffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="aiHobbytype != null" >
+        #{aiHobbytype,jdbcType=VARCHAR},
+      </if>
+      <if test="aiProvince != null" >
+        #{aiProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCity != null" >
+        #{aiCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCounty != null" >
+        #{aiCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCommendPerson != null" >
+        #{aiCommendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCommendPersonType != null" >
+        #{aiCommendPersonType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcceptMethod != null" >
+        #{aiAcceptMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFrozenCause != null" >
+        #{aiFrozenCause,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFreezingDeadline != null" >
+        #{aiFreezingDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOriginalSerialNo != null" >
+        #{aiOriginalSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOriginalAppSheetNo != null" >
+        #{aiOriginalAppSheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSpecification != null" >
+        #{aiSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCtime != null" >
+        #{aiCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aiUtime != null" >
+        #{aiUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aiCuser != null" >
+        #{aiCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="aiUuser != null" >
+        #{aiUuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.AccountInfo" >
+    update D_ACCOUNT_INFO
+    <set >
+      <if test="aiChannelCode != null" >
+        AI_CHANNEL_CODE = #{aiChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAddress != null" >
+        AI_ADDRESS = #{aiAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprIdCode != null" >
+        AI_INST_REPR_ID_CODE = #{aiInstReprIdCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprIdType != null" >
+        AI_INST_REPR_ID_TYPE = #{aiInstReprIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprName != null" >
+        AI_INST_REPR_NAME = #{aiInstReprName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAppSheetSerialNo != null" >
+        AI_APP_SHEET_SERIAL_NO = #{aiAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertificateType != null" >
+        AI_CERTIFICATE_TYPE = #{aiCertificateType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertificateNo != null" >
+        AI_CERTIFICATE_NO = #{aiCertificateNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInvestorName != null" >
+        AI_INVESTOR_NAME = #{aiInvestorName,jdbcType=OTHER},
+      </if>
+      <if test="aiTransactionDate != null" >
+        AI_TRANSACTION_DATE = #{aiTransactionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactionTime != null" >
+        AI_TRANSACTION_TIME = #{aiTransactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="aiIndividualOrInstitution != null" >
+        AI_INDIVIDUAL_OR_INSTITUTION = #{aiIndividualOrInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="aiPostCode != null" >
+        AI_POST_CODE = #{aiPostCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorCertNo != null" >
+        AI_TRANSACTOR_CERT_NO = #{aiTransactorCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorCertType != null" >
+        AI_TRANSACTOR_CERT_TYPE = #{aiTransactorCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorName != null" >
+        AI_TRANSACTOR_NAME = #{aiTransactorName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactionAccountId != null" >
+        AI_TRANSACTION_ACCOUNT_ID = #{aiTransactionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDistributorCode != null" >
+        AI_DISTRIBUTOR_CODE = #{aiDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBusinessCode != null" >
+        AI_BUSINESS_CODE = #{aiBusinessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNoFmInCleaiAgency != null" >
+        AI_ACCT_NO_FM_IN_CLEAI_AGENCY = #{aiAcctNoFmInCleaiAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNameFICleaiAgency != null" >
+        AI_ACCT_NAME_F_I_CLEAI_AGENCY = #{aiAcctNameFICleaiAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClearingAgencyCode != null" >
+        AI_CLEARING_AGENCY_CODE = #{aiClearingAgencyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInvestorsBirthday != null" >
+        AI_INVESTORS_BIRTHDAY = #{aiInvestorsBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDepositAcct != null" >
+        AI_DEPOSIT_ACCT = #{aiDepositAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="aiRegionCode != null" >
+        AI_REGION_CODE = #{aiRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEducationLevel != null" >
+        AI_EDUCATION_LEVEL = #{aiEducationLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEmailAddress != null" >
+        AI_EMAIL_ADDRESS = #{aiEmailAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFaxNo != null" >
+        AI_FAX_NO = #{aiFaxNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiVocationCode != null" >
+        AI_VOCATION_CODE = #{aiVocationCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiHomeTelNo != null" >
+        AI_HOME_TEL_NO = #{aiHomeTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAnnualIncome != null" >
+        AI_ANNUAL_INCOME = #{aiAnnualIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="aiMobileTelNo != null" >
+        AI_MOBILE_TEL_NO = #{aiMobileTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBranchCode != null" >
+        AI_BRANCH_CODE = #{aiBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOfficeTelNo != null" >
+        AI_OFFICE_TEL_NO = #{aiOfficeTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAccountAbbr != null" >
+        AI_ACCOUNT_ABBR = #{aiAccountAbbr,jdbcType=VARCHAR},
+      </if>
+      <if test="aiConfidentialDocumentCode != null" >
+        AI_CONFIDENTIAL_DOCUMENT_CODE = #{aiConfidentialDocumentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSex != null" >
+        AI_SEX = #{aiSex,jdbcType=VARCHAR},
+      </if>
+      <if test="aiShSecuritiesAccountid != null" >
+        AI_SH_SECURITIES_ACCOUNTID = #{aiShSecuritiesAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSzSecuritiesAccountid != null" >
+        AI_SZ_SECURITIES_ACCOUNTID = #{aiSzSecuritiesAccountid,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTaAccountId != null" >
+        AI_TA_ACCOUNT_ID = #{aiTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTelNo != null" >
+        AI_TEL_NO = #{aiTelNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTradingMethod != null" >
+        AI_TRADING_METHOD = #{aiTradingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMinorFlag != null" >
+        AI_MINOR_FLAG = #{aiMinorFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDeliverType != null" >
+        AI_DELIVER_TYPE = #{aiDeliverType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTransactorIdType != null" >
+        AI_TRANSACTOR_ID_TYPE = #{aiTransactorIdType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAccountCardId != null" >
+        AI_ACCOUNT_CARD_ID = #{aiAccountCardId,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMultiacctFlag != null" >
+        AI_MULTIACCT_FLAG = #{aiMultiacctFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="aiTargetTransactAcctCode != null" >
+        AI_TARGET_TRANSACT_ACCT_CODE = #{aiTargetTransactAcctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNameInveCleaiAgen != null" >
+        AI_ACCT_NAME_INVE_CLEAI_AGEN = #{aiAcctNameInveCleaiAgen,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcctNoInveCleaiAgen != null" >
+        AI_ACCT_NO_INVE_CLEAI_AGEN = #{aiAcctNoInveCleaiAgen,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClearingAgency != null" >
+        AI_CLEARING_AGENCY = #{aiClearingAgency,jdbcType=VARCHAR},
+      </if>
+      <if test="aiDeliverWay != null" >
+        AI_DELIVER_WAY = #{aiDeliverWay,jdbcType=VARCHAR},
+      </if>
+      <if test="aiNationality != null" >
+        AI_NATIONALITY = #{aiNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="aiNetNo != null" >
+        AI_NET_NO = #{aiNetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiBroker != null" >
+        AI_BROKER = #{aiBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCorpName != null" >
+        AI_CORP_NAME = #{aiCorpName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCertValidDate != null" >
+        AI_CERT_VALID_DATE = #{aiCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstTranCertValidDate != null" >
+        AI_INST_TRAN_CERT_VALID_DATE = #{aiInstTranCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprCertValidDate != null" >
+        AI_INST_REPR_CERT_VALID_DATE = #{aiInstReprCertValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiClientRiskRate != null" >
+        AI_CLIENT_RISK_RATE = #{aiClientRiskRate,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstReprManageRange != null" >
+        AI_INST_REPR_MANAGE_RANGE = #{aiInstReprManageRange,jdbcType=VARCHAR},
+      </if>
+      <if test="aiControlHolder != null" >
+        AI_CONTROL_HOLDER = #{aiControlHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="aiActualController != null" >
+        AI_ACTUAL_CONTROLLER = #{aiActualController,jdbcType=VARCHAR},
+      </if>
+      <if test="aiMarriageStatus != null" >
+        AI_MARRIAGE_STATUS = #{aiMarriageStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFamilyNum != null" >
+        AI_FAMILY_NUM = #{aiFamilyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="aiPenates != null" >
+        AI_PENATES = #{aiPenates,jdbcType=DECIMAL},
+      </if>
+      <if test="aiMediaHobby != null" >
+        AI_MEDIA_HOBBY = #{aiMediaHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="aiInstitutionType != null" >
+        AI_INSTITUTION_TYPE = #{aiInstitutionType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEnglishFirstName != null" >
+        AI_ENGLISH_FIRST_NAME = #{aiEnglishFirstName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiEnglishFamliyName != null" >
+        AI_ENGLISH_FAMLIY_NAME = #{aiEnglishFamliyName,jdbcType=VARCHAR},
+      </if>
+      <if test="aiVocation != null" >
+        AI_VOCATION = #{aiVocation,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCorpoProperty != null" >
+        AI_CORPO_PROPERTY = #{aiCorpoProperty,jdbcType=VARCHAR},
+      </if>
+      <if test="aiStaffNum != null" >
+        AI_STAFF_NUM = #{aiStaffNum,jdbcType=DECIMAL},
+      </if>
+      <if test="aiHobbytype != null" >
+        AI_HOBBYTYPE = #{aiHobbytype,jdbcType=VARCHAR},
+      </if>
+      <if test="aiProvince != null" >
+        AI_PROVINCE = #{aiProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCity != null" >
+        AI_CITY = #{aiCity,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCounty != null" >
+        AI_COUNTY = #{aiCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCommendPerson != null" >
+        AI_COMMEND_PERSON = #{aiCommendPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCommendPersonType != null" >
+        AI_COMMEND_PERSON_TYPE = #{aiCommendPersonType,jdbcType=VARCHAR},
+      </if>
+      <if test="aiAcceptMethod != null" >
+        AI_ACCEPT_METHOD = #{aiAcceptMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFrozenCause != null" >
+        AI_FROZEN_CAUSE = #{aiFrozenCause,jdbcType=VARCHAR},
+      </if>
+      <if test="aiFreezingDeadline != null" >
+        AI_FREEZING_DEADLINE = #{aiFreezingDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOriginalSerialNo != null" >
+        AI_ORIGINAL_SERIAL_NO = #{aiOriginalSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiOriginalAppSheetNo != null" >
+        AI_ORIGINAL_APP_SHEET_NO = #{aiOriginalAppSheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="aiSpecification != null" >
+        AI_SPECIFICATION = #{aiSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="aiCtime != null" >
+        AI_CTIME = #{aiCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aiUtime != null" >
+        AI_UTIME = #{aiUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aiCuser != null" >
+        AI_CUSER = #{aiCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="aiUuser != null" >
+        AI_UUSER = #{aiUuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AI_ID = #{aiId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.AccountInfo" >
+    update D_ACCOUNT_INFO
+    set AI_CHANNEL_CODE = #{aiChannelCode,jdbcType=VARCHAR},
+      AI_ADDRESS = #{aiAddress,jdbcType=VARCHAR},
+      AI_INST_REPR_ID_CODE = #{aiInstReprIdCode,jdbcType=VARCHAR},
+      AI_INST_REPR_ID_TYPE = #{aiInstReprIdType,jdbcType=VARCHAR},
+      AI_INST_REPR_NAME = #{aiInstReprName,jdbcType=VARCHAR},
+      AI_APP_SHEET_SERIAL_NO = #{aiAppSheetSerialNo,jdbcType=VARCHAR},
+      AI_CERTIFICATE_TYPE = #{aiCertificateType,jdbcType=VARCHAR},
+      AI_CERTIFICATE_NO = #{aiCertificateNo,jdbcType=VARCHAR},
+      AI_INVESTOR_NAME = #{aiInvestorName,jdbcType=OTHER},
+      AI_TRANSACTION_DATE = #{aiTransactionDate,jdbcType=VARCHAR},
+      AI_TRANSACTION_TIME = #{aiTransactionTime,jdbcType=VARCHAR},
+      AI_INDIVIDUAL_OR_INSTITUTION = #{aiIndividualOrInstitution,jdbcType=VARCHAR},
+      AI_POST_CODE = #{aiPostCode,jdbcType=VARCHAR},
+      AI_TRANSACTOR_CERT_NO = #{aiTransactorCertNo,jdbcType=VARCHAR},
+      AI_TRANSACTOR_CERT_TYPE = #{aiTransactorCertType,jdbcType=VARCHAR},
+      AI_TRANSACTOR_NAME = #{aiTransactorName,jdbcType=VARCHAR},
+      AI_TRANSACTION_ACCOUNT_ID = #{aiTransactionAccountId,jdbcType=VARCHAR},
+      AI_DISTRIBUTOR_CODE = #{aiDistributorCode,jdbcType=VARCHAR},
+      AI_BUSINESS_CODE = #{aiBusinessCode,jdbcType=VARCHAR},
+      AI_ACCT_NO_FM_IN_CLEAI_AGENCY = #{aiAcctNoFmInCleaiAgency,jdbcType=VARCHAR},
+      AI_ACCT_NAME_F_I_CLEAI_AGENCY = #{aiAcctNameFICleaiAgency,jdbcType=VARCHAR},
+      AI_CLEARING_AGENCY_CODE = #{aiClearingAgencyCode,jdbcType=VARCHAR},
+      AI_INVESTORS_BIRTHDAY = #{aiInvestorsBirthday,jdbcType=VARCHAR},
+      AI_DEPOSIT_ACCT = #{aiDepositAcct,jdbcType=VARCHAR},
+      AI_REGION_CODE = #{aiRegionCode,jdbcType=VARCHAR},
+      AI_EDUCATION_LEVEL = #{aiEducationLevel,jdbcType=VARCHAR},
+      AI_EMAIL_ADDRESS = #{aiEmailAddress,jdbcType=VARCHAR},
+      AI_FAX_NO = #{aiFaxNo,jdbcType=VARCHAR},
+      AI_VOCATION_CODE = #{aiVocationCode,jdbcType=VARCHAR},
+      AI_HOME_TEL_NO = #{aiHomeTelNo,jdbcType=VARCHAR},
+      AI_ANNUAL_INCOME = #{aiAnnualIncome,jdbcType=DECIMAL},
+      AI_MOBILE_TEL_NO = #{aiMobileTelNo,jdbcType=VARCHAR},
+      AI_BRANCH_CODE = #{aiBranchCode,jdbcType=VARCHAR},
+      AI_OFFICE_TEL_NO = #{aiOfficeTelNo,jdbcType=VARCHAR},
+      AI_ACCOUNT_ABBR = #{aiAccountAbbr,jdbcType=VARCHAR},
+      AI_CONFIDENTIAL_DOCUMENT_CODE = #{aiConfidentialDocumentCode,jdbcType=VARCHAR},
+      AI_SEX = #{aiSex,jdbcType=VARCHAR},
+      AI_SH_SECURITIES_ACCOUNTID = #{aiShSecuritiesAccountid,jdbcType=VARCHAR},
+      AI_SZ_SECURITIES_ACCOUNTID = #{aiSzSecuritiesAccountid,jdbcType=VARCHAR},
+      AI_TA_ACCOUNT_ID = #{aiTaAccountId,jdbcType=VARCHAR},
+      AI_TEL_NO = #{aiTelNo,jdbcType=VARCHAR},
+      AI_TRADING_METHOD = #{aiTradingMethod,jdbcType=VARCHAR},
+      AI_MINOR_FLAG = #{aiMinorFlag,jdbcType=VARCHAR},
+      AI_DELIVER_TYPE = #{aiDeliverType,jdbcType=VARCHAR},
+      AI_TRANSACTOR_ID_TYPE = #{aiTransactorIdType,jdbcType=VARCHAR},
+      AI_ACCOUNT_CARD_ID = #{aiAccountCardId,jdbcType=VARCHAR},
+      AI_MULTIACCT_FLAG = #{aiMultiacctFlag,jdbcType=VARCHAR},
+      AI_TARGET_TRANSACT_ACCT_CODE = #{aiTargetTransactAcctCode,jdbcType=VARCHAR},
+      AI_ACCT_NAME_INVE_CLEAI_AGEN = #{aiAcctNameInveCleaiAgen,jdbcType=VARCHAR},
+      AI_ACCT_NO_INVE_CLEAI_AGEN = #{aiAcctNoInveCleaiAgen,jdbcType=VARCHAR},
+      AI_CLEARING_AGENCY = #{aiClearingAgency,jdbcType=VARCHAR},
+      AI_DELIVER_WAY = #{aiDeliverWay,jdbcType=VARCHAR},
+      AI_NATIONALITY = #{aiNationality,jdbcType=VARCHAR},
+      AI_NET_NO = #{aiNetNo,jdbcType=VARCHAR},
+      AI_BROKER = #{aiBroker,jdbcType=VARCHAR},
+      AI_CORP_NAME = #{aiCorpName,jdbcType=VARCHAR},
+      AI_CERT_VALID_DATE = #{aiCertValidDate,jdbcType=VARCHAR},
+      AI_INST_TRAN_CERT_VALID_DATE = #{aiInstTranCertValidDate,jdbcType=VARCHAR},
+      AI_INST_REPR_CERT_VALID_DATE = #{aiInstReprCertValidDate,jdbcType=VARCHAR},
+      AI_CLIENT_RISK_RATE = #{aiClientRiskRate,jdbcType=VARCHAR},
+      AI_INST_REPR_MANAGE_RANGE = #{aiInstReprManageRange,jdbcType=VARCHAR},
+      AI_CONTROL_HOLDER = #{aiControlHolder,jdbcType=VARCHAR},
+      AI_ACTUAL_CONTROLLER = #{aiActualController,jdbcType=VARCHAR},
+      AI_MARRIAGE_STATUS = #{aiMarriageStatus,jdbcType=VARCHAR},
+      AI_FAMILY_NUM = #{aiFamilyNum,jdbcType=DECIMAL},
+      AI_PENATES = #{aiPenates,jdbcType=DECIMAL},
+      AI_MEDIA_HOBBY = #{aiMediaHobby,jdbcType=VARCHAR},
+      AI_INSTITUTION_TYPE = #{aiInstitutionType,jdbcType=VARCHAR},
+      AI_ENGLISH_FIRST_NAME = #{aiEnglishFirstName,jdbcType=VARCHAR},
+      AI_ENGLISH_FAMLIY_NAME = #{aiEnglishFamliyName,jdbcType=VARCHAR},
+      AI_VOCATION = #{aiVocation,jdbcType=VARCHAR},
+      AI_CORPO_PROPERTY = #{aiCorpoProperty,jdbcType=VARCHAR},
+      AI_STAFF_NUM = #{aiStaffNum,jdbcType=DECIMAL},
+      AI_HOBBYTYPE = #{aiHobbytype,jdbcType=VARCHAR},
+      AI_PROVINCE = #{aiProvince,jdbcType=VARCHAR},
+      AI_CITY = #{aiCity,jdbcType=VARCHAR},
+      AI_COUNTY = #{aiCounty,jdbcType=VARCHAR},
+      AI_COMMEND_PERSON = #{aiCommendPerson,jdbcType=VARCHAR},
+      AI_COMMEND_PERSON_TYPE = #{aiCommendPersonType,jdbcType=VARCHAR},
+      AI_ACCEPT_METHOD = #{aiAcceptMethod,jdbcType=VARCHAR},
+      AI_FROZEN_CAUSE = #{aiFrozenCause,jdbcType=VARCHAR},
+      AI_FREEZING_DEADLINE = #{aiFreezingDeadline,jdbcType=VARCHAR},
+      AI_ORIGINAL_SERIAL_NO = #{aiOriginalSerialNo,jdbcType=VARCHAR},
+      AI_ORIGINAL_APP_SHEET_NO = #{aiOriginalAppSheetNo,jdbcType=VARCHAR},
+      AI_SPECIFICATION = #{aiSpecification,jdbcType=VARCHAR},
+      AI_CTIME = #{aiCtime,jdbcType=TIMESTAMP},
+      AI_UTIME = #{aiUtime,jdbcType=TIMESTAMP},
+      AI_CUSER = #{aiCuser,jdbcType=VARCHAR},
+      AI_UUSER = #{aiUuser,jdbcType=VARCHAR}
+    where AI_ID = #{aiId,jdbcType=DECIMAL}
+  </update>
+  
+  <delete id="deleteAccountInfo">
+  	delete from d_account_info
+  </delete>
+  
+  <insert id="insertAccountInfo">
+  	insert into d_account_info
+    (ai_channel_code， ai_certificate_type,
+     ai_certificate_no,
+     ai_investor_name,
+     ai_individual_or_institution,
+     ai_transaction_account_id,
+     ai_ta_account_id)
+    (select as_channel_code,
+            as_certificate_type,
+            as_certificate_no,
+            as_investor_name， as_individual_or_institution,
+            as_transaction_account_id,as_ta_account_id
+       from d_account_stat)
+  </insert>
+  
+  <select id="selectAccountStatus" resultType="Map">
+  	select as_channel_code channelcode,
+            as_certificate_type certificatetype,
+            as_certificate_no certificateno,
+            as_investor_name inverstorname,
+            as_individual_or_institution individualorinstitution,
+            as_transaction_account_id transactionaccountid
+       from d_account_stat
+  </select>
+  
+  	<update id="updateAccountInfo" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update d_account_info 
+            <set>
+	      <if test="item.ADDRESS != null" >
+	        AI_ADDRESS = #{item.ADDRESS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTREPRIDCODE != null" >
+	        AI_INST_REPR_ID_CODE = #{item.INSTREPRIDCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTREPRIDTYPE != null" >
+	        AI_INST_REPR_ID_TYPE = #{item.INSTREPRIDTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTREPRNAME != null" >
+	        AI_INST_REPR_NAME = #{item.INSTREPRNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.APPSHEETSERIALNO != null" >
+	        AI_APP_SHEET_SERIAL_NO = #{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTIONDATE != null" >
+	        AI_TRANSACTION_DATE = #{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTIONTIME != null" >
+	        AI_TRANSACTION_TIME = #{item.TRANSACTIONTIME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.POSTCODE != null" >
+	        AI_POST_CODE = #{item.POSTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTORCERTNO != null" >
+	        AI_TRANSACTOR_CERT_NO = #{item.TRANSACTORCERTNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTORCERTTYPE != null" >
+	        AI_TRANSACTOR_CERT_TYPE = #{item.TRANSACTORCERTTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTORNAME != null" >
+	        AI_TRANSACTOR_NAME = #{item.TRANSACTORNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.DISTRIBUTORCODE != null" >
+	        AI_DISTRIBUTOR_CODE = #{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.BUSINESSCODE != null" >
+	        AI_BUSINESS_CODE = #{item.BUSINESSCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCTNOFMINCLEAGENCY != null" >
+	        AI_ACCT_NO_FM_IN_CLEAI_AGENCY = #{item.ACCTNOFMINCLEAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCTNAMEFICLEAGENCY != null" >
+	        AI_ACCT_NAME_F_I_CLEAI_AGENCY = #{item.ACCTNAMEFICLEAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CLEARINGAGENCYCODE != null" >
+	        AI_CLEARING_AGENCY_CODE = #{item.CLEARINGAGENCYCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INVESTORSBIRTHDAY != null" >
+	        AI_INVESTORS_BIRTHDAY = #{item.INVESTORSBIRTHDAY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.DEPOSITACCT != null" >
+	        AI_DEPOSIT_ACCT = #{item.DEPOSITACCT,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.REGIONCODE != null" >
+	        AI_REGION_CODE = #{item.REGIONCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.EDUCATIONLEVEL != null" >
+	        AI_EDUCATION_LEVEL = #{item.EDUCATIONLEVEL,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.EMLADDRESS != null" >
+	        AI_EMAIL_ADDRESS = #{item.EMLADDRESS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.FAXNO != null" >
+	        AI_FAX_NO = #{item.FAXNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.VOCATIONCODE != null" >
+	        AI_VOCATION_CODE = #{item.VOCATIONCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.HOMETELNO != null" >
+	        AI_HOME_TEL_NO = #{item.HOMETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ANNUALINCOME != null" >
+	        AI_ANNUAL_INCOME = #{item.ANNUALINCOME,jdbcType=DECIMAL},
+	      </if>
+	      <if test="item.MOBILETELNO != null" >
+	        AI_MOBILE_TEL_NO = #{item.MOBILETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.BRANCHCODE != null" >
+	        AI_BRANCH_CODE = #{item.BRANCHCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.OFFICETELNO != null" >
+	        AI_OFFICE_TEL_NO = #{item.OFFICETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCOUNTABBR != null" >
+	        AI_ACCOUNT_ABBR = #{item.ACCOUNTABBR,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CONFIDENTIALDOCUMENTCODE != null" >
+	        AI_CONFIDENTIAL_DOCUMENT_CODE = #{item.CONFIDENTIALDOCUMENTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.SEX != null" >
+	        AI_SEX = #{item.SEX,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.SHSECURITIESACCOUNTID != null" >
+	        AI_SH_SECURITIES_ACCOUNTID = #{item.SHSECURITIESACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.SZSECURITIESACCOUNTID != null" >
+	        AI_SZ_SECURITIES_ACCOUNTID = #{item.SZSECURITIESACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TELNO != null" >
+	        AI_TEL_NO = #{item.TELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRADINGMETHOD != null" >
+	        AI_TRADING_METHOD = #{item.TRADINGMETHOD,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.MINORFLAG != null" >
+	        AI_MINOR_FLAG = #{item.MINORFLAG,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.DELIVERTYPE != null" >
+	        AI_DELIVER_TYPE = #{item.DELIVERTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TRANSACTORIDTYPE != null" >
+	        AI_TRANSACTOR_ID_TYPE = #{item.TRANSACTORIDTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCOUNTCARDID != null" >
+	        AI_ACCOUNT_CARD_ID = #{item.ACCOUNTCARDID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.MULTIACCTFLAG != null" >
+	        AI_MULTIACCT_FLAG = #{item.MULTIACCTFLAG,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.TARGETTRANSACTACCTCODE != null" >
+	        AI_TARGET_TRANSACT_ACCT_CODE = #{item.TARGETTRANSACTACCTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCTNAMEINVECLEAGEN != null" >
+	        AI_ACCT_NAME_INVE_CLEAI_AGEN = #{item.ACCTNAMEINVECLEAGEN,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCTNOINVECLEAGEN != null" >
+	        AI_ACCT_NO_INVE_CLEAI_AGEN = #{item.ACCTNOINVECLEAGEN,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CLEARINGAGENCY != null" >
+	        AI_CLEARING_AGENCY = #{item.CLEARINGAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.DELIVERWAY != null" >
+	        AI_DELIVER_WAY = #{item.DELIVERWAY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.NATIONALITY != null" >
+	        AI_NATIONALITY = #{item.NATIONALITY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.NETNO != null" >
+	        AI_NET_NO = #{item.NETNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.BROKER != null" >
+	        AI_BROKER = #{item.BROKER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CORPNAME != null" >
+	        AI_CORP_NAME = #{item.CORPNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CERTVALIDDATE != null" >
+	        AI_CERT_VALID_DATE = #{item.CERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTTRANCERTVALIDDATE != null" >
+	        AI_INST_TRAN_CERT_VALID_DATE = #{item.INSTTRANCERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTREPRCERTVALIDDATE != null" >
+	        AI_INST_REPR_CERT_VALID_DATE = #{item.INSTREPRCERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CLIENTRISKRATE != null" >
+	        AI_CLIENT_RISK_RATE = #{item.CLIENTRISKRATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTREPRMANAGERANGE != null" >
+	        AI_INST_REPR_MANAGE_RANGE = #{item.INSTREPRMANAGERANGE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CONTROLHOLDER != null" >
+	        AI_CONTROL_HOLDER = #{item.CONTROLHOLDER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACTUALCONTROLLER != null" >
+	        AI_ACTUAL_CONTROLLER = #{item.ACTUALCONTROLLER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.MARRIAGESTATUS != null" >
+	        AI_MARRIAGE_STATUS = #{item.MARRIAGESTATUS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.FAMILYNUM != null" >
+	        AI_FAMILY_NUM = #{item.FAMILYNUM,jdbcType=DECIMAL},
+	      </if>
+	      <if test="item.PENATES != null" >
+	        AI_PENATES = #{item.PENATES,jdbcType=DECIMAL},
+	      </if>
+	      <if test="item.MEDIAHOBBY != null" >
+	        AI_MEDIA_HOBBY = #{item.MEDIAHOBBY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.INSTITUTIONTYPE != null" >
+	        AI_INSTITUTION_TYPE = #{item.INSTITUTIONTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ENGLISHFIRSTNAME != null" >
+	        AI_ENGLISH_FIRST_NAME = #{item.ENGLISHFIRSTNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ENGLISHFAMLIYNAME != null" >
+	        AI_ENGLISH_FAMLIY_NAME = #{item.ENGLISHFAMLIYNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.VOCATION != null" >
+	        AI_VOCATION = #{item.VOCATION,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CORPOPROPERTY != null" >
+	        AI_CORPO_PROPERTY = #{item.CORPOPROPERTY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.STAFFNUM != null" >
+	        AI_STAFF_NUM = #{item.STAFFNUM,jdbcType=DECIMAL},
+	      </if>
+	      <if test="item.HOBBYTYPE != null" >
+	        AI_HOBBYTYPE = #{item.HOBBYTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.PROVINCE != null" >
+	        AI_PROVINCE = #{item.PROVINCE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.CITY != null" >
+	        AI_CITY = #{item.CITY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.COUNTY != null" >
+	        AI_COUNTY = #{item.COUNTY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.COMMENDPERSON != null" >
+	        AI_COMMEND_PERSON = #{item.COMMENDPERSON,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.COMMENDPERSONTYPE != null" >
+	        AI_COMMEND_PERSON_TYPE = #{item.COMMENDPERSONTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ACCEPTMETHOD != null" >
+	        AI_ACCEPT_METHOD = #{item.ACCEPTMETHOD,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.FROZENCAUSE != null" >
+	        AI_FROZEN_CAUSE = #{item.FROZENCAUSE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.FREEZINGDEADLINE != null" >
+	        AI_FREEZING_DEADLINE = #{item.FREEZINGDEADLINE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ORIGINALSERIALNO != null" >
+	        AI_ORIGINAL_SERIAL_NO = #{item.ORIGINALSERIALNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.ORIGINALAPPSHEETNO != null" >
+	        AI_ORIGINAL_APP_SHEET_NO = #{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="item.SPECifICATION != null" >
+	        AI_SPECifICATION = #{item.SPECifICATION,jdbcType=VARCHAR},
+	      </if>
+    	</set>
+            where ai_channel_code = #{item.CHANNELCODE,jdbcType = VARCHAR}
+            and ai_transaction_account_id = #{item.TRANSACTIONACCOUNTID,jdbcType = VARCHAR}
+        </foreach>
+  </update>
+  
+  <insert id="insertAccountInfo" parameterType="map">
+  	insert into D_ACCOUNT_INFO
+	    <trim prefix="(" suffix=")" suffixOverrides="," >
+	      <if test="CHANNELCODE != null" >
+	        AI_CHANNEL_CODE,
+	      </if>
+	      <if test="ADDRESS != null" >
+	        AI_ADDRESS,
+	      </if>
+	      <if test="INSTREPRIDCODE != null" >
+	        AI_INST_REPR_ID_CODE,
+	      </if>
+	      <if test="INSTREPRIDTYPE != null" >
+	        AI_INST_REPR_ID_TYPE,
+	      </if>
+	      <if test="INSTREPRNAME != null" >
+	        AI_INST_REPR_NAME,
+	      </if>
+	      <if test="APPSHEETSERIALNO != null" >
+	        AI_APP_SHEET_SERIAL_NO,
+	      </if>
+	      <if test="CERTifICATETYPE != null" >
+	        AI_CERTifICATE_TYPE,
+	      </if>
+	      <if test="CERTifICATENO != null" >
+	        AI_CERTifICATE_NO,
+	      </if>
+	      <if test="INVESTORNAME != null" >
+	        AI_INVESTOR_NAME,
+	      </if>
+	      <if test="TRANSACTIONDATE != null" >
+	        AI_TRANSACTION_DATE,
+	      </if>
+	      <if test="TRANSACTIONTIME != null" >
+	        AI_TRANSACTION_TIME,
+	      </if>
+	      <if test="INDIVIDUALORINSTITUTION != null" >
+	        AI_INDIVIDUAL_OR_INSTITUTION,
+	      </if>
+	      <if test="POSTCODE != null" >
+	        AI_POST_CODE,
+	      </if>
+	      <if test="TRANSACTORCERTNO != null" >
+	        AI_TRANSACTOR_CERT_NO,
+	      </if>
+	      <if test="TRANSACTORCERTTYPE != null" >
+	        AI_TRANSACTOR_CERT_TYPE,
+	      </if>
+	      <if test="TRANSACTORNAME != null" >
+	        AI_TRANSACTOR_NAME,
+	      </if>
+	      <if test="TRANSACTIONACCOUNTID != null" >
+	        AI_TRANSACTION_ACCOUNT_ID,
+	      </if>
+	      <if test="DISTRIBUTORCODE != null" >
+	        AI_DISTRIBUTOR_CODE,
+	      </if>
+	      <if test="BUSINESSCODE != null" >
+	        AI_BUSINESS_CODE,
+	      </if>
+	      <if test="ACCTNOFMINCLEAGENCY != null" >
+	        AI_ACCT_NO_FM_IN_CLEAI_AGENCY,
+	      </if>
+	      <if test="ACCTNAMEFICLEAGENCY != null" >
+	        AI_ACCT_NAME_F_I_CLEAI_AGENCY,
+	      </if>
+	      <if test="CLEARINGAGENCYCODE != null" >
+	        AI_CLEARING_AGENCY_CODE,
+	      </if>
+	      <if test="INVESTORSBIRTHDAY != null" >
+	        AI_INVESTORS_BIRTHDAY,
+	      </if>
+	      <if test="DEPOSITACCT != null" >
+	        AI_DEPOSIT_ACCT,
+	      </if>
+	      <if test="REGIONCODE != null" >
+	        AI_REGION_CODE,
+	      </if>
+	      <if test="EDUCATIONLEVEL != null" >
+	        AI_EDUCATION_LEVEL,
+	      </if>
+	      <if test="EMLADDRESS != null" >
+	        AI_EMAIL_ADDRESS,
+	      </if>
+	      <if test="FAXNO != null" >
+	        AI_FAX_NO,
+	      </if>
+	      <if test="VOCATIONCODE != null" >
+	        AI_VOCATION_CODE,
+	      </if>
+	      <if test="HOMETELNO != null" >
+	        AI_HOME_TEL_NO,
+	      </if>
+	      <if test="ANNUALINCOME != null" >
+	        AI_ANNUAL_INCOME,
+	      </if>
+	      <if test="MOBILETELNO != null" >
+	        AI_MOBILE_TEL_NO,
+	      </if>
+	      <if test="BRANCHCODE != null" >
+	        AI_BRANCH_CODE,
+	      </if>
+	      <if test="OFFICETELNO != null" >
+	        AI_OFFICE_TEL_NO,
+	      </if>
+	      <if test="ACCOUNTABBR != null" >
+	        AI_ACCOUNT_ABBR,
+	      </if>
+	      <if test="CONFIDENTIALDOCUMENTCODE != null" >
+	        AI_CONFIDENTIAL_DOCUMENT_CODE,
+	      </if>
+	      <if test="SEX != null" >
+	        AI_SEX,
+	      </if>
+	      <if test="SHSECURITIESACCOUNTID != null" >
+	        AI_SH_SECURITIES_ACCOUNTID,
+	      </if>
+	      <if test="SZSECURITIESACCOUNTID != null" >
+	        AI_SZ_SECURITIES_ACCOUNTID,
+	      </if>
+	      <if test="TAACCOUNTID != null" >
+	        AI_TA_ACCOUNT_ID,
+	      </if>
+	      <if test="TELNO != null" >
+	        AI_TEL_NO,
+	      </if>
+	      <if test="TRADINGMETHOD != null" >
+	        AI_TRADING_METHOD,
+	      </if>
+	      <if test="MINORFLAG != null" >
+	        AI_MINOR_FLAG,
+	      </if>
+	      <if test="DELIVERTYPE != null" >
+	        AI_DELIVER_TYPE,
+	      </if>
+	      <if test="TRANSACTORIDTYPE != null" >
+	        AI_TRANSACTOR_ID_TYPE,
+	      </if>
+	      <if test="ACCOUNTCARDID != null" >
+	        AI_ACCOUNT_CARD_ID,
+	      </if>
+	      <if test="MULTIACCTFLAG != null" >
+	        AI_MULTIACCT_FLAG,
+	      </if>
+	      <if test="TARGETTRANSACTACCTCODE != null" >
+	        AI_TARGET_TRANSACT_ACCT_CODE,
+	      </if>
+	      <if test="ACCTNAMEINVECLEAGEN != null" >
+	        AI_ACCT_NAME_INVE_CLEAI_AGEN,
+	      </if>
+	      <if test="ACCTNOINVECLEAGEN != null" >
+	        AI_ACCT_NO_INVE_CLEAI_AGEN,
+	      </if>
+	      <if test="CLEARINGAGENCY != null" >
+	        AI_CLEARING_AGENCY,
+	      </if>
+	      <if test="DELIVERWAY != null" >
+	        AI_DELIVER_WAY,
+	      </if>
+	      <if test="NATIONALITY != null" >
+	        AI_NATIONALITY,
+	      </if>
+	      <if test="NETNO != null" >
+	        AI_NET_NO,
+	      </if>
+	      <if test="BROKER != null" >
+	        AI_BROKER,
+	      </if>
+	      <if test="CORPNAME != null" >
+	        AI_CORP_NAME,
+	      </if>
+	      <if test="CERTVALIDDATE != null" >
+	        AI_CERT_VALID_DATE,
+	      </if>
+	      <if test="INSTTRANCERTVALIDDATE != null" >
+	        AI_INST_TRAN_CERT_VALID_DATE,
+	      </if>
+	      <if test="INSTREPRCERTVALIDDATE != null" >
+	        AI_INST_REPR_CERT_VALID_DATE,
+	      </if>
+	      <if test="CLIENTRISKRATE != null" >
+	        AI_CLIENT_RISK_RATE,
+	      </if>
+	      <if test="INSTREPRMANAGERANGE != null" >
+	        AI_INST_REPR_MANAGE_RANGE,
+	      </if>
+	      <if test="CONTROLHOLDER != null" >
+	        AI_CONTROL_HOLDER,
+	      </if>
+	      <if test="ACTUALCONTROLLER != null" >
+	        AI_ACTUAL_CONTROLLER,
+	      </if>
+	      <if test="MARRIAGESTATUS != null" >
+	        AI_MARRIAGE_STATUS,
+	      </if>
+	      <if test="FAMILYNUM != null" >
+	        AI_FAMILY_NUM,
+	      </if>
+	      <if test="PENATES != null" >
+	        AI_PENATES,
+	      </if>
+	      <if test="MEDIAHOBBY != null" >
+	        AI_MEDIA_HOBBY,
+	      </if>
+	      <if test="INSTITUTIONTYPE != null" >
+	        AI_INSTITUTION_TYPE,
+	      </if>
+	      <if test="ENGLISHFIRSTNAME != null" >
+	        AI_ENGLISH_FIRST_NAME,
+	      </if>
+	      <if test="ENGLISHFAMLIYNAME != null" >
+	        AI_ENGLISH_FAMLIY_NAME,
+	      </if>
+	      <if test="VOCATION != null" >
+	        AI_VOCATION,
+	      </if>
+	      <if test="CORPOPROPERTY != null" >
+	        AI_CORPO_PROPERTY,
+	      </if>
+	      <if test="STAFFNUM != null" >
+	        AI_STAFF_NUM,
+	      </if>
+	      <if test="HOBBYTYPE != null" >
+	        AI_HOBBYTYPE,
+	      </if>
+	      <if test="PROVINCE != null" >
+	        AI_PROVINCE,
+	      </if>
+	      <if test="CITY != null" >
+	        AI_CITY,
+	      </if>
+	      <if test="COUNTY != null" >
+	        AI_COUNTY,
+	      </if>
+	      <if test="COMMENDPERSON != null" >
+	        AI_COMMEND_PERSON,
+	      </if>
+	      <if test="COMMENDPERSONTYPE != null" >
+	        AI_COMMEND_PERSON_TYPE,
+	      </if>
+	      <if test="ACCEPTMETHOD != null" >
+	        AI_ACCEPT_METHOD,
+	      </if>
+	      <if test="FROZENCAUSE != null" >
+	        AI_FROZEN_CAUSE,
+	      </if>
+	      <if test="FREEZINGDEADLINE != null" >
+	        AI_FREEZING_DEADLINE,
+	      </if>
+	      <if test="ORIGINALSERIALNO != null" >
+	        AI_ORIGINAL_SERIAL_NO,
+	      </if>
+	      <if test="ORIGINALAPPSHEETNO != null" >
+	        AI_ORIGINAL_APP_SHEET_NO,
+	      </if>
+	      <if test="SPECifICATION != null" >
+	        AI_SPECifICATION,
+	      </if>
+	      <if test="CTIME != null" >
+	        AI_CTIME,
+	      </if>
+	      <if test="UTIME != null" >
+	        AI_UTIME,
+	      </if>
+	      <if test="CUSER != null" >
+	        AI_CUSER,
+	      </if>
+	      <if test="UUSER != null" >
+	        AI_UUSER,
+	      </if>
+	    </trim>
+	    <trim prefix="VALUES (" suffix=")" suffixOverrides="," >
+	      <if test="CHANNELCODE != null" >
+	        #{CHANNELCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ADDRESS != null" >
+	        #{ADDRESS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTREPRIDCODE != null" >
+	        #{INSTREPRIDCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTREPRIDTYPE != null" >
+	        #{INSTREPRIDTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTREPRNAME != null" >
+	        #{INSTREPRNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="APPSHEETSERIALNO != null" >
+	        #{APPSHEETSERIALNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CERTifICATETYPE != null" >
+	        #{CERTifICATETYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CERTifICATENO != null" >
+	        #{CERTifICATENO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INVESTORNAME != null" >
+	        #{INVESTORNAME,jdbcType=OTHER},
+	      </if>
+	      <if test="TRANSACTIONDATE != null" >
+	        #{TRANSACTIONDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTIONTIME != null" >
+	        #{TRANSACTIONTIME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INDIVIDUALORINSTITUTION != null" >
+	        #{INDIVIDUALORINSTITUTION,jdbcType=VARCHAR},
+	      </if>
+	      <if test="POSTCODE != null" >
+	        #{POSTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTORCERTNO != null" >
+	        #{TRANSACTORCERTNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTORCERTTYPE != null" >
+	        #{TRANSACTORCERTTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTORNAME != null" >
+	        #{TRANSACTORNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTIONACCOUNTID != null" >
+	        #{TRANSACTIONACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="DISTRIBUTORCODE != null" >
+	        #{DISTRIBUTORCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="BUSINESSCODE != null" >
+	        #{BUSINESSCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCTNOFMINCLEAGENCY != null" >
+	        #{ACCTNOFMINCLEAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCTNAMEFICLEAGENCY != null" >
+	        #{ACCTNAMEFICLEAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CLEARINGAGENCYCODE != null" >
+	        #{CLEARINGAGENCYCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INVESTORSBIRTHDAY != null" >
+	        #{INVESTORSBIRTHDAY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="DEPOSITACCT != null" >
+	        #{DEPOSITACCT,jdbcType=VARCHAR},
+	      </if>
+	      <if test="REGIONCODE != null" >
+	        #{REGIONCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="EDUCATIONLEVEL != null" >
+	        #{EDUCATIONLEVEL,jdbcType=VARCHAR},
+	      </if>
+	      <if test="EMLADDRESS != null" >
+	        #{EMLADDRESS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="FAXNO != null" >
+	        #{FAXNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="VOCATIONCODE != null" >
+	        #{VOCATIONCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="HOMETELNO != null" >
+	        #{HOMETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ANNUALINCOME != null" >
+	        #{ANNUALINCOME,jdbcType=DECIMAL},
+	      </if>
+	      <if test="MOBILETELNO != null" >
+	        #{MOBILETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="BRANCHCODE != null" >
+	        #{BRANCHCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="OFFICETELNO != null" >
+	        #{OFFICETELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCOUNTABBR != null" >
+	        #{ACCOUNTABBR,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CONFIDENTIALDOCUMENTCODE != null" >
+	        #{CONFIDENTIALDOCUMENTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="SEX != null" >
+	        #{SEX,jdbcType=VARCHAR},
+	      </if>
+	      <if test="SHSECURITIESACCOUNTID != null" >
+	        #{SHSECURITIESACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="SZSECURITIESACCOUNTID != null" >
+	        #{SZSECURITIESACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TAACCOUNTID != null" >
+	        #{TAACCOUNTID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TELNO != null" >
+	        #{TELNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRADINGMETHOD != null" >
+	        #{TRADINGMETHOD,jdbcType=VARCHAR},
+	      </if>
+	      <if test="MINORFLAG != null" >
+	        #{MINORFLAG,jdbcType=VARCHAR},
+	      </if>
+	      <if test="DELIVERTYPE != null" >
+	        #{DELIVERTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TRANSACTORIDTYPE != null" >
+	        #{TRANSACTORIDTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCOUNTCARDID != null" >
+	        #{ACCOUNTCARDID,jdbcType=VARCHAR},
+	      </if>
+	      <if test="MULTIACCTFLAG != null" >
+	        #{MULTIACCTFLAG,jdbcType=VARCHAR},
+	      </if>
+	      <if test="TARGETTRANSACTACCTCODE != null" >
+	        #{TARGETTRANSACTACCTCODE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCTNAMEINVECLEAGEN != null" >
+	        #{ACCTNAMEINVECLEAGEN,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCTNOINVECLEAGEN != null" >
+	        #{ACCTNOINVECLEAGEN,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CLEARINGAGENCY != null" >
+	        #{CLEARINGAGENCY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="DELIVERWAY != null" >
+	        #{DELIVERWAY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="NATIONALITY != null" >
+	        #{NATIONALITY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="NETNO != null" >
+	        #{NETNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="BROKER != null" >
+	        #{BROKER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CORPNAME != null" >
+	        #{CORPNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CERTVALIDDATE != null" >
+	        #{CERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTTRANCERTVALIDDATE != null" >
+	        #{INSTTRANCERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTREPRCERTVALIDDATE != null" >
+	        #{INSTREPRCERTVALIDDATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CLIENTRISKRATE != null" >
+	        #{CLIENTRISKRATE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTREPRMANAGERANGE != null" >
+	        #{INSTREPRMANAGERANGE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CONTROLHOLDER != null" >
+	        #{CONTROLHOLDER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACTUALCONTROLLER != null" >
+	        #{ACTUALCONTROLLER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="MARRIAGESTATUS != null" >
+	        #{MARRIAGESTATUS,jdbcType=VARCHAR},
+	      </if>
+	      <if test="FAMILYNUM != null" >
+	        #{FAMILYNUM,jdbcType=DECIMAL},
+	      </if>
+	      <if test="PENATES != null" >
+	        #{PENATES,jdbcType=DECIMAL},
+	      </if>
+	      <if test="MEDIAHOBBY != null" >
+	        #{MEDIAHOBBY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="INSTITUTIONTYPE != null" >
+	        #{INSTITUTIONTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ENGLISHFIRSTNAME != null" >
+	        #{ENGLISHFIRSTNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ENGLISHFAMLIYNAME != null" >
+	        #{ENGLISHFAMLIYNAME,jdbcType=VARCHAR},
+	      </if>
+	      <if test="VOCATION != null" >
+	        #{VOCATION,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CORPOPROPERTY != null" >
+	        #{CORPOPROPERTY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="STAFFNUM != null" >
+	        #{STAFFNUM,jdbcType=DECIMAL},
+	      </if>
+	      <if test="HOBBYTYPE != null" >
+	        #{HOBBYTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="PROVINCE != null" >
+	        #{PROVINCE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CITY != null" >
+	        #{CITY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="COUNTY != null" >
+	        #{COUNTY,jdbcType=VARCHAR},
+	      </if>
+	      <if test="COMMENDPERSON != null" >
+	        #{COMMENDPERSON,jdbcType=VARCHAR},
+	      </if>
+	      <if test="COMMENDPERSONTYPE != null" >
+	        #{COMMENDPERSONTYPE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ACCEPTMETHOD != null" >
+	        #{ACCEPTMETHOD,jdbcType=VARCHAR},
+	      </if>
+	      <if test="FROZENCAUSE != null" >
+	        #{FROZENCAUSE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="FREEZINGDEADLINE != null" >
+	        #{FREEZINGDEADLINE,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ORIGINALSERIALNO != null" >
+	        #{ORIGINALSERIALNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="ORIGINALAPPSHEETNO != null" >
+	        #{ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+	      </if>
+	      <if test="SPECifICATION != null" >
+	        #{SPECifICATION,jdbcType=VARCHAR},
+	      </if>
+	      <if test="CTIME != null" >
+	        #{CTIME,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="UTIME != null" >
+	        #{UTIME,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="CUSER != null" >
+	        #{CUSER,jdbcType=VARCHAR},
+	      </if>
+	      <if test="UUSER != null" >
+	        #{UUSER,jdbcType=VARCHAR},
+	      </if>
+	    </trim>
+  </insert>
+</mapper>

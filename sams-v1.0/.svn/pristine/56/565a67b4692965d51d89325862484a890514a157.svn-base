@@ -1,0 +1,2358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.ExchangeReqCfmMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.ExchangeReqCfm" >
+    <id column="ERC_ID" property="ercId" jdbcType="DECIMAL" />
+    <result column="ERC_CHANNEL_CODE" property="ercChannelCode" jdbcType="VARCHAR" />
+    <result column="ERC_APP_SHEET_SERIAL_NO" property="ercAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSACTION_CFM_DATE" property="ercTransactionCfmDate" jdbcType="VARCHAR" />
+    <result column="ERC_CURRENCY_TYPE" property="ercCurrencyType" jdbcType="VARCHAR" />
+    <result column="ERC_CONFIRMED_VOL" property="ercConfirmedVol" jdbcType="DECIMAL" />
+    <result column="ERC_CONFIRMED_AMOUNT" property="ercConfirmedAmount" jdbcType="DECIMAL" />
+    <result column="ERC_FUND_CODE" property="ercFundCode" jdbcType="VARCHAR" />
+    <result column="ERC_LARGE_REDEMPTION_FLAG" property="ercLargeRedemptionFlag" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSACTION_DATE" property="ercTransactionDate" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSACTION_TIME" property="ercTransactionTime" jdbcType="VARCHAR" />
+    <result column="ERC_RETURN_CODE" property="ercReturnCode" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSACTION_ACCOUNT_ID" property="ercTransactionAccountId" jdbcType="VARCHAR" />
+    <result column="ERC_DISTRIBUTOR_CODE" property="ercDistributorCode" jdbcType="VARCHAR" />
+    <result column="ERC_APPLICATION_VOL" property="ercApplicationVol" jdbcType="DECIMAL" />
+    <result column="ERC_APPLICATION_AMOUNT" property="ercApplicationAmount" jdbcType="DECIMAL" />
+    <result column="ERC_BUSINESS_CODE" property="ercBusinessCode" jdbcType="VARCHAR" />
+    <result column="ERC_TA_ACCOUNT_ID" property="ercTaAccountId" jdbcType="VARCHAR" />
+    <result column="ERC_TA_SERIAL_NO" property="ercTaSerialNo" jdbcType="VARCHAR" />
+    <result column="ERC_DISCOUNT_RATE_OF_COMM" property="ercDiscountRateOfComm" jdbcType="DECIMAL" />
+    <result column="ERC_DEPOSIT_ACCT" property="ercDepositAcct" jdbcType="VARCHAR" />
+    <result column="ERC_REGION_CODE" property="ercRegionCode" jdbcType="VARCHAR" />
+    <result column="ERC_DOWNLOAD_DATE" property="ercDownloadDate" jdbcType="VARCHAR" />
+    <result column="ERC_CHARGE" property="ercCharge" jdbcType="DECIMAL" />
+    <result column="ERC_AGENCY_FEE" property="ercAgencyFee" jdbcType="DECIMAL" />
+    <result column="ERC_NAV" property="ercNav" jdbcType="DECIMAL" />
+    <result column="ERC_BRANCH_CODE" property="ercBranchCode" jdbcType="VARCHAR" />
+    <result column="ERC_ORIGINAL_APP_SHEET_NO" property="ercOriginalAppSheetNo" jdbcType="VARCHAR" />
+    <result column="ERC_ORIGINAL_SUBS_DATE" property="ercOriginalSubsDate" jdbcType="VARCHAR" />
+    <result column="ERC_OTHER_FEE1" property="ercOtherFee1" jdbcType="DECIMAL" />
+    <result column="ERC_INDIVIDUAL_OR_INSTITUTION" property="ercIndividualOrInstitution" jdbcType="VARCHAR" />
+    <result column="ERC_REDEMPTION_DATE_INADVANCE" property="ercRedemptionDateInadvance" jdbcType="VARCHAR" />
+    <result column="ERC_STAMP_DUTY" property="ercStampDuty" jdbcType="DECIMAL" />
+    <result column="ERC_VALID_PERIOD" property="ercValidPeriod" jdbcType="DECIMAL" />
+    <result column="ERC_RATE_FEE" property="ercRateFee" jdbcType="DECIMAL" />
+    <result column="ERC_TOTAL_BACKEND_LOAD" property="ercTotalBackendLoad" jdbcType="DECIMAL" />
+    <result column="ERC_ORIGINAL_SERIAL_NO" property="ercOriginalSerialNo" jdbcType="VARCHAR" />
+    <result column="ERC_SPECIFICATION" property="ercSpecification" jdbcType="VARCHAR" />
+    <result column="ERC_DATE_OF_PERIODIC_SUBS" property="ercDateOfPeriodicSubs" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_DISTRIBUTOR_CODE" property="ercTargetDistributorCode" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_BRANCH_CODE" property="ercTargetBranchCode" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_TRANSACT_ACCT_CODE" property="ercTargetTransactAcctCode" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_REGION_CODE" property="ercTargetRegionCode" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSFER_DIRECTION" property="ercTransferDirection" jdbcType="VARCHAR" />
+    <result column="ERC_DEF_DIVIDEND_METHOD" property="ercDefDividendMethod" jdbcType="VARCHAR" />
+    <result column="ERC_DIVIDEND_RATIO" property="ercDividendRatio" jdbcType="DECIMAL" />
+    <result column="ERC_INTEREST" property="ercInterest" jdbcType="DECIMAL" />
+    <result column="ERC_VOLUME_BY_INTEREST" property="ercVolumeByInterest" jdbcType="DECIMAL" />
+    <result column="ERC_INTEREST_TAX" property="ercInterestTax" jdbcType="DECIMAL" />
+    <result column="ERC_TRADING_PRICE" property="ercTradingPrice" jdbcType="DECIMAL" />
+    <result column="ERC_FREEZING_DEADLINE" property="ercFreezingDeadline" jdbcType="VARCHAR" />
+    <result column="ERC_FROZEN_CAUSE" property="ercFrozenCause" jdbcType="VARCHAR" />
+    <result column="ERC_TAX" property="ercTax" jdbcType="DECIMAL" />
+    <result column="ERC_TARGET_NAV" property="ercTargetNav" jdbcType="DECIMAL" />
+    <result column="ERC_TARGET_FUND_PRICE" property="ercTargetFundPrice" jdbcType="DECIMAL" />
+    <result column="ERC_CFM_VOL_OF_TARGET_FUND" property="ercCfmVolOfTargetFund" jdbcType="DECIMAL" />
+    <result column="ERC_MIN_FEE" property="ercMinFee" jdbcType="DECIMAL" />
+    <result column="ERC_OTHER_FEE2" property="ercOtherFee2" jdbcType="DECIMAL" />
+    <result column="ERC_ORIGINAL_APP_DATE" property="ercOriginalAppDate" jdbcType="VARCHAR" />
+    <result column="ERC_TRANSFER_FEE" property="ercTransferFee" jdbcType="DECIMAL" />
+    <result column="ERC_FROM_TA_FLAG" property="ercFromTaFlag" jdbcType="VARCHAR" />
+    <result column="ERC_SHARE_CLASS" property="ercShareClass" jdbcType="VARCHAR" />
+    <result column="ERC_DETAIL_FLAG" property="ercDetailFlag" jdbcType="VARCHAR" />
+    <result column="ERC_REDEMPTION_IN_ADVANCE_FLAG" property="ercRedemptionInAdvanceFlag" jdbcType="VARCHAR" />
+    <result column="ERC_FROZEN_METHOD" property="ercFrozenMethod" jdbcType="VARCHAR" />
+    <result column="ERC_ORIGINAL_CFM_DATE" property="ercOriginalCfmDate" jdbcType="VARCHAR" />
+    <result column="ERC_REDEMPTION_REASON" property="ercRedemptionReason" jdbcType="VARCHAR" />
+    <result column="ERC_CODE_OF_TARGET_FUND" property="ercCodeOfTargetFund" jdbcType="VARCHAR" />
+    <result column="ERC_TOTAL_TRANS_FEE" property="ercTotalTransFee" jdbcType="DECIMAL" />
+    <result column="ERC_VARIETY_CODE_PERIODIC_SUB" property="ercVarietyCodePeriodicSub" jdbcType="VARCHAR" />
+    <result column="ERC_SERIAL_NO_OF_PERIODIC_SUBS" property="ercSerialNoOfPeriodicSubs" jdbcType="VARCHAR" />
+    <result column="ERC_RATION_TYPE" property="ercRationType" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_TA_ACCOUNT_ID" property="ercTargetTaAccountId" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_REGISTRAR_CODE" property="ercTargetRegistrarCode" jdbcType="VARCHAR" />
+    <result column="ERC_NET_NO" property="ercNetNo" jdbcType="VARCHAR" />
+    <result column="ERC_CUSTOMER_NO" property="ercCustomerNo" jdbcType="VARCHAR" />
+    <result column="ERC_TARGET_SHARE_TYPE" property="ercTargetShareType" jdbcType="VARCHAR" />
+    <result column="ERC_RATION_PROTOCOL_NO" property="ercRationProtocolNo" jdbcType="VARCHAR" />
+    <result column="ERC_BEGIN_DATE_PERIODIC_SUBS" property="ercBeginDatePeriodicSubs" jdbcType="VARCHAR" />
+    <result column="ERC_END_DATE_OF_PERIODIC_SUBS" property="ercEndDateOfPeriodicSubs" jdbcType="VARCHAR" />
+    <result column="ERC_SEND_DAY_OF_PERIODIC_SUBS" property="ercSendDayOfPeriodicSubs" jdbcType="DECIMAL" />
+    <result column="ERC_BROKER" property="ercBroker" jdbcType="VARCHAR" />
+    <result column="ERC_SALES_PROMOTION" property="ercSalesPromotion" jdbcType="VARCHAR" />
+    <result column="ERC_ACCEPT_METHOD" property="ercAcceptMethod" jdbcType="VARCHAR" />
+    <result column="ERC_FORCE_REDEMPTION_TYPE" property="ercForceRedemptionType" jdbcType="VARCHAR" />
+    <result column="ERC_ALTERNATION_DATE" property="ercAlternationDate" jdbcType="VARCHAR" />
+    <result column="ERC_TAKEINCOME_FLAG" property="ercTakeincomeFlag" jdbcType="VARCHAR" />
+    <result column="ERC_PURPOSE_OF_PE_SUBS" property="ercPurposeOfPeSubs" jdbcType="VARCHAR" />
+    <result column="ERC_FREQUENCY_OF_PE_SUBS" property="ercFrequencyOfPeSubs" jdbcType="DECIMAL" />
+    <result column="ERC_PERIOD_SUB_TIME_UNIT" property="ercPeriodSubTimeUnit" jdbcType="VARCHAR" />
+    <result column="ERC_BATCH_NUM_OF_PE_SUBS" property="ercBatchNumOfPeSubs" jdbcType="DECIMAL" />
+    <result column="ERC_CAPITAL_MODE" property="ercCapitalMode" jdbcType="VARCHAR" />
+    <result column="ERC_DETAIL_CAPTICAL_MODE" property="ercDetailCapticalMode" jdbcType="VARCHAR" />
+    <result column="ERC_BACKENLOAD_DISCOUNT" property="ercBackenloadDiscount" jdbcType="DECIMAL" />
+    <result column="ERC_COMBINE_NUM" property="ercCombineNum" jdbcType="VARCHAR" />
+    <result column="ERC_REFUND_AMOUNT" property="ercRefundAmount" jdbcType="DECIMAL" />
+    <result column="ERC_SALE_PERCENT" property="ercSalePercent" jdbcType="DECIMAL" />
+    <result column="ERC_MANAGER_REAL_RATIO" property="ercManagerRealRatio" jdbcType="DECIMAL" />
+    <result column="ERC_CHANGE_FEE" property="ercChangeFee" jdbcType="DECIMAL" />
+    <result column="ERC_RECUPERATE_FEE" property="ercRecuperateFee" jdbcType="DECIMAL" />
+    <result column="ERC_ACHIEVEMENT_PAY" property="ercAchievementPay" jdbcType="DECIMAL" />
+    <result column="ERC_ACHIEVEMENT_COMPEN" property="ercAchievementCompen" jdbcType="DECIMAL" />
+    <result column="ERC_SHARES_ADJUSTMENT_FLAG" property="ercSharesAdjustmentFlag" jdbcType="VARCHAR" />
+    <result column="ERC_GENERAL_TA_SERIAL_NO" property="ercGeneralTaSerialNo" jdbcType="VARCHAR" />
+    <result column="ERC_UNDI_MONETARY_INCOME" property="ercUndiMonetaryIncome" jdbcType="DECIMAL" />
+    <result column="ERC_UNDI_MONETARY_INCOME_FLAG" property="ercUndiMonetaryIncomeFlag" jdbcType="VARCHAR" />
+    <result column="ERC_BREACH_FEE" property="ercBreachFee" jdbcType="DECIMAL" />
+    <result column="ERC_BREACH_FEE_BACK_TO_FUND" property="ercBreachFeeBackToFund" jdbcType="DECIMAL" />
+    <result column="ERC_PUNISH_FEE" property="ercPunishFee" jdbcType="VARCHAR" />
+    <result column="ERC_TRADING_METHOD" property="ercTradingMethod" jdbcType="VARCHAR" />
+    <result column="ERC_CHANGE_AGENCY_FEE" property="ercChangeAgencyFee" jdbcType="DECIMAL" />
+    <result column="ERC_RECUPERATE_AGENCY_FEE" property="ercRecuperateAgencyFee" jdbcType="DECIMAL" />
+    <result column="ERC_ERROR_DETAIL" property="ercErrorDetail" jdbcType="VARCHAR" />
+    <result column="ERC_LARGE_BUY_FLAG" property="ercLargeBuyFlag" jdbcType="VARCHAR" />
+    <result column="ERC_RAISE_INTEREST" property="ercRaiseInterest" jdbcType="DECIMAL" />
+    <result column="ERC_FEE_CALCULATOR" property="ercFeeCalculator" jdbcType="VARCHAR" />
+    <result column="ERC_SHARE_REGISTER_DATE" property="ercShareRegisterDate" jdbcType="VARCHAR" />
+    <result column="ERC_TOTAL_FROZEN_VOL" property="ercTotalFrozenVol" jdbcType="DECIMAL" />
+    <result column="ERC_FUND_VOL_BALANCE" property="ercFundVolBalance" jdbcType="DECIMAL" />
+    <result column="ERC_FROZEN_BALANCE" property="ercFrozenBalance" jdbcType="DECIMAL" />
+    <result column="ERC_FUTURE_SUBSCRIBE_DATE" property="ercFutureSubscribeDate" jdbcType="VARCHAR" />
+    <result column="ERC_TRANS_DATE_THROUGH_CLEAR" property="ercTransDateThroughClear" jdbcType="VARCHAR" />
+    <result column="ERC_TA_ERROR_DETAIL" property="ercTaErrorDetail" jdbcType="VARCHAR" />
+    <result column="ERC_CFM_DATE" property="ercCfmDate" jdbcType="VARCHAR" />
+    <result column="ERC_SEND_STATUS" property="ercSendStatus" jdbcType="VARCHAR" />
+    <result column="ERC_GENERATE_STATUS" property="ercGenerateStatus" jdbcType="VARCHAR" />
+    <result column="ERC_SEND_FILE_TIME" property="ercSendFileTime" jdbcType="TIMESTAMP" />
+    <result column="ERC_GENERATE_FILE_TIME" property="ercGenerateFileTime" jdbcType="TIMESTAMP" />
+    <result column="ERC_TA_RET_SERIAL_NO" property="ercTaRetSerialNo" jdbcType="VARCHAR" />
+    <result column="ERC_CTIME" property="ercCtime" jdbcType="TIMESTAMP" />
+    <result column="ERC_UTIME" property="ercUtime" jdbcType="TIMESTAMP" />
+    <result column="ERC_CUSER" property="ercCuser" jdbcType="VARCHAR" />
+    <result column="ERC_UUSER" property="ercUuser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+	 ERC_ID	 ID,
+	 ERC_CHANNEL_CODE	 CHANNELCODE,
+	 ERC_APP_SHEET_SERIAL_NO	 APPSHEETSERIALNO,
+	 ERC_TRANSACTION_CFM_DATE	 TRANSACTIONCFMDATE,
+	 ERC_CURRENCY_TYPE	 CURRENCYTYPE,
+	 ERC_CONFIRMED_VOL	 CONFIRMEDVOL,
+	 ERC_CONFIRMED_AMOUNT	 CONFIRMEDAMOUNT,
+	 ERC_FUND_CODE	 FUNDCODE,
+	 ERC_LARGE_REDEMPTION_FLAG	 LARGEREDEMPTIONFLAG,
+	 ERC_TRANSACTION_DATE	 TRANSACTIONDATE,
+	 ERC_TRANSACTION_TIME	 TRANSACTIONTIME,
+	 ERC_RETURN_CODE	 RETURNCODE,
+	 ERC_TRANSACTION_ACCOUNT_ID	 TRANSACTIONACCOUNTID,
+	 ERC_DISTRIBUTOR_CODE	 DISTRIBUTORCODE,
+	 ERC_APPLICATION_VOL	 APPLICATIONVOL,
+	 ERC_APPLICATION_AMOUNT	 APPLICATIONAMOUNT,
+	 ERC_BUSINESS_CODE	 BUSINESSCODE,
+	 ERC_TA_ACCOUNT_ID	 TAACCOUNTID,
+	 ERC_TA_SERIAL_NO	 TASERIALNO,
+	 ERC_DISCOUNT_RATE_OF_COMM	 DISCOUNTRATEOFCOMM,
+	 ERC_DEPOSIT_ACCT	 DEPOSITACCT,
+	 ERC_REGION_CODE	 REGIONCODE,
+	 ERC_DOWNLOAD_DATE	 DOWNLOADDATE,
+	 ERC_CHARGE	 CHARGE,
+	 ERC_AGENCY_FEE	 AGENCYFEE,
+	 ERC_NAV	 NAV,
+	 ERC_BRANCH_CODE	 BRANCHCODE,
+	 ERC_ORIGINAL_APP_SHEET_NO	 ORIGINALAPPSHEETNO,
+	 ERC_ORIGINAL_SUBS_DATE	 ORIGINALSUBSDATE,
+	 ERC_OTHER_FEE1	 OTHERFEE1,
+	 ERC_INDIVIDUAL_OR_INSTITUTION	 INDIVIDUALORINSTITUTION,
+	 ERC_REDEMPTION_DATE_INADVANCE	 REDEMPTIONDATEINADVANCE,
+	 ERC_STAMP_DUTY	 STAMPDUTY,
+	 ERC_VALID_PERIOD	 VALIDPERIOD,
+	 ERC_RATE_FEE	 RATEFEE,
+	 ERC_TOTAL_BACKEND_LOAD	 TOTALBACKENDLOAD,
+	 ERC_ORIGINAL_SERIAL_NO	 ORIGINALSERIALNO,
+	 ERC_SPECIFICATION	 SPECIFICATION,
+	 ERC_DATE_OF_PERIODIC_SUBS	 DATEOFPERIODICSUBS,
+	 ERC_TARGET_DISTRIBUTOR_CODE	 TARGETDISTRIBUTORCODE,
+	 ERC_TARGET_BRANCH_CODE	 TARGETBRANCHCODE,
+	 ERC_TARGET_TRANSACT_ACCT_CODE	 TARGETTRANSACTACCTCODE,
+	 ERC_TARGET_REGION_CODE	 TARGETREGIONCODE,
+	 ERC_TRANSFER_DIRECTION	 TRANSFERDIRECTION,
+	 ERC_DEF_DIVIDEND_METHOD	 DEFDIVIDENDMETHOD,
+	 ERC_DIVIDEND_RATIO	 DIVIDENDRATIO,
+	 ERC_INTEREST	 INTEREST,
+	 ERC_VOLUME_BY_INTEREST	 VOLUMEBYINTEREST,
+	 ERC_INTEREST_TAX	 INTERESTTAX,
+	 ERC_TRADING_PRICE	 TRADINGPRICE,
+	 ERC_FREEZING_DEADLINE	 FREEZINGDEADLINE,
+	 ERC_FROZEN_CAUSE	 FROZENCAUSE,
+	 ERC_TAX	 TAX,
+	 ERC_TARGET_NAV	 TARGETNAV,
+	 ERC_TARGET_FUND_PRICE	 TARGETFUNDPRICE,
+	 ERC_CFM_VOL_OF_TARGET_FUND	 CFMVOLOFTARGETFUND,
+	 ERC_MIN_FEE	 MINFEE,
+	 ERC_OTHER_FEE2	 OTHERFEE2,
+	 ERC_ORIGINAL_APP_DATE	 ORIGINALAPPDATE,
+	 ERC_TRANSFER_FEE	 TRANSFERFEE,
+	 ERC_FROM_TA_FLAG	 FROMTAFLAG,
+	 ERC_SHARE_CLASS	 SHARECLASS,
+	 ERC_DETAIL_FLAG	 DETAILFLAG,
+	 ERC_REDEMPTION_IN_ADVANCE_FLAG	 REDEMPTIONINADVANCEFLAG,
+	 ERC_FROZEN_METHOD	 FROZENMETHOD,
+	 ERC_ORIGINAL_CFM_DATE	 ORIGINALCFMDATE,
+	 ERC_REDEMPTION_REASON	 REDEMPTIONREASON,
+	 ERC_CODE_OF_TARGET_FUND	 CODEOFTARGETFUND,
+	 ERC_TOTAL_TRANS_FEE	 TOTALTRANSFEE,
+	 ERC_VARIETY_CODE_PERIODIC_SUB	 VARIETYCODEPERIODICSUB,
+	 ERC_SERIAL_NO_OF_PERIODIC_SUBS	 SERIALNOOFPERIODICSUBS,
+	 ERC_RATION_TYPE	 RATIONTYPE,
+	 ERC_TARGET_TA_ACCOUNT_ID	 TARGETTAACCOUNTID,
+	 ERC_TARGET_REGISTRAR_CODE	 TARGETREGISTRARCODE,
+	 ERC_NET_NO	 NETNO,
+	 ERC_CUSTOMER_NO	 CUSTOMERNO,
+	 ERC_TARGET_SHARE_TYPE	 TARGETSHARETYPE,
+	 ERC_RATION_PROTOCOL_NO	 RATIONPROTOCOLNO,
+	 ERC_BEGIN_DATE_PERIODIC_SUBS	 BEGINDATEPERIODICSUBS,
+	 ERC_END_DATE_OF_PERIODIC_SUBS	 ENDDATEOFPERIODICSUBS,
+	 ERC_SEND_DAY_OF_PERIODIC_SUBS	 SENDDAYOFPERIODICSUBS,
+	 ERC_BROKER	 BROKER,
+	 ERC_SALES_PROMOTION	 SALESPROMOTION,
+	 ERC_ACCEPT_METHOD	 ACCEPTMETHOD,
+	 ERC_FORCE_REDEMPTION_TYPE	 FORCEREDEMPTIONTYPE,
+	 ERC_ALTERNATION_DATE	 ALTERNATIONDATE,
+	 ERC_TAKEINCOME_FLAG	 TAKEINCOMEFLAG,
+	 ERC_PURPOSE_OF_PE_SUBS	 PURPOSEOFPESUBS,
+	 ERC_FREQUENCY_OF_PE_SUBS	 FREQUENCYOFPESUBS,
+	 ERC_PERIOD_SUB_TIME_UNIT	 PERIODSUBTIMEUNIT,
+	 ERC_BATCH_NUM_OF_PE_SUBS	 BATCHNUMOFPESUBS,
+	 ERC_CAPITAL_MODE	 CAPITALMODE,
+	 ERC_DETAIL_CAPTICAL_MODE	 DETAILCAPTICALMODE,
+	 ERC_BACKENLOAD_DISCOUNT	 BACKENLOADDISCOUNT,
+	 ERC_COMBINE_NUM	 COMBINENUM,
+	 ERC_REFUND_AMOUNT	 REFUNDAMOUNT,
+	 ERC_SALE_PERCENT	 SALEPERCENT,
+	 ERC_MANAGER_REAL_RATIO	 MANAGERREALRATIO,
+	 ERC_CHANGE_FEE	 CHANGEFEE,
+	 ERC_RECUPERATE_FEE	 RECUPERATEFEE,
+	 ERC_ACHIEVEMENT_PAY	 ACHIEVEMENTPAY,
+	 ERC_ACHIEVEMENT_COMPEN	 ACHIEVEMENTCOMPEN,
+	 ERC_SHARES_ADJUSTMENT_FLAG	 SHARESADJUSTMENTFLAG,
+	 ERC_GENERAL_TA_SERIAL_NO	 GENERALTASERIALNO,
+	 ERC_UNDI_MONETARY_INCOME	 UNDIMONETARYINCOME,
+	 ERC_UNDI_MONETARY_INCOME_FLAG	 UNDIMONETARYINCOMEFLAG,
+	 ERC_BREACH_FEE	 BREACHFEE,
+	 ERC_BREACH_FEE_BACK_TO_FUND	 BREACHFEEBACKTOFUND,
+	 ERC_PUNISH_FEE	 PUNISHFEE,
+	 ERC_TRADING_METHOD	 TRADINGMETHOD,
+	 ERC_CHANGE_AGENCY_FEE	 CHANGEAGENCYFEE,
+	 ERC_RECUPERATE_AGENCY_FEE	 RECUPERATEAGENCYFEE,
+	 ERC_ERROR_DETAIL	 ERRORDETAIL,
+	 ERC_LARGE_BUY_FLAG	 LARGEBUYFLAG,
+	 ERC_RAISE_INTEREST	 RAISEINTEREST,
+	 ERC_FEE_CALCULATOR	 FEECALCULATOR,
+	 ERC_SHARE_REGISTER_DATE	 SHAREREGISTERDATE,
+	 ERC_TOTAL_FROZEN_VOL	 TOTALFROZENVOL,
+	 ERC_FUND_VOL_BALANCE	 FUNDVOLBALANCE,
+	 ERC_FROZEN_BALANCE	 FROZENBALANCE,
+	 ERC_FUTURE_SUBSCRIBE_DATE	 FUTURESUBSCRIBEDATE,
+	 ERC_TRANS_DATE_THROUGH_CLEAR	 TRANSDATETHROUGHCLEAR,
+	 ERC_TA_ERROR_DETAIL	 TAERRORDETAIL,
+	 ERC_CFM_DATE	 CFMDATE,
+	 ERC_SEND_STATUS	 SENDSTATUS,
+	 ERC_GENERATE_STATUS	 GENERATESTATUS,
+	 ERC_SEND_FILE_TIME	 SENDFILETIME,
+	 ERC_GENERATE_FILE_TIME	 GENERATEFILETIME,
+	 ERC_TA_RET_SERIAL_NO	 TARETSERIALNO,
+	 ERC_CTIME	 CTIME,
+	 ERC_UTIME	 UTIME,
+	 ERC_CUSER	 CUSER,
+	 ERC_UUSER	 UUSER,
+	 ERC_TA_TRANS_FLAG	 TATRANSFLAG,
+	 ERC_TA_TRANS_TIME	 TATRANSTIME,
+	 ERC_TRANS_DATE	 TRANSDATE
+  </sql>
+  
+  <sql id="Base_Column_List_Req" >
+       ER_CHANNEL_CODE CHANNELCODE,
+       ER_TRANS_DATE  BUSINESSDATE,
+       ER_APP_SHEET_SERIAL_NO APPSHEETSERIALNO,
+       ER_FUND_CODE FUNDCODE,
+       ER_LARGE_REDEMPTION_FLAG LARGEREDEMPTIONFLAG,
+       ER_TRANSACTION_DATE TRANSACTIONDATE,
+       ER_TRANSACTION_TIME TRANSACTIONTIME,
+       ER_TRANSACTION_ACCOUNT_ID TRANSACTIONACCOUNTID,
+       ER_DISTRIBUTOR_CODE DISTRIBUTORCODE,
+       ER_APPLICATION_VOL APPLICATIONVOL,
+       ER_APPLICATION_AMOUNT APPLICATIONAMOUNT,
+       ER_BUSINESS_CODE BUSINESSCODE,
+       ER_TA_ACCOUNT_ID TAACCOUNTID,
+       ER_DISCOUNT_RATE_OF_COMM DISCOUNTRATEOFCOMMISSION,
+       ER_DEPOSIT_ACCT DEPOSITACCT,
+       ER_REGION_CODE REGIONCODE,
+       ER_CURRENCY_TYPE CURRENCYTYPE,
+       ER_BRANCH_CODE BRANCHCODE,
+       ER_ORIGINAL_APP_SHEET_NO ORIGINALAPPSHEETNO,
+       ER_ORIGINAL_SUBS_DATE ORIGINALSUBSDATE,
+       ER_INDIVIDUAL_OR_INSTITUTION INDIVIDUALORINSTITUTION,
+       ER_VALID_PERIOD VALIDPERIOD,
+       ER_DAYS_REDEMPTION_IN_ADVANCE DAYSREDEMPTIONINADVANCE,
+       ER_REDEMPTION_DATE_IN_ADVANCE REDEMPTIONDATEINADVANCE,
+       ER_ORIGINAL_SERIAL_NO ORIGINALSERIALNO,
+       ER_DATE_OF_PERIODIC_SUBS DATEOFPERIODICSUBS,
+       ER_TA_SERIAL_NO TASERIALNO,
+       ER_TERM_OF_PERIODIC_SUBS TERMOFPERIODICSUBS,
+       ER_FUTURE_BUY_DATE FUTUREBUYDATE,
+       ER_TARGET_DISTRIBUTOR_CODE TARGETDISTRIBUTORCODE,
+       ER_CHARGE CHARGE,
+       ER_TARGET_BRANCH_CODE TARGETBRANCHCODE,
+       ER_TARGET_TRANSACT_ACCT_CODE TARGETTRANSACTIONACCOUNTID,
+       ER_TARGET_REGION_CODE TARGETREGIONCODE,
+       ER_DIVIDEND_RATIO DIVIDENDRATIO,
+       ER_SPECIFICATION SPECIFICATION,
+       ER_CODE_OF_TARGET_FUND CODEOFTARGETFUND,
+       ER_TOTAL_BACKEND_LOAD TOTALBACKENDLOAD,
+       ER_SHARE_CLASS SHARECLASS,
+       ER_ORIGINAL_CFM_DATE ORIGINALCFMDATE,
+       ER_DETAIL_FLAG DETAILFLAG,
+       ER_ORIGINAL_APP_DATE ORIGINALAPPDATE,
+       ER_DEF_DIVIDEND_METHOD DEFDIVIDENDMETHOD,
+       ER_FROZEN_CAUSE FROZENCAUSE,
+       ER_FREEZING_DEADLINE FREEZINGDEADLINE,
+       ER_VARIETY_CODE_PERIODIC_SUB VARIETYCODEOFPERIODICSUBS,
+       ER_SERIAL_NO_PERIODIC_SUB SERIALNOOFPERIODICSUBS,
+       ER_RATION_TYPE RATIONTYPE,
+       ER_TARGET_TA_ACCOUNT_ID TARGETTAACCOUNTID,
+       ER_TARGET_REGISTRAR_CODE TARGETREGISTRARCODE,
+       ER_NET_NO NETNO,
+       ER_CUSTOMER_NO CUSTOMERNO,
+       ER_TARGET_SHARE_TYPE TARGETSHARETYPE,
+       ER_RATION_PROTOCOL_NO RATIONPROTOCOLNO,
+       ER_BEGIN_DATE_PERIODIC_SUBS BEGINDATEOFPERIODICSUBS,
+       ER_END_DATE_OF_PERIODIC_SUBS ENDDATEOFPERIODICSUBS,
+       ER_SEND_DAY_OF_PERIODIC_SUBS SENDDAYOFPERIODICSUBS,
+       ER_BROKER BROKER,
+       ER_SALES_PROMOTION SALESPROMOTION,
+       ER_ACCEPT_METHOD ACCEPTMETHOD,
+       ER_FORCE_REDEMPTION_TYPE FORCEREDEMPTIONTYPE,
+       ER_TAKE_INCOME_FLAG TAKEINCOMEFLAG,
+       ER_PURPOSE_OF_PE_SUBS PURPOSEOFPESUBS,
+       ER_FREQUENCY_OF_PE_SUBS FREQUENCYOFPESUBS,
+       ER_PERIOD_SUB_TIME_UNIT PERIODSUBTIMEUNIT,
+       ER_BATCH_NUM_OF_PESUBS BATCHNUMOFPESUBS,
+       ER_CAPITAL_MODE CAPITALMODE,
+       ER_DETAIL_CAPTICAL_MODE DETAILCAPTICALMODE,
+       ER_BACKENLOAD_DISCOUNT BACKENLOADDISCOUNT,
+       ER_COMBINE_NUM COMBINENUM,
+       ER_FUTURE_SUBSCRIBE_DATE FUTURESUBSCRIBEDATE,
+       ER_TRADING_METHOD TRADINGMETHOD,
+       ER_LARGE_BUY_FLAG LARGEBUYFLAG,
+       ER_CHARGE_TYPE CHARGETYPE,
+       ER_SPECIFY_RATE_FEE SPECIFYRATEFEE,
+       ER_SPECIFY_FEE  SPECIFYFEE,
+       ER_PRO_YIELD_TYPE PROYIELDTYPE,
+       ER_PRO_YIELD     PROYIELD,
+       ER_IN_CONTRACT  INCONTRACT,
+       ER_OUT_CONTRACT  OUTCONTRACT,
+       ER_VALID_FLAG  VALIDFLAG,
+       ER_RETURN_CODE RETURNCODE,
+       ER_EXPECTED_CFM_DATE EXPECTEDCFMDATE,
+       ER_ERROR_DEC ERRORDEC,
+       ER_TA_PRODUCT_CODE TAPRODUCTCODE,
+       ER_BATCH_NO  BATCHNO
+  </sql>
+  
+  <sql id="Base_Column_List_File" >
+	 ERC_ID	 ID,
+	 ERC_CHANNEL_CODE	 CHANNELCODE,
+	 ERC_APP_SHEET_SERIAL_NO	 APPSHEETSERIALNO,
+	 ERC_TRANSACTION_CFM_DATE	 TRANSACTIONCFMDATE,
+	 ERC_CURRENCY_TYPE	 CURRENCYTYPE,
+	 ERC_CONFIRMED_VOL	 CONFIRMEDVOL,
+	 ERC_CONFIRMED_AMOUNT	 CONFIRMEDAMOUNT,
+	 ERC_FUND_CODE	 FUNDCODE,
+	 ERC_LARGE_REDEMPTION_FLAG	 LARGEREDEMPTIONFLAG,
+	 ERC_TRANSACTION_DATE	 TRANSACTIONDATE,
+	 ERC_TRANSACTION_TIME	 TRANSACTIONTIME,
+	 ERC_RETURN_CODE	 RETURNCODE,
+	 ERC_TRANSACTION_ACCOUNT_ID	 TRANSACTIONACCOUNTID,
+	 ERC_DISTRIBUTOR_CODE	 DISTRIBUTORCODE,
+	 ERC_APPLICATION_VOL	 APPLICATIONVOL,
+	 ERC_APPLICATION_AMOUNT	 APPLICATIONAMOUNT,
+	 ERC_TA_ACCOUNT_ID	 TAACCOUNTID,
+	 ERC_ORIGINAL_SERIAL_NO	 TASERIALNO,
+	 ERC_DISCOUNT_RATE_OF_COMM	 DISCOUNTRATEOFCOMMISSION,
+	 ERC_DEPOSIT_ACCT	 DEPOSITACCT,
+	 ERC_REGION_CODE	 REGIONCODE,
+	 ERC_DOWNLOAD_DATE	 DOWNLOADDATE,
+	 ERC_CHARGE	 CHARGE,
+	 ERC_AGENCY_FEE	 AGENCYFEE,
+	 ERC_NAV	 NAV,
+	 ERC_BRANCH_CODE	 BRANCHCODE,
+	 ERC_ORIGINAL_APP_SHEET_NO	 ORIGINALAPPSHEETNO,
+	 ERC_ORIGINAL_SUBS_DATE	 ORIGINALSUBSDATE,
+	 ERC_OTHER_FEE1	 OTHERFEE1,
+	 ERC_INDIVIDUAL_OR_INSTITUTION	 INDIVIDUALORINSTITUTION,
+	 ERC_REDEMPTION_DATE_INADVANCE	 REDEMPTIONDATEINADVANCE,
+	 ERC_STAMP_DUTY	 STAMPDUTY,
+	 ERC_VALID_PERIOD	 VALIDPERIOD,
+	 ERC_RATE_FEE	 RATEFEE,
+	 ERC_TOTAL_BACKEND_LOAD	 TOTALBACKENDLOAD,
+	 '' ORIGINALSERIALNO,
+	 ERC_SPECIFICATION	 SPECIFICATION,
+	 ERC_DATE_OF_PERIODIC_SUBS	 DATEOFPERIODICSUBS,
+	 ERC_TARGET_DISTRIBUTOR_CODE	 TARGETDISTRIBUTORCODE,
+	 ERC_TARGET_BRANCH_CODE	 TARGETBRANCHCODE,
+	 ERC_TARGET_TRANSACT_ACCT_CODE	 TARGETTRANSACTACCTCODE,
+	 ERC_TARGET_REGION_CODE	 TARGETREGIONCODE,
+	 ERC_TRANSFER_DIRECTION	 TRANSFERDIRECTION,
+	 ERC_DEF_DIVIDEND_METHOD	 DEFDIVIDENDMETHOD,
+	 ERC_DIVIDEND_RATIO	 DIVIDENDRATIO,
+	 ERC_INTEREST	 INTEREST,
+	 ERC_VOLUME_BY_INTEREST	 VOLUMEBYINTEREST,
+	 ERC_INTEREST_TAX	 INTERESTTAX,
+	 ERC_TRADING_PRICE	 TRADINGPRICE,
+	 ERC_FREEZING_DEADLINE	 FREEZINGDEADLINE,
+	 ERC_FROZEN_CAUSE	 FROZENCAUSE,
+	 ERC_TAX	 TAX,
+	 ERC_TARGET_NAV	 TARGETNAV,
+	 ERC_TARGET_FUND_PRICE	 TARGETFUNDPRICE,
+	 ERC_CFM_VOL_OF_TARGET_FUND	 CFMVOLOFTARGETFUND,
+	 ERC_MIN_FEE	 MINFEE,
+	 ERC_OTHER_FEE2	 OTHERFEE2,
+	 ERC_ORIGINAL_APP_DATE	 ORIGINALAPPDATE,
+	 ERC_TRANSFER_FEE	 TRANSFERFEE,
+	 ERC_FROM_TA_FLAG	 FROMTAFLAG,
+	 ERC_SHARE_CLASS	 SHARECLASS,
+	 ERC_DETAIL_FLAG	 DETAILFLAG,
+	 ERC_REDEMPTION_IN_ADVANCE_FLAG	 REDEMPTIONINADVANCEFLAG,
+	 ERC_FROZEN_METHOD	 FROZENMETHOD,
+	 ERC_ORIGINAL_CFM_DATE	 ORIGINALCFMDATE,
+	 ERC_REDEMPTION_REASON	 REDEMPTIONREASON,
+	 ERC_CODE_OF_TARGET_FUND	 CODEOFTARGETFUND,
+	 ERC_TOTAL_TRANS_FEE	 TOTALTRANSFEE,
+	 ERC_VARIETY_CODE_PERIODIC_SUB	 VARIETYCODEPERIODICSUB,
+	 ERC_SERIAL_NO_OF_PERIODIC_SUBS	 SERIALNOOFPERIODICSUBS,
+	 ERC_RATION_TYPE	 RATIONTYPE,
+	 ERC_TARGET_TA_ACCOUNT_ID	 TARGETTAACCOUNTID,
+	 ERC_TARGET_REGISTRAR_CODE	 TARGETREGISTRARCODE,
+	 ERC_NET_NO	 NETNO,
+	 ERC_CUSTOMER_NO	 CUSTOMERNO,
+	 ERC_TARGET_SHARE_TYPE	 TARGETSHARETYPE,
+	 ERC_RATION_PROTOCOL_NO	 RATIONPROTOCOLNO,
+	 ERC_BEGIN_DATE_PERIODIC_SUBS	 BEGINDATEPERIODICSUBS,
+	 ERC_END_DATE_OF_PERIODIC_SUBS	 ENDDATEOFPERIODICSUBS,
+	 ERC_SEND_DAY_OF_PERIODIC_SUBS	 SENDDAYOFPERIODICSUBS,
+	 ERC_BROKER	 BROKER,
+	 ERC_SALES_PROMOTION	 SALESPROMOTION,
+	 ERC_ACCEPT_METHOD	 ACCEPTMETHOD,
+	 ERC_FORCE_REDEMPTION_TYPE	 FORCEREDEMPTIONTYPE,
+	 ERC_ALTERNATION_DATE	 ALTERNATIONDATE,
+	 ERC_TAKEINCOME_FLAG	 TAKEINCOMEFLAG,
+	 ERC_PURPOSE_OF_PE_SUBS	 PURPOSEOFPESUBS,
+	 ERC_FREQUENCY_OF_PE_SUBS	 FREQUENCYOFPESUBS,
+	 ERC_PERIOD_SUB_TIME_UNIT	 PERIODSUBTIMEUNIT,
+	 ERC_BATCH_NUM_OF_PE_SUBS	 BATCHNUMOFPESUBS,
+	 ERC_CAPITAL_MODE	 CAPITALMODE,
+	 ERC_DETAIL_CAPTICAL_MODE	 DETAILCAPTICALMODE,
+	 ERC_BACKENLOAD_DISCOUNT	 BACKENLOADDISCOUNT,
+	 ERC_COMBINE_NUM	 COMBINENUM,
+	 ERC_REFUND_AMOUNT	 REFUNDAMOUNT,
+	 ERC_SALE_PERCENT	 SALEPERCENT,
+	 ERC_MANAGER_REAL_RATIO	 MANAGERREALRATIO,
+	 ERC_CHANGE_FEE	 CHANGEFEE,
+	 ERC_RECUPERATE_FEE	 RECUPERATEFEE,
+	 ERC_ACHIEVEMENT_PAY	 ACHIEVEMENTPAY,
+	 ERC_ACHIEVEMENT_COMPEN	 ACHIEVEMENTCOMPEN,
+	 ERC_SHARES_ADJUSTMENT_FLAG	 SHARESADJUSTMENTFLAG,
+	 ERC_GENERAL_TA_SERIAL_NO	 GENERALTASERIALNO,
+	 ERC_UNDI_MONETARY_INCOME	 UNDIMONETARYINCOME,
+	 ERC_UNDI_MONETARY_INCOME_FLAG	 UNDIMONETARYINCOMEFLAG,
+	 ERC_BREACH_FEE	 BREACHFEE,
+	 ERC_BREACH_FEE_BACK_TO_FUND	 BREACHFEEBACKTOFUND,
+	 ERC_PUNISH_FEE	 PUNISHFEE,
+	 ERC_TRADING_METHOD	 TRADINGMETHOD,
+	 ERC_CHANGE_AGENCY_FEE	 CHANGEAGENCYFEE,
+	 ERC_RECUPERATE_AGENCY_FEE	 RECUPERATEAGENCYFEE,
+	 CASE WHEN ERC_RETURN_CODE = '0000' THEN ''
+	 ELSE ERC_ERROR_DETAIL END AS ERRORDETAIL,
+	 ERC_LARGE_BUY_FLAG	 LARGEBUYFLAG,
+	 ERC_RAISE_INTEREST	 RAISEINTEREST,
+	 ERC_FEE_CALCULATOR	 FEECALCULATOR,
+	 ERC_SHARE_REGISTER_DATE	 SHAREREGISTERDATE,
+	 ERC_TOTAL_FROZEN_VOL	 TOTALFROZENVOL,
+	 ERC_FUND_VOL_BALANCE	 FUNDVOLBALANCE,
+	 ERC_FROZEN_BALANCE	 FROZENBALANCE,
+	 ERC_FUTURE_SUBSCRIBE_DATE	 FUTURESUBSCRIBEDATE,
+	 ERC_TRANS_DATE_THROUGH_CLEAR	 TRANSDATETHROUGHCLEAR,
+	 CASE WHEN ERC_RETURN_CODE = '0000' THEN ''
+	 ELSE ERC_TA_ERROR_DETAIL END AS TAERRORDETAIL,
+	 ERC_CFM_DATE	 CFMDATE,
+	 ERC_SEND_STATUS	 SENDSTATUS,
+	 ERC_GENERATE_STATUS	 GENERATESTATUS,
+	 ERC_SEND_FILE_TIME	 SENDFILETIME,
+	 ERC_GENERATE_FILE_TIME	 GENERATEFILETIME,
+	 ERC_TA_RET_SERIAL_NO	 TARETSERIALNO,
+	 ERC_CTIME	 CTIME,
+	 ERC_UTIME	 UTIME,
+	 ERC_CUSER	 CUSER,
+	 ERC_UUSER	 UUSER,
+	 ERC_TA_TRANS_FLAG	 TATRANSFLAG,
+	 ERC_TA_TRANS_TIME	 TATRANSTIME,
+	 ERC_TRANS_DATE	 TRANSDATE
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from D_EXCHANGE_REQ_CFM
+    where ERC_ID = #{ercId,jdbcType=DECIMAL}
+  </select>
+  
+  <select id="selectCheckTransContract" resultType="hashMap" parameterType="hashMap" >
+    select 
+    <include refid="Base_Column_List_Req" />
+    from D_EXCHANGE_REQ
+    <where>
+     ER_Fund_Code=#{FUNDCODE,jdbcType=VARCHAR}
+	and ER_Transaction_Account_ID=#{TRANSACTIONACCOUNTID,jdbcType=VARCHAR}
+	<!-- and ER_Business_Code=#{BUSINESSCODE,jdbcType=VARCHAR} -->
+	and ER_Distributor_Code=#{DISTRIBUTORCODE,jdbcType=VARCHAR}
+	<if test="INDIVIDUALORINSTITUTION != null and INDIVIDUALORINSTITUTION !=''">
+		and ER_Individual_Or_Institution=#{INDIVIDUALORINSTITUTION,jdbcType=VARCHAR}
+	</if>
+	and ER_Transaction_Date=#{TRANSACTIONDATE,jdbcType=VARCHAR}
+	<!-- and ER_Transaction_Time=#{TRANSACTIONTIME,jdbcType=VARCHAR} -->
+	<!-- and ER_Accept_Method=#{ACCEPTMETHOD,jdbcType=VARCHAR} -->
+	<!-- and ER_Alternation_Date=#{ALTERNATIONDATE,jdbcType=VARCHAR} -->
+	<!-- and ER_TRANS_DATE=#{TRANSDATE,jdbcType=VARCHAR} -->
+	</where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from D_EXCHANGE_REQ_CFM
+    where ERC_ID = #{ercId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.sams.custom.model.ExchangeReqCfm" >
+    insert into D_EXCHANGE_REQ_CFM (ERC_ID, ERC_CHANNEL_CODE, ERC_APP_SHEET_SERIAL_NO, 
+      ERC_TRANSACTION_CFM_DATE, ERC_CURRENCY_TYPE, 
+      ERC_CONFIRMED_VOL, ERC_CONFIRMED_AMOUNT, ERC_FUND_CODE, 
+      ERC_LARGE_REDEMPTION_FLAG, ERC_TRANSACTION_DATE, 
+      ERC_TRANSACTION_TIME, ERC_RETURN_CODE, ERC_TRANSACTION_ACCOUNT_ID, 
+      ERC_DISTRIBUTOR_CODE, ERC_APPLICATION_VOL, 
+      ERC_APPLICATION_AMOUNT, ERC_BUSINESS_CODE, 
+      ERC_TA_ACCOUNT_ID, ERC_TA_SERIAL_NO, ERC_DISCOUNT_RATE_OF_COMM, 
+      ERC_DEPOSIT_ACCT, ERC_REGION_CODE, ERC_DOWNLOAD_DATE, 
+      ERC_CHARGE, ERC_AGENCY_FEE, ERC_NAV, 
+      ERC_BRANCH_CODE, ERC_ORIGINAL_APP_SHEET_NO, ERC_ORIGINAL_SUBS_DATE, 
+      ERC_OTHER_FEE1, ERC_INDIVIDUAL_OR_INSTITUTION, 
+      ERC_REDEMPTION_DATE_INADVANCE, ERC_STAMP_DUTY, 
+      ERC_VALID_PERIOD, ERC_RATE_FEE, ERC_TOTAL_BACKEND_LOAD, 
+      ERC_ORIGINAL_SERIAL_NO, ERC_SPECIFICATION, 
+      ERC_DATE_OF_PERIODIC_SUBS, ERC_TARGET_DISTRIBUTOR_CODE, 
+      ERC_TARGET_BRANCH_CODE, ERC_TARGET_TRANSACT_ACCT_CODE, 
+      ERC_TARGET_REGION_CODE, ERC_TRANSFER_DIRECTION, 
+      ERC_DEF_DIVIDEND_METHOD, ERC_DIVIDEND_RATIO, 
+      ERC_INTEREST, ERC_VOLUME_BY_INTEREST, ERC_INTEREST_TAX, 
+      ERC_TRADING_PRICE, ERC_FREEZING_DEADLINE, ERC_FROZEN_CAUSE, 
+      ERC_TAX, ERC_TARGET_NAV, ERC_TARGET_FUND_PRICE, 
+      ERC_CFM_VOL_OF_TARGET_FUND, ERC_MIN_FEE, ERC_OTHER_FEE2, 
+      ERC_ORIGINAL_APP_DATE, ERC_TRANSFER_FEE, ERC_FROM_TA_FLAG, 
+      ERC_SHARE_CLASS, ERC_DETAIL_FLAG, ERC_REDEMPTION_IN_ADVANCE_FLAG, 
+      ERC_FROZEN_METHOD, ERC_ORIGINAL_CFM_DATE, ERC_REDEMPTION_REASON, 
+      ERC_CODE_OF_TARGET_FUND, ERC_TOTAL_TRANS_FEE, 
+      ERC_VARIETY_CODE_PERIODIC_SUB, ERC_SERIAL_NO_OF_PERIODIC_SUBS, 
+      ERC_RATION_TYPE, ERC_TARGET_TA_ACCOUNT_ID, ERC_TARGET_REGISTRAR_CODE, 
+      ERC_NET_NO, ERC_CUSTOMER_NO, ERC_TARGET_SHARE_TYPE, 
+      ERC_RATION_PROTOCOL_NO, ERC_BEGIN_DATE_PERIODIC_SUBS, 
+      ERC_END_DATE_OF_PERIODIC_SUBS, ERC_SEND_DAY_OF_PERIODIC_SUBS, 
+      ERC_BROKER, ERC_SALES_PROMOTION, ERC_ACCEPT_METHOD, 
+      ERC_FORCE_REDEMPTION_TYPE, ERC_ALTERNATION_DATE, 
+      ERC_TAKEINCOME_FLAG, ERC_PURPOSE_OF_PE_SUBS, 
+      ERC_FREQUENCY_OF_PE_SUBS, ERC_PERIOD_SUB_TIME_UNIT, 
+      ERC_BATCH_NUM_OF_PE_SUBS, ERC_CAPITAL_MODE, ERC_DETAIL_CAPTICAL_MODE, 
+      ERC_BACKENLOAD_DISCOUNT, ERC_COMBINE_NUM, ERC_REFUND_AMOUNT, 
+      ERC_SALE_PERCENT, ERC_MANAGER_REAL_RATIO, ERC_CHANGE_FEE, 
+      ERC_RECUPERATE_FEE, ERC_ACHIEVEMENT_PAY, ERC_ACHIEVEMENT_COMPEN, 
+      ERC_SHARES_ADJUSTMENT_FLAG, ERC_GENERAL_TA_SERIAL_NO, 
+      ERC_UNDI_MONETARY_INCOME, ERC_UNDI_MONETARY_INCOME_FLAG, 
+      ERC_BREACH_FEE, ERC_BREACH_FEE_BACK_TO_FUND, ERC_PUNISH_FEE, 
+      ERC_TRADING_METHOD, ERC_CHANGE_AGENCY_FEE, ERC_RECUPERATE_AGENCY_FEE, 
+      ERC_ERROR_DETAIL, ERC_LARGE_BUY_FLAG, ERC_RAISE_INTEREST, 
+      ERC_FEE_CALCULATOR, ERC_SHARE_REGISTER_DATE, 
+      ERC_TOTAL_FROZEN_VOL, ERC_FUND_VOL_BALANCE, ERC_FROZEN_BALANCE, 
+      ERC_FUTURE_SUBSCRIBE_DATE, ERC_TRANS_DATE_THROUGH_CLEAR, 
+      ERC_TA_ERROR_DETAIL, ERC_CFM_DATE, ERC_SEND_STATUS, 
+      ERC_GENERATE_STATUS, ERC_SEND_FILE_TIME, ERC_GENERATE_FILE_TIME, 
+      ERC_TA_RET_SERIAL_NO, ERC_CTIME, ERC_UTIME, 
+      ERC_CUSER, ERC_UUSER)
+    values (#{ercId,jdbcType=DECIMAL}, #{ercChannelCode,jdbcType=VARCHAR}, #{ercAppSheetSerialNo,jdbcType=VARCHAR}, 
+      #{ercTransactionCfmDate,jdbcType=VARCHAR}, #{ercCurrencyType,jdbcType=VARCHAR}, 
+      #{ercConfirmedVol,jdbcType=DECIMAL}, #{ercConfirmedAmount,jdbcType=DECIMAL}, #{ercFundCode,jdbcType=VARCHAR}, 
+      #{ercLargeRedemptionFlag,jdbcType=VARCHAR}, #{ercTransactionDate,jdbcType=VARCHAR}, 
+      #{ercTransactionTime,jdbcType=VARCHAR}, #{ercReturnCode,jdbcType=VARCHAR}, #{ercTransactionAccountId,jdbcType=VARCHAR}, 
+      #{ercDistributorCode,jdbcType=VARCHAR}, #{ercApplicationVol,jdbcType=DECIMAL}, 
+      #{ercApplicationAmount,jdbcType=DECIMAL}, #{ercBusinessCode,jdbcType=VARCHAR}, 
+      #{ercTaAccountId,jdbcType=VARCHAR}, #{ercTaSerialNo,jdbcType=VARCHAR}, #{ercDiscountRateOfComm,jdbcType=DECIMAL}, 
+      #{ercDepositAcct,jdbcType=VARCHAR}, #{ercRegionCode,jdbcType=VARCHAR}, #{ercDownloadDate,jdbcType=VARCHAR}, 
+      #{ercCharge,jdbcType=DECIMAL}, #{ercAgencyFee,jdbcType=DECIMAL}, #{ercNav,jdbcType=DECIMAL}, 
+      #{ercBranchCode,jdbcType=VARCHAR}, #{ercOriginalAppSheetNo,jdbcType=VARCHAR}, #{ercOriginalSubsDate,jdbcType=VARCHAR}, 
+      #{ercOtherFee1,jdbcType=DECIMAL}, #{ercIndividualOrInstitution,jdbcType=VARCHAR}, 
+      #{ercRedemptionDateInadvance,jdbcType=VARCHAR}, #{ercStampDuty,jdbcType=DECIMAL}, 
+      #{ercValidPeriod,jdbcType=DECIMAL}, #{ercRateFee,jdbcType=DECIMAL}, #{ercTotalBackendLoad,jdbcType=DECIMAL}, 
+      #{ercOriginalSerialNo,jdbcType=VARCHAR}, #{ercSpecification,jdbcType=VARCHAR}, 
+      #{ercDateOfPeriodicSubs,jdbcType=VARCHAR}, #{ercTargetDistributorCode,jdbcType=VARCHAR}, 
+      #{ercTargetBranchCode,jdbcType=VARCHAR}, #{ercTargetTransactAcctCode,jdbcType=VARCHAR}, 
+      #{ercTargetRegionCode,jdbcType=VARCHAR}, #{ercTransferDirection,jdbcType=VARCHAR}, 
+      #{ercDefDividendMethod,jdbcType=VARCHAR}, #{ercDividendRatio,jdbcType=DECIMAL}, 
+      #{ercInterest,jdbcType=DECIMAL}, #{ercVolumeByInterest,jdbcType=DECIMAL}, #{ercInterestTax,jdbcType=DECIMAL}, 
+      #{ercTradingPrice,jdbcType=DECIMAL}, #{ercFreezingDeadline,jdbcType=VARCHAR}, #{ercFrozenCause,jdbcType=VARCHAR}, 
+      #{ercTax,jdbcType=DECIMAL}, #{ercTargetNav,jdbcType=DECIMAL}, #{ercTargetFundPrice,jdbcType=DECIMAL}, 
+      #{ercCfmVolOfTargetFund,jdbcType=DECIMAL}, #{ercMinFee,jdbcType=DECIMAL}, #{ercOtherFee2,jdbcType=DECIMAL}, 
+      #{ercOriginalAppDate,jdbcType=VARCHAR}, #{ercTransferFee,jdbcType=DECIMAL}, #{ercFromTaFlag,jdbcType=VARCHAR}, 
+      #{ercShareClass,jdbcType=VARCHAR}, #{ercDetailFlag,jdbcType=VARCHAR}, #{ercRedemptionInAdvanceFlag,jdbcType=VARCHAR}, 
+      #{ercFrozenMethod,jdbcType=VARCHAR}, #{ercOriginalCfmDate,jdbcType=VARCHAR}, #{ercRedemptionReason,jdbcType=VARCHAR}, 
+      #{ercCodeOfTargetFund,jdbcType=VARCHAR}, #{ercTotalTransFee,jdbcType=DECIMAL}, 
+      #{ercVarietyCodePeriodicSub,jdbcType=VARCHAR}, #{ercSerialNoOfPeriodicSubs,jdbcType=VARCHAR}, 
+      #{ercRationType,jdbcType=VARCHAR}, #{ercTargetTaAccountId,jdbcType=VARCHAR}, #{ercTargetRegistrarCode,jdbcType=VARCHAR}, 
+      #{ercNetNo,jdbcType=VARCHAR}, #{ercCustomerNo,jdbcType=VARCHAR}, #{ercTargetShareType,jdbcType=VARCHAR}, 
+      #{ercRationProtocolNo,jdbcType=VARCHAR}, #{ercBeginDatePeriodicSubs,jdbcType=VARCHAR}, 
+      #{ercEndDateOfPeriodicSubs,jdbcType=VARCHAR}, #{ercSendDayOfPeriodicSubs,jdbcType=DECIMAL}, 
+      #{ercBroker,jdbcType=VARCHAR}, #{ercSalesPromotion,jdbcType=VARCHAR}, #{ercAcceptMethod,jdbcType=VARCHAR}, 
+      #{ercForceRedemptionType,jdbcType=VARCHAR}, #{ercAlternationDate,jdbcType=VARCHAR}, 
+      #{ercTakeincomeFlag,jdbcType=VARCHAR}, #{ercPurposeOfPeSubs,jdbcType=VARCHAR}, 
+      #{ercFrequencyOfPeSubs,jdbcType=DECIMAL}, #{ercPeriodSubTimeUnit,jdbcType=VARCHAR}, 
+      #{ercBatchNumOfPeSubs,jdbcType=DECIMAL}, #{ercCapitalMode,jdbcType=VARCHAR}, #{ercDetailCapticalMode,jdbcType=VARCHAR}, 
+      #{ercBackenloadDiscount,jdbcType=DECIMAL}, #{ercCombineNum,jdbcType=VARCHAR}, #{ercRefundAmount,jdbcType=DECIMAL}, 
+      #{ercSalePercent,jdbcType=DECIMAL}, #{ercManagerRealRatio,jdbcType=DECIMAL}, #{ercChangeFee,jdbcType=DECIMAL}, 
+      #{ercRecuperateFee,jdbcType=DECIMAL}, #{ercAchievementPay,jdbcType=DECIMAL}, #{ercAchievementCompen,jdbcType=DECIMAL}, 
+      #{ercSharesAdjustmentFlag,jdbcType=VARCHAR}, #{ercGeneralTaSerialNo,jdbcType=VARCHAR}, 
+      #{ercUndiMonetaryIncome,jdbcType=DECIMAL}, #{ercUndiMonetaryIncomeFlag,jdbcType=VARCHAR}, 
+      #{ercBreachFee,jdbcType=DECIMAL}, #{ercBreachFeeBackToFund,jdbcType=DECIMAL}, #{ercPunishFee,jdbcType=VARCHAR}, 
+      #{ercTradingMethod,jdbcType=VARCHAR}, #{ercChangeAgencyFee,jdbcType=DECIMAL}, #{ercRecuperateAgencyFee,jdbcType=DECIMAL}, 
+      #{ercErrorDetail,jdbcType=VARCHAR}, #{ercLargeBuyFlag,jdbcType=VARCHAR}, #{ercRaiseInterest,jdbcType=DECIMAL}, 
+      #{ercFeeCalculator,jdbcType=VARCHAR}, #{ercShareRegisterDate,jdbcType=VARCHAR}, 
+      #{ercTotalFrozenVol,jdbcType=DECIMAL}, #{ercFundVolBalance,jdbcType=DECIMAL}, #{ercFrozenBalance,jdbcType=DECIMAL}, 
+      #{ercFutureSubscribeDate,jdbcType=VARCHAR}, #{ercTransDateThroughClear,jdbcType=VARCHAR}, 
+      #{ercTaErrorDetail,jdbcType=VARCHAR}, #{ercCfmDate,jdbcType=VARCHAR}, #{ercSendStatus,jdbcType=VARCHAR}, 
+      #{ercGenerateStatus,jdbcType=VARCHAR}, #{ercSendFileTime,jdbcType=TIMESTAMP}, #{ercGenerateFileTime,jdbcType=TIMESTAMP}, 
+      #{ercTaRetSerialNo,jdbcType=VARCHAR}, #{ercCtime,jdbcType=TIMESTAMP}, #{ercUtime,jdbcType=TIMESTAMP}, 
+      #{ercCuser,jdbcType=VARCHAR}, #{ercUuser,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sams.custom.model.ExchangeReqCfm" >
+    insert into D_EXCHANGE_REQ_CFM
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ercId != null" >
+        ERC_ID,
+      </if>
+      <if test="ercChannelCode != null" >
+        ERC_CHANNEL_CODE,
+      </if>
+      <if test="ercAppSheetSerialNo != null" >
+        ERC_APP_SHEET_SERIAL_NO,
+      </if>
+      <if test="ercTransactionCfmDate != null" >
+        ERC_TRANSACTION_CFM_DATE,
+      </if>
+      <if test="ercCurrencyType != null" >
+        ERC_CURRENCY_TYPE,
+      </if>
+      <if test="ercConfirmedVol != null" >
+        ERC_CONFIRMED_VOL,
+      </if>
+      <if test="ercConfirmedAmount != null" >
+        ERC_CONFIRMED_AMOUNT,
+      </if>
+      <if test="ercFundCode != null" >
+        ERC_FUND_CODE,
+      </if>
+      <if test="ercLargeRedemptionFlag != null" >
+        ERC_LARGE_REDEMPTION_FLAG,
+      </if>
+      <if test="ercTransactionDate != null" >
+        ERC_TRANSACTION_DATE,
+      </if>
+      <if test="ercTransactionTime != null" >
+        ERC_TRANSACTION_TIME,
+      </if>
+      <if test="ercReturnCode != null" >
+        ERC_RETURN_CODE,
+      </if>
+      <if test="ercTransactionAccountId != null" >
+        ERC_TRANSACTION_ACCOUNT_ID,
+      </if>
+      <if test="ercDistributorCode != null" >
+        ERC_DISTRIBUTOR_CODE,
+      </if>
+      <if test="ercApplicationVol != null" >
+        ERC_APPLICATION_VOL,
+      </if>
+      <if test="ercApplicationAmount != null" >
+        ERC_APPLICATION_AMOUNT,
+      </if>
+      <if test="ercBusinessCode != null" >
+        ERC_BUSINESS_CODE,
+      </if>
+      <if test="ercTaAccountId != null" >
+        ERC_TA_ACCOUNT_ID,
+      </if>
+      <if test="ercTaSerialNo != null" >
+        ERC_TA_SERIAL_NO,
+      </if>
+      <if test="ercDiscountRateOfComm != null" >
+        ERC_DISCOUNT_RATE_OF_COMM,
+      </if>
+      <if test="ercDepositAcct != null" >
+        ERC_DEPOSIT_ACCT,
+      </if>
+      <if test="ercRegionCode != null" >
+        ERC_REGION_CODE,
+      </if>
+      <if test="ercDownloadDate != null" >
+        ERC_DOWNLOAD_DATE,
+      </if>
+      <if test="ercCharge != null" >
+        ERC_CHARGE,
+      </if>
+      <if test="ercAgencyFee != null" >
+        ERC_AGENCY_FEE,
+      </if>
+      <if test="ercNav != null" >
+        ERC_NAV,
+      </if>
+      <if test="ercBranchCode != null" >
+        ERC_BRANCH_CODE,
+      </if>
+      <if test="ercOriginalAppSheetNo != null" >
+        ERC_ORIGINAL_APP_SHEET_NO,
+      </if>
+      <if test="ercOriginalSubsDate != null" >
+        ERC_ORIGINAL_SUBS_DATE,
+      </if>
+      <if test="ercOtherFee1 != null" >
+        ERC_OTHER_FEE1,
+      </if>
+      <if test="ercIndividualOrInstitution != null" >
+        ERC_INDIVIDUAL_OR_INSTITUTION,
+      </if>
+      <if test="ercRedemptionDateInadvance != null" >
+        ERC_REDEMPTION_DATE_INADVANCE,
+      </if>
+      <if test="ercStampDuty != null" >
+        ERC_STAMP_DUTY,
+      </if>
+      <if test="ercValidPeriod != null" >
+        ERC_VALID_PERIOD,
+      </if>
+      <if test="ercRateFee != null" >
+        ERC_RATE_FEE,
+      </if>
+      <if test="ercTotalBackendLoad != null" >
+        ERC_TOTAL_BACKEND_LOAD,
+      </if>
+      <if test="ercOriginalSerialNo != null" >
+        ERC_ORIGINAL_SERIAL_NO,
+      </if>
+      <if test="ercSpecification != null" >
+        ERC_SPECIFICATION,
+      </if>
+      <if test="ercDateOfPeriodicSubs != null" >
+        ERC_DATE_OF_PERIODIC_SUBS,
+      </if>
+      <if test="ercTargetDistributorCode != null" >
+        ERC_TARGET_DISTRIBUTOR_CODE,
+      </if>
+      <if test="ercTargetBranchCode != null" >
+        ERC_TARGET_BRANCH_CODE,
+      </if>
+      <if test="ercTargetTransactAcctCode != null" >
+        ERC_TARGET_TRANSACT_ACCT_CODE,
+      </if>
+      <if test="ercTargetRegionCode != null" >
+        ERC_TARGET_REGION_CODE,
+      </if>
+      <if test="ercTransferDirection != null" >
+        ERC_TRANSFER_DIRECTION,
+      </if>
+      <if test="ercDefDividendMethod != null" >
+        ERC_DEF_DIVIDEND_METHOD,
+      </if>
+      <if test="ercDividendRatio != null" >
+        ERC_DIVIDEND_RATIO,
+      </if>
+      <if test="ercInterest != null" >
+        ERC_INTEREST,
+      </if>
+      <if test="ercVolumeByInterest != null" >
+        ERC_VOLUME_BY_INTEREST,
+      </if>
+      <if test="ercInterestTax != null" >
+        ERC_INTEREST_TAX,
+      </if>
+      <if test="ercTradingPrice != null" >
+        ERC_TRADING_PRICE,
+      </if>
+      <if test="ercFreezingDeadline != null" >
+        ERC_FREEZING_DEADLINE,
+      </if>
+      <if test="ercFrozenCause != null" >
+        ERC_FROZEN_CAUSE,
+      </if>
+      <if test="ercTax != null" >
+        ERC_TAX,
+      </if>
+      <if test="ercTargetNav != null" >
+        ERC_TARGET_NAV,
+      </if>
+      <if test="ercTargetFundPrice != null" >
+        ERC_TARGET_FUND_PRICE,
+      </if>
+      <if test="ercCfmVolOfTargetFund != null" >
+        ERC_CFM_VOL_OF_TARGET_FUND,
+      </if>
+      <if test="ercMinFee != null" >
+        ERC_MIN_FEE,
+      </if>
+      <if test="ercOtherFee2 != null" >
+        ERC_OTHER_FEE2,
+      </if>
+      <if test="ercOriginalAppDate != null" >
+        ERC_ORIGINAL_APP_DATE,
+      </if>
+      <if test="ercTransferFee != null" >
+        ERC_TRANSFER_FEE,
+      </if>
+      <if test="ercFromTaFlag != null" >
+        ERC_FROM_TA_FLAG,
+      </if>
+      <if test="ercShareClass != null" >
+        ERC_SHARE_CLASS,
+      </if>
+      <if test="ercDetailFlag != null" >
+        ERC_DETAIL_FLAG,
+      </if>
+      <if test="ercRedemptionInAdvanceFlag != null" >
+        ERC_REDEMPTION_IN_ADVANCE_FLAG,
+      </if>
+      <if test="ercFrozenMethod != null" >
+        ERC_FROZEN_METHOD,
+      </if>
+      <if test="ercOriginalCfmDate != null" >
+        ERC_ORIGINAL_CFM_DATE,
+      </if>
+      <if test="ercRedemptionReason != null" >
+        ERC_REDEMPTION_REASON,
+      </if>
+      <if test="ercCodeOfTargetFund != null" >
+        ERC_CODE_OF_TARGET_FUND,
+      </if>
+      <if test="ercTotalTransFee != null" >
+        ERC_TOTAL_TRANS_FEE,
+      </if>
+      <if test="ercVarietyCodePeriodicSub != null" >
+        ERC_VARIETY_CODE_PERIODIC_SUB,
+      </if>
+      <if test="ercSerialNoOfPeriodicSubs != null" >
+        ERC_SERIAL_NO_OF_PERIODIC_SUBS,
+      </if>
+      <if test="ercRationType != null" >
+        ERC_RATION_TYPE,
+      </if>
+      <if test="ercTargetTaAccountId != null" >
+        ERC_TARGET_TA_ACCOUNT_ID,
+      </if>
+      <if test="ercTargetRegistrarCode != null" >
+        ERC_TARGET_REGISTRAR_CODE,
+      </if>
+      <if test="ercNetNo != null" >
+        ERC_NET_NO,
+      </if>
+      <if test="ercCustomerNo != null" >
+        ERC_CUSTOMER_NO,
+      </if>
+      <if test="ercTargetShareType != null" >
+        ERC_TARGET_SHARE_TYPE,
+      </if>
+      <if test="ercRationProtocolNo != null" >
+        ERC_RATION_PROTOCOL_NO,
+      </if>
+      <if test="ercBeginDatePeriodicSubs != null" >
+        ERC_BEGIN_DATE_PERIODIC_SUBS,
+      </if>
+      <if test="ercEndDateOfPeriodicSubs != null" >
+        ERC_END_DATE_OF_PERIODIC_SUBS,
+      </if>
+      <if test="ercSendDayOfPeriodicSubs != null" >
+        ERC_SEND_DAY_OF_PERIODIC_SUBS,
+      </if>
+      <if test="ercBroker != null" >
+        ERC_BROKER,
+      </if>
+      <if test="ercSalesPromotion != null" >
+        ERC_SALES_PROMOTION,
+      </if>
+      <if test="ercAcceptMethod != null" >
+        ERC_ACCEPT_METHOD,
+      </if>
+      <if test="ercForceRedemptionType != null" >
+        ERC_FORCE_REDEMPTION_TYPE,
+      </if>
+      <if test="ercAlternationDate != null" >
+        ERC_ALTERNATION_DATE,
+      </if>
+      <if test="ercTakeincomeFlag != null" >
+        ERC_TAKEINCOME_FLAG,
+      </if>
+      <if test="ercPurposeOfPeSubs != null" >
+        ERC_PURPOSE_OF_PE_SUBS,
+      </if>
+      <if test="ercFrequencyOfPeSubs != null" >
+        ERC_FREQUENCY_OF_PE_SUBS,
+      </if>
+      <if test="ercPeriodSubTimeUnit != null" >
+        ERC_PERIOD_SUB_TIME_UNIT,
+      </if>
+      <if test="ercBatchNumOfPeSubs != null" >
+        ERC_BATCH_NUM_OF_PE_SUBS,
+      </if>
+      <if test="ercCapitalMode != null" >
+        ERC_CAPITAL_MODE,
+      </if>
+      <if test="ercDetailCapticalMode != null" >
+        ERC_DETAIL_CAPTICAL_MODE,
+      </if>
+      <if test="ercBackenloadDiscount != null" >
+        ERC_BACKENLOAD_DISCOUNT,
+      </if>
+      <if test="ercCombineNum != null" >
+        ERC_COMBINE_NUM,
+      </if>
+      <if test="ercRefundAmount != null" >
+        ERC_REFUND_AMOUNT,
+      </if>
+      <if test="ercSalePercent != null" >
+        ERC_SALE_PERCENT,
+      </if>
+      <if test="ercManagerRealRatio != null" >
+        ERC_MANAGER_REAL_RATIO,
+      </if>
+      <if test="ercChangeFee != null" >
+        ERC_CHANGE_FEE,
+      </if>
+      <if test="ercRecuperateFee != null" >
+        ERC_RECUPERATE_FEE,
+      </if>
+      <if test="ercAchievementPay != null" >
+        ERC_ACHIEVEMENT_PAY,
+      </if>
+      <if test="ercAchievementCompen != null" >
+        ERC_ACHIEVEMENT_COMPEN,
+      </if>
+      <if test="ercSharesAdjustmentFlag != null" >
+        ERC_SHARES_ADJUSTMENT_FLAG,
+      </if>
+      <if test="ercGeneralTaSerialNo != null" >
+        ERC_GENERAL_TA_SERIAL_NO,
+      </if>
+      <if test="ercUndiMonetaryIncome != null" >
+        ERC_UNDI_MONETARY_INCOME,
+      </if>
+      <if test="ercUndiMonetaryIncomeFlag != null" >
+        ERC_UNDI_MONETARY_INCOME_FLAG,
+      </if>
+      <if test="ercBreachFee != null" >
+        ERC_BREACH_FEE,
+      </if>
+      <if test="ercBreachFeeBackToFund != null" >
+        ERC_BREACH_FEE_BACK_TO_FUND,
+      </if>
+      <if test="ercPunishFee != null" >
+        ERC_PUNISH_FEE,
+      </if>
+      <if test="ercTradingMethod != null" >
+        ERC_TRADING_METHOD,
+      </if>
+      <if test="ercChangeAgencyFee != null" >
+        ERC_CHANGE_AGENCY_FEE,
+      </if>
+      <if test="ercRecuperateAgencyFee != null" >
+        ERC_RECUPERATE_AGENCY_FEE,
+      </if>
+      <if test="ercErrorDetail != null" >
+        ERC_ERROR_DETAIL,
+      </if>
+      <if test="ercLargeBuyFlag != null" >
+        ERC_LARGE_BUY_FLAG,
+      </if>
+      <if test="ercRaiseInterest != null" >
+        ERC_RAISE_INTEREST,
+      </if>
+      <if test="ercFeeCalculator != null" >
+        ERC_FEE_CALCULATOR,
+      </if>
+      <if test="ercShareRegisterDate != null" >
+        ERC_SHARE_REGISTER_DATE,
+      </if>
+      <if test="ercTotalFrozenVol != null" >
+        ERC_TOTAL_FROZEN_VOL,
+      </if>
+      <if test="ercFundVolBalance != null" >
+        ERC_FUND_VOL_BALANCE,
+      </if>
+      <if test="ercFrozenBalance != null" >
+        ERC_FROZEN_BALANCE,
+      </if>
+      <if test="ercFutureSubscribeDate != null" >
+        ERC_FUTURE_SUBSCRIBE_DATE,
+      </if>
+      <if test="ercTransDateThroughClear != null" >
+        ERC_TRANS_DATE_THROUGH_CLEAR,
+      </if>
+      <if test="ercTaErrorDetail != null" >
+        ERC_TA_ERROR_DETAIL,
+      </if>
+      <if test="ercCfmDate != null" >
+        ERC_CFM_DATE,
+      </if>
+      <if test="ercSendStatus != null" >
+        ERC_SEND_STATUS,
+      </if>
+      <if test="ercGenerateStatus != null" >
+        ERC_GENERATE_STATUS,
+      </if>
+      <if test="ercSendFileTime != null" >
+        ERC_SEND_FILE_TIME,
+      </if>
+      <if test="ercGenerateFileTime != null" >
+        ERC_GENERATE_FILE_TIME,
+      </if>
+      <if test="ercTaRetSerialNo != null" >
+        ERC_TA_RET_SERIAL_NO,
+      </if>
+      <if test="ercCtime != null" >
+        ERC_CTIME,
+      </if>
+      <if test="ercUtime != null" >
+        ERC_UTIME,
+      </if>
+      <if test="ercCuser != null" >
+        ERC_CUSER,
+      </if>
+      <if test="ercUuser != null" >
+        ERC_UUSER,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ercId != null" >
+        #{ercId,jdbcType=DECIMAL},
+      </if>
+      <if test="ercChannelCode != null" >
+        #{ercChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAppSheetSerialNo != null" >
+        #{ercAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionCfmDate != null" >
+        #{ercTransactionCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCurrencyType != null" >
+        #{ercCurrencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercConfirmedVol != null" >
+        #{ercConfirmedVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercConfirmedAmount != null" >
+        #{ercConfirmedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFundCode != null" >
+        #{ercFundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercLargeRedemptionFlag != null" >
+        #{ercLargeRedemptionFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionDate != null" >
+        #{ercTransactionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionTime != null" >
+        #{ercTransactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ercReturnCode != null" >
+        #{ercReturnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionAccountId != null" >
+        #{ercTransactionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDistributorCode != null" >
+        #{ercDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercApplicationVol != null" >
+        #{ercApplicationVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercApplicationAmount != null" >
+        #{ercApplicationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBusinessCode != null" >
+        #{ercBusinessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaAccountId != null" >
+        #{ercTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaSerialNo != null" >
+        #{ercTaSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDiscountRateOfComm != null" >
+        #{ercDiscountRateOfComm,jdbcType=DECIMAL},
+      </if>
+      <if test="ercDepositAcct != null" >
+        #{ercDepositAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRegionCode != null" >
+        #{ercRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDownloadDate != null" >
+        #{ercDownloadDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCharge != null" >
+        #{ercCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAgencyFee != null" >
+        #{ercAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercNav != null" >
+        #{ercNav,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBranchCode != null" >
+        #{ercBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalAppSheetNo != null" >
+        #{ercOriginalAppSheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalSubsDate != null" >
+        #{ercOriginalSubsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOtherFee1 != null" >
+        #{ercOtherFee1,jdbcType=DECIMAL},
+      </if>
+      <if test="ercIndividualOrInstitution != null" >
+        #{ercIndividualOrInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionDateInadvance != null" >
+        #{ercRedemptionDateInadvance,jdbcType=VARCHAR},
+      </if>
+      <if test="ercStampDuty != null" >
+        #{ercStampDuty,jdbcType=DECIMAL},
+      </if>
+      <if test="ercValidPeriod != null" >
+        #{ercValidPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRateFee != null" >
+        #{ercRateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTotalBackendLoad != null" >
+        #{ercTotalBackendLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOriginalSerialNo != null" >
+        #{ercOriginalSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSpecification != null" >
+        #{ercSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDateOfPeriodicSubs != null" >
+        #{ercDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetDistributorCode != null" >
+        #{ercTargetDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetBranchCode != null" >
+        #{ercTargetBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetTransactAcctCode != null" >
+        #{ercTargetTransactAcctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetRegionCode != null" >
+        #{ercTargetRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransferDirection != null" >
+        #{ercTransferDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDefDividendMethod != null" >
+        #{ercDefDividendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDividendRatio != null" >
+        #{ercDividendRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="ercInterest != null" >
+        #{ercInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercVolumeByInterest != null" >
+        #{ercVolumeByInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercInterestTax != null" >
+        #{ercInterestTax,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTradingPrice != null" >
+        #{ercTradingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFreezingDeadline != null" >
+        #{ercFreezingDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrozenCause != null" >
+        #{ercFrozenCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTax != null" >
+        #{ercTax,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTargetNav != null" >
+        #{ercTargetNav,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTargetFundPrice != null" >
+        #{ercTargetFundPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCfmVolOfTargetFund != null" >
+        #{ercCfmVolOfTargetFund,jdbcType=DECIMAL},
+      </if>
+      <if test="ercMinFee != null" >
+        #{ercMinFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOtherFee2 != null" >
+        #{ercOtherFee2,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOriginalAppDate != null" >
+        #{ercOriginalAppDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransferFee != null" >
+        #{ercTransferFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFromTaFlag != null" >
+        #{ercFromTaFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercShareClass != null" >
+        #{ercShareClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDetailFlag != null" >
+        #{ercDetailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionInAdvanceFlag != null" >
+        #{ercRedemptionInAdvanceFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrozenMethod != null" >
+        #{ercFrozenMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalCfmDate != null" >
+        #{ercOriginalCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionReason != null" >
+        #{ercRedemptionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCodeOfTargetFund != null" >
+        #{ercCodeOfTargetFund,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTotalTransFee != null" >
+        #{ercTotalTransFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercVarietyCodePeriodicSub != null" >
+        #{ercVarietyCodePeriodicSub,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSerialNoOfPeriodicSubs != null" >
+        #{ercSerialNoOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRationType != null" >
+        #{ercRationType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetTaAccountId != null" >
+        #{ercTargetTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetRegistrarCode != null" >
+        #{ercTargetRegistrarCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercNetNo != null" >
+        #{ercNetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCustomerNo != null" >
+        #{ercCustomerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetShareType != null" >
+        #{ercTargetShareType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRationProtocolNo != null" >
+        #{ercRationProtocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBeginDatePeriodicSubs != null" >
+        #{ercBeginDatePeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercEndDateOfPeriodicSubs != null" >
+        #{ercEndDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendDayOfPeriodicSubs != null" >
+        #{ercSendDayOfPeriodicSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBroker != null" >
+        #{ercBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSalesPromotion != null" >
+        #{ercSalesPromotion,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAcceptMethod != null" >
+        #{ercAcceptMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercForceRedemptionType != null" >
+        #{ercForceRedemptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAlternationDate != null" >
+        #{ercAlternationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTakeincomeFlag != null" >
+        #{ercTakeincomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercPurposeOfPeSubs != null" >
+        #{ercPurposeOfPeSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrequencyOfPeSubs != null" >
+        #{ercFrequencyOfPeSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercPeriodSubTimeUnit != null" >
+        #{ercPeriodSubTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBatchNumOfPeSubs != null" >
+        #{ercBatchNumOfPeSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCapitalMode != null" >
+        #{ercCapitalMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDetailCapticalMode != null" >
+        #{ercDetailCapticalMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBackenloadDiscount != null" >
+        #{ercBackenloadDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCombineNum != null" >
+        #{ercCombineNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRefundAmount != null" >
+        #{ercRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercSalePercent != null" >
+        #{ercSalePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="ercManagerRealRatio != null" >
+        #{ercManagerRealRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="ercChangeFee != null" >
+        #{ercChangeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRecuperateFee != null" >
+        #{ercRecuperateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAchievementPay != null" >
+        #{ercAchievementPay,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAchievementCompen != null" >
+        #{ercAchievementCompen,jdbcType=DECIMAL},
+      </if>
+      <if test="ercSharesAdjustmentFlag != null" >
+        #{ercSharesAdjustmentFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercGeneralTaSerialNo != null" >
+        #{ercGeneralTaSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercUndiMonetaryIncome != null" >
+        #{ercUndiMonetaryIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="ercUndiMonetaryIncomeFlag != null" >
+        #{ercUndiMonetaryIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBreachFee != null" >
+        #{ercBreachFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBreachFeeBackToFund != null" >
+        #{ercBreachFeeBackToFund,jdbcType=DECIMAL},
+      </if>
+      <if test="ercPunishFee != null" >
+        #{ercPunishFee,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTradingMethod != null" >
+        #{ercTradingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercChangeAgencyFee != null" >
+        #{ercChangeAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRecuperateAgencyFee != null" >
+        #{ercRecuperateAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercErrorDetail != null" >
+        #{ercErrorDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ercLargeBuyFlag != null" >
+        #{ercLargeBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRaiseInterest != null" >
+        #{ercRaiseInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFeeCalculator != null" >
+        #{ercFeeCalculator,jdbcType=VARCHAR},
+      </if>
+      <if test="ercShareRegisterDate != null" >
+        #{ercShareRegisterDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTotalFrozenVol != null" >
+        #{ercTotalFrozenVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFundVolBalance != null" >
+        #{ercFundVolBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFrozenBalance != null" >
+        #{ercFrozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFutureSubscribeDate != null" >
+        #{ercFutureSubscribeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransDateThroughClear != null" >
+        #{ercTransDateThroughClear,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaErrorDetail != null" >
+        #{ercTaErrorDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCfmDate != null" >
+        #{ercCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendStatus != null" >
+        #{ercSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ercGenerateStatus != null" >
+        #{ercGenerateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendFileTime != null" >
+        #{ercSendFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercGenerateFileTime != null" >
+        #{ercGenerateFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercTaRetSerialNo != null" >
+        #{ercTaRetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCtime != null" >
+        #{ercCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercUtime != null" >
+        #{ercUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercCuser != null" >
+        #{ercCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ercUuser != null" >
+        #{ercUuser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sams.custom.model.ExchangeReqCfm" >
+    update D_EXCHANGE_REQ_CFM
+    <set >
+      <if test="ercChannelCode != null" >
+        ERC_CHANNEL_CODE = #{ercChannelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAppSheetSerialNo != null" >
+        ERC_APP_SHEET_SERIAL_NO = #{ercAppSheetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionCfmDate != null" >
+        ERC_TRANSACTION_CFM_DATE = #{ercTransactionCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCurrencyType != null" >
+        ERC_CURRENCY_TYPE = #{ercCurrencyType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercConfirmedVol != null" >
+        ERC_CONFIRMED_VOL = #{ercConfirmedVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercConfirmedAmount != null" >
+        ERC_CONFIRMED_AMOUNT = #{ercConfirmedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFundCode != null" >
+        ERC_FUND_CODE = #{ercFundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercLargeRedemptionFlag != null" >
+        ERC_LARGE_REDEMPTION_FLAG = #{ercLargeRedemptionFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionDate != null" >
+        ERC_TRANSACTION_DATE = #{ercTransactionDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionTime != null" >
+        ERC_TRANSACTION_TIME = #{ercTransactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ercReturnCode != null" >
+        ERC_RETURN_CODE = #{ercReturnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransactionAccountId != null" >
+        ERC_TRANSACTION_ACCOUNT_ID = #{ercTransactionAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDistributorCode != null" >
+        ERC_DISTRIBUTOR_CODE = #{ercDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercApplicationVol != null" >
+        ERC_APPLICATION_VOL = #{ercApplicationVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercApplicationAmount != null" >
+        ERC_APPLICATION_AMOUNT = #{ercApplicationAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBusinessCode != null" >
+        ERC_BUSINESS_CODE = #{ercBusinessCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaAccountId != null" >
+        ERC_TA_ACCOUNT_ID = #{ercTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaSerialNo != null" >
+        ERC_TA_SERIAL_NO = #{ercTaSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDiscountRateOfComm != null" >
+        ERC_DISCOUNT_RATE_OF_COMM = #{ercDiscountRateOfComm,jdbcType=DECIMAL},
+      </if>
+      <if test="ercDepositAcct != null" >
+        ERC_DEPOSIT_ACCT = #{ercDepositAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRegionCode != null" >
+        ERC_REGION_CODE = #{ercRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDownloadDate != null" >
+        ERC_DOWNLOAD_DATE = #{ercDownloadDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCharge != null" >
+        ERC_CHARGE = #{ercCharge,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAgencyFee != null" >
+        ERC_AGENCY_FEE = #{ercAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercNav != null" >
+        ERC_NAV = #{ercNav,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBranchCode != null" >
+        ERC_BRANCH_CODE = #{ercBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalAppSheetNo != null" >
+        ERC_ORIGINAL_APP_SHEET_NO = #{ercOriginalAppSheetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalSubsDate != null" >
+        ERC_ORIGINAL_SUBS_DATE = #{ercOriginalSubsDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOtherFee1 != null" >
+        ERC_OTHER_FEE1 = #{ercOtherFee1,jdbcType=DECIMAL},
+      </if>
+      <if test="ercIndividualOrInstitution != null" >
+        ERC_INDIVIDUAL_OR_INSTITUTION = #{ercIndividualOrInstitution,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionDateInadvance != null" >
+        ERC_REDEMPTION_DATE_INADVANCE = #{ercRedemptionDateInadvance,jdbcType=VARCHAR},
+      </if>
+      <if test="ercStampDuty != null" >
+        ERC_STAMP_DUTY = #{ercStampDuty,jdbcType=DECIMAL},
+      </if>
+      <if test="ercValidPeriod != null" >
+        ERC_VALID_PERIOD = #{ercValidPeriod,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRateFee != null" >
+        ERC_RATE_FEE = #{ercRateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTotalBackendLoad != null" >
+        ERC_TOTAL_BACKEND_LOAD = #{ercTotalBackendLoad,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOriginalSerialNo != null" >
+        ERC_ORIGINAL_SERIAL_NO = #{ercOriginalSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSpecification != null" >
+        ERC_SPECIFICATION = #{ercSpecification,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDateOfPeriodicSubs != null" >
+        ERC_DATE_OF_PERIODIC_SUBS = #{ercDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetDistributorCode != null" >
+        ERC_TARGET_DISTRIBUTOR_CODE = #{ercTargetDistributorCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetBranchCode != null" >
+        ERC_TARGET_BRANCH_CODE = #{ercTargetBranchCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetTransactAcctCode != null" >
+        ERC_TARGET_TRANSACT_ACCT_CODE = #{ercTargetTransactAcctCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetRegionCode != null" >
+        ERC_TARGET_REGION_CODE = #{ercTargetRegionCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransferDirection != null" >
+        ERC_TRANSFER_DIRECTION = #{ercTransferDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDefDividendMethod != null" >
+        ERC_DEF_DIVIDEND_METHOD = #{ercDefDividendMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDividendRatio != null" >
+        ERC_DIVIDEND_RATIO = #{ercDividendRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="ercInterest != null" >
+        ERC_INTEREST = #{ercInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercVolumeByInterest != null" >
+        ERC_VOLUME_BY_INTEREST = #{ercVolumeByInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercInterestTax != null" >
+        ERC_INTEREST_TAX = #{ercInterestTax,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTradingPrice != null" >
+        ERC_TRADING_PRICE = #{ercTradingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFreezingDeadline != null" >
+        ERC_FREEZING_DEADLINE = #{ercFreezingDeadline,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrozenCause != null" >
+        ERC_FROZEN_CAUSE = #{ercFrozenCause,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTax != null" >
+        ERC_TAX = #{ercTax,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTargetNav != null" >
+        ERC_TARGET_NAV = #{ercTargetNav,jdbcType=DECIMAL},
+      </if>
+      <if test="ercTargetFundPrice != null" >
+        ERC_TARGET_FUND_PRICE = #{ercTargetFundPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCfmVolOfTargetFund != null" >
+        ERC_CFM_VOL_OF_TARGET_FUND = #{ercCfmVolOfTargetFund,jdbcType=DECIMAL},
+      </if>
+      <if test="ercMinFee != null" >
+        ERC_MIN_FEE = #{ercMinFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOtherFee2 != null" >
+        ERC_OTHER_FEE2 = #{ercOtherFee2,jdbcType=DECIMAL},
+      </if>
+      <if test="ercOriginalAppDate != null" >
+        ERC_ORIGINAL_APP_DATE = #{ercOriginalAppDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransferFee != null" >
+        ERC_TRANSFER_FEE = #{ercTransferFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFromTaFlag != null" >
+        ERC_FROM_TA_FLAG = #{ercFromTaFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercShareClass != null" >
+        ERC_SHARE_CLASS = #{ercShareClass,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDetailFlag != null" >
+        ERC_DETAIL_FLAG = #{ercDetailFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionInAdvanceFlag != null" >
+        ERC_REDEMPTION_IN_ADVANCE_FLAG = #{ercRedemptionInAdvanceFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrozenMethod != null" >
+        ERC_FROZEN_METHOD = #{ercFrozenMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercOriginalCfmDate != null" >
+        ERC_ORIGINAL_CFM_DATE = #{ercOriginalCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRedemptionReason != null" >
+        ERC_REDEMPTION_REASON = #{ercRedemptionReason,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCodeOfTargetFund != null" >
+        ERC_CODE_OF_TARGET_FUND = #{ercCodeOfTargetFund,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTotalTransFee != null" >
+        ERC_TOTAL_TRANS_FEE = #{ercTotalTransFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercVarietyCodePeriodicSub != null" >
+        ERC_VARIETY_CODE_PERIODIC_SUB = #{ercVarietyCodePeriodicSub,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSerialNoOfPeriodicSubs != null" >
+        ERC_SERIAL_NO_OF_PERIODIC_SUBS = #{ercSerialNoOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRationType != null" >
+        ERC_RATION_TYPE = #{ercRationType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetTaAccountId != null" >
+        ERC_TARGET_TA_ACCOUNT_ID = #{ercTargetTaAccountId,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetRegistrarCode != null" >
+        ERC_TARGET_REGISTRAR_CODE = #{ercTargetRegistrarCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercNetNo != null" >
+        ERC_NET_NO = #{ercNetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCustomerNo != null" >
+        ERC_CUSTOMER_NO = #{ercCustomerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTargetShareType != null" >
+        ERC_TARGET_SHARE_TYPE = #{ercTargetShareType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRationProtocolNo != null" >
+        ERC_RATION_PROTOCOL_NO = #{ercRationProtocolNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBeginDatePeriodicSubs != null" >
+        ERC_BEGIN_DATE_PERIODIC_SUBS = #{ercBeginDatePeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercEndDateOfPeriodicSubs != null" >
+        ERC_END_DATE_OF_PERIODIC_SUBS = #{ercEndDateOfPeriodicSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendDayOfPeriodicSubs != null" >
+        ERC_SEND_DAY_OF_PERIODIC_SUBS = #{ercSendDayOfPeriodicSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBroker != null" >
+        ERC_BROKER = #{ercBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSalesPromotion != null" >
+        ERC_SALES_PROMOTION = #{ercSalesPromotion,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAcceptMethod != null" >
+        ERC_ACCEPT_METHOD = #{ercAcceptMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercForceRedemptionType != null" >
+        ERC_FORCE_REDEMPTION_TYPE = #{ercForceRedemptionType,jdbcType=VARCHAR},
+      </if>
+      <if test="ercAlternationDate != null" >
+        ERC_ALTERNATION_DATE = #{ercAlternationDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTakeincomeFlag != null" >
+        ERC_TAKEINCOME_FLAG = #{ercTakeincomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercPurposeOfPeSubs != null" >
+        ERC_PURPOSE_OF_PE_SUBS = #{ercPurposeOfPeSubs,jdbcType=VARCHAR},
+      </if>
+      <if test="ercFrequencyOfPeSubs != null" >
+        ERC_FREQUENCY_OF_PE_SUBS = #{ercFrequencyOfPeSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercPeriodSubTimeUnit != null" >
+        ERC_PERIOD_SUB_TIME_UNIT = #{ercPeriodSubTimeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBatchNumOfPeSubs != null" >
+        ERC_BATCH_NUM_OF_PE_SUBS = #{ercBatchNumOfPeSubs,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCapitalMode != null" >
+        ERC_CAPITAL_MODE = #{ercCapitalMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercDetailCapticalMode != null" >
+        ERC_DETAIL_CAPTICAL_MODE = #{ercDetailCapticalMode,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBackenloadDiscount != null" >
+        ERC_BACKENLOAD_DISCOUNT = #{ercBackenloadDiscount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercCombineNum != null" >
+        ERC_COMBINE_NUM = #{ercCombineNum,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRefundAmount != null" >
+        ERC_REFUND_AMOUNT = #{ercRefundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ercSalePercent != null" >
+        ERC_SALE_PERCENT = #{ercSalePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="ercManagerRealRatio != null" >
+        ERC_MANAGER_REAL_RATIO = #{ercManagerRealRatio,jdbcType=DECIMAL},
+      </if>
+      <if test="ercChangeFee != null" >
+        ERC_CHANGE_FEE = #{ercChangeFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRecuperateFee != null" >
+        ERC_RECUPERATE_FEE = #{ercRecuperateFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAchievementPay != null" >
+        ERC_ACHIEVEMENT_PAY = #{ercAchievementPay,jdbcType=DECIMAL},
+      </if>
+      <if test="ercAchievementCompen != null" >
+        ERC_ACHIEVEMENT_COMPEN = #{ercAchievementCompen,jdbcType=DECIMAL},
+      </if>
+      <if test="ercSharesAdjustmentFlag != null" >
+        ERC_SHARES_ADJUSTMENT_FLAG = #{ercSharesAdjustmentFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercGeneralTaSerialNo != null" >
+        ERC_GENERAL_TA_SERIAL_NO = #{ercGeneralTaSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercUndiMonetaryIncome != null" >
+        ERC_UNDI_MONETARY_INCOME = #{ercUndiMonetaryIncome,jdbcType=DECIMAL},
+      </if>
+      <if test="ercUndiMonetaryIncomeFlag != null" >
+        ERC_UNDI_MONETARY_INCOME_FLAG = #{ercUndiMonetaryIncomeFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercBreachFee != null" >
+        ERC_BREACH_FEE = #{ercBreachFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercBreachFeeBackToFund != null" >
+        ERC_BREACH_FEE_BACK_TO_FUND = #{ercBreachFeeBackToFund,jdbcType=DECIMAL},
+      </if>
+      <if test="ercPunishFee != null" >
+        ERC_PUNISH_FEE = #{ercPunishFee,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTradingMethod != null" >
+        ERC_TRADING_METHOD = #{ercTradingMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="ercChangeAgencyFee != null" >
+        ERC_CHANGE_AGENCY_FEE = #{ercChangeAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercRecuperateAgencyFee != null" >
+        ERC_RECUPERATE_AGENCY_FEE = #{ercRecuperateAgencyFee,jdbcType=DECIMAL},
+      </if>
+      <if test="ercErrorDetail != null" >
+        ERC_ERROR_DETAIL = #{ercErrorDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ercLargeBuyFlag != null" >
+        ERC_LARGE_BUY_FLAG = #{ercLargeBuyFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="ercRaiseInterest != null" >
+        ERC_RAISE_INTEREST = #{ercRaiseInterest,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFeeCalculator != null" >
+        ERC_FEE_CALCULATOR = #{ercFeeCalculator,jdbcType=VARCHAR},
+      </if>
+      <if test="ercShareRegisterDate != null" >
+        ERC_SHARE_REGISTER_DATE = #{ercShareRegisterDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTotalFrozenVol != null" >
+        ERC_TOTAL_FROZEN_VOL = #{ercTotalFrozenVol,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFundVolBalance != null" >
+        ERC_FUND_VOL_BALANCE = #{ercFundVolBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFrozenBalance != null" >
+        ERC_FROZEN_BALANCE = #{ercFrozenBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="ercFutureSubscribeDate != null" >
+        ERC_FUTURE_SUBSCRIBE_DATE = #{ercFutureSubscribeDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTransDateThroughClear != null" >
+        ERC_TRANS_DATE_THROUGH_CLEAR = #{ercTransDateThroughClear,jdbcType=VARCHAR},
+      </if>
+      <if test="ercTaErrorDetail != null" >
+        ERC_TA_ERROR_DETAIL = #{ercTaErrorDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCfmDate != null" >
+        ERC_CFM_DATE = #{ercCfmDate,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendStatus != null" >
+        ERC_SEND_STATUS = #{ercSendStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ercGenerateStatus != null" >
+        ERC_GENERATE_STATUS = #{ercGenerateStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="ercSendFileTime != null" >
+        ERC_SEND_FILE_TIME = #{ercSendFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercGenerateFileTime != null" >
+        ERC_GENERATE_FILE_TIME = #{ercGenerateFileTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercTaRetSerialNo != null" >
+        ERC_TA_RET_SERIAL_NO = #{ercTaRetSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ercCtime != null" >
+        ERC_CTIME = #{ercCtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercUtime != null" >
+        ERC_UTIME = #{ercUtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ercCuser != null" >
+        ERC_CUSER = #{ercCuser,jdbcType=VARCHAR},
+      </if>
+      <if test="ercUuser != null" >
+        ERC_UUSER = #{ercUuser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ERC_ID = #{ercId,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sams.custom.model.ExchangeReqCfm" >
+    update D_EXCHANGE_REQ_CFM
+    set ERC_CHANNEL_CODE = #{ercChannelCode,jdbcType=VARCHAR},
+      ERC_APP_SHEET_SERIAL_NO = #{ercAppSheetSerialNo,jdbcType=VARCHAR},
+      ERC_TRANSACTION_CFM_DATE = #{ercTransactionCfmDate,jdbcType=VARCHAR},
+      ERC_CURRENCY_TYPE = #{ercCurrencyType,jdbcType=VARCHAR},
+      ERC_CONFIRMED_VOL = #{ercConfirmedVol,jdbcType=DECIMAL},
+      ERC_CONFIRMED_AMOUNT = #{ercConfirmedAmount,jdbcType=DECIMAL},
+      ERC_FUND_CODE = #{ercFundCode,jdbcType=VARCHAR},
+      ERC_LARGE_REDEMPTION_FLAG = #{ercLargeRedemptionFlag,jdbcType=VARCHAR},
+      ERC_TRANSACTION_DATE = #{ercTransactionDate,jdbcType=VARCHAR},
+      ERC_TRANSACTION_TIME = #{ercTransactionTime,jdbcType=VARCHAR},
+      ERC_RETURN_CODE = #{ercReturnCode,jdbcType=VARCHAR},
+      ERC_TRANSACTION_ACCOUNT_ID = #{ercTransactionAccountId,jdbcType=VARCHAR},
+      ERC_DISTRIBUTOR_CODE = #{ercDistributorCode,jdbcType=VARCHAR},
+      ERC_APPLICATION_VOL = #{ercApplicationVol,jdbcType=DECIMAL},
+      ERC_APPLICATION_AMOUNT = #{ercApplicationAmount,jdbcType=DECIMAL},
+      ERC_BUSINESS_CODE = #{ercBusinessCode,jdbcType=VARCHAR},
+      ERC_TA_ACCOUNT_ID = #{ercTaAccountId,jdbcType=VARCHAR},
+      ERC_TA_SERIAL_NO = #{ercTaSerialNo,jdbcType=VARCHAR},
+      ERC_DISCOUNT_RATE_OF_COMM = #{ercDiscountRateOfComm,jdbcType=DECIMAL},
+      ERC_DEPOSIT_ACCT = #{ercDepositAcct,jdbcType=VARCHAR},
+      ERC_REGION_CODE = #{ercRegionCode,jdbcType=VARCHAR},
+      ERC_DOWNLOAD_DATE = #{ercDownloadDate,jdbcType=VARCHAR},
+      ERC_CHARGE = #{ercCharge,jdbcType=DECIMAL},
+      ERC_AGENCY_FEE = #{ercAgencyFee,jdbcType=DECIMAL},
+      ERC_NAV = #{ercNav,jdbcType=DECIMAL},
+      ERC_BRANCH_CODE = #{ercBranchCode,jdbcType=VARCHAR},
+      ERC_ORIGINAL_APP_SHEET_NO = #{ercOriginalAppSheetNo,jdbcType=VARCHAR},
+      ERC_ORIGINAL_SUBS_DATE = #{ercOriginalSubsDate,jdbcType=VARCHAR},
+      ERC_OTHER_FEE1 = #{ercOtherFee1,jdbcType=DECIMAL},
+      ERC_INDIVIDUAL_OR_INSTITUTION = #{ercIndividualOrInstitution,jdbcType=VARCHAR},
+      ERC_REDEMPTION_DATE_INADVANCE = #{ercRedemptionDateInadvance,jdbcType=VARCHAR},
+      ERC_STAMP_DUTY = #{ercStampDuty,jdbcType=DECIMAL},
+      ERC_VALID_PERIOD = #{ercValidPeriod,jdbcType=DECIMAL},
+      ERC_RATE_FEE = #{ercRateFee,jdbcType=DECIMAL},
+      ERC_TOTAL_BACKEND_LOAD = #{ercTotalBackendLoad,jdbcType=DECIMAL},
+      ERC_ORIGINAL_SERIAL_NO = #{ercOriginalSerialNo,jdbcType=VARCHAR},
+      ERC_SPECIFICATION = #{ercSpecification,jdbcType=VARCHAR},
+      ERC_DATE_OF_PERIODIC_SUBS = #{ercDateOfPeriodicSubs,jdbcType=VARCHAR},
+      ERC_TARGET_DISTRIBUTOR_CODE = #{ercTargetDistributorCode,jdbcType=VARCHAR},
+      ERC_TARGET_BRANCH_CODE = #{ercTargetBranchCode,jdbcType=VARCHAR},
+      ERC_TARGET_TRANSACT_ACCT_CODE = #{ercTargetTransactAcctCode,jdbcType=VARCHAR},
+      ERC_TARGET_REGION_CODE = #{ercTargetRegionCode,jdbcType=VARCHAR},
+      ERC_TRANSFER_DIRECTION = #{ercTransferDirection,jdbcType=VARCHAR},
+      ERC_DEF_DIVIDEND_METHOD = #{ercDefDividendMethod,jdbcType=VARCHAR},
+      ERC_DIVIDEND_RATIO = #{ercDividendRatio,jdbcType=DECIMAL},
+      ERC_INTEREST = #{ercInterest,jdbcType=DECIMAL},
+      ERC_VOLUME_BY_INTEREST = #{ercVolumeByInterest,jdbcType=DECIMAL},
+      ERC_INTEREST_TAX = #{ercInterestTax,jdbcType=DECIMAL},
+      ERC_TRADING_PRICE = #{ercTradingPrice,jdbcType=DECIMAL},
+      ERC_FREEZING_DEADLINE = #{ercFreezingDeadline,jdbcType=VARCHAR},
+      ERC_FROZEN_CAUSE = #{ercFrozenCause,jdbcType=VARCHAR},
+      ERC_TAX = #{ercTax,jdbcType=DECIMAL},
+      ERC_TARGET_NAV = #{ercTargetNav,jdbcType=DECIMAL},
+      ERC_TARGET_FUND_PRICE = #{ercTargetFundPrice,jdbcType=DECIMAL},
+      ERC_CFM_VOL_OF_TARGET_FUND = #{ercCfmVolOfTargetFund,jdbcType=DECIMAL},
+      ERC_MIN_FEE = #{ercMinFee,jdbcType=DECIMAL},
+      ERC_OTHER_FEE2 = #{ercOtherFee2,jdbcType=DECIMAL},
+      ERC_ORIGINAL_APP_DATE = #{ercOriginalAppDate,jdbcType=VARCHAR},
+      ERC_TRANSFER_FEE = #{ercTransferFee,jdbcType=DECIMAL},
+      ERC_FROM_TA_FLAG = #{ercFromTaFlag,jdbcType=VARCHAR},
+      ERC_SHARE_CLASS = #{ercShareClass,jdbcType=VARCHAR},
+      ERC_DETAIL_FLAG = #{ercDetailFlag,jdbcType=VARCHAR},
+      ERC_REDEMPTION_IN_ADVANCE_FLAG = #{ercRedemptionInAdvanceFlag,jdbcType=VARCHAR},
+      ERC_FROZEN_METHOD = #{ercFrozenMethod,jdbcType=VARCHAR},
+      ERC_ORIGINAL_CFM_DATE = #{ercOriginalCfmDate,jdbcType=VARCHAR},
+      ERC_REDEMPTION_REASON = #{ercRedemptionReason,jdbcType=VARCHAR},
+      ERC_CODE_OF_TARGET_FUND = #{ercCodeOfTargetFund,jdbcType=VARCHAR},
+      ERC_TOTAL_TRANS_FEE = #{ercTotalTransFee,jdbcType=DECIMAL},
+      ERC_VARIETY_CODE_PERIODIC_SUB = #{ercVarietyCodePeriodicSub,jdbcType=VARCHAR},
+      ERC_SERIAL_NO_OF_PERIODIC_SUBS = #{ercSerialNoOfPeriodicSubs,jdbcType=VARCHAR},
+      ERC_RATION_TYPE = #{ercRationType,jdbcType=VARCHAR},
+      ERC_TARGET_TA_ACCOUNT_ID = #{ercTargetTaAccountId,jdbcType=VARCHAR},
+      ERC_TARGET_REGISTRAR_CODE = #{ercTargetRegistrarCode,jdbcType=VARCHAR},
+      ERC_NET_NO = #{ercNetNo,jdbcType=VARCHAR},
+      ERC_CUSTOMER_NO = #{ercCustomerNo,jdbcType=VARCHAR},
+      ERC_TARGET_SHARE_TYPE = #{ercTargetShareType,jdbcType=VARCHAR},
+      ERC_RATION_PROTOCOL_NO = #{ercRationProtocolNo,jdbcType=VARCHAR},
+      ERC_BEGIN_DATE_PERIODIC_SUBS = #{ercBeginDatePeriodicSubs,jdbcType=VARCHAR},
+      ERC_END_DATE_OF_PERIODIC_SUBS = #{ercEndDateOfPeriodicSubs,jdbcType=VARCHAR},
+      ERC_SEND_DAY_OF_PERIODIC_SUBS = #{ercSendDayOfPeriodicSubs,jdbcType=DECIMAL},
+      ERC_BROKER = #{ercBroker,jdbcType=VARCHAR},
+      ERC_SALES_PROMOTION = #{ercSalesPromotion,jdbcType=VARCHAR},
+      ERC_ACCEPT_METHOD = #{ercAcceptMethod,jdbcType=VARCHAR},
+      ERC_FORCE_REDEMPTION_TYPE = #{ercForceRedemptionType,jdbcType=VARCHAR},
+      ERC_ALTERNATION_DATE = #{ercAlternationDate,jdbcType=VARCHAR},
+      ERC_TAKEINCOME_FLAG = #{ercTakeincomeFlag,jdbcType=VARCHAR},
+      ERC_PURPOSE_OF_PE_SUBS = #{ercPurposeOfPeSubs,jdbcType=VARCHAR},
+      ERC_FREQUENCY_OF_PE_SUBS = #{ercFrequencyOfPeSubs,jdbcType=DECIMAL},
+      ERC_PERIOD_SUB_TIME_UNIT = #{ercPeriodSubTimeUnit,jdbcType=VARCHAR},
+      ERC_BATCH_NUM_OF_PE_SUBS = #{ercBatchNumOfPeSubs,jdbcType=DECIMAL},
+      ERC_CAPITAL_MODE = #{ercCapitalMode,jdbcType=VARCHAR},
+      ERC_DETAIL_CAPTICAL_MODE = #{ercDetailCapticalMode,jdbcType=VARCHAR},
+      ERC_BACKENLOAD_DISCOUNT = #{ercBackenloadDiscount,jdbcType=DECIMAL},
+      ERC_COMBINE_NUM = #{ercCombineNum,jdbcType=VARCHAR},
+      ERC_REFUND_AMOUNT = #{ercRefundAmount,jdbcType=DECIMAL},
+      ERC_SALE_PERCENT = #{ercSalePercent,jdbcType=DECIMAL},
+      ERC_MANAGER_REAL_RATIO = #{ercManagerRealRatio,jdbcType=DECIMAL},
+      ERC_CHANGE_FEE = #{ercChangeFee,jdbcType=DECIMAL},
+      ERC_RECUPERATE_FEE = #{ercRecuperateFee,jdbcType=DECIMAL},
+      ERC_ACHIEVEMENT_PAY = #{ercAchievementPay,jdbcType=DECIMAL},
+      ERC_ACHIEVEMENT_COMPEN = #{ercAchievementCompen,jdbcType=DECIMAL},
+      ERC_SHARES_ADJUSTMENT_FLAG = #{ercSharesAdjustmentFlag,jdbcType=VARCHAR},
+      ERC_GENERAL_TA_SERIAL_NO = #{ercGeneralTaSerialNo,jdbcType=VARCHAR},
+      ERC_UNDI_MONETARY_INCOME = #{ercUndiMonetaryIncome,jdbcType=DECIMAL},
+      ERC_UNDI_MONETARY_INCOME_FLAG = #{ercUndiMonetaryIncomeFlag,jdbcType=VARCHAR},
+      ERC_BREACH_FEE = #{ercBreachFee,jdbcType=DECIMAL},
+      ERC_BREACH_FEE_BACK_TO_FUND = #{ercBreachFeeBackToFund,jdbcType=DECIMAL},
+      ERC_PUNISH_FEE = #{ercPunishFee,jdbcType=VARCHAR},
+      ERC_TRADING_METHOD = #{ercTradingMethod,jdbcType=VARCHAR},
+      ERC_CHANGE_AGENCY_FEE = #{ercChangeAgencyFee,jdbcType=DECIMAL},
+      ERC_RECUPERATE_AGENCY_FEE = #{ercRecuperateAgencyFee,jdbcType=DECIMAL},
+      ERC_ERROR_DETAIL = #{ercErrorDetail,jdbcType=VARCHAR},
+      ERC_LARGE_BUY_FLAG = #{ercLargeBuyFlag,jdbcType=VARCHAR},
+      ERC_RAISE_INTEREST = #{ercRaiseInterest,jdbcType=DECIMAL},
+      ERC_FEE_CALCULATOR = #{ercFeeCalculator,jdbcType=VARCHAR},
+      ERC_SHARE_REGISTER_DATE = #{ercShareRegisterDate,jdbcType=VARCHAR},
+      ERC_TOTAL_FROZEN_VOL = #{ercTotalFrozenVol,jdbcType=DECIMAL},
+      ERC_FUND_VOL_BALANCE = #{ercFundVolBalance,jdbcType=DECIMAL},
+      ERC_FROZEN_BALANCE = #{ercFrozenBalance,jdbcType=DECIMAL},
+      ERC_FUTURE_SUBSCRIBE_DATE = #{ercFutureSubscribeDate,jdbcType=VARCHAR},
+      ERC_TRANS_DATE_THROUGH_CLEAR = #{ercTransDateThroughClear,jdbcType=VARCHAR},
+      ERC_TA_ERROR_DETAIL = #{ercTaErrorDetail,jdbcType=VARCHAR},
+      ERC_CFM_DATE = #{ercCfmDate,jdbcType=VARCHAR},
+      ERC_SEND_STATUS = #{ercSendStatus,jdbcType=VARCHAR},
+      ERC_GENERATE_STATUS = #{ercGenerateStatus,jdbcType=VARCHAR},
+      ERC_SEND_FILE_TIME = #{ercSendFileTime,jdbcType=TIMESTAMP},
+      ERC_GENERATE_FILE_TIME = #{ercGenerateFileTime,jdbcType=TIMESTAMP},
+      ERC_TA_RET_SERIAL_NO = #{ercTaRetSerialNo,jdbcType=VARCHAR},
+      ERC_CTIME = #{ercCtime,jdbcType=TIMESTAMP},
+      ERC_UTIME = #{ercUtime,jdbcType=TIMESTAMP},
+      ERC_CUSER = #{ercCuser,jdbcType=VARCHAR},
+      ERC_UUSER = #{ercUuser,jdbcType=VARCHAR}
+    where ERC_ID = #{ercId,jdbcType=DECIMAL}
+  </update>
+  
+  <insert id="insertByBatchCfm" parameterType="java.util.List" >
+	  insert  all 
+	    <foreach collection="list" index="index" item="item">
+	    insert into D_EXCHANGE_REQ_CFM (ERC_CHANNEL_CODE, ERC_APP_SHEET_SERIAL_NO, 
+	      ERC_TRANSACTION_CFM_DATE, ERC_CURRENCY_TYPE, 
+	      ERC_CONFIRMED_VOL, ERC_CONFIRMED_AMOUNT, ERC_FUND_CODE, 
+	      ERC_LARGE_REDEMPTION_FLAG, ERC_TRANSACTION_DATE, 
+	      ERC_TRANSACTION_TIME, ERC_RETURN_CODE, ERC_TRANSACTION_ACCOUNT_ID, 
+	      ERC_DISTRIBUTOR_CODE, ERC_APPLICATION_VOL, 
+	      ERC_APPLICATION_AMOUNT, ERC_BUSINESS_CODE, 
+	      ERC_TA_ACCOUNT_ID, ERC_TA_SERIAL_NO, ERC_DISCOUNT_RATE_OF_COMM, 
+	      ERC_DEPOSIT_ACCT, ERC_REGION_CODE, ERC_DOWNLOAD_DATE, 
+	      ERC_CHARGE, ERC_AGENCY_FEE, ERC_NAV, 
+	      ERC_BRANCH_CODE, ERC_ORIGINAL_APP_SHEET_NO, ERC_ORIGINAL_SUBS_DATE, 
+	      ERC_OTHER_FEE1, ERC_INDIVIDUAL_OR_INSTITUTION, 
+	      ERC_REDEMPTION_DATE_INADVANCE, ERC_STAMP_DUTY, 
+	      ERC_VALID_PERIOD, ERC_RATE_FEE, ERC_TOTAL_BACKEND_LOAD, 
+	      ERC_ORIGINAL_SERIAL_NO, ERC_SPECIFICATION, 
+	      ERC_DATE_OF_PERIODIC_SUBS, ERC_TARGET_DISTRIBUTOR_CODE, 
+	      ERC_TARGET_BRANCH_CODE, ERC_TARGET_TRANSACT_ACCT_CODE, 
+	      ERC_TARGET_REGION_CODE, ERC_TRANSFER_DIRECTION, 
+	      ERC_DEF_DIVIDEND_METHOD, ERC_DIVIDEND_RATIO, 
+	      ERC_INTEREST, ERC_VOLUME_BY_INTEREST, ERC_INTEREST_TAX, 
+	      ERC_TRADING_PRICE, ERC_FREEZING_DEADLINE, ERC_FROZEN_CAUSE, 
+	      ERC_TAX, ERC_TARGET_NAV, ERC_TARGET_FUND_PRICE, 
+	      ERC_CFM_VOL_OF_TARGET_FUND, ERC_MIN_FEE, ERC_OTHER_FEE2, 
+	      ERC_ORIGINAL_APP_DATE, ERC_TRANSFER_FEE, ERC_FROM_TA_FLAG, 
+	      ERC_SHARE_CLASS, ERC_DETAIL_FLAG, ERC_REDEMPTION_IN_ADVANCE_FLAG, 
+	      ERC_FROZEN_METHOD, ERC_ORIGINAL_CFM_DATE, ERC_REDEMPTION_REASON, 
+	      ERC_CODE_OF_TARGET_FUND, ERC_TOTAL_TRANS_FEE, 
+	      ERC_VARIETY_CODE_PERIODIC_SUB, ERC_SERIAL_NO_OF_PERIODIC_SUBS, 
+	      ERC_RATION_TYPE, ERC_TARGET_TA_ACCOUNT_ID, ERC_TARGET_REGISTRAR_CODE, 
+	      ERC_NET_NO, ERC_CUSTOMER_NO, ERC_TARGET_SHARE_TYPE, 
+	      ERC_RATION_PROTOCOL_NO, ERC_BEGIN_DATE_PERIODIC_SUBS, 
+	      ERC_END_DATE_OF_PERIODIC_SUBS, ERC_SEND_DAY_OF_PERIODIC_SUBS, 
+	      ERC_BROKER, ERC_SALES_PROMOTION, ERC_ACCEPT_METHOD, 
+	      ERC_FORCE_REDEMPTION_TYPE, ERC_ALTERNATION_DATE, 
+	      ERC_TAKEINCOME_FLAG, ERC_PURPOSE_OF_PE_SUBS, 
+	      ERC_FREQUENCY_OF_PE_SUBS, ERC_PERIOD_SUB_TIME_UNIT, 
+	      ERC_BATCH_NUM_OF_PE_SUBS, ERC_CAPITAL_MODE, ERC_DETAIL_CAPTICAL_MODE, 
+	      ERC_BACKENLOAD_DISCOUNT, ERC_COMBINE_NUM, ERC_REFUND_AMOUNT, 
+	      ERC_SALE_PERCENT, ERC_MANAGER_REAL_RATIO, ERC_CHANGE_FEE, 
+	      ERC_RECUPERATE_FEE, ERC_ACHIEVEMENT_PAY, ERC_ACHIEVEMENT_COMPEN, 
+	      ERC_SHARES_ADJUSTMENT_FLAG, ERC_GENERAL_TA_SERIAL_NO, 
+	      ERC_UNDI_MONETARY_INCOME, ERC_UNDI_MONETARY_INCOME_FLAG, 
+	      ERC_BREACH_FEE, ERC_BREACH_FEE_BACK_TO_FUND, ERC_PUNISH_FEE, 
+	      ERC_TRADING_METHOD, ERC_CHANGE_AGENCY_FEE, ERC_RECUPERATE_AGENCY_FEE, 
+	      ERC_ERROR_DETAIL, ERC_LARGE_BUY_FLAG, ERC_RAISE_INTEREST, 
+	      ERC_FEE_CALCULATOR, ERC_SHARE_REGISTER_DATE, 
+	      ERC_TOTAL_FROZEN_VOL, ERC_FUND_VOL_BALANCE, ERC_FROZEN_BALANCE, 
+	      ERC_FUTURE_SUBSCRIBE_DATE, ERC_TRANS_DATE_THROUGH_CLEAR, 
+	      ERC_TA_ERROR_DETAIL, ERC_CFM_DATE, ERC_SEND_STATUS, 
+	      ERC_GENERATE_STATUS, ERC_SEND_FILE_TIME, ERC_GENERATE_FILE_TIME, 
+	      ERC_TA_RET_SERIAL_NO, ERC_CTIME, ERC_UTIME, 
+	      ERC_CUSER, ERC_UUSER)
+	values (
+	 #{item.CHANNELCODE,jdbcType=VARCHAR},
+	 #{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+	 #{item.TRANSACTIONCFMDATE,jdbcType=VARCHAR},
+	 #{item.CURRENCYTYPE,jdbcType=VARCHAR},
+	 #{item.CONFIRMEDVOL,jdbcType=DECIMAL},
+	 #{item.CONFIRMEDAMOUNT,jdbcType=DECIMAL},
+	 #{item.FUNDCODE,jdbcType=VARCHAR},
+	 #{item.LARGEREDEMPTIONFLAG,jdbcType=VARCHAR},
+	 #{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+	 #{item.TRANSACTIONTIME,jdbcType=VARCHAR},
+	 #{item.RETURNCODE,jdbcType=VARCHAR},
+	 #{item.TRANSACTIONACCOUNTID,jdbcType=VARCHAR},
+	 #{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+	 #{item.APPLICATIONVOL,jdbcType=DECIMAL},
+	 #{item.APPLICATIONAMOUNT,jdbcType=DECIMAL},
+	 #{item.BUSINESSCODE,jdbcType=VARCHAR},
+	 #{item.TAACCOUNTID,jdbcType=VARCHAR},
+	 #{item.TASERIALNO,jdbcType=VARCHAR},
+	 #{item.DISCOUNTRATEOFCOMM,jdbcType=DECIMAL},
+	 #{item.DEPOSITACCT,jdbcType=VARCHAR},
+	 #{item.REGIONCODE,jdbcType=VARCHAR},
+	 #{item.DOWNLOADDATE,jdbcType=VARCHAR},
+	 #{item.CHARGE,jdbcType=DECIMAL},
+	 #{item.AGENCYFEE,jdbcType=DECIMAL},
+	 #{item.NAV,jdbcType=DECIMAL},
+	 #{item.BRANCHCODE,jdbcType=VARCHAR},
+	 #{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+	 #{item.ORIGINALSUBSDATE,jdbcType=VARCHAR},
+	 #{item.OTHERFEE1,jdbcType=DECIMAL},
+	 #{item.INDIVIDUALORINSTITUTION,jdbcType=VARCHAR},
+	 #{item.REDEMPTIONDATEINADVANCE,jdbcType=VARCHAR},
+	 #{item.STAMPDUTY,jdbcType=DECIMAL},
+	 #{item.VALIDPERIOD,jdbcType=DECIMAL},
+	 #{item.RATEFEE,jdbcType=DECIMAL},
+	 #{item.TOTALBACKENDLOAD,jdbcType=DECIMAL},
+	 #{item.ORIGINALSERIALNO,jdbcType=VARCHAR},
+	 #{item.SPECIFICATION,jdbcType=VARCHAR},
+	 #{item.DATEOFPERIODICSUBS,jdbcType=VARCHAR},
+	 #{item.TARGETDISTRIBUTORCODE,jdbcType=VARCHAR},
+	 #{item.TARGETBRANCHCODE,jdbcType=VARCHAR},
+	 #{item.TARGETTRANSACTACCTCODE,jdbcType=VARCHAR},
+	 #{item.TARGETREGIONCODE,jdbcType=VARCHAR},
+	 #{item.TRANSFERDIRECTION,jdbcType=VARCHAR},
+	 #{item.DEFDIVIDENDMETHOD,jdbcType=VARCHAR},
+	 #{item.DIVIDENDRATIO,jdbcType=DECIMAL},
+	 #{item.INTEREST,jdbcType=DECIMAL},
+	 #{item.VOLUMEBYINTEREST,jdbcType=DECIMAL},
+	 #{item.INTERESTTAX,jdbcType=DECIMAL},
+	 #{item.TRADINGPRICE,jdbcType=DECIMAL},
+	 #{item.FREEZINGDEADLINE,jdbcType=VARCHAR},
+	 #{item.FROZENCAUSE,jdbcType=VARCHAR},
+	 #{item.TAX,jdbcType=DECIMAL},
+	 #{item.TARGETNAV,jdbcType=DECIMAL},
+	 #{item.TARGETFUNDPRICE,jdbcType=DECIMAL},
+	 #{item.CFMVOLOFTARGETFUND,jdbcType=DECIMAL},
+	 #{item.MINFEE,jdbcType=DECIMAL},
+	 #{item.OTHERFEE2,jdbcType=DECIMAL},
+	 #{item.ORIGINALAPPDATE,jdbcType=VARCHAR},
+	 #{item.TRANSFERFEE,jdbcType=DECIMAL},
+	 #{item.FROMTAFLAG,jdbcType=VARCHAR},
+	 #{item.SHARECLASS,jdbcType=VARCHAR},
+	 #{item.DETAILFLAG,jdbcType=VARCHAR},
+	 #{item.REDEMPTIONINADVANCEFLAG,jdbcType=VARCHAR},
+	 #{item.FROZENMETHOD,jdbcType=VARCHAR},
+	 #{item.ORIGINALCFMDATE,jdbcType=VARCHAR},
+	 #{item.REDEMPTIONREASON,jdbcType=VARCHAR},
+	 #{item.CODEOFTARGETFUND,jdbcType=VARCHAR},
+	 #{item.TOTALTRANSFEE,jdbcType=DECIMAL},
+	 #{item.VARIETYCODEPERIODICSUB,jdbcType=VARCHAR},
+	 #{item.SERIALNOOFPERIODICSUBS,jdbcType=VARCHAR},
+	 #{item.RATIONTYPE,jdbcType=VARCHAR},
+	 #{item.TARGETTAACCOUNTID,jdbcType=VARCHAR},
+	 #{item.TARGETREGISTRARCODE,jdbcType=VARCHAR},
+	 #{item.NETNO,jdbcType=VARCHAR},
+	 #{item.CUSTOMERNO,jdbcType=VARCHAR},
+	 #{item.TARGETSHARETYPE,jdbcType=VARCHAR},
+	 #{item.RATIONPROTOCOLNO,jdbcType=VARCHAR},
+	 #{item.BEGINDATEPERIODICSUBS,jdbcType=VARCHAR},
+	 #{item.ENDDATEOFPERIODICSUBS,jdbcType=VARCHAR},
+	 #{item.SENDDAYOFPERIODICSUBS,jdbcType=DECIMAL},
+	 #{item.BROKER,jdbcType=VARCHAR},
+	 #{item.SALESPROMOTION,jdbcType=VARCHAR},
+	 #{item.ACCEPTMETHOD,jdbcType=VARCHAR},
+	 #{item.FORCEREDEMPTIONTYPE,jdbcType=VARCHAR},
+	 #{item.ALTERNATIONDATE,jdbcType=VARCHAR},
+	 #{item.TAKEINCOMEFLAG,jdbcType=VARCHAR},
+	 #{item.PURPOSEOFPESUBS,jdbcType=VARCHAR},
+	 #{item.FREQUENCYOFPESUBS,jdbcType=DECIMAL},
+	 #{item.PERIODSUBTIMEUNIT,jdbcType=VARCHAR},
+	 #{item.BATCHNUMOFPESUBS,jdbcType=DECIMAL},
+	 #{item.CAPITALMODE,jdbcType=VARCHAR},
+	 #{item.DETAILCAPTICALMODE,jdbcType=VARCHAR},
+	 #{item.BACKENLOADDISCOUNT,jdbcType=DECIMAL},
+	 #{item.COMBINENUM,jdbcType=VARCHAR},
+	 #{item.REFUNDAMOUNT,jdbcType=DECIMAL},
+	 #{item.SALEPERCENT,jdbcType=DECIMAL},
+	 #{item.MANAGERREALRATIO,jdbcType=DECIMAL},
+	 #{item.CHANGEFEE,jdbcType=DECIMAL},
+	 #{item.RECUPERATEFEE,jdbcType=DECIMAL},
+	 #{item.ACHIEVEMENTPAY,jdbcType=DECIMAL},
+	 #{item.ACHIEVEMENTCOMPEN,jdbcType=DECIMAL},
+	 #{item.SHARESADJUSTMENTFLAG,jdbcType=VARCHAR},
+	 #{item.GENERALTASERIALNO,jdbcType=VARCHAR},
+	 #{item.UNDIMONETARYINCOME,jdbcType=DECIMAL},
+	 #{item.UNDIMONETARYINCOMEFLAG,jdbcType=VARCHAR},
+	 #{item.BREACHFEE,jdbcType=DECIMAL},
+	 #{item.BREACHFEEBACKTOFUND,jdbcType=DECIMAL},
+	 #{item.PUNISHFEE,jdbcType=VARCHAR},
+	 #{item.TRADINGMETHOD,jdbcType=VARCHAR},
+	 #{item.CHANGEAGENCYFEE,jdbcType=DECIMAL},
+	 #{item.RECUPERATEAGENCYFEE,jdbcType=DECIMAL},
+	 #{item.ERRORDETAIL,jdbcType=VARCHAR},
+	 #{item.LARGEBUYFLAG,jdbcType=VARCHAR},
+	 #{item.RAISEINTEREST,jdbcType=DECIMAL},
+	 #{item.FEECALCULATOR,jdbcType=VARCHAR},
+	 #{item.SHAREREGISTERDATE,jdbcType=VARCHAR},
+	 #{item.TOTALFROZENVOL,jdbcType=DECIMAL},
+	 #{item.FUNDVOLBALANCE,jdbcType=DECIMAL},
+	 #{item.FROZENBALANCE,jdbcType=DECIMAL},
+	 #{item.FUTURESUBSCRIBEDATE,jdbcType=VARCHAR},
+	 #{item.TRANSDATETHROUGHCLEAR,jdbcType=VARCHAR},
+	 #{item.TAERRORDETAIL,jdbcType=VARCHAR},
+	 #{item.CFMDATE,jdbcType=VARCHAR},
+	 #{item.SENDSTATUS,jdbcType=VARCHAR},
+	 #{item.GENERATESTATUS,jdbcType=VARCHAR},
+	 #{item.SENDFILETIME,jdbcType=TIMESTAMP},
+	 #{item.GENERATEFILETIME,jdbcType=TIMESTAMP},
+	 #{item.TARETSERIALNO,jdbcType=VARCHAR}
+	 )
+	</foreach>
+	select 1  from dual
+	</insert>
+	
+	
+	<select id="selectExchangeReqCfmInfo" resultMap="BaseResultMap" parameterType="hashMap" >
+	    select 
+	    <include refid="Base_Column_List" />
+	    from D_EXCHANGE_REQ_CFM
+	    where 1=1
+	    and ERC_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+		and ERC_APP_SHEET_SERIAL_NO=#{APPSHEETSERIALNO,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectCount" parameterType="Map" resultType="java.math.BigDecimal">
+   	 select count(*) from d_exchange_req where er_Trans_Date = #{ercTransactionDate,jdbcType=VARCHAR} and ER_TA_TRANS_STATUS in ('454','442','434')  and er_channel_code=#{ercChannelCode,jdbcType=VARCHAR}
+  </select>
+  
+  
+ <select id="select94BeforeHandDataCfm" parameterType="hashMap" resultType="hashMap">
+   SELECT  ${SQLNAME}
+     FROM d_exchange_req T
+    WHERE  t.er_business_code = '022'
+    <if test="CHANNELCODE != null" >
+       AND t.er_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+    </if>
+    <if test="TRANSDATE != null" >
+    <!--查询日期为操作日期-->
+       AND t.er_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+    </if>
+    <if test="FUNDTYPES != null ">
+     and exists (
+		     select 1 from p_product_info p 
+		     where p.pi_channel_code = er_channel_code 
+		     and p.pi_channel_product_code = er_fund_code  
+		     and p.pi_check_state = '01' 
+		     and p.pi_valid_flag not in ('00','99') 
+		     and pi_product_type  in 
+    <foreach collection="FUNDTYPES" item="id" open="(" separator="," close=")">
+  		#{id}
+    </foreach>
+    )
+    </if>
+    order by t.er_fund_code,t.er_transaction_account_id 
+  </select>
+  
+  <select id="select26VolDetailDataCfm" parameterType="hashMap" resultType="hashMap">
+	  select FVD_AVAILABLE_VOL              AvailableVol,
+	  FVD_TOTAL_VOL_OF_DISTRIBUTOR   TotalVolOfDistributorInTA,
+	  FVD_TRANSACTION_CFM_DATE       TransactionCfmDate,
+	  FVD_FUND_CODE                  FundCode,
+	  FVD_TRANSACTION_ACCOUNT_ID     TransactionAccountID,
+	  FVD_DISTRIBUTOR_CODE           DistributorCode,
+	  FVD_TA_ACCOUNT_ID              TAAccountID,
+	  FVD_TOTAL_FROZEN_VOL           TotalFrozenVol,
+	  FVD_BRANCH_CODE                BranchCode,
+	  FVD_TA_SERIAL_NO               TASerialNO,
+	  FVD_TOTAL_BACKEND_LOAD         TotalBackendLoad,
+	  FVD_SHARE_CLASS                ShareClass,
+	  FVD_DETAIL_FLAG                DetailFlag,
+	  FVD_ACCOUNT_STATUS             AccountStatus,
+	  FVD_SHARE_REGISTER_DATE        ShareRegisterDate,
+	  FVD_UNDISTRIBUTE_MONETARY      UndistributeMonetaryIncome,
+	  FVD_UNDISTRIBUTE_MONETARY_FLAG UndistributeMonetaryIncomeFlag,
+	  FVD_GUARANTEED_AMOUNT          GuaranteedAmount,
+	  FVD_SOURCE_TYPE                SourceType,
+	  FVD_DEF_DIVIDEND_METHOD        DefDividendMethod,
+	  FVD_ALLOW_REDEMPT_DATE         AllowRedemptDate
+	  from D_FUND_VOL_DETAIL_CFM
+	  where
+	  1=1
+	  <if test="CHANNELCODE != null" >
+		  AND fvd_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+	  </if>
+	  <if test="TRANSDATE != null" >
+		  <!--查询日期为操作日期-->
+		  AND fvd_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+	  </if>
+  </select>
+  
+   <select id="selectExchangeReqCfmData" parameterType="hashMap" resultType="hashMap">
+   SELECT <include refid="Base_Column_List_File" />,nvl(t1.dict_type,erc_business_code) businesscode
+     FROM D_EXCHANGE_REQ_CFM T left  join 
+(select dict_type,dict_code  from sys_dict where dict_pid = ( select dict_id from　sys_dict where dict_type = 'bussinessCode' )) t1 on
+	  <!--部分分配业务编码字段以实际为准-->
+t1.dict_code = nvl(t.erc_actual_business_code,t.erc_business_code)
+	   <where>
+    <if test="CHANNELCODE != null" >
+       and t.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+    </if>
+    <if test="TRANSDATE != null" >
+       AND t.erc_transaction_cfm_date = #{TRANSDATE,jdbcType = VARCHAR}
+    </if>
+    </where>
+     order by t.erc_fund_code, t.erc_transaction_account_id 
+  </select>
+  
+  
+   <update id="updateGenerateStaAndTime" parameterType="hashMap">
+  	update D_EXCHANGE_REQ_CFM set erc_GENERATE_STATUS = '01' ,erc_GENERATE_FILE_TIME = sysdate where erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND erc_TRANSACTION_cfm_DATE = #{TRANSDATE,jdbcType = VARCHAR}
+  </update>
+  
+  <update id="updateSendStaAndTime" parameterType="hashMap">
+  	update D_EXCHANGE_REQ_CFM set erc_SEND_STATUS = '01' , erc_SEND_FILE_TIME = sysdate where erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND erc_TRANSACTION_cfm_DATE = #{TRANSDATE,jdbcType = VARCHAR} and erc_GENERATE_STATUS = '01'
+  </update>
+  
+  <select id="selectTransStatistics" parameterType="map" resultType="map">
+  	select * from (select distinct t.pi_channel_code channelcode,t1.ci_channel_name channelname ,t.pi_channel_product_code fundcode,t.pi_product_type producttype  from p_product_info t ,p_channel_info t1  where t.pi_channel_code = t1.ci_channel_code and t.pi_valid_flag in('01','02') and t.PI_CHECK_STATE = '01' 
+  	<if test="CHANNELCODE != null and CHANNELCODE != '' ">
+  		and pi_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} 
+  	</if>
+  	<if test="FUNDCODES != null">
+  		and t.pi_channel_product_code in 
+  		<foreach collection="FUNDCODES" item="fundCode" index="index" separator="," open="(" close=")">
+  		#{fundCode,jdbcType = VARCHAR}
+  		</foreach>
+  	</if>
+  	) t left join (
+  	select er_channel_code,er_fund_code,rg_gm rg, sg_gm sg, sh_sh sh from (select t.er_channel_code,t.er_fund_code,t.er_business_code,t.er_application_amount,t.er_application_vol from d_exchange_req t where t.er_return_code = '0000'
+  	<if test="STARTDATE != null">
+  		and t.er_trans_date &gt;= replace(#{STARTDATE,jdbcType = VARCHAR},'-','')
+  	</if>
+  	<if test="ENDDATE != null">
+  		and t.er_trans_date &lt;= replace(#{ENDDATE,jdbcType = VARCHAR},'-','')
+  	</if>
+  	) pivot (sum(er_application_vol) sh, sum(er_application_amount) gm for er_business_code in('020' rg,'022' sg,'024' sh)) ) t1 on t1.er_channel_code = t.channelcode and t.fundcode = t1.er_fund_code  
+  	left join (select erc_channel_code,erc_fund_code,rg_gm confirmrg,sg_gm confirmsg,sh_sh confirmsh,cL_gm confirmcl,dq_gm confirmdq,qs_gm confirmqs from (SELECT t.erc_channel_code ,t.erc_fund_code,t.erc_business_code,t.erc_confirmed_vol,t.erc_confirmed_amount FROM D_EXCHANGE_REQ_cfm T WHERE t.erc_return_code = '0000'
+  	<if test="CONFIRMSTARTDATE != null">
+  		and t.erc_trans_date &gt;= replace(#{CONFIRMSTARTDATE,jdbcType = VARCHAR},'-','')
+  	</if>
+  	<if test="CONFIRMENDDATE != null">
+  		and t.erc_trans_date &lt;= replace(#{CONFIRMENDDATE,jdbcType = VARCHAR},'-','')
+  	</if>
+  	) pivot (sum(erc_confirmed_vol) sh, sum(erc_confirmed_amount) gm for erc_business_code in('020' rg,'022' sg,'024' sh,'130' cl,'142' qs, '150' dq)))	t2 
+	on t.channelcode = t2.erc_channel_code and t.fundcode = t2.erc_fund_code
+  	order by channelcode
+  
+  </select>
+  
+  <select id="queryExchenageSamsSerialnoCount" parameterType="map" resultType="integer">
+  	  select count(*)
+     from d_exchange_req_cfm t
+     where t.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+     and t.erc_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+     group by t.erc_channel_code, t.erc_original_serial_no
+     having count(*) > 1
+  </select>
+  
+  <select id="queryFundVolDetailSamsSerialnoCount" parameterType="map" resultType="integer">
+  	select count(*)
+  	from d_fund_vol_detail_cfm t
+ 	where t.fvd_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+   	and t.fvd_trans_date = #{TRANSDATE,jdbcType = VARCHAR}
+ 	group by t.fvd_channel_code, t.fvd_ta_serial_no
+	having count(*) > 1
+  </select>
+  
+  
+  <select id="getMultipleDetail" parameterType="map" resultType="map">
+  	   select nvl(t.er_currency_type, '840') || '(' || (select d.dict_name from sys_dict d where d.dict_type = 'currency' and d.dict_code = nvl(t.er_currency_type, '840')) || ')' currencytype,
+       sum(decode(t.er_business_code,
+                  '024',
+                  t.er_application_vol,
+                  t.er_application_amount)) applicationamount
+	   from d_exchange_req t
+	   where t.er_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+	   and t.er_fund_code = #{FUNDCODE,jdbcType = VARCHAR}
+	   and t.er_business_code = #{BUSINESSCODE,jdbcType = VARCHAR}
+	   and t.er_return_code = '0000'
+	   and t.er_valid_flag = '01'
+	   and t.er_trans_date between #{STARTDATE,jdbcType = VARCHAR} and #{ENDDATE,jdbcType = VARCHAR}
+	   group by t.er_currency_type
+  </select>
+  
+  <select id="getMultipleCfmDetail" parameterType="map" resultType="map">
+  	   select nvl(t.erc_currency_type, '840') || '(' || (select d.dict_name from sys_dict d where d.dict_type = 'currency' and d.dict_code = nvl(t.erc_currency_type, '840')) || ')' currencytype,
+       sum(t.erc_confirmed_amount) applicationamount
+	   from d_exchange_req_cfm t
+	   where t.erc_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+	   and t.erc_fund_code = #{FUNDCODE,jdbcType = VARCHAR}
+	   and t.erc_return_code = '0000'
+	   and t.erc_business_code = #{BUSINESSCODE,jdbcType = VARCHAR}
+	   and t.erc_trans_date between #{STARTDATE,jdbcType = VARCHAR} and #{ENDDATE,jdbcType = VARCHAR}
+	   group by t.erc_currency_type
+  </select>
+</mapper>

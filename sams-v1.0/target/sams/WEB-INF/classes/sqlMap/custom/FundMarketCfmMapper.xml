@@ -1,0 +1,1269 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.FundMarketCfmMapper" >
+	<resultMap id="BaseResultMap" type="com.sams.custom.model.FundMarketCfm" >
+		<id column="FM_ID" property="fmId" jdbcType="DECIMAL" />
+		<result column="FM_FUND_NAME" property="fmFundName" jdbcType="VARCHAR" />
+		<result column="FM_FUND_CODE" property="fmFundCode" jdbcType="VARCHAR" />
+		<result column="FM_TOTAL_FUND_VOL" property="fmTotalFundVol" jdbcType="DECIMAL" />
+		<result column="FM_FUND_STATUS" property="fmFundStatus" jdbcType="VARCHAR" />
+		<result column="FM_NAV" property="fmNAV" jdbcType="DECIMAL" />
+		<result column="FM_UPDATE_DATE" property="fmUpdateDate" jdbcType="VARCHAR" />
+		<result column="FM_NET_VALUE_TYPE" property="fmNetValueType" jdbcType="VARCHAR" />
+		<result column="FM_ACCUMULATIVE_NAV" property="fmAccumulativeNav" jdbcType="DECIMAL" />
+		<result column="FM_CONVERT_STATUS" property="fmConvertStatus" jdbcType="VARCHAR" />
+		<result column="FM_PERIODIC_STATUS" property="fmPeriodicStatus" jdbcType="VARCHAR" />
+		<result column="FM_TRANSFER_AGENCY_STATUS" property="fmTransferAgencyStatus" jdbcType="VARCHAR" />
+		<result column="FM_FUND_SIZE" property="fmFundSize" jdbcType="DECIMAL" />
+		<result column="FM_CURRENCY_TYPE" property="fmCurrencyType" jdbcType="VARCHAR" />
+		<result column="FM_ANNOUNC_FLAG" property="fmAnnouncFlag" jdbcType="VARCHAR" />
+		<result column="FM_DEF_DIVIDEN_DMETHOD" property="fmDefDividenDmethod" jdbcType="VARCHAR" />
+		<result column="FM_INST_APP_SUBS_AMNT" property="fmInstAppSubsAmnt" jdbcType="DECIMAL" />
+		<result column="FM_INST_APP_SUBS_VOL" property="fmInstAppSubsVol" jdbcType="DECIMAL" />
+		<result column="FM_MIN_AMOUNT_BY_INST" property="fmMinAmountByInst" jdbcType="DECIMAL" />
+		<result column="FM_MIN_VOL_BY_INST" property="fmMinVolByInst" jdbcType="DECIMAL" />
+		<result column="FM_CUSTODIAN_CODE" property="fmCustodianCode" jdbcType="VARCHAR" />
+		<result column="FM_AMOUNT_OF_PERIODIC_SUBS" property="fmAmountOfPeriodicSubs" jdbcType="DECIMAL" />
+		<result column="FM_DATE_OF_PERIODIC_SUBS" property="fmDateOfPeriodicSubs" jdbcType="VARCHAR" />
+		<result column="FM_MAX_REDEMPTION_VOL" property="fmMaxRedemptionVol" jdbcType="DECIMAL" />
+		<result column="FM_MIN_ACCOUNT_BALANCE" property="fmMinAccountBalance" jdbcType="DECIMAL" />
+		<result column="FM_IPOSTART_DATE" property="fmIpostartDate" jdbcType="VARCHAR" />
+		<result column="FM_IPOEND_DATE" property="fmIpoendDate" jdbcType="VARCHAR" />
+		<result column="FM_FUND_MANAGER_CODE" property="fmFundManagerCode" jdbcType="VARCHAR" />
+		<result column="FM_INDI_APP_SUBS_VOL" property="fmIndiAppSubsVol" jdbcType="DECIMAL" />
+		<result column="FM_INDI_APP_SUBS_AMOUNT" property="fmIndiAppSubsAmount" jdbcType="DECIMAL" />
+		<result column="FM_MIN_SUBS_VOL_BY_INDI" property="fmMinSubsVolByIndi" jdbcType="DECIMAL" />
+		<result column="FM_MIN_SUBS_AMOUNT_BY_INDI" property="fmMinSubsAmountByIndi" jdbcType="DECIMAL" />
+		<result column="FM_REGISTRAR_CODE" property="fmRegistrarCode" jdbcType="VARCHAR" />
+		<result column="FM_FUND_SPONSOR" property="fmFundSponsor" jdbcType="VARCHAR" />
+		<result column="FM_TRADING_PRICE" property="fmTradingPrice" jdbcType="DECIMAL" />
+		<result column="FM_FACE_VALUE" property="fmFaceValue" jdbcType="DECIMAL" />
+		<result column="FM_DIVIDENT_DATE" property="fmDividentDate" jdbcType="VARCHAR" />
+		<result column="FM_REGISTRATION_DATE" property="fmRegistrationDate" jdbcType="VARCHAR" />
+		<result column="FM_XR_DATE" property="fmXrDate" jdbcType="VARCHAR" />
+		<result column="FM_MAX_SUBS_VOL_BY_INDI" property="fmMaxSubsVolByIndi" jdbcType="DECIMAL" />
+		<result column="FM_MAX_SUBS_AMOUNT_BY_INDI" property="fmMaxSubsAmountByIndi" jdbcType="DECIMAL" />
+		<result column="FM_MAX_SUBS_VOL_BY_INST" property="fmMaxSubsVolByInst" jdbcType="DECIMAL" />
+		<result column="FM_MAX_SUBS_AMOUNT_BY_INST" property="fmMaxSubsAmountByInst" jdbcType="DECIMAL" />
+		<result column="FM_UNIT_SUBS_VOL_BY_INDI" property="fmUnitSubsVolByIndi" jdbcType="DECIMAL" />
+		<result column="FM_UNIT_SUBS_AMOUNT_BY_INDI" property="fmUnitSubsAmountByIndi" jdbcType="DECIMAL" />
+		<result column="FM_UNIT_SUBS_VOL_BY_INST" property="fmUnitSubsVolByInst" jdbcType="DECIMAL" />
+		<result column="FM_UNIT_SUBS_AMOUNT_BY_INST" property="fmUnitSubsAmountByInst" jdbcType="DECIMAL" />
+		<result column="FM_MIN_BIDS_AMOUNT_BY_INDI" property="fmMinBidsAmountByIndi" jdbcType="DECIMAL" />
+		<result column="FM_MIN_BIDS_AMOUNT_BY_INST" property="fmMinBidsAmountByInst" jdbcType="DECIMAL" />
+		<result column="FM_MIN_APP_BIDS_AMOUNT_BY_INDI" property="fmMinAppBidsAmountByIndi" jdbcType="DECIMAL" />
+		<result column="FM_MIN_APP_BIDS_AMOUNT_BY_INST" property="fmMinAppBidsAmountByInst" jdbcType="DECIMAL" />
+		<result column="FM_MIN_REDEMPTION_VOL" property="fmMinRedemptionVol" jdbcType="DECIMAL" />
+		<result column="FM_MIN_INTERCONVERT_VOL" property="fmMinInterconvertVol" jdbcType="DECIMAL" />
+		<result column="FM_ISSUE_TYPE_BY_INDI" property="fmIssueTypeByIndi" jdbcType="VARCHAR" />
+		<result column="FM_ISSUE_TYPE_BY_INST" property="fmIssueTypeByInst" jdbcType="VARCHAR" />
+		<result column="FM_SUBS_TYPE" property="fmSubsType" jdbcType="VARCHAR" />
+		<result column="FM_COLLECT_FEE_TYPE" property="fmCollectFeeType" jdbcType="VARCHAR" />
+		<result column="FM_NEXT_TRADE_DATE" property="fmNextTradeDate" jdbcType="VARCHAR" />
+		<result column="FM_VALUE_LINE" property="fmValueLine" jdbcType="DECIMAL" />
+		<result column="FM_TOTAL_DIVIDENT" property="fmTotalDivident" jdbcType="DECIMAL" />
+		<result column="FM_FUND_INCOME" property="fmFundIncome" jdbcType="DECIMAL" />
+		<result column="FM_FUND_INCOME_FLAG" property="fmFundIncomeFlag" jdbcType="VARCHAR" />
+		<result column="FM_YIELD" property="fmYield" jdbcType="DECIMAL" />
+		<result column="FM_YIELD_FLAG" property="fmYieldFlag" jdbcType="VARCHAR" />
+		<result column="FM_GUARANTEED_NAV" property="fmGuaranteedNav" jdbcType="DECIMAL" />
+		<result column="FM_FUND_YEAR_INCOME_RATE" property="fmFundYearIncomeRate" jdbcType="DECIMAL" />
+		<result column="FM_FUND_YEAR_INCOME_RATE_FLAG" property="fmFundYearIncomeRateFlag" jdbcType="VARCHAR" />
+		<result column="FM_INDI_MAX_PURCHASE" property="fmIndiMaxPurchase" jdbcType="DECIMAL" />
+		<result column="FM_INST_MAX_PURCHASE" property="fmInstMaxPurchase" jdbcType="DECIMAL" />
+		<result column="FM_INDI_DAY_MAX_SUM_BUY" property="fmIndiDayMaxSumBuy" jdbcType="DECIMAL" />
+		<result column="FM_INST_DAY_MAX_SUM_BUY" property="fmInstDayMaxSumBuy" jdbcType="DECIMAL" />
+		<result column="FM_INDI_DAY_MAX_SUM_REDEEM" property="fmIndiDayMaxSumRedeem" jdbcType="DECIMAL" />
+		<result column="FM_INST_DAY_MAX_SUM_REDEEM" property="fmInstDayMaxSumRedeem" jdbcType="DECIMAL" />
+		<result column="FM_INDI_MAX_REDEEM" property="fmIndiMaxRedeem" jdbcType="DECIMAL" />
+		<result column="FM_INST_MAX_REDEEM" property="fmInstMaxRedeem" jdbcType="DECIMAL" />
+		<result column="FM_FUND_DAY_INCOME_FLAG" property="fmFundDayIncomeFlag" jdbcType="VARCHAR" />
+		<result column="FM_FUND_DAY_INCOME" property="fmFundDayIncome" jdbcType="DECIMAL" />
+		<result column="FM_ALLOW_BREACH_REDEMPT" property="fmAllowBreachRedempt" jdbcType="VARCHAR" />
+		<result column="FM_FUND_TYPE" property="fmFundType" jdbcType="VARCHAR" />
+		<result column="FM_FUND_TYPE_NAME" property="fmFundTypeName" jdbcType="VARCHAR" />
+		<result column="FM_REGISTRAR_NAME" property="fmRegistrarName" jdbcType="VARCHAR" />
+		<result column="FM_FUND_MANAGER_NAME" property="fmFundManagerName" jdbcType="VARCHAR" />
+		<result column="FM_FUND_SERVER_TEL" property="fmFundServerTel" jdbcType="VARCHAR" />
+		<result column="FM_DUND_INTERNET_ADDRESS" property="fmDundInternetAddress" jdbcType="VARCHAR" />
+		<result column="FM_BUSINESS_DATE" property="fmBusinessDate" jdbcType="VARCHAR" />
+		<result column="FM_SEND_STATUS" property="fmSendStatus" jdbcType="VARCHAR" />
+		<result column="FM_GENERATE_STATUS" property="fmGenerateStatus" jdbcType="VARCHAR" />
+		<result column="FM_SEND_FILE_TIME" property="fmSendFileTime" jdbcType="TIMESTAMP" />
+		<result column="FM_GENERATE_FILE_TIME" property="fmGenerateFileTime" jdbcType="TIMESTAMP" />
+		<result column="FM_DATA_GENERATE" property="fmDataGenerate" jdbcType="TIMESTAMP" />
+		<result column="FM_CTIME" property="fmCtime" jdbcType="TIMESTAMP" />
+		<result column="FM_UTIME" property="fmUtime" jdbcType="TIMESTAMP" />
+		<result column="FM_CUSER" property="fmCuser" jdbcType="VARCHAR" />
+		<result column="FM_UUSER" property="fmUuser" jdbcType="VARCHAR" />
+		<result column="FM_CHANNEL_CODE" property="fmChannelCode" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="fundMarketInfo" type="com.sams.custom.model.FundMarketInfo" extends="BaseResultMap">
+		<result column="channelName" property="channelName" jdbcType="VARCHAR" />
+		<result column="theProductType" property="theProductType" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+    FM_ID, FM_FUND_NAME, FM_FUND_CODE, FM_TOTAL_FUND_VOL, FM_FUND_STATUS, FM_NAV, FM_UPDATE_DATE, 
+    FM_NET_VALUE_TYPE, FM_ACCUMULATIVE_NAV, FM_CONVERT_STATUS, FM_PERIODIC_STATUS, FM_TRANSFER_AGENCY_STATUS, 
+    FM_FUND_SIZE, FM_CURRENCY_TYPE, FM_ANNOUNC_FLAG, FM_DEF_DIVIDEN_DMETHOD, FM_INST_APP_SUBS_AMNT, 
+    FM_INST_APP_SUBS_VOL, FM_MIN_AMOUNT_BY_INST, FM_MIN_VOL_BY_INST, FM_CUSTODIAN_CODE, 
+    FM_AMOUNT_OF_PERIODIC_SUBS, FM_DATE_OF_PERIODIC_SUBS, FM_MAX_REDEMPTION_VOL, FM_MIN_ACCOUNT_BALANCE, 
+    FM_IPOSTART_DATE, FM_IPOEND_DATE, FM_FUND_MANAGER_CODE, FM_INDI_APP_SUBS_VOL, FM_INDI_APP_SUBS_AMOUNT, 
+    FM_MIN_SUBS_VOL_BY_INDI, FM_MIN_SUBS_AMOUNT_BY_INDI, FM_REGISTRAR_CODE, FM_FUND_SPONSOR, 
+    FM_TRADING_PRICE, FM_FACE_VALUE, FM_DIVIDENT_DATE, FM_REGISTRATION_DATE, FM_XR_DATE, 
+    FM_MAX_SUBS_VOL_BY_INDI, FM_MAX_SUBS_AMOUNT_BY_INDI, FM_MAX_SUBS_VOL_BY_INST, FM_MAX_SUBS_AMOUNT_BY_INST, 
+    FM_UNIT_SUBS_VOL_BY_INDI, FM_UNIT_SUBS_AMOUNT_BY_INDI, FM_UNIT_SUBS_VOL_BY_INST, 
+    FM_UNIT_SUBS_AMOUNT_BY_INST, FM_MIN_BIDS_AMOUNT_BY_INDI, FM_MIN_BIDS_AMOUNT_BY_INST, 
+    FM_MIN_APP_BIDS_AMOUNT_BY_INDI, FM_MIN_APP_BIDS_AMOUNT_BY_INST, FM_MIN_REDEMPTION_VOL, 
+    FM_MIN_INTERCONVERT_VOL, FM_ISSUE_TYPE_BY_INDI, FM_ISSUE_TYPE_BY_INST, FM_SUBS_TYPE, 
+    FM_COLLECT_FEE_TYPE, FM_NEXT_TRADE_DATE, FM_VALUE_LINE, FM_TOTAL_DIVIDENT, FM_FUND_INCOME, 
+    FM_FUND_INCOME_FLAG, FM_YIELD, FM_YIELD_FLAG, FM_GUARANTEED_NAV, FM_FUND_YEAR_INCOME_RATE, 
+    FM_FUND_YEAR_INCOME_RATE_FLAG, FM_INDI_MAX_PURCHASE, FM_INST_MAX_PURCHASE, FM_INDI_DAY_MAX_SUM_BUY, 
+    FM_INST_DAY_MAX_SUM_BUY, FM_INDI_DAY_MAX_SUM_REDEEM, FM_INST_DAY_MAX_SUM_REDEEM, 
+    FM_INDI_MAX_REDEEM, FM_INST_MAX_REDEEM, FM_FUND_DAY_INCOME_FLAG, FM_FUND_DAY_INCOME, 
+    FM_ALLOW_BREACH_REDEMPT, FM_FUND_TYPE, FM_FUND_TYPE_NAME, FM_REGISTRAR_NAME, FM_FUND_MANAGER_NAME, 
+    FM_FUND_SERVER_TEL, FM_DUND_INTERNET_ADDRESS, FM_BUSINESS_DATE, FM_SEND_STATUS, FM_GENERATE_STATUS, 
+    FM_SEND_FILE_TIME, FM_GENERATE_FILE_TIME, FM_DATA_GENERATE, FM_CTIME, FM_UTIME, FM_CUSER, 
+    FM_UUSER, FM_CHANNEL_CODE
+	</sql>
+	
+	<sql id="Base_Column_List_File" >
+	    FM_ID FMID,
+		FM_FUND_NAME FUNDNAME,
+		FM_FUND_CODE FUNDCODE,
+		FM_TOTAL_FUND_VOL TOTALFUNDVOL,
+		FM_FUND_STATUS FUNDSTATUS,
+		FM_NAV NAV,
+		FM_UPDATE_DATE UPDATEDATE,
+		FM_NET_VALUE_TYPE NETVALUETYPE,
+		FM_ACCUMULATIVE_NAV ACCUMULATIVENAV,
+		FM_CONVERT_STATUS CONVERTSTATUS,
+		FM_PERIODIC_STATUS PERIODICSTATUS,
+		FM_TRANSFER_AGENCY_STATUS TRANSFERAGENCYSTATUS,
+		FM_FUND_SIZE FUNDSIZE,
+		FM_CURRENCY_TYPE CURRENCYTYPE,
+		FM_ANNOUNC_FLAG ANNOUNCFLAG,
+		FM_DEF_DIVIDEN_DMETHOD DEFDIVIDENDMETHOD,
+		FM_INST_APP_SUBS_AMNT INSTAPPSUBSAMNT,
+		FM_INST_APP_SUBS_VOL INSTAPPSUBSVOL,
+		FM_MIN_AMOUNT_BY_INST MINAMOUNTBYINST,
+		FM_MIN_VOL_BY_INST MINVOLBYINST,
+		FM_CUSTODIAN_CODE CUSTODIANCODE,
+		FM_AMOUNT_OF_PERIODIC_SUBS AMOUNTOFPERIODICSUBS,
+		FM_DATE_OF_PERIODIC_SUBS DATEOFPERIODICSUBS,
+		FM_MAX_REDEMPTION_VOL MAXREDEMPTIONVOL,
+		FM_MIN_ACCOUNT_BALANCE MINACCOUNTBALANCE,
+		FM_IPOSTART_DATE IPOSTARTDATE,
+		FM_IPOEND_DATE IPOENDDATE,
+		FM_FUND_MANAGER_CODE FUNDMANAGERCODE,
+		FM_INDI_APP_SUBS_VOL INDIAPPSUBSVOL,
+		FM_INDI_APP_SUBS_AMOUNT INDIAPPSUBSAMOUNT,
+		FM_MIN_SUBS_VOL_BY_INDI MINSUBSVOLBYINDI,
+		FM_MIN_SUBS_AMOUNT_BY_INDI MINSUBSAMOUNTBYINDI,
+		FM_REGISTRAR_CODE REGISTRARCODE,
+		FM_FUND_SPONSOR FUNDSPONSOR,
+		FM_TRADING_PRICE TRADINGPRICE,
+		FM_FACE_VALUE FACEVALUE,
+		FM_DIVIDENT_DATE DIVIDENTDATE,
+		FM_REGISTRATION_DATE REGISTRATIONDATE,
+		FM_XR_DATE XRDATE,
+		FM_MAX_SUBS_VOL_BY_INDI MAXSUBSVOLBYINDI,
+		FM_MAX_SUBS_AMOUNT_BY_INDI MAXSUBSAMOUNTBYINDI,
+		FM_MAX_SUBS_VOL_BY_INST MAXSUBSVOLBYINST,
+		FM_MAX_SUBS_AMOUNT_BY_INST MAXSUBSAMOUNTBYINST,
+		FM_UNIT_SUBS_VOL_BY_INDI UNITSUBSVOLBYINDI,
+		FM_UNIT_SUBS_AMOUNT_BY_INDI UNITSUBSAMOUNTBYINDI,
+		FM_UNIT_SUBS_VOL_BY_INST UNITSUBSVOLBYINST,
+		FM_UNIT_SUBS_AMOUNT_BY_INST UNITSUBSAMOUNTBYINST,
+		FM_MIN_BIDS_AMOUNT_BY_INDI MINBIDSAMOUNTBYINDI,
+		FM_MIN_BIDS_AMOUNT_BY_INST MINBIDSAMOUNTBYINST,
+		FM_MIN_APP_BIDS_AMOUNT_BY_INDI MINAPPBIDSAMOUNTBYINDI,
+		FM_MIN_APP_BIDS_AMOUNT_BY_INST MINAPPBIDSAMOUNTBYINST,
+		FM_MIN_REDEMPTION_VOL MINREDEMPTIONVOL,
+		FM_MIN_INTERCONVERT_VOL MININTERCONVERTVOL,
+		FM_ISSUE_TYPE_BY_INDI ISSUETYPEBYINDI,
+		FM_ISSUE_TYPE_BY_INST ISSUETYPEBYINST,
+		FM_SUBS_TYPE SUBSTYPE,
+		FM_COLLECT_FEE_TYPE COLLECTFEETYPE,
+		FM_NEXT_TRADE_DATE NEXTTRADEDATE,
+		FM_VALUE_LINE VALUELINE,
+		FM_TOTAL_DIVIDENT TOTALDIVIDENT,
+		FM_FUND_INCOME FUNDINCOME,
+		FM_FUND_INCOME_FLAG FUNDINCOMEFLAG,
+		FM_YIELD YIELD,
+		FM_YIELD_FLAG YIELDFLAG,
+		FM_GUARANTEED_NAV GUARANTEEDNAV,
+		FM_FUND_YEAR_INCOME_RATE FUNDYEARINCOMERATE,
+		FM_FUND_YEAR_INCOME_RATE_FLAG FUNDYEARINCOMERATEFLAG,
+		FM_INDI_MAX_PURCHASE INDIMAXPURCHASE,
+		FM_INST_MAX_PURCHASE INSTMAXPURCHASE,
+		FM_INDI_DAY_MAX_SUM_BUY INDIDAYMAXSUMBUY,
+		FM_INST_DAY_MAX_SUM_BUY INSTDAYMAXSUMBUY,
+		FM_INDI_DAY_MAX_SUM_REDEEM INDIDAYMAXSUMREDEEM,
+		FM_INST_DAY_MAX_SUM_REDEEM INSTDAYMAXSUMREDEEM,
+		FM_INDI_MAX_REDEEM INDIMAXREDEEM,
+		FM_INST_MAX_REDEEM INSTMAXREDEEM,
+		FM_FUND_DAY_INCOME_FLAG FUNDDAYINCOMEFLAG,
+		FM_FUND_DAY_INCOME FUNDDAYINCOME,
+		FM_ALLOW_BREACH_REDEMPT ALLOWBREACHREDEMPT,
+		FM_FUND_TYPE FUNDTYPE,
+		FM_FUND_TYPE_NAME FUNDTYPENAME,
+		FM_REGISTRAR_NAME REGISTRARNAME,
+		FM_FUND_MANAGER_NAME FUNDMANAGERNAME,
+		FM_FUND_SERVER_TEL FUNDSERVERTEL,
+		FM_DUND_INTERNET_ADDRESS FUNDINTERNETADDRESS,
+		FM_BUSINESS_DATE BUSINESSDATE,
+		FM_SEND_STATUS SENDSTATUS,
+		FM_GENERATE_STATUS GENERATESTATUS,
+		FM_SEND_FILE_TIME SENDFILETIME,
+		FM_GENERATE_FILE_TIME GENERATEFILETIME,
+		FM_DATA_GENERATE DATAGENERATE,
+		FM_CHANNEL_CODE CHANNELCODE
+  </sql>
+  
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+		<include refid="Base_Column_List" />
+    from D_FUND_MARKET_CFM
+    where FM_ID = #{fmId,jdbcType=DECIMAL}
+	</select>
+	<select id="selectFundMarketCfm" resultMap="BaseResultMap" parameterType="com.sams.custom.model.FundMarketCfm" >
+    select 
+		<include refid="Base_Column_List" />
+    from D_FUND_MARKET_CFM
+    where 1=1
+		<if test="fmChannelCode != null" >
+    and FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+		</if>
+		<if test="fmFundCode != null" >
+    and  FM_FUND_CODE = #{fmFundCode,jdbcType=VARCHAR}
+		</if>
+		<if test="fmBusinessDate != null" >
+    and  FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<select id="selectFundMarketCfmInfo" resultMap="BaseResultMap" parameterType="com.sams.custom.model.FundMarketCfm" >
+    select 
+		<include refid="Base_Column_List" />
+    from D_FUND_MARKET_CFM
+    where 1=1
+		<if test="fmChannelCode != null" >
+    and FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+		</if>
+		<if test="fmFundCode != null" >
+    and  FM_FUND_CODE = #{fmFundCode,jdbcType=VARCHAR}
+		</if>
+		<if test="fmBusinessDate != null" >
+    and  FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	<delete id="deleteFundMarketCFM" parameterType="com.sams.custom.model.FundMarketCfm" >
+    delete from D_FUND_MARKET_CFM
+    where 1=1
+		<if test="fmChannelCode != null" >
+    and FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+		</if>
+		<if test="fmBusinessDate != null" >
+    and FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR}
+		</if>
+		<if test="fmFundCode != null" >
+    and FM_FUND_CODE=#{fmFundCode,jdbcType=VARCHAR}
+		</if>
+	</delete>
+	<insert id="insertSelective" parameterType="hashMap" >
+    insert into D_FUND_MARKET_CFM
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="FMID != null" >
+        FM_ID,
+			</if>
+			<if test="FMFUNDNAME != null" >
+        FM_FUND_NAME,
+			</if>
+			<if test="FMFUNDCODE != null" >
+        FM_FUND_CODE,
+			</if>
+			<if test="FMTOTALFUNDVOL != null" >
+        FM_TOTAL_FUND_VOL,
+			</if>
+			<if test="FMFUNDSTATUS != null" >
+        FM_FUND_STATUS,
+			</if>
+			<if test="FMNAV != null" >
+        FM_NAV,
+			</if>
+			<if test="FMUPDATEDATE != null" >
+        FM_UPDATE_DATE,
+			</if>
+			<if test="FMNETVALUETYPE != null" >
+        FM_NET_VALUE_TYPE,
+			</if>
+			<if test="FMACCUMULATIVENAV != null" >
+        FM_ACCUMULATIVE_NAV,
+			</if>
+			<if test="FMCONVERTSTATUS != null" >
+        FM_CONVERT_STATUS,
+			</if>
+			<if test="FMPERIODICSTATUS != null" >
+        FM_PERIODIC_STATUS,
+			</if>
+			<if test="FMTRANSFERAGENCYSTATUS != null" >
+        FM_TRANSFER_AGENCY_STATUS,
+			</if>
+			<if test="FMFUNDSIZE != null" >
+        FM_FUND_SIZE,
+			</if>
+			<if test="FMCURRENCYTYPE != null" >
+        FM_CURRENCY_TYPE,
+			</if>
+			<if test="FMANNOUNCFLAG != null" >
+        FM_ANNOUNC_FLAG,
+			</if>
+			<if test="FMDEFDIVIDENDMETHOD != null" >
+        FM_DEF_DIVIDEN_DMETHOD,
+			</if>
+			<if test="FMINSTAPPSUBSAMNT != null" >
+        FM_INST_APP_SUBS_AMNT,
+			</if>
+			<if test="FMINSTAPPSUBSVOL != null" >
+        FM_INST_APP_SUBS_VOL,
+			</if>
+			<if test="FMMINAMOUNTBYINST != null" >
+        FM_MIN_AMOUNT_BY_INST,
+			</if>
+			<if test="FMMINVOLBYINST != null" >
+        FM_MIN_VOL_BY_INST,
+			</if>
+			<if test="FMCUSTODIANCODE != null" >
+        FM_CUSTODIAN_CODE,
+			</if>
+			<if test="FMAMOUNTOFPERIODICSUBS != null" >
+        FM_AMOUNT_OF_PERIODIC_SUBS,
+			</if>
+			<if test="FMDATEOFPERIODICSUBS != null" >
+        FM_DATE_OF_PERIODIC_SUBS,
+			</if>
+			<if test="FMMAXREDEMPTIONVOL != null" >
+        FM_MAX_REDEMPTION_VOL,
+			</if>
+			<if test="FMMINACCOUNTBALANCE != null" >
+        FM_MIN_ACCOUNT_BALANCE,
+			</if>
+			<if test="FMIPOSTARTDATE != null" >
+        FM_IPOSTART_DATE,
+			</if>
+			<if test="FMIPOENDDATE != null" >
+        FM_IPOEND_DATE,
+			</if>
+			<if test="FMFUNDMANAGERCODE != null" >
+        FM_FUND_MANAGER_CODE,
+			</if>
+			<if test="FMINDIAPPSUBSVOL != null" >
+        FM_INDI_APP_SUBS_VOL,
+			</if>
+			<if test="FMINDIAPPSUBSAMOUNT != null" >
+        FM_INDI_APP_SUBS_AMOUNT,
+			</if>
+			<if test="FMMINSUBSVOLBYINDI != null" >
+        FM_MIN_SUBS_VOL_BY_INDI,
+			</if>
+			<if test="FMMINSUBSAMOUNTBYINDI != null" >
+        FM_MIN_SUBS_AMOUNT_BY_INDI,
+			</if>
+			<if test="FMREGISTRARCODE != null" >
+        FM_REGISTRAR_CODE,
+			</if>
+			<if test="FMFUNDSPONSOR != null" >
+        FM_FUND_SPONSOR,
+			</if>
+			<if test="FMTRADINGPRICE != null" >
+        FM_TRADING_PRICE,
+			</if>
+			<if test="FMFACEVALUE != null" >
+        FM_FACE_VALUE,
+			</if>
+			<if test="FMDIVIDENTDATE != null" >
+        FM_DIVIDENT_DATE,
+			</if>
+			<if test="FMREGISTRATIONDATE != null" >
+        FM_REGISTRATION_DATE,
+			</if>
+			<if test="FMXRDATE != null" >
+        FM_XR_DATE,
+			</if>
+			<if test="FMMAXSUBSVOLBYINDI != null" >
+        FM_MAX_SUBS_VOL_BY_INDI,
+			</if>
+			<if test="FMMAXSUBSAMOUNTBYINDI != null" >
+        FM_MAX_SUBS_AMOUNT_BY_INDI,
+			</if>
+			<if test="FMMAXSUBSVOLBYINST != null" >
+        FM_MAX_SUBS_VOL_BY_INST,
+			</if>
+			<if test="FMMAXSUBSAMOUNTBYINST != null" >
+        FM_MAX_SUBS_AMOUNT_BY_INST,
+			</if>
+			<if test="FMUNITSUBSVOLBYINDI != null" >
+        FM_UNIT_SUBS_VOL_BY_INDI,
+			</if>
+			<if test="FMUNITSUBSAMOUNTBYINDI != null" >
+        FM_UNIT_SUBS_AMOUNT_BY_INDI,
+			</if>
+			<if test="FMUNITSUBSVOLBYINST != null" >
+        FM_UNIT_SUBS_VOL_BY_INST,
+			</if>
+			<if test="FMUNITSUBSAMOUNTBYINST != null" >
+        FM_UNIT_SUBS_AMOUNT_BY_INST,
+			</if>
+			<if test="FMMINBIDSAMOUNTBYINDI != null" >
+        FM_MIN_BIDS_AMOUNT_BY_INDI,
+			</if>
+			<if test="FMMINBIDSAMOUNTBYINST != null" >
+        FM_MIN_BIDS_AMOUNT_BY_INST,
+			</if>
+			<if test="FMMINAPPBIDSAMOUNTBYINDI != null" >
+        FM_MIN_APP_BIDS_AMOUNT_BY_INDI,
+			</if>
+			<if test="FMMINAPPBIDSAMOUNTBYINST != null" >
+        FM_MIN_APP_BIDS_AMOUNT_BY_INST,
+			</if>
+			<if test="FMMINREDEMPTIONVOL != null" >
+        FM_MIN_REDEMPTION_VOL,
+			</if>
+			<if test="FMMININTERCONVERTVOL != null" >
+        FM_MIN_INTERCONVERT_VOL,
+			</if>
+			<if test="FMISSUETYPEBYINDI != null" >
+        FM_ISSUE_TYPE_BY_INDI,
+			</if>
+			<if test="FMISSUETYPEBYINST != null" >
+        FM_ISSUE_TYPE_BY_INST,
+			</if>
+			<if test="FMSUBSTYPE != null" >
+        FM_SUBS_TYPE,
+			</if>
+			<if test="FMCOLLECTFEETYPE != null" >
+        FM_COLLECT_FEE_TYPE,
+			</if>
+			<if test="FMNEXTTRADEDATE != null" >
+        FM_NEXT_TRADE_DATE,
+			</if>
+			<if test="FMVALUELINE != null" >
+        FM_VALUE_LINE,
+			</if>
+			<if test="FMTOTALDIVIDENT != null" >
+        FM_TOTAL_DIVIDENT,
+			</if>
+			<if test="FMFUNDINCOME != null" >
+        FM_FUND_INCOME,
+			</if>
+			<if test="FMFUNDINCOMEFLAG != null" >
+        FM_FUND_INCOME_FLAG,
+			</if>
+			<if test="FMYIELD != null" >
+        FM_YIELD,
+			</if>
+			<if test="FMYIELDFLAG != null" >
+        FM_YIELD_FLAG,
+			</if>
+			<if test="FMGUARANTEEDNAV != null" >
+        FM_GUARANTEED_NAV,
+			</if>
+			<if test="FMFUNDYEARINCOMERATE != null" >
+        FM_FUND_YEAR_INCOME_RATE,
+			</if>
+			<if test="FMFUNDYEARINCOMERATEFLAG != null" >
+        FM_FUND_YEAR_INCOME_RATE_FLAG,
+			</if>
+			<if test="FMINDIMAXPURCHASE != null" >
+        FM_INDI_MAX_PURCHASE,
+			</if>
+			<if test="FMINSTMAXPURCHASE != null" >
+        FM_INST_MAX_PURCHASE,
+			</if>
+			<if test="FMINDIDAYMAXSUMBUY != null" >
+        FM_INDI_DAY_MAX_SUM_BUY,
+			</if>
+			<if test="FMINSTDAYMAXSUMBUY != null" >
+        FM_INST_DAY_MAX_SUM_BUY,
+			</if>
+			<if test="FMINDIDAYMAXSUMREDEEM != null" >
+        FM_INDI_DAY_MAX_SUM_REDEEM,
+			</if>
+			<if test="FMINSTDAYMAXSUMREDEEM != null" >
+        FM_INST_DAY_MAX_SUM_REDEEM,
+			</if>
+			<if test="FMINDIMAXREDEEM != null" >
+        FM_INDI_MAX_REDEEM,
+			</if>
+			<if test="FMINSTMAXREDEEM != null" >
+        FM_INST_MAX_REDEEM,
+			</if>
+			<if test="FMFUNDDAYINCOMEFLAG != null" >
+        FM_FUND_DAY_INCOME_FLAG,
+			</if>
+			<if test="FMFUNDDAYINCOME != null" >
+        FM_FUND_DAY_INCOME,
+			</if>
+			<if test="FMALLOWBREACHREDEMPT != null" >
+        FM_ALLOW_BREACH_REDEMPT,
+			</if>
+			<if test="FMFUNDTYPE != null" >
+        FM_FUND_TYPE,
+			</if>
+			<if test="FMFUNDTYPENAME != null" >
+        FM_FUND_TYPE_NAME,
+			</if>
+			<if test="FMREGISTRARNAME != null" >
+        FM_REGISTRAR_NAME,
+			</if>
+			<if test="FMFUNDMANAGERNAME != null" >
+        FM_FUND_MANAGER_NAME,
+			</if>
+			<if test="FMFUNDSERVERTEL != null" >
+        FM_FUND_SERVER_TEL,
+			</if>
+			<if test="FMDUNDINTERNETADDRESS != null" >
+        FM_DUND_INTERNET_ADDRESS,
+			</if>
+			<if test="FMBUSINESSDATE != null" >
+        FM_BUSINESS_DATE,
+			</if>
+			<if test="FMSENDSTATUS != null" >
+        FM_SEND_STATUS,
+			</if>
+			<if test="FMGENERATESTATUS != null" >
+        FM_GENERATE_STATUS,
+			</if>
+			<if test="FMSENDFILETIME != null" >
+        FM_SEND_FILE_TIME,
+			</if>
+			<if test="FMGENERATEFILETIME != null" >
+        FM_GENERATE_FILE_TIME,
+			</if>
+			<if test="FMDATAGENERATE != null" >
+        FM_DATA_GENERATE,
+			</if>
+			<if test="FMCTIME != null" >
+        FM_CTIME,
+			</if>
+			<if test="FMUTIME != null" >
+        FM_UTIME,
+			</if>
+			<if test="FMCUSER != null" >
+        FM_CUSER,
+			</if>
+			<if test="FMUUSER != null" >
+        FM_UUSER,
+			</if>
+			<if test="FMCHANNELCODE != null" >
+        FM_CHANNEL_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="FMID != null" >
+        #{FMID,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDNAME != null" >
+        #{FMFUNDNAME,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDCODE != null" >
+        #{FMFUNDCODE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMTOTALFUNDVOL != null" >
+        #{FMTOTALFUNDVOL,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDSTATUS != null" >
+        #{FMFUNDSTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMNAV != null" >
+        #{FMNAV,jdbcType=DECIMAL},
+			</if>
+			<if test="FMUPDATEDATE != null" >
+        #{FMUPDATEDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMNETVALUETYPE != null" >
+        #{FMNETVALUETYPE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMACCUMULATIVENAV != null" >
+        #{FMACCUMULATIVENAV,jdbcType=DECIMAL},
+			</if>
+			<if test="FMCONVERTSTATUS != null" >
+        #{FMCONVERTSTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMPERIODICSTATUS != null" >
+        #{FMPERIODICSTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMTRANSFERAGENCYSTATUS != null" >
+        #{FMTRANSFERAGENCYSTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDSIZE != null" >
+        #{FMFUNDSIZE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMCURRENCYTYPE != null" >
+        #{FMCURRENCYTYPE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMANNOUNCFLAG != null" >
+        #{FMANNOUNCFLAG,jdbcType=VARCHAR},
+			</if>
+			<if test="FMDEFDIVIDENDMETHOD != null" >
+        #{FMDEFDIVIDENDMETHOD,jdbcType=VARCHAR},
+			</if>
+			<if test="FMINSTAPPSUBSAMNT != null" >
+        #{FMINSTAPPSUBSAMNT,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINSTAPPSUBSVOL != null" >
+        #{FMINSTAPPSUBSVOL,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINAMOUNTBYINST != null" >
+        #{FMMINAMOUNTBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINVOLBYINST != null" >
+        #{FMMINVOLBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMCUSTODIANCODE != null" >
+        #{FMCUSTODIANCODE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMAMOUNTOFPERIODICSUBS != null" >
+        #{FMAMOUNTOFPERIODICSUBS,jdbcType=DECIMAL},
+			</if>
+			<if test="FMDATEOFPERIODICSUBS != null" >
+        #{FMDATEOFPERIODICSUBS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMMAXREDEMPTIONVOL != null" >
+        #{fmMaxRedemptionVol,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINACCOUNTBALANCE != null" >
+        #{FMMINACCOUNTBALANCE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMIPOSTARTDATE != null" >
+        #{FMIPOSTARTDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMIPOENDDATE != null" >
+        #{FMIPOENDDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDMANAGERCODE != null" >
+        #{FMFUNDMANAGERCODE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMINDIAPPSUBSVOL != null" >
+        #{FMINDIAPPSUBSVOL,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINDIAPPSUBSAMOUNT != null" >
+        #{FMINDIAPPSUBSAMOUNT,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINSUBSVOLBYINDI != null" >
+        #{FMMINSUBSVOLBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINSUBSAMOUNTBYINDI != null" >
+        #{FMMINSUBSAMOUNTBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMREGISTRARCODE != null" >
+        #{FMREGISTRARCODE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDSPONSOR != null" >
+        #{FMFUNDSPONSOR,jdbcType=VARCHAR},
+			</if>
+			<if test="FMTRADINGPRICE != null" >
+        #{FMTRADINGPRICE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFACEVALUE != null" >
+        #{FMFACEVALUE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMDIVIDENTDATE != null" >
+        #{FMDIVIDENTDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMREGISTRATIONDATE != null" >
+        #{FMREGISTRATIONDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMXRDATE != null" >
+        #{FMXRDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMMAXSUBSVOLBYINDI != null" >
+        #{FMMAXSUBSVOLBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMAXSUBSAMOUNTBYINDI != null" >
+        #{FMMAXSUBSAMOUNTBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMAXSUBSVOLBYINST != null" >
+        #{FMMAXSUBSVOLBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMAXSUBSAMOUNTBYINST != null" >
+        #{FMMAXSUBSAMOUNTBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMUNITSUBSVOLBYINDI != null" >
+        #{FMUNITSUBSVOLBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMUNITSUBSAMOUNTBYINDI != null" >
+        #{FMUNITSUBSAMOUNTBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMUNITSUBSVOLBYINST != null" >
+        #{FMUNITSUBSVOLBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMUNITSUBSAMOUNTBYINST != null" >
+        #{FMUNITSUBSAMOUNTBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINBIDSAMOUNTBYINDI != null" >
+        #{FMMINBIDSAMOUNTBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINBIDSAMOUNTBYINST != null" >
+        #{FMMINBIDSAMOUNTBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINAPPBIDSAMOUNTBYINDI != null" >
+        #{FMMINAPPBIDSAMOUNTBYINDI,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINAPPBIDSAMOUNTBYINST != null" >
+        #{FMMINAPPBIDSAMOUNTBYINST,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMINREDEMPTIONVOL != null" >
+        #{FMMINREDEMPTIONVOL,jdbcType=DECIMAL},
+			</if>
+			<if test="FMMININTERCONVERTVOL != null" >
+        #{FMMININTERCONVERTVOL,jdbcType=DECIMAL},
+			</if>
+			<if test="FMISSUETYPEBYINDI != null" >
+        #{FMISSUETYPEBYINDI,jdbcType=VARCHAR},
+			</if>
+			<if test="FMISSUETYPEBYINST != null" >
+        #{FMISSUETYPEBYINST,jdbcType=VARCHAR},
+			</if>
+			<if test="FMSUBSTYPE != null" >
+        #{FMSUBSTYPE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMCOLLECTFEETYPE != null" >
+        #{FMCOLLECTFEETYPE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMNEXTTRADEDATE != null" >
+        #{FMNEXTTRADEDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMVALUELINE != null" >
+        #{FMVALUELINE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMTOTALDIVIDENT != null" >
+        #{FMTOTALDIVIDENT,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDINCOME != null" >
+        #{FMFUNDINCOME,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDINCOMEFLAG != null" >
+        #{FMFUNDINCOMEFLAG,jdbcType=VARCHAR},
+			</if>
+			<if test="FMYIELD != null" >
+        #{FMYIELD,jdbcType=DECIMAL},
+			</if>
+			<if test="FMYIELDFLAG != null" >
+        #{FMYIELDFLAG,jdbcType=VARCHAR},
+			</if>
+			<if test="FMGUARANTEEDNAV != null" >
+        #{FMGUARANTEEDNAV,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDYEARINCOMERATE != null" >
+        #{FMFUNDYEARINCOMERATE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDYEARINCOMERATEFLAG != null" >
+        #{FMFUNDYEARINCOMERATEFLAG,jdbcType=VARCHAR},
+			</if>
+			<if test="FMINDIMAXPURCHASE != null" >
+        #{FMINDIMAXPURCHASE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINSTMAXPURCHASE != null" >
+        #{FMINSTMAXPURCHASE,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINDIDAYMAXSUMBUY != null" >
+        #{FMINDIDAYMAXSUMBUY,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINSTDAYMAXSUMBUY != null" >
+        #{FMINSTDAYMAXSUMBUY,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINDIDAYMAXSUMREDEEM != null" >
+        #{FMINDIDAYMAXSUMREDEEM,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINSTDAYMAXSUMREDEEM != null" >
+        #{FMINSTDAYMAXSUMREDEEM,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINDIMAXREDEEM != null" >
+        #{FMINDIMAXREDEEM,jdbcType=DECIMAL},
+			</if>
+			<if test="FMINSTMAXREDEEM != null" >
+        #{FMINSTMAXREDEEM,jdbcType=DECIMAL},
+			</if>
+			<if test="FMFUNDDAYINCOMEFLAG != null" >
+        #{FMFUNDDAYINCOMEFLAG,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDDAYINCOME != null" >
+        #{FMFUNDDAYINCOME,jdbcType=DECIMAL},
+			</if>
+			<if test="FMALLOWBREACHREDEMPT != null" >
+        #{FMALLOWBREACHREDEMPT,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDTYPE != null" >
+        #{FMFUNDTYPE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDTYPENAME != null" >
+        #{FMFUNDTYPENAME,jdbcType=VARCHAR},
+			</if>
+			<if test="FMREGISTRARNAME != null" >
+        #{FMREGISTRARNAME,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDMANAGERNAME != null" >
+        #{FMFUNDMANAGERNAME,jdbcType=VARCHAR},
+			</if>
+			<if test="FMFUNDSERVERTEL != null" >
+        #{FMFUNDSERVERTEL,jdbcType=VARCHAR},
+			</if>
+			<if test="FMDUNDINTERNETADDRESS != null" >
+        #{FMDUNDINTERNETADDRESS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMBUSINESSDATE != null" >
+        #{FMBUSINESSDATE,jdbcType=VARCHAR},
+			</if>
+			<if test="FMSENDSTATUS != null" >
+        #{FMSENDSTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMGENERATESTATUS != null" >
+        #{FMGENERATESTATUS,jdbcType=VARCHAR},
+			</if>
+			<if test="FMSENDFILETIME != null" >
+        #{FMSENDFILETIME,jdbcType=TIMESTAMP},
+			</if>
+			<if test="FMGENERATEFILETIME != null" >
+        #{FMGENERATEFILETIME,jdbcType=TIMESTAMP},
+			</if>
+			<if test="FMDATAGENERATE != null" >
+        #{FMDATAGENERATE,jdbcType=TIMESTAMP},
+			</if>
+			<if test="FMCTIME != null" >
+        #{FMCTIME,jdbcType=TIMESTAMP},
+			</if>
+			<if test="FMUTIME != null" >
+        #{FMUTIME,jdbcType=TIMESTAMP},
+			</if>
+			<if test="FMCUSER != null" >
+        #{FMCUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="FMUUSER != null" >
+        #{FMUUSER,jdbcType=VARCHAR},
+			</if>
+			<if test="FMCHANNELCODE != null" >
+        #{FMCHANNELCODE,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="com.sams.custom.model.FundMarketCfm">
+    update D_FUND_MARKET_CFM
+    set FM_FUND_NAME = #{fmFundName,jdbcType=VARCHAR},
+      FM_FUND_CODE = #{fmFundCode,jdbcType=VARCHAR},
+      FM_TOTAL_FUND_VOL = #{fmTotalFundVol,jdbcType=DECIMAL},
+      FM_FUND_STATUS = #{fmFundStatus,jdbcType=VARCHAR},
+      FM_NAV = #{fmNAV,jdbcType=DECIMAL},
+      FM_UPDATE_DATE = #{fmUpdateDate,jdbcType=VARCHAR},
+      FM_NET_VALUE_TYPE = #{fmNetValueType,jdbcType=VARCHAR},
+      FM_ACCUMULATIVE_NAV = #{fmAccumulativeNav,jdbcType=DECIMAL},
+      FM_CONVERT_STATUS = #{fmConvertStatus,jdbcType=VARCHAR},
+      FM_PERIODIC_STATUS = #{fmPeriodicStatus,jdbcType=VARCHAR},
+      FM_TRANSFER_AGENCY_STATUS = #{fmTransferAgencyStatus,jdbcType=VARCHAR},
+      FM_FUND_SIZE = #{fmFundSize,jdbcType=DECIMAL},
+      FM_CURRENCY_TYPE = #{fmCurrencyType,jdbcType=VARCHAR},
+      FM_ANNOUNC_FLAG = #{fmAnnouncFlag,jdbcType=VARCHAR},
+      FM_DEF_DIVIDEN_DMETHOD = #{fmDefDividenDmethod,jdbcType=VARCHAR},
+      FM_INST_APP_SUBS_AMNT = #{fmInstAppSubsAmnt,jdbcType=DECIMAL},
+      FM_INST_APP_SUBS_VOL = #{fmInstAppSubsVol,jdbcType=DECIMAL},
+      FM_MIN_AMOUNT_BY_INST = #{fmMinAmountByInst,jdbcType=DECIMAL},
+      FM_MIN_VOL_BY_INST = #{fmMinVolByInst,jdbcType=DECIMAL},
+      FM_CUSTODIAN_CODE = #{fmCustodianCode,jdbcType=VARCHAR},
+      FM_AMOUNT_OF_PERIODIC_SUBS = #{fmAmountOfPeriodicSubs,jdbcType=DECIMAL},
+      FM_DATE_OF_PERIODIC_SUBS = #{fmDateOfPeriodicSubs,jdbcType=VARCHAR},
+      FM_MAX_REDEMPTION_VOL = #{fmMaxRedemptionVol,jdbcType=DECIMAL},
+      FM_MIN_ACCOUNT_BALANCE = #{fmMinAccountBalance,jdbcType=DECIMAL},
+      FM_IPOSTART_DATE = #{fmIpostartDate,jdbcType=VARCHAR},
+      FM_IPOEND_DATE = #{fmIpoendDate,jdbcType=VARCHAR},
+      FM_FUND_MANAGER_CODE = #{fmFundManagerCode,jdbcType=VARCHAR},
+      FM_INDI_APP_SUBS_VOL = #{fmIndiAppSubsVol,jdbcType=DECIMAL},
+      FM_INDI_APP_SUBS_AMOUNT = #{fmIndiAppSubsAmount,jdbcType=DECIMAL},
+      FM_MIN_SUBS_VOL_BY_INDI = #{fmMinSubsVolByIndi,jdbcType=DECIMAL},
+      FM_MIN_SUBS_AMOUNT_BY_INDI = #{fmMinSubsAmountByIndi,jdbcType=DECIMAL},
+      FM_REGISTRAR_CODE = #{fmRegistrarCode,jdbcType=VARCHAR},
+      FM_FUND_SPONSOR = #{fmFundSponsor,jdbcType=VARCHAR},
+      FM_TRADING_PRICE = #{fmTradingPrice,jdbcType=DECIMAL},
+      FM_FACE_VALUE = #{fmFaceValue,jdbcType=DECIMAL},
+      FM_DIVIDENT_DATE = #{fmDividentDate,jdbcType=VARCHAR},
+      FM_REGISTRATION_DATE = #{fmRegistrationDate,jdbcType=VARCHAR},
+      FM_XR_DATE = #{fmXrDate,jdbcType=VARCHAR},
+      FM_MAX_SUBS_VOL_BY_INDI = #{fmMaxSubsVolByIndi,jdbcType=DECIMAL},
+      FM_MAX_SUBS_AMOUNT_BY_INDI = #{fmMaxSubsAmountByIndi,jdbcType=DECIMAL},
+      FM_MAX_SUBS_VOL_BY_INST = #{fmMaxSubsVolByInst,jdbcType=DECIMAL},
+      FM_MAX_SUBS_AMOUNT_BY_INST = #{fmMaxSubsAmountByInst,jdbcType=DECIMAL},
+      FM_UNIT_SUBS_VOL_BY_INDI = #{fmUnitSubsVolByIndi,jdbcType=DECIMAL},
+      FM_UNIT_SUBS_AMOUNT_BY_INDI = #{fmUnitSubsAmountByIndi,jdbcType=DECIMAL},
+      FM_UNIT_SUBS_VOL_BY_INST = #{fmUnitSubsVolByInst,jdbcType=DECIMAL},
+      FM_UNIT_SUBS_AMOUNT_BY_INST = #{fmUnitSubsAmountByInst,jdbcType=DECIMAL},
+      FM_MIN_BIDS_AMOUNT_BY_INDI = #{fmMinBidsAmountByIndi,jdbcType=DECIMAL},
+      FM_MIN_BIDS_AMOUNT_BY_INST = #{fmMinBidsAmountByInst,jdbcType=DECIMAL},
+      FM_MIN_APP_BIDS_AMOUNT_BY_INDI = #{fmMinAppBidsAmountByIndi,jdbcType=DECIMAL},
+      FM_MIN_APP_BIDS_AMOUNT_BY_INST = #{fmMinAppBidsAmountByInst,jdbcType=DECIMAL},
+      FM_MIN_REDEMPTION_VOL = #{fmMinRedemptionVol,jdbcType=DECIMAL},
+      FM_MIN_INTERCONVERT_VOL = #{fmMinInterconvertVol,jdbcType=DECIMAL},
+      FM_ISSUE_TYPE_BY_INDI = #{fmIssueTypeByIndi,jdbcType=VARCHAR},
+      FM_ISSUE_TYPE_BY_INST = #{fmIssueTypeByInst,jdbcType=VARCHAR},
+      FM_SUBS_TYPE = #{fmSubsType,jdbcType=VARCHAR},
+      FM_COLLECT_FEE_TYPE = #{fmCollectFeeType,jdbcType=VARCHAR},
+      FM_NEXT_TRADE_DATE = #{fmNextTradeDate,jdbcType=VARCHAR},
+      FM_VALUE_LINE = #{fmValueLine,jdbcType=DECIMAL},
+      FM_TOTAL_DIVIDENT = #{fmTotalDivident,jdbcType=DECIMAL},
+      FM_FUND_INCOME = #{fmFundIncome,jdbcType=DECIMAL},
+      FM_FUND_INCOME_FLAG = #{fmFundIncomeFlag,jdbcType=VARCHAR},
+      FM_YIELD = #{fmYield,jdbcType=DECIMAL},
+      FM_YIELD_FLAG = #{fmYieldFlag,jdbcType=VARCHAR},
+      FM_GUARANTEED_NAV = #{fmGuaranteedNav,jdbcType=DECIMAL},
+      FM_FUND_YEAR_INCOME_RATE = #{fmFundYearIncomeRate,jdbcType=DECIMAL},
+      FM_FUND_YEAR_INCOME_RATE_FLAG = #{fmFundYearIncomeRateFlag,jdbcType=VARCHAR},
+      FM_INDI_MAX_PURCHASE = #{fmIndiMaxPurchase,jdbcType=DECIMAL},
+      FM_INST_MAX_PURCHASE = #{fmInstMaxPurchase,jdbcType=DECIMAL},
+      FM_INDI_DAY_MAX_SUM_BUY = #{fmIndiDayMaxSumBuy,jdbcType=DECIMAL},
+      FM_INST_DAY_MAX_SUM_BUY = #{fmInstDayMaxSumBuy,jdbcType=DECIMAL},
+      FM_INDI_DAY_MAX_SUM_REDEEM = #{fmIndiDayMaxSumRedeem,jdbcType=DECIMAL},
+      FM_INST_DAY_MAX_SUM_REDEEM = #{fmInstDayMaxSumRedeem,jdbcType=DECIMAL},
+      FM_INDI_MAX_REDEEM = #{fmIndiMaxRedeem,jdbcType=DECIMAL},
+      FM_INST_MAX_REDEEM = #{fmInstMaxRedeem,jdbcType=DECIMAL},
+      FM_FUND_DAY_INCOME_FLAG = #{fmFundDayIncomeFlag,jdbcType=VARCHAR},
+      FM_FUND_DAY_INCOME = #{fmFundDayIncome,jdbcType=DECIMAL},
+      FM_ALLOW_BREACH_REDEMPT = #{fmAllowBreachRedempt,jdbcType=VARCHAR},
+      FM_FUND_TYPE = #{fmFundType,jdbcType=VARCHAR},
+      FM_FUND_TYPE_NAME = #{fmFundTypeName,jdbcType=VARCHAR},
+      FM_REGISTRAR_NAME = #{fmRegistrarName,jdbcType=VARCHAR},
+      FM_FUND_MANAGER_NAME = #{fmFundManagerName,jdbcType=VARCHAR},
+      FM_FUND_SERVER_TEL = #{fmFundServerTel,jdbcType=VARCHAR},
+      FM_DUND_INTERNET_ADDRESS = #{fmDundInternetAddress,jdbcType=VARCHAR},
+      FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR},
+      FM_SEND_STATUS = #{fmSendStatus,jdbcType=VARCHAR},
+      FM_GENERATE_STATUS = #{fmGenerateStatus,jdbcType=VARCHAR},
+      FM_SEND_FILE_TIME = #{fmSendFileTime,jdbcType=TIMESTAMP},
+      FM_GENERATE_FILE_TIME = #{fmGenerateFileTime,jdbcType=TIMESTAMP},
+      FM_DATA_GENERATE = #{fmDataGenerate,jdbcType=TIMESTAMP},
+      FM_CTIME = #{fmCtime,jdbcType=TIMESTAMP},
+      FM_UTIME = #{fmUtime,jdbcType=TIMESTAMP},
+      FM_CUSER = #{fmCuser,jdbcType=VARCHAR},
+      FM_UUSER = #{fmUuser,jdbcType=VARCHAR},
+      FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+    where FM_ID = #{fmId,jdbcType=DECIMAL}
+	</update>
+  
+  
+	<update id="updateByChannelCode" parameterType="com.sams.custom.model.FundMarketCfm">
+    update D_FUND_MARKET_CFM
+    set  FM_GENERATE_STATUS = #{fmGenerateStatus,jdbcType=VARCHAR},
+         FM_GENERATE_FILE_TIME = #{fmGenerateFileTime,jdbcType=TIMESTAMP}
+    where 1=1
+		<if  test="fmChannelCode != null">
+    and  FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+		</if>
+		<if  test="fmBusinessDate != null">
+    and FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR}
+		</if>
+	</update>
+  
+	<update id="updateSendStatus" parameterType="com.sams.custom.model.FundMarketCfm">
+    update D_FUND_MARKET_CFM
+    set  FM_SEND_STATUS = #{fmSendStatus,jdbcType=VARCHAR},
+         FM_SEND_FILE_TIME = #{fmSendFileTime,jdbcType=TIMESTAMP}
+    where 1=1
+		<if  test="fmChannelCode != null">
+    and  FM_CHANNEL_CODE = #{fmChannelCode,jdbcType=VARCHAR}
+		</if>
+		<if  test="fmBusinessDate != null">
+    and FM_BUSINESS_DATE = #{fmBusinessDate,jdbcType=VARCHAR}
+		</if>
+	</update>
+  
+  
+	<select id="selectFundStatus" resultType="string" parameterType="hashMap" >
+    select FM_FUND_STATUS
+     from D_FUND_MARKET_CFM
+    where 1=1
+		<if test="CHANNELCODE != null" >
+    and FM_CHANNEL_CODE = #{CHANNELCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="FUNDCODE != null" >
+    and  FM_FUND_CODE = #{FUNDCODE,jdbcType=VARCHAR}
+		</if>
+		<if test="TRANSDATE != null" >
+    and  FM_BUSINESS_DATE = #{TRANSDATE,jdbcType=VARCHAR}
+		</if>
+	</select>
+	
+	
+	<sql id="BaseColumnListToOrder">
+		FM_ID fmId,
+		FM_FUND_NAME fmFundName,
+		FM_FUND_CODE fmFundCode,
+		FM_TOTAL_FUND_VOL fmTotalFundVol,
+		FM_FUND_STATUS fmFundStatus,
+		FM_NAV fmNAV,
+		FM_UPDATE_DATE fmUpdateDate,
+		FM_NET_VALUE_TYPE fmNetValueType,
+		FM_ACCUMULATIVE_NAV fmAccumulativeNav,
+		FM_CONVERT_STATUS fmConvertStatus,
+		FM_PERIODIC_STATUS fmPeriodicStatus,
+		FM_TRANSFER_AGENCY_STATUS fmTransferAgencyStatus,
+		FM_FUND_SIZE fmFundSize,
+		FM_CURRENCY_TYPE fmCurrencyType,
+		FM_ANNOUNC_FLAG fmAnnouncFlag,
+		FM_DEF_DIVIDEN_DMETHOD fmDefDividenDmethod,
+		FM_INST_APP_SUBS_AMNT fmInstAppSubsAmnt,
+		FM_INST_APP_SUBS_VOL fmInstAppSubsVol,
+		FM_MIN_AMOUNT_BY_INST fmMinAmountByInst,
+		FM_MIN_VOL_BY_INST fmMinVolByInst,
+		FM_CUSTODIAN_CODE fmCustodianCode,
+		FM_AMOUNT_OF_PERIODIC_SUBS fmAmountOfPeriodicSubs,
+		FM_DATE_OF_PERIODIC_SUBS fmDateOfPeriodicSubs,
+		FM_MAX_REDEMPTION_VOL fmMaxRedemptionVol,
+		FM_MIN_ACCOUNT_BALANCE fmMinAccountBalance,
+		FM_IPOSTART_DATE fmIpostartDate,
+		FM_IPOEND_DATE fmIpoendDate,
+		FM_FUND_MANAGER_CODE fmFundManagerCode,
+		FM_INDI_APP_SUBS_VOL fmIndiAppSubsVol,
+		FM_INDI_APP_SUBS_AMOUNT fmIndiAppSubsAmount,
+		FM_MIN_SUBS_VOL_BY_INDI fmMinSubsVolByIndi,
+		FM_MIN_SUBS_AMOUNT_BY_INDI fmMinSubsAmountByIndi,
+		FM_REGISTRAR_CODE fmRegistrarCode,
+		FM_FUND_SPONSOR fmFundSponsor,
+		FM_TRADING_PRICE fmTradingPrice,
+		FM_FACE_VALUE fmFaceValue,
+		FM_DIVIDENT_DATE fmDividentDate,
+		FM_REGISTRATION_DATE fmRegistrationDate,
+		FM_XR_DATE fmXrDate,
+		FM_MAX_SUBS_VOL_BY_INDI fmMaxSubsVolByIndi,
+		FM_MAX_SUBS_AMOUNT_BY_INDI fmMaxSubsAmountByIndi,
+		FM_MAX_SUBS_VOL_BY_INST fmMaxSubsVolByInst,
+		FM_MAX_SUBS_AMOUNT_BY_INST fmMaxSubsAmountByInst,
+		FM_UNIT_SUBS_VOL_BY_INDI fmUnitSubsVolByIndi,
+		FM_UNIT_SUBS_AMOUNT_BY_INDI fmUnitSubsAmountByIndi,
+		FM_UNIT_SUBS_VOL_BY_INST fmUnitSubsVolByInst,
+		FM_UNIT_SUBS_AMOUNT_BY_INST fmUnitSubsAmountByInst,
+		FM_MIN_BIDS_AMOUNT_BY_INDI fmMinBidsAmountByIndi,
+		FM_MIN_BIDS_AMOUNT_BY_INST fmMinBidsAmountByInst,
+		FM_MIN_APP_BIDS_AMOUNT_BY_INDI fmMinAppBidsAmountByIndi,
+		FM_MIN_APP_BIDS_AMOUNT_BY_INST fmMinAppBidsAmountByInst,
+		FM_MIN_REDEMPTION_VOL fmMinRedemptionVol,
+		FM_MIN_INTERCONVERT_VOL fmMinInterconvertVol,
+		FM_ISSUE_TYPE_BY_INDI fmIssueTypeByIndi,
+		FM_ISSUE_TYPE_BY_INST fmIssueTypeByInst,
+		FM_SUBS_TYPE fmSubsType,
+		FM_COLLECT_FEE_TYPE fmCollectFeeType,
+		FM_NEXT_TRADE_DATE fmNextTradeDate,
+		FM_VALUE_LINE fmValueLine,
+		FM_TOTAL_DIVIDENT fmTotalDivident,
+		FM_FUND_INCOME fmFundIncome,
+		FM_FUND_INCOME_FLAG fmFundIncomeFlag,
+		FM_YIELD fmYield,
+		FM_YIELD_FLAG fmYieldFlag,
+		FM_GUARANTEED_NAV fmGuaranteedNav,
+		FM_FUND_YEAR_INCOME_RATE fmFundYearIncomeRate,
+		FM_FUND_YEAR_INCOME_RATE_FLAG fmFundYearIncomeRateFlag,
+		FM_INDI_MAX_PURCHASE fmIndiMaxPurchase,
+		FM_INST_MAX_PURCHASE fmInstMaxPurchase,
+		FM_INDI_DAY_MAX_SUM_BUY fmIndiDayMaxSumBuy,
+		FM_INST_DAY_MAX_SUM_BUY fmInstDayMaxSumBuy,
+		FM_INDI_DAY_MAX_SUM_REDEEM fmIndiDayMaxSumRedeem,
+		FM_INST_DAY_MAX_SUM_REDEEM fmInstDayMaxSumRedeem,
+		FM_INDI_MAX_REDEEM fmIndiMaxRedeem,
+		FM_INST_MAX_REDEEM fmInstMaxRedeem,
+		FM_FUND_DAY_INCOME_FLAG fmFundDayIncomeFlag,
+		FM_FUND_DAY_INCOME fmFundDayIncome,
+		FM_ALLOW_BREACH_REDEMPT fmAllowBreachRedempt,
+		FM_FUND_TYPE fmFundType,
+		FM_FUND_TYPE_NAME fmFundTypeName,
+		FM_REGISTRAR_NAME fmRegistrarName,
+		FM_FUND_MANAGER_NAME fmFundManagerName,
+		FM_FUND_SERVER_TEL fmFundServerTel,
+		FM_DUND_INTERNET_ADDRESS fmDundInternetAddress,
+		FM_BUSINESS_DATE fmBusinessDate,
+		FM_SEND_STATUS fmSendStatus,
+		FM_GENERATE_STATUS fmGenerateStatus,
+		FM_SEND_FILE_TIME fmSendFileTime,
+		FM_GENERATE_FILE_TIME fmGenerateFileTime,
+		FM_DATA_GENERATE fmDataGenerate,
+		FM_CTIME fmCtime,
+		FM_UTIME fmUtime,
+		FM_CUSER fmCuser,
+		FM_UUSER fmUuser,
+		FM_CHANNEL_CODE fmChannelCode
+	</sql>
+		<select id="findMarketDetailCondition" resultMap="BaseResultMap" parameterType="hashMap" >
+    select
+        <include refid="BaseColumnListToOrder"/>
+        from D_FUND_MARKET_CFM where 1=1
+        <if test="condition.channelCode != null and condition.channelCode != ''  ">
+                and FM_CHANNEL_CODE = #{condition.channelCode,jdbcType=VARCHAR}
+        </if>
+        
+        <!-- <if test=" condition.transDate!= null and condition.transDate != ''  "> -->
+                and FM_BUSINESS_DATE = #{condition.transDate,jdbcType=VARCHAR} 
+        <!-- </if> -->
+         
+        <if test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by ${pageInfo.sort} ${pageInfo.order}
+        </if>
+	</select>
+  
+    
+	<select id="selectHoldShares" resultType="string" parameterType="hashMap" >
+     select sum(ts.f_remainshares)
+        from ta_ttrustcontractdetails tt, ta_tsharedetail ts
+       where tt.l_serialno = ts.l_contractserialno
+        and tt.c_trustagencyno = #{CHANNELCODE,jdbcType=VARCHAR}
+        and ts.c_fundcode = #{FUNDCODE,jdbcType=VARCHAR}
+	</select>
+  
+  <select id="getFundMarketDataInfo" parameterType="hashMap" resultType="hashMap">
+   SELECT <include refid="Base_Column_List_File" />
+       from  d_fund_market_cfm t
+	   <where>
+    <if test="CHANNELCODE != null" >
+       and t.fm_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+    </if>
+    <if test="TRANSDATE != null" >
+       AND t.fm_business_date = #{TRANSDATE,jdbcType = VARCHAR}
+    </if>
+    </where>
+     order by t.fm_fund_code 
+  </select>
+  
+  <update id="updateGenerateStaAndTime" parameterType="hashmap">
+    update d_fund_market_cfm set
+ fm_generate_status = '01' ,fm_generate_file_time = sysdate
+ where fm_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+ AND fm_business_date = #{TRANSDATE,jdbcType = VARCHAR}
+  </update>
+	<sql id="order_for_column">
+		a.FM_ID fmId,
+		a.FM_FUND_NAME fmFundName,
+		a.FM_FUND_CODE fmFundCode,
+		a.FM_TOTAL_FUND_VOL fmTotalFundVol,
+		a.FM_FUND_STATUS fmFundStatus,
+		a.FM_NAV fmNAV,
+		a.FM_UPDATE_DATE fmUpdateDate,
+		a.FM_NET_VALUE_TYPE fmNetValueType,
+		a.FM_ACCUMULATIVE_NAV fmAccumulativeNav,
+		a.FM_CONVERT_STATUS fmConvertStatus,
+		a.FM_PERIODIC_STATUS fmPeriodicStatus,
+		a.FM_TRANSFER_AGENCY_STATUS fmTransferAgencyStatus,
+		a.FM_FUND_SIZE fmFundSize,
+		a.FM_CURRENCY_TYPE fmCurrencyType,
+		a.FM_ANNOUNC_FLAG fmAnnouncFlag,
+		a.FM_DEF_DIVIDEN_DMETHOD fmDefDividenDmethod,
+		a.FM_INST_APP_SUBS_AMNT fmInstAppSubsAmnt,
+		a.FM_INST_APP_SUBS_VOL fmInstAppSubsVol,
+		a.FM_MIN_AMOUNT_BY_INST fmMinAmountByInst,
+		a.FM_MIN_VOL_BY_INST fmMinVolByInst,
+		a.FM_CUSTODIAN_CODE fmCustodianCode,
+		a.FM_AMOUNT_OF_PERIODIC_SUBS fmAmountOfPeriodicSubs,
+		a.FM_DATE_OF_PERIODIC_SUBS fmDateOfPeriodicSubs,
+		a.FM_MAX_REDEMPTION_VOL fmMaxRedemptionVol,
+		a.FM_MIN_ACCOUNT_BALANCE fmMinAccountBalance,
+		a.FM_IPOSTART_DATE fmIpostartDate,
+		a.FM_IPOEND_DATE fmIpoendDate,
+		a.FM_FUND_MANAGER_CODE fmFundManagerCode,
+		a.FM_INDI_APP_SUBS_VOL fmIndiAppSubsVol,
+		a.FM_INDI_APP_SUBS_AMOUNT fmIndiAppSubsAmount,
+		a.FM_MIN_SUBS_VOL_BY_INDI fmMinSubsVolByIndi,
+		a.FM_MIN_SUBS_AMOUNT_BY_INDI fmMinSubsAmountByIndi,
+		a.FM_REGISTRAR_CODE fmRegistrarCode,
+		a.FM_FUND_SPONSOR fmFundSponsor,
+		a.FM_TRADING_PRICE fmTradingPrice,
+		a.FM_FACE_VALUE fmFaceValue,
+		a.FM_DIVIDENT_DATE fmDividentDate,
+		a.FM_REGISTRATION_DATE fmRegistrationDate,
+		a.FM_XR_DATE fmXrDate,
+		a.FM_MAX_SUBS_VOL_BY_INDI fmMaxSubsVolByIndi,
+		a.FM_MAX_SUBS_AMOUNT_BY_INDI fmMaxSubsAmountByIndi,
+		a.FM_MAX_SUBS_VOL_BY_INST fmMaxSubsVolByInst,
+		a.FM_MAX_SUBS_AMOUNT_BY_INST fmMaxSubsAmountByInst,
+		a.FM_UNIT_SUBS_VOL_BY_INDI fmUnitSubsVolByIndi,
+		a.FM_UNIT_SUBS_AMOUNT_BY_INDI fmUnitSubsAmountByIndi,
+		a.FM_UNIT_SUBS_VOL_BY_INST fmUnitSubsVolByInst,
+		a.FM_UNIT_SUBS_AMOUNT_BY_INST fmUnitSubsAmountByInst,
+		a.FM_MIN_BIDS_AMOUNT_BY_INDI fmMinBidsAmountByIndi,
+		a.FM_MIN_BIDS_AMOUNT_BY_INST fmMinBidsAmountByInst,
+		a.FM_MIN_APP_BIDS_AMOUNT_BY_INDI fmMinAppBidsAmountByIndi,
+		a.FM_MIN_APP_BIDS_AMOUNT_BY_INST fmMinAppBidsAmountByInst,
+		a.FM_MIN_REDEMPTION_VOL fmMinRedemptionVol,
+		a.FM_MIN_INTERCONVERT_VOL fmMinInterconvertVol,
+		a.FM_ISSUE_TYPE_BY_INDI fmIssueTypeByIndi,
+		a.FM_ISSUE_TYPE_BY_INST fmIssueTypeByInst,
+		a.FM_SUBS_TYPE fmSubsType,
+		a.FM_COLLECT_FEE_TYPE fmCollectFeeType,
+		a.FM_NEXT_TRADE_DATE fmNextTradeDate,
+		a.FM_VALUE_LINE fmValueLine,
+		a.FM_TOTAL_DIVIDENT fmTotalDivident,
+		a.FM_FUND_INCOME fmFundIncome,
+		a.FM_FUND_INCOME_FLAG fmFundIncomeFlag,
+		a.FM_YIELD fmYield,
+		a.FM_YIELD_FLAG fmYieldFlag,
+		a.FM_GUARANTEED_NAV fmGuaranteedNav,
+		a.FM_FUND_YEAR_INCOME_RATE fmFundYearIncomeRate,
+		a.FM_FUND_YEAR_INCOME_RATE_FLAG fmFundYearIncomeRateFlag,
+		a.FM_INDI_MAX_PURCHASE fmIndiMaxPurchase,
+		a.FM_INST_MAX_PURCHASE fmInstMaxPurchase,
+		a.FM_INDI_DAY_MAX_SUM_BUY fmIndiDayMaxSumBuy,
+		a.FM_INST_DAY_MAX_SUM_BUY fmInstDayMaxSumBuy,
+		a.FM_INDI_DAY_MAX_SUM_REDEEM fmIndiDayMaxSumRedeem,
+		a.FM_INST_DAY_MAX_SUM_REDEEM fmInstDayMaxSumRedeem,
+		a.FM_INDI_MAX_REDEEM fmIndiMaxRedeem,
+		a.FM_INST_MAX_REDEEM fmInstMaxRedeem,
+		a.FM_FUND_DAY_INCOME_FLAG fmFundDayIncomeFlag,
+		a.FM_FUND_DAY_INCOME fmFundDayIncome,
+		a.FM_ALLOW_BREACH_REDEMPT fmAllowBreachRedempt,
+		a.FM_FUND_TYPE fmFundType,
+		a.FM_FUND_TYPE_NAME fmFundTypeName,
+		a.FM_REGISTRAR_NAME fmRegistrarName,
+		a.FM_FUND_MANAGER_NAME fmFundManagerName,
+		a.FM_FUND_SERVER_TEL fmFundServerTel,
+		a.FM_DUND_INTERNET_ADDRESS fmDundInternetAddress,
+		a.FM_BUSINESS_DATE fmBusinessDate,
+		a.FM_SEND_STATUS fmSendStatus,
+		a.FM_GENERATE_STATUS fmGenerateStatus,
+		a.FM_SEND_FILE_TIME fmSendFileTime,
+		a.FM_GENERATE_FILE_TIME fmGenerateFileTime,
+		a.FM_DATA_GENERATE fmDataGenerate,
+		a.FM_CTIME fmCtime,
+		a.FM_UTIME fmUtime,
+		a.FM_CUSER fmCuser,
+		a.FM_UUSER fmUuser,
+		a.FM_CHANNEL_CODE fmChannelCode,
+		b.ci_channel_name channelName,
+		nvl2(c.PI_PRODUCT_TYPE,c.PI_PRODUCT_TYPE|| '('||sd.Dict_Name || ')','(类型异常)') theProductType
+	</sql>
+  	<select id="selectFundMarketInfo" resultMap="fundMarketInfo">
+		select <include refid="order_for_column"/>
+		from d_fund_market_cfm a
+		left join p_channel_info b
+		on a.Fm_Channel_Code = b.ci_channel_code
+		left join p_product_info c
+		on a.Fm_Fund_code = c.PI_CHANNEL_PRODUCT_CODE
+		left join sys_dict sd on c.PI_PRODUCT_TYPE = sd.dict_code
+		<where>
+			<if test="1==1">
+				and sd.dict_type = 'fundType'
+			</if>
+			<if test="1==1">
+				and sd.dict_code is not null
+			</if>
+			<if test="condition.channelCode != null and condition.channelCode != '' ">
+				and a.FM_CHANNEL_CODE=#{condition.channelCode,jdbcType=VARCHAR}
+			</if>
+			<if test="condition.fundCode != null and condition.fundCode != '' ">
+				and a.FM_FUND_CODE=#{condition.fundCode,jdbcType=VARCHAR}
+			</if>
+			<if test="condition.transDate != null and condition.transDate != '' ">
+				and a.FM_BUSINESS_DATE=#{condition.transDate,jdbcType=VARCHAR}
+			</if>
+			<if test="condition.fundType != null and condition.fundType != '' ">
+				and c.PI_PRODUCT_TYPE=#{condition.fundType,jdbcType=VARCHAR}
+			</if>
+		</where>
+		<if test="pageInfo.sort != null and pageInfo.sort != ''">
+			order by ${pageInfo.sort} ${pageInfo.order}
+		</if>
+	</select>
+</mapper>

@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sams.custom.mapper.AccountReqTmpMapper" >
+  <resultMap id="BaseResultMap" type="com.sams.custom.model.AccountReqTmp" >
+    <id column="ART_ID" property="artId" jdbcType="DECIMAL" />
+    <result column="ART_CHANNEL_CODE" property="artChannelCode" jdbcType="VARCHAR" />
+    <result column="ART_TRANS_DATE" property="artTransDate" jdbcType="VARCHAR" />
+    <result column="ART_ADDRESS" property="artAddress" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_ID_CODE" property="artInstReprIdCode" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_ID_TYPE" property="artInstReprIdType" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_NAME" property="artInstReprName" jdbcType="VARCHAR" />
+    <result column="ART_APP_SHEET_SERIAL_NO" property="artAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="ART_CERTIFICATE_TYPE" property="artCertificateType" jdbcType="VARCHAR" />
+    <result column="ART_CERTIFICATE_NO" property="artCertificateNo" jdbcType="VARCHAR" />
+    <result column="ART_INVESTOR_NAME" property="artInvestorName" jdbcType="NVARCHAR" />
+    <result column="ART_TRANSACTION_DATE" property="artTransactionDate" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTION_TIME" property="artTransactionTime" jdbcType="VARCHAR" />
+    <result column="ART_INDIVIDUAL_OR_INSTITUTION" property="artIndividualOrInstitution" jdbcType="VARCHAR" />
+    <result column="ART_POST_CODE" property="artPostCode" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_CERT_NO" property="artTransactorCertNo" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_CERT_TYPE" property="artTransactorCertType" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_NAME" property="artTransactorName" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTION_ACCOUNT_ID" property="artTransactionAccountId" jdbcType="VARCHAR" />
+    <result column="ART_DISTRIBUTOR_CODE" property="artDistributorCode" jdbcType="VARCHAR" />
+    <result column="ART_BUSINESS_CODE" property="artBusinessCode" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NO_FM_IN_CLEAR_AGENCY" property="artAcctNoFmInClearAgency" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NAME_F_I_CLEAR_AGENCY" property="artAcctNameFIClearAgency" jdbcType="VARCHAR" />
+    <result column="ART_CLEARING_AGENCY_CODE" property="artClearingAgencyCode" jdbcType="VARCHAR" />
+    <result column="ART_INVESTORS_BIRTHDAY" property="artInvestorsBirthday" jdbcType="VARCHAR" />
+    <result column="ART_DEPOSIT_ACCT" property="artDepositAcct" jdbcType="VARCHAR" />
+    <result column="ART_REGION_CODE" property="artRegionCode" jdbcType="VARCHAR" />
+    <result column="ART_EDUCATION_LEVEL" property="artEducationLevel" jdbcType="VARCHAR" />
+    <result column="ART_EMAIL_ADDRESS" property="artEmailAddress" jdbcType="VARCHAR" />
+    <result column="ART_FAX_NO" property="artFaxNo" jdbcType="VARCHAR" />
+    <result column="ART_VOCATION_CODE" property="artVocationCode" jdbcType="VARCHAR" />
+    <result column="ART_HOME_TEL_NO" property="artHomeTelNo" jdbcType="VARCHAR" />
+    <result column="ART_ANNUAL_INCOME" property="artAnnualIncome" jdbcType="DECIMAL" />
+    <result column="ART_MOBILE_TEL_NO" property="artMobileTelNo" jdbcType="VARCHAR" />
+    <result column="ART_BRANCH_CODE" property="artBranchCode" jdbcType="VARCHAR" />
+    <result column="ART_OFFICE_TEL_NO" property="artOfficeTelNo" jdbcType="VARCHAR" />
+    <result column="ART_ACCOUNT_ABBR" property="artAccountAbbr" jdbcType="VARCHAR" />
+    <result column="ART_CONFIDENTIAL_DOCUMENT_CODE" property="artConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="ART_SEX" property="artSex" jdbcType="VARCHAR" />
+    <result column="ART_SH_SECURITIES_ACCOUNTID" property="artShSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="ART_SZ_SECURITIES_ACCOUNTID" property="artSzSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="ART_TA_ACCOUNT_ID" property="artTaAccountId" jdbcType="VARCHAR" />
+    <result column="ART_TEL_NO" property="artTelNo" jdbcType="VARCHAR" />
+    <result column="ART_TRADING_METHOD" property="artTradingMethod" jdbcType="VARCHAR" />
+    <result column="ART_MINOR_FLAG" property="artMinorFlag" jdbcType="VARCHAR" />
+    <result column="ART_DELIVER_TYPE" property="artDeliverType" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_ID_TYPE" property="artTransactorIdType" jdbcType="VARCHAR" />
+    <result column="ART_ACCOUNT_CARD_ID" property="artAccountCardId" jdbcType="VARCHAR" />
+    <result column="ART_MULTIACCT_FLAG" property="artMultiacctFlag" jdbcType="VARCHAR" />
+    <result column="ART_TARGET_TRANSACT_ACCT_CODE" property="artTargetTransactAcctCode" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NAME_INVE_CLEAR_AGEN" property="artAcctNameInveClearAgen" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NO_INVE_CLEAR_AGEN" property="artAcctNoInveClearAgen" jdbcType="VARCHAR" />
+    <result column="ART_CLEARING_AGENCY" property="artClearingAgency" jdbcType="VARCHAR" />
+    <result column="ART_DELIVER_WAY" property="artDeliverWay" jdbcType="VARCHAR" />
+    <result column="ART_NATIONALITY" property="artNationality" jdbcType="VARCHAR" />
+    <result column="ART_NET_NO" property="artNetNo" jdbcType="VARCHAR" />
+    <result column="ART_BROKER" property="artBroker" jdbcType="VARCHAR" />
+    <result column="ART_CORP_NAME" property="artCorpName" jdbcType="VARCHAR" />
+    <result column="ART_CERT_VALID_DATE" property="artCertValidDate" jdbcType="VARCHAR" />
+    <result column="ART_INST_TRAN_CERT_VALID_DATE" property="artInstTranCertValidDate" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_CERT_VALID_DATE" property="artInstReprCertValidDate" jdbcType="VARCHAR" />
+    <result column="ART_CLIENT_RISK_RATE" property="artClientRiskRate" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_MANAGE_RANGE" property="artInstReprManageRange" jdbcType="VARCHAR" />
+    <result column="ART_CONTROL_HOLDER" property="artControlHolder" jdbcType="VARCHAR" />
+    <result column="ART_ACTUAL_CONTROLLER" property="artActualController" jdbcType="VARCHAR" />
+    <result column="ART_MARRIAGE_STATUS" property="artMarriageStatus" jdbcType="VARCHAR" />
+    <result column="ART_FAMILY_NUM" property="artFamilyNum" jdbcType="DECIMAL" />
+    <result column="ART_PENATES" property="artPenates" jdbcType="DECIMAL" />
+    <result column="ART_MEDIA_HOBBY" property="artMediaHobby" jdbcType="VARCHAR" />
+    <result column="ART_INSTITUTION_TYPE" property="artInstitutionType" jdbcType="VARCHAR" />
+    <result column="ART_ENGLISH_FIRST_NAME" property="artEnglishFirstName" jdbcType="VARCHAR" />
+    <result column="ART_ENGLISH_FAMLIY_NAME" property="artEnglishFamliyName" jdbcType="VARCHAR" />
+    <result column="ART_VOCATION" property="artVocation" jdbcType="VARCHAR" />
+    <result column="ART_CORPO_PROPERTY" property="artCorpoProperty" jdbcType="VARCHAR" />
+    <result column="ART_STAFF_NUM" property="artStaffNum" jdbcType="DECIMAL" />
+    <result column="ART_HOBBYTYPE" property="artHobbytype" jdbcType="VARCHAR" />
+    <result column="ART_PROVINCE" property="artProvince" jdbcType="VARCHAR" />
+    <result column="ART_CITY" property="artCity" jdbcType="VARCHAR" />
+    <result column="ART_COUNTY" property="artCounty" jdbcType="VARCHAR" />
+    <result column="ART_COMMEND_PERSON" property="artCommendPerson" jdbcType="VARCHAR" />
+    <result column="ART_COMMEND_PERSON_TYPE" property="artCommendPersonType" jdbcType="VARCHAR" />
+    <result column="ART_ACCEPT_METHOD" property="artAcceptMethod" jdbcType="VARCHAR" />
+    <result column="ART_FROZEN_CAUSE" property="artFrozenCause" jdbcType="VARCHAR" />
+    <result column="ART_FREEZING_DEADLINE" property="artFreezingDeadline" jdbcType="VARCHAR" />
+    <result column="ART_ORIGINAL_SERIAL_NO" property="artOriginalSerialNo" jdbcType="VARCHAR" />
+    <result column="ART_ORIGINAL_APP_SHEET_NO" property="artOriginalAppSheetNo" jdbcType="VARCHAR" />
+    <result column="ART_SPECIFICATION" property="artSpecification" jdbcType="VARCHAR" />
+    <result column="ART_TRANS_DATE" property="artBusinessDate" jdbcType="VARCHAR" />
+    <result column="ART_CTIME" property="artCtime" jdbcType="TIMESTAMP" />
+    <result column="ART_UTIME" property="artUtime" jdbcType="TIMESTAMP" />
+    <result column="ART_CUSER" property="artCuser" jdbcType="VARCHAR" />
+    <result column="ART_UUSER" property="artUuser" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <resultMap id="tempResultMap" type="HashMap" >
+    <id column="ART_ID" property="ARTID" jdbcType="DECIMAL" />
+    <result column="ART_CHANNEL_CODE" property="CHANNELCODE" jdbcType="VARCHAR" />
+    <result column="ART_ADDRESS" property="ADDRESS" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_ID_CODE" property="INSTREPRIDCODE" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_ID_TYPE" property="INSTREPRIDTYPE" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_NAME" property="INSTREPRNAME" jdbcType="VARCHAR" />
+    <result column="ART_APP_SHEET_SERIAL_NO" property="APPSHEETSERIALNO" jdbcType="VARCHAR" />
+    <result column="ART_CERTIFICATE_TYPE" property="CERTIFICATETYPE" jdbcType="VARCHAR" />
+    <result column="ART_CERTIFICATE_NO" property="CERTIFICATENO" jdbcType="VARCHAR" />
+    <result column="ART_INVESTOR_NAME" property="INVESTORNAME" jdbcType="NVARCHAR" />
+    <result column="ART_TRANSACTION_DATE" property="TRANSACTIONDATE" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTION_TIME" property="TRANSACTIONTIME" jdbcType="VARCHAR" />
+    <result column="ART_INDIVIDUAL_OR_INSTITUTION" property="INDIVIDUALORINSTITUTION" jdbcType="VARCHAR" />
+    <result column="ART_POST_CODE" property="POSTCODE" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_CERT_NO" property="TRANSACTORCERTNO" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_CERT_TYPE" property="TRANSACTORCERTTYPE" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_NAME" property="TRANSACTORNAME" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTION_ACCOUNT_ID" property="TRANSACTIONACCOUNTID" jdbcType="VARCHAR" />
+    <result column="ART_DISTRIBUTOR_CODE" property="DISTRIBUTORCODE" jdbcType="VARCHAR" />
+    <result column="ART_BUSINESS_CODE" property="BUSINESSCODE" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NO_FM_IN_CLEAR_AGENCY" property="ACCTNOOFFMINCLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NAME_F_I_CLEAR_AGENCY" property="ACCTNAMEOFFMINCLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="ART_CLEARING_AGENCY_CODE" property="CLEARINGAGENCYCODE" jdbcType="VARCHAR" />
+    <result column="ART_INVESTORS_BIRTHDAY" property="INVESTORSBIRTHDAY" jdbcType="VARCHAR" />
+    <result column="ART_DEPOSIT_ACCT" property="DEPOSITACCT" jdbcType="VARCHAR" />
+    <result column="ART_REGION_CODE" property="REGIONCODE" jdbcType="VARCHAR" />
+    <result column="ART_EDUCATION_LEVEL" property="EDUCATIONLEVEL" jdbcType="VARCHAR" />
+    <result column="ART_EMAIL_ADDRESS" property="EMAILADDRESS" jdbcType="VARCHAR" />
+    <result column="ART_FAX_NO" property="FAXNO" jdbcType="VARCHAR" />
+    <result column="ART_VOCATION_CODE" property="VOCATIONCODE" jdbcType="VARCHAR" />
+    <result column="ART_HOME_TEL_NO" property="HOMETELNO" jdbcType="VARCHAR" />
+    <result column="ART_ANNUAL_INCOME" property="ANNUALINCOME" jdbcType="DECIMAL" />
+    <result column="ART_MOBILE_TEL_NO" property="MOBILETELNO" jdbcType="VARCHAR" />
+    <result column="ART_BRANCH_CODE" property="BRANCHCODE" jdbcType="VARCHAR" />
+    <result column="ART_OFFICE_TEL_NO" property="OFFICETELNO" jdbcType="VARCHAR" />
+    <result column="ART_ACCOUNT_ABBR" property="ACCOUNTABBR" jdbcType="VARCHAR" />
+    <result column="ART_CONFIDENTIAL_DOCUMENT_CODE" property="CONFIDENTIALDOCUMENTCODE" jdbcType="VARCHAR" />
+    <result column="ART_SEX" property="SEX" jdbcType="VARCHAR" />
+    <result column="ART_SH_SECURITIES_ACCOUNTID" property="SHSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="ART_SZ_SECURITIES_ACCOUNTID" property="SZSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="ART_TA_ACCOUNT_ID" property="TAACCOUNTID" jdbcType="VARCHAR" />
+    <result column="ART_TEL_NO" property="TELNO" jdbcType="VARCHAR" />
+    <result column="ART_TRADING_METHOD" property="TRADINGMETHOD" jdbcType="VARCHAR" />
+    <result column="ART_MINOR_FLAG" property="MINORFLAG" jdbcType="VARCHAR" />
+    <result column="ART_DELIVER_TYPE" property="DELIVERTYPE" jdbcType="VARCHAR" />
+    <result column="ART_TRANSACTOR_ID_TYPE" property="TRANSACTORIDTYPE" jdbcType="VARCHAR" />
+    <result column="ART_ACCOUNT_CARD_ID" property="ACCOUNTCARDID" jdbcType="VARCHAR" />
+    <result column="ART_MULTIACCT_FLAG" property="MULTIACCTFLAG" jdbcType="VARCHAR" />
+    <result column="ART_TARGET_TRANSACT_ACCT_CODE" property="TARGETTRANSACTIONACCOUNTID" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NAME_INVE_CLEAR_AGEN" property="ACCTNAMEOFINVESTORINCLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="ART_ACCT_NO_INVE_CLEAR_AGEN" property="ACCTNOOFINVESTORINCLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="ART_CLEARING_AGENCY" property="CLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="ART_DELIVER_WAY" property="DELIVERWAY" jdbcType="VARCHAR" />
+    <result column="ART_NATIONALITY" property="NATIONALITY" jdbcType="VARCHAR" />
+    <result column="ART_NET_NO" property="NETNO" jdbcType="VARCHAR" />
+    <result column="ART_BROKER" property="BROKER" jdbcType="VARCHAR" />
+    <result column="ART_CORP_NAME" property="CORPNAME" jdbcType="VARCHAR" />
+    <result column="ART_CERT_VALID_DATE" property="CERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="ART_INST_TRAN_CERT_VALID_DATE" property="INSTTRANCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_CERT_VALID_DATE" property="INSTREPRCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="ART_CLIENT_RISK_RATE" property="CLIENTRISKRATE" jdbcType="VARCHAR" />
+    <result column="ART_INST_REPR_MANAGE_RANGE" property="INSTREPRMANAGERANGE" jdbcType="VARCHAR" />
+    <result column="ART_CONTROL_HOLDER" property="CONTROLHOLDER" jdbcType="VARCHAR" />
+    <result column="ART_ACTUAL_CONTROLLER" property="ACTUALCONTROLLER" jdbcType="VARCHAR" />
+    <result column="ART_MARRIAGE_STATUS" property="MARRIAGESTATUS" jdbcType="VARCHAR" />
+    <result column="ART_FAMILY_NUM" property="FAMILYNUM" jdbcType="VARCHAR" />
+    <result column="ART_PENATES" property="PENATES" jdbcType="VARCHAR" />
+    <result column="ART_MEDIA_HOBBY" property="MEDIAHOBBY" jdbcType="VARCHAR" />
+    <result column="ART_INSTITUTION_TYPE" property="INSTITUTIONTYPE" jdbcType="VARCHAR" />
+    <result column="ART_ENGLISH_FIRST_NAME" property="ENGLISHFIRSTNAME" jdbcType="VARCHAR" />
+    <result column="ART_ENGLISH_FAMLIY_NAME" property="ENGLISHFAMLIYNAME" jdbcType="VARCHAR" />
+    <result column="ART_VOCATION" property="VOCATION" jdbcType="VARCHAR" />
+    <result column="ART_CORPO_PROPERTY" property="CORPOPROPERTY" jdbcType="VARCHAR" />
+    <result column="ART_STAFF_NUM" property="STAFFNUM" jdbcType="VARCHAR" />
+    <result column="ART_HOBBYTYPE" property="HOBBYTYPE" jdbcType="VARCHAR" />
+    <result column="ART_PROVINCE" property="PROVINCE" jdbcType="VARCHAR" />
+    <result column="ART_CITY" property="CITY" jdbcType="VARCHAR" />
+    <result column="ART_COUNTY" property="COUNTY" jdbcType="VARCHAR" />
+    <result column="ART_COMMEND_PERSON" property="COMMENDPERSON" jdbcType="VARCHAR" />
+    <result column="ART_COMMEND_PERSON_TYPE" property="COMMENDPERSONTYPE" jdbcType="VARCHAR" />
+    <result column="ART_ACCEPT_METHOD" property="ACCEPTMETHOD" jdbcType="VARCHAR" />
+    <result column="ART_FROZEN_CAUSE" property="FROZENCAUSE" jdbcType="VARCHAR" />
+    <result column="ART_FREEZING_DEADLINE" property="FREEZINGDEADLINE" jdbcType="VARCHAR" />
+    <result column="ART_ORIGINAL_SERIAL_NO" property="ORIGINALSERIALNO" jdbcType="VARCHAR" />
+    <result column="ART_ORIGINAL_APP_SHEET_NO" property="ORIGINALAPPSHEETNO" jdbcType="VARCHAR" />
+    <result column="ART_SPECIFICATION" property="SPECIFICATION" jdbcType="VARCHAR" />
+    <result column="ART_TRANS_DATE" property="BUSINESSDATE" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ART_ID, ART_CHANNEL_CODE, ART_ADDRESS, 
+    ART_INST_REPR_ID_CODE, ART_INST_REPR_ID_TYPE, ART_INST_REPR_NAME, ART_APP_SHEET_SERIAL_NO, 
+    ART_CERTIFICATE_TYPE, ART_CERTIFICATE_NO, ART_INVESTOR_NAME, ART_TRANSACTION_DATE, 
+    ART_TRANSACTION_TIME, ART_INDIVIDUAL_OR_INSTITUTION, ART_POST_CODE, ART_TRANSACTOR_CERT_NO, 
+    ART_TRANSACTOR_CERT_TYPE, ART_TRANSACTOR_NAME, ART_TRANSACTION_ACCOUNT_ID, ART_DISTRIBUTOR_CODE, 
+    ART_BUSINESS_CODE, ART_ACCT_NO_FM_IN_CLEAR_AGENCY, ART_ACCT_NAME_F_I_CLEAR_AGENCY, 
+    ART_CLEARING_AGENCY_CODE, ART_INVESTORS_BIRTHDAY, ART_DEPOSIT_ACCT, ART_REGION_CODE, 
+    ART_EDUCATION_LEVEL, ART_EMAIL_ADDRESS, ART_FAX_NO, ART_VOCATION_CODE, ART_HOME_TEL_NO, 
+    ART_ANNUAL_INCOME, ART_MOBILE_TEL_NO, ART_BRANCH_CODE, ART_OFFICE_TEL_NO, ART_ACCOUNT_ABBR, 
+    ART_CONFIDENTIAL_DOCUMENT_CODE, ART_SEX, ART_SH_SECURITIES_ACCOUNTID, ART_SZ_SECURITIES_ACCOUNTID, 
+    ART_TA_ACCOUNT_ID, ART_TEL_NO, ART_TRADING_METHOD, ART_MINOR_FLAG, ART_DELIVER_TYPE, 
+    ART_TRANSACTOR_ID_TYPE, ART_ACCOUNT_CARD_ID, ART_MULTIACCT_FLAG, ART_TARGET_TRANSACT_ACCT_CODE, 
+    ART_ACCT_NAME_INVE_CLEAR_AGEN, ART_ACCT_NO_INVE_CLEAR_AGEN, ART_CLEARING_AGENCY, 
+    ART_DELIVER_WAY, ART_NATIONALITY, ART_NET_NO, ART_BROKER, ART_CORP_NAME, ART_CERT_VALID_DATE, 
+    ART_INST_TRAN_CERT_VALID_DATE, ART_INST_REPR_CERT_VALID_DATE, ART_CLIENT_RISK_RATE, 
+    ART_INST_REPR_MANAGE_RANGE, ART_CONTROL_HOLDER, ART_ACTUAL_CONTROLLER, ART_MARRIAGE_STATUS, 
+    ART_FAMILY_NUM, ART_PENATES, ART_MEDIA_HOBBY, ART_INSTITUTION_TYPE, ART_ENGLISH_FIRST_NAME, 
+    ART_ENGLISH_FAMLIY_NAME, ART_VOCATION, ART_CORPO_PROPERTY, ART_STAFF_NUM, ART_HOBBYTYPE, 
+    ART_PROVINCE, ART_CITY, ART_COUNTY, ART_COMMEND_PERSON, ART_COMMEND_PERSON_TYPE, 
+    ART_ACCEPT_METHOD, ART_FROZEN_CAUSE, ART_FREEZING_DEADLINE, ART_ORIGINAL_SERIAL_NO, 
+    ART_ORIGINAL_APP_SHEET_NO, ART_SPECIFICATION, ART_TRANS_DATE
+  </sql>
+  <resultMap id="BaseResultMapReq" type="com.sams.custom.model.AccountReq" >
+    <id column="AR_ID" property="arId" jdbcType="DECIMAL" />
+    <result column="AR_CHANNEL_CODE" property="arChannelCode" jdbcType="VARCHAR" />
+    <result column="AR_TRANS_DATE" property="arTransDate" jdbcType="VARCHAR" />
+    <result column="AR_ADDRESS" property="arAddress" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_CODE" property="arInstReprIdCode" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_TYPE" property="arInstReprIdType" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_NAME" property="arInstReprName" jdbcType="VARCHAR" />
+    <result column="AR_APP_SHEET_SERIAL_NO" property="arAppSheetSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_TYPE" property="arCertificateType" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_NO" property="arCertificateNo" jdbcType="VARCHAR" />
+    <result column="AR_INVESTOR_NAME" property="arInvestorName" jdbcType="NVARCHAR" />
+    <result column="AR_TRANSACTION_DATE" property="arTransactionDate" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_TIME" property="arTransactionTime" jdbcType="VARCHAR" />
+    <result column="AR_INDIVIDUAL_OR_INSTITUTION" property="arIndividualOrInstitution" jdbcType="VARCHAR" />
+    <result column="AR_POST_CODE" property="arPostCode" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_NO" property="arTransactorCertNo" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_TYPE" property="arTransactorCertType" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_NAME" property="arTransactorName" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_ACCOUNT_ID" property="arTransactionAccountId" jdbcType="VARCHAR" />
+    <result column="AR_DISTRIBUTOR_CODE" property="arDistributorCode" jdbcType="VARCHAR" />
+    <result column="AR_BUSINESS_CODE" property="arBusinessCode" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_FM_IN_CLEAR_AGENCY" property="arAcctNoFmInClearAgency" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_F_I_CLEAR_AGENCY" property="arAcctNameFIClearAgency" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY_CODE" property="arClearingAgencyCode" jdbcType="VARCHAR" />
+    <result column="AR_INVESTORS_BIRTHDAY" property="arInvestorsBirthday" jdbcType="VARCHAR" />
+    <result column="AR_DEPOSIT_ACCT" property="arDepositAcct" jdbcType="VARCHAR" />
+    <result column="AR_REGION_CODE" property="arRegionCode" jdbcType="VARCHAR" />
+    <result column="AR_EDUCATION_LEVEL" property="arEducationLevel" jdbcType="VARCHAR" />
+    <result column="AR_EMAIL_ADDRESS" property="arEmailAddress" jdbcType="VARCHAR" />
+    <result column="AR_FAX_NO" property="arFaxNo" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION_CODE" property="arVocationCode" jdbcType="VARCHAR" />
+    <result column="AR_HOME_TEL_NO" property="arHomeTelNo" jdbcType="VARCHAR" />
+    <result column="AR_ANNUAL_INCOME" property="arAnnualIncome" jdbcType="DECIMAL" />
+    <result column="AR_MOBILE_TEL_NO" property="arMobileTelNo" jdbcType="VARCHAR" />
+    <result column="AR_BRANCH_CODE" property="arBranchCode" jdbcType="VARCHAR" />
+    <result column="AR_OFFICE_TEL_NO" property="arOfficeTelNo" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_ABBR" property="arAccountAbbr" jdbcType="VARCHAR" />
+    <result column="AR_CONFIDENTIAL_DOCUMENT_CODE" property="arConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="AR_SEX" property="arSex" jdbcType="VARCHAR" />
+    <result column="AR_SH_SECURITIES_ACCOUNTID" property="arShSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AR_SZ_SECURITIES_ACCOUNTID" property="arSzSecuritiesAccountid" jdbcType="VARCHAR" />
+    <result column="AR_TA_ACCOUNT_ID" property="arTaAccountId" jdbcType="VARCHAR" />
+    <result column="AR_TEL_NO" property="arTelNo" jdbcType="VARCHAR" />
+    <result column="AR_TRADING_METHOD" property="arTradingMethod" jdbcType="VARCHAR" />
+    <result column="AR_MINOR_FLAG" property="arMinorFlag" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_TYPE" property="arDeliverType" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_ID_TYPE" property="arTransactorIdType" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_CARD_ID" property="arAccountCardId" jdbcType="VARCHAR" />
+    <result column="AR_MULTIACCT_FLAG" property="arMultiacctFlag" jdbcType="VARCHAR" />
+    <result column="AR_TARGET_TRANSACT_ACCT_CODE" property="arTargetTransactAcctCode" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_INVE_CLEAR_AGEN" property="arAcctNameInveClearAgen" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_INVE_CLEAR_AGEN" property="arAcctNoInveClearAgen" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY" property="arClearingAgency" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_WAY" property="arDeliverWay" jdbcType="VARCHAR" />
+    <result column="AR_NATIONALITY" property="arNationality" jdbcType="VARCHAR" />
+    <result column="AR_NET_NO" property="arNetNo" jdbcType="VARCHAR" />
+    <result column="AR_BROKER" property="arBroker" jdbcType="VARCHAR" />
+    <result column="AR_CORP_NAME" property="arCorpName" jdbcType="VARCHAR" />
+    <result column="AR_CERT_VALID_DATE" property="arCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_INST_TRAN_CERT_VALID_DATE" property="arInstTranCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_CERT_VALID_DATE" property="arInstReprCertValidDate" jdbcType="VARCHAR" />
+    <result column="AR_CLIENT_RISK_RATE" property="arClientRiskRate" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_MANAGE_RANGE" property="arInstReprManageRange" jdbcType="VARCHAR" />
+    <result column="AR_CONTROL_HOLDER" property="arControlHolder" jdbcType="VARCHAR" />
+    <result column="AR_ACTUAL_CONTROLLER" property="arActualController" jdbcType="VARCHAR" />
+    <result column="AR_MARRIAGE_STATUS" property="arMarriageStatus" jdbcType="VARCHAR" />
+    <result column="AR_FAMILY_NUM" property="arFamilyNum" jdbcType="DECIMAL" />
+    <result column="AR_PENATES" property="arPenates" jdbcType="DECIMAL" />
+    <result column="AR_MEDIA_HOBBY" property="arMediaHobby" jdbcType="VARCHAR" />
+    <result column="AR_INSTITUTION_TYPE" property="arInstitutionType" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FIRST_NAME" property="arEnglishFirstName" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FAMLIY_NAME" property="arEnglishFamliyName" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION" property="arVocation" jdbcType="VARCHAR" />
+    <result column="AR_CORPO_PROPERTY" property="arCorpoProperty" jdbcType="VARCHAR" />
+    <result column="AR_STAFF_NUM" property="arStaffNum" jdbcType="DECIMAL" />
+    <result column="AR_HOBBYTYPE" property="arHobbytype" jdbcType="VARCHAR" />
+    <result column="AR_PROVINCE" property="arProvince" jdbcType="VARCHAR" />
+    <result column="AR_CITY" property="arCity" jdbcType="VARCHAR" />
+    <result column="AR_COUNTY" property="arCounty" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON" property="arCommendPerson" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON_TYPE" property="arCommendPersonType" jdbcType="VARCHAR" />
+    <result column="AR_ACCEPT_METHOD" property="arAcceptMethod" jdbcType="VARCHAR" />
+    <result column="AR_FROZEN_CAUSE" property="arFrozenCause" jdbcType="VARCHAR" />
+    <result column="AR_FREEZING_DEADLINE" property="arFreezingDeadline" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_SERIAL_NO" property="arOriginalSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_APP_SHEET_NO" property="arOriginalAppSheetNo" jdbcType="VARCHAR" />
+    <result column="AR_SPECIFICATION" property="arSpecification" jdbcType="VARCHAR" />
+    <result column="AR_VALID_FLAG" property="arValidFlag" jdbcType="VARCHAR" />
+    <result column="AR_ERROR_DEC" property="arErrorDEC" jdbcType="VARCHAR" />
+    <result column="AR_TA_SERIAL_NO" property="arTaSerialNo" jdbcType="VARCHAR" />
+    <result column="AR_TA_TRANS_STATUS" property="arTaTransStatus" jdbcType="VARCHAR" />
+    <result column="AR_CTIME" property="arCtime" jdbcType="TIMESTAMP" />
+    <result column="AR_UTIME" property="arUtime" jdbcType="TIMESTAMP" />
+    <result column="AR_CUSER" property="arCuser" jdbcType="VARCHAR" />
+    <result column="AR_UUSER" property="arUuser" jdbcType="VARCHAR" />
+    <result column="AR_OPEN_CHANNEL_STAT" property="arOpenChannelStat" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="tempResultMapReq" type="HashMap" >
+    <id column="AR_ID" property="ARID" jdbcType="DECIMAL" />
+    <result column="AR_CHANNEL_CODE" property="CHANNELCODE" jdbcType="VARCHAR" />
+    <result column="AR_TRANS_DATE" property="BUSINESSDATE" jdbcType="VARCHAR" />
+    <result column="AR_ADDRESS" property="ADDRESS" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_CODE" property="INSTREPRIDCODE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_TYPE" property="INSTREPRIDTYPE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_NAME" property="INSTREPRNAME" jdbcType="VARCHAR" />
+    <result column="AR_APP_SHEET_SERIAL_NO" property="APPSHEETSERIALNO" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_TYPE" property="CERTIFICATETYPE" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_NO" property="CERTIFICATENO" jdbcType="VARCHAR" />
+    <result column="AR_INVESTOR_NAME" property="INVESTORNAME" jdbcType="NVARCHAR" />
+    <result column="AR_TRANSACTION_DATE" property="TRANSACTIONDATE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_TIME" property="TRANSACTIONTIME" jdbcType="VARCHAR" />
+    <result column="AR_INDIVIDUAL_OR_INSTITUTION" property="INDIVIDUALORINSTITUTION" jdbcType="VARCHAR" />
+    <result column="AR_POST_CODE" property="POSTCODE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_NO" property="TRANSACTORCERTNO" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_TYPE" property="TRANSACTORCERTTYPE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_NAME" property="TRANSACTORNAME" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_ACCOUNT_ID" property="TRANSACTIONACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_DISTRIBUTOR_CODE" property="DISTRIBUTORCODE" jdbcType="VARCHAR" />
+    <result column="AR_BUSINESS_CODE" property="BUSINESSCODE" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_FM_IN_CLEAR_AGENCY" property="ACCTNOFMINCLEARAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_F_I_CLEAR_AGENCY" property="ACCTNAMEFICLEARAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY_CODE" property="CLEARINGAGENCYCODE" jdbcType="VARCHAR" />
+    <result column="AR_INVESTORS_BIRTHDAY" property="INVESTORSBIRTHDAY" jdbcType="VARCHAR" />
+    <result column="AR_DEPOSIT_ACCT" property="DEPOSITACCT" jdbcType="VARCHAR" />
+    <result column="AR_REGION_CODE" property="REGIONCODE" jdbcType="VARCHAR" />
+    <result column="AR_EDUCATION_LEVEL" property="EDUCATIONLEVEL" jdbcType="VARCHAR" />
+    <result column="AR_EMAIL_ADDRESS" property="EMAILADDRESS" jdbcType="VARCHAR" />
+    <result column="AR_FAX_NO" property="FAXNO" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION_CODE" property="VOCATIONCODE" jdbcType="VARCHAR" />
+    <result column="AR_HOME_TEL_NO" property="HOMETELNO" jdbcType="VARCHAR" />
+    <result column="AR_ANNUAL_INCOME" property="ANNUALINCOME" jdbcType="DECIMAL" />
+    <result column="AR_MOBILE_TEL_NO" property="MOBILETELNO" jdbcType="VARCHAR" />
+    <result column="AR_BRANCH_CODE" property="BRANCHCODE" jdbcType="VARCHAR" />
+    <result column="AR_OFFICE_TEL_NO" property="OFFICETELNO" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_ABBR" property="ACCOUNTABBR" jdbcType="VARCHAR" />
+    <result column="AR_CONFIDENTIAL_DOCUMENT_CODE" property="ConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="AR_SEX" property="SEX" jdbcType="VARCHAR" />
+    <result column="AR_SH_SECURITIES_ACCOUNTID" property="SHSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_SZ_SECURITIES_ACCOUNTID" property="SZSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_TA_ACCOUNT_ID" property="TAACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_TEL_NO" property="TELNO" jdbcType="VARCHAR" />
+    <result column="AR_TRADING_METHOD" property="TRADINGMETHOD" jdbcType="VARCHAR" />
+    <result column="AR_MINOR_FLAG" property="MINORFLAG" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_TYPE" property="DELIVERTYPE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_ID_TYPE" property="TRANSACTORIDTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_CARD_ID" property="ACCOUNTCARDID" jdbcType="VARCHAR" />
+    <result column="AR_MULTIACCT_FLAG" property="MULTIACCTFLAG" jdbcType="VARCHAR" />
+    <result column="AR_TARGET_TRANSACT_ACCT_CODE" property="TARGETTRANSACTACCTCODE" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_INVE_CLEAR_AGEN" property="ACCTNAMEINVECLEARAGEN" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_INVE_CLEAR_AGEN" property="ACCTNOINVECLEARAGEN" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY" property="CLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_WAY" property="DELIVERWAY" jdbcType="VARCHAR" />
+    <result column="AR_NATIONALITY" property="NATIONALITY" jdbcType="VARCHAR" />
+    <result column="AR_NET_NO" property="NETNO" jdbcType="VARCHAR" />
+    <result column="AR_BROKER" property="BROKER" jdbcType="VARCHAR" />
+    <result column="AR_CORP_NAME" property="CORPNAME" jdbcType="VARCHAR" />
+    <result column="AR_CERT_VALID_DATE" property="CERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_TRAN_CERT_VALID_DATE" property="INSTTRANCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_CERT_VALID_DATE" property="INSTREPRCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_CLIENT_RISK_RATE" property="CLIENTRISKRATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_MANAGE_RANGE" property="INSTREPRMANAGERANGE" jdbcType="VARCHAR" />
+    <result column="AR_CONTROL_HOLDER" property="CONTROLHOLDER" jdbcType="VARCHAR" />
+    <result column="AR_ACTUAL_CONTROLLER" property="ACTUALCONTROLLER" jdbcType="VARCHAR" />
+    <result column="AR_MARRIAGE_STATUS" property="MARRIAGESTATUS" jdbcType="VARCHAR" />
+    <result column="AR_FAMILY_NUM" property="FAMILYNUM" jdbcType="DECIMAL" />
+    <result column="AR_PENATES" property="PENATES" jdbcType="DECIMAL" />
+    <result column="AR_MEDIA_HOBBY" property="MEDIAHOBBY" jdbcType="VARCHAR" />
+    <result column="AR_INSTITUTION_TYPE" property="INSTITUTIONTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FIRST_NAME" property="ENGLISHFIRSTNAME" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FAMLIY_NAME" property="ENGLISHFAMLIYNAME" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION" property="VOCATION" jdbcType="VARCHAR" />
+    <result column="AR_CORPO_PROPERTY" property="CORPOPROPERTY" jdbcType="VARCHAR" />
+    <result column="AR_STAFF_NUM" property="STAFFNUM" jdbcType="DECIMAL" />
+    <result column="AR_HOBBYTYPE" property="HOBBYTYPE" jdbcType="VARCHAR" />
+    <result column="AR_PROVINCE" property="PROVINCE" jdbcType="VARCHAR" />
+    <result column="AR_CITY" property="CITY" jdbcType="VARCHAR" />
+    <result column="AR_COUNTY" property="COUNTY" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON" property="COMMENDPERSON" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON_TYPE" property="COMMENDPERSONTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ACCEPT_METHOD" property="ACCEPTMETHOD" jdbcType="VARCHAR" />
+    <result column="AR_FROZEN_CAUSE" property="FROZENCAUSE" jdbcType="VARCHAR" />
+    <result column="AR_FREEZING_DEADLINE" property="FREEZINGDEADLINE" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_SERIAL_NO" property="ORIGINALSERIALNO" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_APP_SHEET_NO" property="ORIGINALAPPSHEETNO" jdbcType="VARCHAR" />
+    <result column="AR_SPECIFICATION" property="SPECIFICATION" jdbcType="VARCHAR" />
+    <result column="AR_VALID_FLAG" property="VALIDFLAG" jdbcType="VARCHAR" />
+    <result column="AR_ERROR_DEC" property="ERRORDEC" jdbcType="VARCHAR" />
+    <result column="AR_TA_SERIAL_NO" property="TASERIALNO" jdbcType="VARCHAR" />
+    <result column="AR_TA_TRANS_STATUS" property="TATRANSSTATUS" jdbcType="VARCHAR" />
+    <result column="AR_OPEN_CHANNEL_STAT" property="OPENCHANNELSTAT" jdbcType="VARCHAR" />
+    <result column="AR_RETURN_CODE" property="RETURNCODE" jdbcType="VARCHAR" />
+    <result column="AR_TA_TRANS_TIME" property="TATRANSTIME" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <sql id="Base_Column_ListReq" >
+    AR_ID, AR_CHANNEL_CODE,AR_TRANS_DATE, AR_ADDRESS, AR_INST_REPR_ID_CODE, AR_INST_REPR_ID_TYPE, 
+    AR_INST_REPR_NAME, AR_APP_SHEET_SERIAL_NO, AR_CERTIFICATE_TYPE, AR_CERTIFICATE_NO, 
+    AR_INVESTOR_NAME, AR_TRANSACTION_DATE, AR_TRANSACTION_TIME, AR_INDIVIDUAL_OR_INSTITUTION, 
+    AR_POST_CODE, AR_TRANSACTOR_CERT_NO, AR_TRANSACTOR_CERT_TYPE, AR_TRANSACTOR_NAME, 
+    AR_TRANSACTION_ACCOUNT_ID, AR_DISTRIBUTOR_CODE, AR_BUSINESS_CODE, AR_ACCT_NO_FM_IN_CLEAR_AGENCY, 
+    AR_ACCT_NAME_F_I_CLEAR_AGENCY, AR_CLEARING_AGENCY_CODE, AR_INVESTORS_BIRTHDAY, AR_DEPOSIT_ACCT, 
+    AR_REGION_CODE, AR_EDUCATION_LEVEL, AR_EMAIL_ADDRESS, AR_FAX_NO, AR_VOCATION_CODE, 
+    AR_HOME_TEL_NO, AR_ANNUAL_INCOME, AR_MOBILE_TEL_NO, AR_BRANCH_CODE, AR_OFFICE_TEL_NO, 
+    AR_ACCOUNT_ABBR, AR_CONFIDENTIAL_DOCUMENT_CODE, AR_SEX, AR_SH_SECURITIES_ACCOUNTID, 
+    AR_SZ_SECURITIES_ACCOUNTID, AR_TA_ACCOUNT_ID, AR_TEL_NO, AR_TRADING_METHOD, AR_MINOR_FLAG, 
+    AR_DELIVER_TYPE, AR_TRANSACTOR_ID_TYPE, AR_ACCOUNT_CARD_ID, AR_MULTIACCT_FLAG, AR_TARGET_TRANSACT_ACCT_CODE, 
+    AR_ACCT_NAME_INVE_CLEAR_AGEN, AR_ACCT_NO_INVE_CLEAR_AGEN, AR_CLEARING_AGENCY, AR_DELIVER_WAY, 
+    AR_NATIONALITY, AR_NET_NO, AR_BROKER, AR_CORP_NAME, AR_CERT_VALID_DATE, AR_INST_TRAN_CERT_VALID_DATE, 
+    AR_INST_REPR_CERT_VALID_DATE, AR_CLIENT_RISK_RATE, AR_INST_REPR_MANAGE_RANGE, AR_CONTROL_HOLDER, 
+    AR_ACTUAL_CONTROLLER, AR_MARRIAGE_STATUS, AR_FAMILY_NUM, AR_PENATES, AR_MEDIA_HOBBY, 
+    AR_INSTITUTION_TYPE, AR_ENGLISH_FIRST_NAME, AR_ENGLISH_FAMLIY_NAME, AR_VOCATION, 
+    AR_CORPO_PROPERTY, AR_STAFF_NUM, AR_HOBBYTYPE, AR_PROVINCE, AR_CITY, AR_COUNTY, AR_COMMEND_PERSON, 
+    AR_COMMEND_PERSON_TYPE, AR_ACCEPT_METHOD, AR_FROZEN_CAUSE, AR_FREEZING_DEADLINE, 
+    AR_ORIGINAL_SERIAL_NO, AR_ORIGINAL_APP_SHEET_NO, AR_SPECIFICATION, AR_VALID_FLAG, 
+    AR_ERROR_DEC, AR_TA_SERIAL_NO,  AR_TA_TRANS_STATUS , AR_OPEN_CHANNEL_STAT,AR_RETURN_CODE,AR_TA_TRANS_TIME
+  </sql>
+  
+  
+  <select id="selectByChannelCodeBusinessDateCount" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_ACCOUNT_REQ_TMP
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  ART_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  ART_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <delete id="deleteByChannelCodeBusinessDate" parameterType="hashMap" >
+    delete from D_ACCOUNT_REQ_TMP
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  ART_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  ART_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert id="insertByBatch"  parameterType="java.util.List" >
+    insert  all 
+    <foreach collection="list" item="item" index="index">
+    into D_ACCOUNT_REQ_TMP (ART_CHANNEL_CODE,ART_TRANS_DATE, 
+      ART_ADDRESS, ART_INST_REPR_ID_CODE, ART_INST_REPR_ID_TYPE, 
+      ART_INST_REPR_NAME, ART_APP_SHEET_SERIAL_NO, ART_CERTIFICATE_TYPE, 
+      ART_CERTIFICATE_NO, ART_INVESTOR_NAME, ART_TRANSACTION_DATE, 
+      ART_TRANSACTION_TIME, ART_INDIVIDUAL_OR_INSTITUTION, 
+      ART_POST_CODE, ART_TRANSACTOR_CERT_NO, ART_TRANSACTOR_CERT_TYPE, 
+      ART_TRANSACTOR_NAME, ART_TRANSACTION_ACCOUNT_ID, 
+      ART_DISTRIBUTOR_CODE, ART_BUSINESS_CODE, ART_ACCT_NO_FM_IN_CLEAR_AGENCY, 
+      ART_ACCT_NAME_F_I_CLEAR_AGENCY, ART_CLEARING_AGENCY_CODE, 
+      ART_INVESTORS_BIRTHDAY, ART_DEPOSIT_ACCT, ART_REGION_CODE, 
+      ART_EDUCATION_LEVEL, ART_EMAIL_ADDRESS, ART_FAX_NO, 
+      ART_VOCATION_CODE, ART_HOME_TEL_NO, ART_ANNUAL_INCOME, 
+      ART_MOBILE_TEL_NO, ART_BRANCH_CODE, ART_OFFICE_TEL_NO, 
+      ART_ACCOUNT_ABBR, ART_CONFIDENTIAL_DOCUMENT_CODE, 
+      ART_SEX, ART_SH_SECURITIES_ACCOUNTID, ART_SZ_SECURITIES_ACCOUNTID, 
+      ART_TA_ACCOUNT_ID, ART_TEL_NO, ART_TRADING_METHOD, 
+      ART_MINOR_FLAG, ART_DELIVER_TYPE, ART_TRANSACTOR_ID_TYPE, 
+      ART_ACCOUNT_CARD_ID, ART_MULTIACCT_FLAG, ART_TARGET_TRANSACT_ACCT_CODE, 
+      ART_ACCT_NAME_INVE_CLEAR_AGEN, ART_ACCT_NO_INVE_CLEAR_AGEN, 
+      ART_CLEARING_AGENCY, ART_DELIVER_WAY, ART_NATIONALITY, 
+      ART_NET_NO, ART_BROKER, ART_CORP_NAME, 
+      ART_CERT_VALID_DATE, ART_INST_TRAN_CERT_VALID_DATE, 
+      ART_INST_REPR_CERT_VALID_DATE, ART_CLIENT_RISK_RATE, 
+      ART_INST_REPR_MANAGE_RANGE, ART_CONTROL_HOLDER, 
+      ART_ACTUAL_CONTROLLER, ART_MARRIAGE_STATUS, 
+      ART_FAMILY_NUM, ART_PENATES, ART_MEDIA_HOBBY, 
+      ART_INSTITUTION_TYPE, ART_ENGLISH_FIRST_NAME, 
+      ART_ENGLISH_FAMLIY_NAME, ART_VOCATION, ART_CORPO_PROPERTY, 
+      ART_STAFF_NUM, ART_HOBBYTYPE, ART_PROVINCE, 
+      ART_CITY, ART_COUNTY, ART_COMMEND_PERSON, 
+      ART_COMMEND_PERSON_TYPE, ART_ACCEPT_METHOD, 
+      ART_FROZEN_CAUSE, ART_FREEZING_DEADLINE, ART_ORIGINAL_SERIAL_NO, 
+      ART_ORIGINAL_APP_SHEET_NO, ART_SPECIFICATION 
+      )
+     values 
+		(#{item.CHANNELCODE,jdbcType=VARCHAR},
+		#{item.BUSINESSDATE,jdbcType=VARCHAR},
+		#{item.ADDRESS,jdbcType=VARCHAR},
+		#{item.INSTREPRIDCODE,jdbcType=VARCHAR},
+		#{item.INSTREPRIDTYPE,jdbcType=VARCHAR},
+		#{item.INSTREPRNAME,jdbcType=VARCHAR},
+		#{item.APPSHEETSERIALNO,jdbcType=VARCHAR},
+		#{item.CERTIFICATETYPE,jdbcType=VARCHAR},
+		#{item.CERTIFICATENO,jdbcType=VARCHAR},
+		#{item.INVESTORNAME,jdbcType=NVARCHAR},
+		#{item.TRANSACTIONDATE,jdbcType=VARCHAR},
+		#{item.TRANSACTIONTIME,jdbcType=VARCHAR},
+		#{item.INDIVIDUALORINSTITUTION,jdbcType=VARCHAR},
+		#{item.POSTCODE,jdbcType=VARCHAR},
+		#{item.TRANSACTORCERTNO,jdbcType=VARCHAR},
+		#{item.TRANSACTORCERTTYPE,jdbcType=VARCHAR},
+		#{item.TRANSACTORNAME,jdbcType=VARCHAR},
+		#{item.TRANSACTIONACCOUNTID,jdbcType=VARCHAR},
+		#{item.DISTRIBUTORCODE,jdbcType=VARCHAR},
+		#{item.BUSINESSCODE,jdbcType=VARCHAR},
+		#{item.ACCTNOOFFMINCLEARINGAGENCY,jdbcType=VARCHAR},
+		#{item.ACCTNAMEOFFMINCLEARINGAGENCY,jdbcType=VARCHAR},
+		#{item.CLEARINGAGENCYCODE,jdbcType=VARCHAR},
+		#{item.INVESTORSBIRTHDAY,jdbcType=VARCHAR},
+		#{item.DEPOSITACCT,jdbcType=VARCHAR},
+		#{item.REGIONCODE,jdbcType=VARCHAR},
+		#{item.EDUCATIONLEVEL,jdbcType=VARCHAR},
+		#{item.EMAILADDRESS,jdbcType=VARCHAR},
+		#{item.FAXNO,jdbcType=VARCHAR},
+		#{item.VOCATIONCODE,jdbcType=VARCHAR},
+		#{item.HOMETELNO,jdbcType=VARCHAR},
+		#{item.ANNUALINCOME,jdbcType=DECIMAL},
+		#{item.MOBILETELNO,jdbcType=VARCHAR},
+		#{item.BRANCHCODE,jdbcType=VARCHAR},
+		#{item.OFFICETELNO,jdbcType=VARCHAR},
+		#{item.ACCOUNTABBR,jdbcType=VARCHAR},
+		#{item.CONFIDENTIALDOCUMENTCODE,jdbcType=VARCHAR},
+		#{item.SEX,jdbcType=VARCHAR},
+		#{item.SHSECURITIESACCOUNTID,jdbcType=VARCHAR},
+		#{item.SZSECURITIESACCOUNTID,jdbcType=VARCHAR},
+		#{item.TAACCOUNTID,jdbcType=VARCHAR},
+		#{item.TELNO,jdbcType=VARCHAR},
+		#{item.TRADINGMETHOD,jdbcType=VARCHAR},
+		#{item.MINORFLAG,jdbcType=VARCHAR},
+		#{item.DELIVERTYPE,jdbcType=VARCHAR},
+		#{item.TRANSACTORIDTYPE,jdbcType=VARCHAR},
+		#{item.ACCOUNTCARDID,jdbcType=VARCHAR},
+		#{item.MULTIACCTFLAG,jdbcType=VARCHAR},
+		#{item.TARGETTRANSACTIONACCOUNTID,jdbcType=VARCHAR},
+		#{item.ACCTNAMEOFINVESTORINCLEARINGAGENCY,jdbcType=VARCHAR},
+		#{item.ACCTNOOFINVESTORINCLEARINGAGENCY,jdbcType=VARCHAR},
+		#{item.CLEARINGAGENCY,jdbcType=VARCHAR},
+		#{item.DELIVERWAY,jdbcType=VARCHAR},
+		#{item.NATIONALITY,jdbcType=VARCHAR},
+		#{item.NETNO,jdbcType=VARCHAR},
+		#{item.BROKER,jdbcType=VARCHAR},
+		#{item.CORPNAME,jdbcType=VARCHAR},
+		#{item.CERTVALIDDATE,jdbcType=VARCHAR},
+		#{item.INSTTRANCERTVALIDDATE,jdbcType=VARCHAR},
+		#{item.INSTREPRCERTVALIDDATE,jdbcType=VARCHAR},
+		#{item.CLIENTRISKRATE,jdbcType=VARCHAR},
+		#{item.INSTREPRMANAGERANGE,jdbcType=VARCHAR},
+		#{item.CONTROLHOLDER,jdbcType=VARCHAR},
+		#{item.ACTUALCONTROLLER,jdbcType=VARCHAR},
+		#{item.MARRIAGESTATUS,jdbcType=VARCHAR},
+		#{item.FAMILYNUM,jdbcType=DECIMAL},
+		#{item.PENATES,jdbcType=DECIMAL},
+		#{item.MEDIAHOBBY,jdbcType=VARCHAR},
+		#{item.INSTITUTIONTYPE,jdbcType=VARCHAR},
+		#{item.ENGLISHFIRSTNAME,jdbcType=VARCHAR},
+		#{item.ENGLISHFAMLIYNAME,jdbcType=VARCHAR},
+		#{item.VOCATION,jdbcType=VARCHAR},
+		#{item.CORPOPROPERTY,jdbcType=VARCHAR},
+		#{item.STAFFNUM,jdbcType=DECIMAL},
+		#{item.HOBBYTYPE,jdbcType=VARCHAR},
+		#{item.PROVINCE,jdbcType=VARCHAR},
+		#{item.CITY,jdbcType=VARCHAR},
+		#{item.COUNTY,jdbcType=VARCHAR},
+		#{item.COMMENDPERSON,jdbcType=VARCHAR},
+		#{item.COMMENDPERSONTYPE,jdbcType=VARCHAR},
+		#{item.ACCEPTMETHOD,jdbcType=VARCHAR},
+		#{item.FROZENCAUSE,jdbcType=VARCHAR},
+		#{item.FREEZINGDEADLINE,jdbcType=VARCHAR},
+		#{item.ORIGINALSERIALNO,jdbcType=VARCHAR},
+		#{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR},
+		#{item.SPECIFICATION,jdbcType=VARCHAR}
+		)
+      </foreach>
+      select 1  from dual
+  </insert>
+  
+  <select id="selectByChannelCodeBusinessDateCountReq" resultType="Integer" parameterType="hashMap" >
+    select 
+    count(*) selectCount
+    from D_ACCOUNT_REQ
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  AR_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  AR_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </select>
+  
+  <delete id="deleteByChannelCodeBusinessDateReq" parameterType="hashMap" >
+    delete from D_ACCOUNT_REQ
+    where 1=1
+    <if test="CHANNELCODE != null" >
+      AND  AR_CHANNEL_CODE=#{CHANNELCODE,jdbcType=VARCHAR}
+    </if>
+    <if test="BUSINESSDATE != null" >
+      AND  AR_TRANS_DATE=#{BUSINESSDATE,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  
+  
+  <insert id="insertByBatchReq"  parameterType="java.util.List" >
+    insert all
+     <foreach collection="list" item="item" index="index" >
+     into D_ACCOUNT_REQ ( AR_CHANNEL_CODE, AR_TRANS_DATE,
+      AR_ADDRESS, AR_INST_REPR_ID_CODE, AR_INST_REPR_ID_TYPE, 
+      AR_INST_REPR_NAME, AR_APP_SHEET_SERIAL_NO, AR_CERTIFICATE_TYPE, 
+      AR_CERTIFICATE_NO, AR_INVESTOR_NAME, AR_TRANSACTION_DATE, 
+      AR_TRANSACTION_TIME, AR_INDIVIDUAL_OR_INSTITUTION, 
+      AR_POST_CODE, AR_TRANSACTOR_CERT_NO, AR_TRANSACTOR_CERT_TYPE, 
+      AR_TRANSACTOR_NAME, AR_TRANSACTION_ACCOUNT_ID, 
+      AR_DISTRIBUTOR_CODE, AR_BUSINESS_CODE, AR_ACCT_NO_FM_IN_CLEAR_AGENCY, 
+      AR_ACCT_NAME_F_I_CLEAR_AGENCY, AR_CLEARING_AGENCY_CODE, 
+      AR_INVESTORS_BIRTHDAY, AR_DEPOSIT_ACCT, AR_REGION_CODE, 
+      AR_EDUCATION_LEVEL, AR_EMAIL_ADDRESS, AR_FAX_NO, 
+      AR_VOCATION_CODE, AR_HOME_TEL_NO, AR_ANNUAL_INCOME, 
+      AR_MOBILE_TEL_NO, AR_BRANCH_CODE, AR_OFFICE_TEL_NO, 
+      AR_ACCOUNT_ABBR, AR_CONFIDENTIAL_DOCUMENT_CODE, 
+      AR_SEX, AR_SH_SECURITIES_ACCOUNTID, AR_SZ_SECURITIES_ACCOUNTID, 
+      AR_TA_ACCOUNT_ID, AR_TEL_NO, AR_TRADING_METHOD, 
+      AR_MINOR_FLAG, AR_DELIVER_TYPE, AR_TRANSACTOR_ID_TYPE, 
+      AR_ACCOUNT_CARD_ID, AR_MULTIACCT_FLAG, AR_TARGET_TRANSACT_ACCT_CODE, 
+      AR_ACCT_NAME_INVE_CLEAR_AGEN, AR_ACCT_NO_INVE_CLEAR_AGEN, 
+      AR_CLEARING_AGENCY, AR_DELIVER_WAY, AR_NATIONALITY, 
+      AR_NET_NO, AR_BROKER, AR_CORP_NAME, 
+      AR_CERT_VALID_DATE, AR_INST_TRAN_CERT_VALID_DATE, 
+      AR_INST_REPR_CERT_VALID_DATE, AR_CLIENT_RISK_RATE, 
+      AR_INST_REPR_MANAGE_RANGE, AR_CONTROL_HOLDER, 
+      AR_ACTUAL_CONTROLLER, AR_MARRIAGE_STATUS, AR_FAMILY_NUM, 
+      AR_PENATES, AR_MEDIA_HOBBY, AR_INSTITUTION_TYPE, 
+      AR_ENGLISH_FIRST_NAME, AR_ENGLISH_FAMLIY_NAME, 
+      AR_VOCATION, AR_CORPO_PROPERTY, AR_STAFF_NUM, 
+      AR_HOBBYTYPE, AR_PROVINCE, AR_CITY, 
+      AR_COUNTY, AR_COMMEND_PERSON, AR_COMMEND_PERSON_TYPE, 
+      AR_ACCEPT_METHOD, AR_FROZEN_CAUSE, AR_FREEZING_DEADLINE, 
+      AR_ORIGINAL_SERIAL_NO, AR_ORIGINAL_APP_SHEET_NO, 
+      AR_SPECIFICATION, AR_VALID_FLAG, AR_ERROR_DEC, 
+      AR_TA_SERIAL_NO, AR_TA_TRANS_STATUS,AR_OPEN_CHANNEL_STAT,AR_RETURN_CODE
+       
+      ) values (
+		#{item.CHANNELCODE,jdbcType=VARCHAR}, 
+		#{item.BUSINESSDATE,jdbcType=VARCHAR}, 
+		#{item.ADDRESS,jdbcType=VARCHAR}, 
+		#{item.INSTREPRIDCODE,jdbcType=VARCHAR}, 
+		#{item.INSTREPRIDTYPE,jdbcType=VARCHAR}, 
+		#{item.INSTREPRNAME,jdbcType=VARCHAR}, 
+		#{item.APPSHEETSERIALNO,jdbcType=VARCHAR}, 
+		#{item.CERTIFICATETYPE,jdbcType=VARCHAR}, 
+		#{item.CERTIFICATENO,jdbcType=VARCHAR}, 
+		#{item.INVESTORNAME,jdbcType=NVARCHAR},
+		#{item.TRANSACTIONDATE,jdbcType=VARCHAR}, 
+		#{item.TRANSACTIONTIME,jdbcType=VARCHAR}, 
+		#{item.INDIVIDUALORINSTITUTION,jdbcType=VARCHAR}, 
+		#{item.POSTCODE,jdbcType=VARCHAR}, 
+		#{item.TRANSACTORCERTNO,jdbcType=VARCHAR}, 
+		#{item.TRANSACTORCERTTYPE,jdbcType=VARCHAR}, 
+		#{item.TRANSACTORNAME,jdbcType=VARCHAR}, 
+		#{item.TRANSACTIONACCOUNTID,jdbcType=VARCHAR}, 
+		#{item.DISTRIBUTORCODE,jdbcType=VARCHAR}, 
+		#{item.BUSINESSCODE,jdbcType=VARCHAR}, 
+		#{item.ACCTNOFMINCLEARAGENCY,jdbcType=VARCHAR}, 
+		#{item.ACCTNAMEFICLEARAGENCY,jdbcType=VARCHAR}, 
+		#{item.CLEARINGAGENCYCODE,jdbcType=VARCHAR}, 
+		#{item.INVESTORSBIRTHDAY,jdbcType=VARCHAR}, 
+		#{item.DEPOSITACCT,jdbcType=VARCHAR}, 
+		#{item.REGIONCODE,jdbcType=VARCHAR}, 
+		#{item.EDUCATIONLEVEL,jdbcType=VARCHAR}, 
+		#{item.EMAILADDRESS,jdbcType=VARCHAR}, 
+		#{item.FAXNO,jdbcType=VARCHAR}, 
+		#{item.VOCATIONCODE,jdbcType=VARCHAR}, 
+		#{item.HOMETELNO,jdbcType=VARCHAR}, 
+		#{item.ANNUALINCOME,jdbcType=DECIMAL}, 
+		#{item.MOBILETELNO,jdbcType=VARCHAR}, 
+		#{item.BRANCHCODE,jdbcType=VARCHAR}, 
+		#{item.OFFICETELNO,jdbcType=VARCHAR}, 
+		#{item.ACCOUNTABBR,jdbcType=VARCHAR}, 
+		#{item.CONFIDENTIALDOCUMENTCODE,jdbcType=VARCHAR}, 
+		#{item.SEX,jdbcType=VARCHAR}, 
+		#{item.SHSECURITIESACCOUNTID,jdbcType=VARCHAR}, 
+		#{item.SZSECURITIESACCOUNTID,jdbcType=VARCHAR}, 
+		#{item.TAACCOUNTID,jdbcType=VARCHAR}, 
+		#{item.TELNO,jdbcType=VARCHAR}, 
+		#{item.TRADINGMETHOD,jdbcType=VARCHAR}, 
+		#{item.MINORFLAG,jdbcType=VARCHAR}, 
+		#{item.DELIVERTYPE,jdbcType=VARCHAR}, 
+		#{item.TRANSACTORIDTYPE,jdbcType=VARCHAR}, 
+		#{item.ACCOUNTCARDID,jdbcType=VARCHAR}, 
+		#{item.MULTIACCTFLAG,jdbcType=VARCHAR}, 
+		#{item.TARGETTRANSACTACCTCODE,jdbcType=VARCHAR}, 
+		#{item.ACCTNAMEOFINVESTORINCLEARINGAGENCY,jdbcType=VARCHAR}, 
+		#{item.ACCTNOOFINVESTORINCLEARINGAGENCY,jdbcType=VARCHAR}, 
+		#{item.CLEARINGAGENCY,jdbcType=VARCHAR}, 
+		#{item.DELIVERWAY,jdbcType=VARCHAR}, 
+		#{item.NATIONALITY,jdbcType=VARCHAR}, 
+		#{item.NETNO,jdbcType=VARCHAR}, 
+		#{item.BROKER,jdbcType=VARCHAR}, 
+		#{item.CORPNAME,jdbcType=VARCHAR}, 
+		#{item.CERTVALIDDATE,jdbcType=VARCHAR}, 
+		#{item.INSTTRANCERTVALIDDATE,jdbcType=VARCHAR}, 
+		#{item.INSTREPRCERTVALIDDATE,jdbcType=VARCHAR}, 
+		#{item.CLIENTRISKRATE,jdbcType=VARCHAR}, 
+		#{item.INSTREPRMANAGERANGE,jdbcType=VARCHAR}, 
+		#{item.CONTROLHOLDER,jdbcType=VARCHAR}, 
+		#{item.ACTUALCONTROLLER,jdbcType=VARCHAR}, 
+		#{item.MARRIAGESTATUS,jdbcType=VARCHAR}, 
+		#{item.FAMILYNUM,jdbcType=DECIMAL}, 
+		#{item.PENATES,jdbcType=DECIMAL}, 
+		#{item.MEDIAHOBBY,jdbcType=VARCHAR}, 
+		#{item.INSTITUTIONTYPE,jdbcType=VARCHAR}, 
+		#{item.ENGLISHFIRSTNAME,jdbcType=VARCHAR}, 
+		#{item.ENGLISHFAMLIYNAME,jdbcType=VARCHAR}, 
+		#{item.VOCATION,jdbcType=VARCHAR}, 
+		#{item.CORPOPROPERTY,jdbcType=VARCHAR}, 
+		#{item.STAFFNUM,jdbcType=DECIMAL}, 
+		#{item.HOBBYTYPE,jdbcType=VARCHAR}, 
+		#{item.PROVINCE,jdbcType=VARCHAR}, 
+		#{item.CITY,jdbcType=VARCHAR}, 
+		#{item.COUNTY,jdbcType=VARCHAR}, 
+		#{item.COMMENDPERSON,jdbcType=VARCHAR}, 
+		#{item.COMMENDPERSONTYPE,jdbcType=VARCHAR}, 
+		#{item.ACCEPTMETHOD,jdbcType=VARCHAR}, 
+		#{item.FROZENCAUSE,jdbcType=VARCHAR}, 
+		#{item.FREEZINGDEADLINE,jdbcType=VARCHAR}, 
+		#{item.ORIGINALSERIALNO,jdbcType=VARCHAR}, 
+		#{item.ORIGINALAPPSHEETNO,jdbcType=VARCHAR}, 
+		#{item.SPECIFICATION,jdbcType=VARCHAR}, 
+		#{item.VALIDFLAG,jdbcType=VARCHAR}, 
+		#{item.ERRORDEC,jdbcType=VARCHAR}, 
+		#{item.TASERIALNO,jdbcType=VARCHAR},
+		#{item.TATRANSSTATUS,jdbcType=VARCHAR},
+		#{item.OPENCHANNELSTAT,jdbcType=VARCHAR},
+		#{item.RETURNCODE,jdbcType=VARCHAR}
+		)
+      </foreach>
+      select 1 from dual
+  </insert>
+  
+  <select id="selectAccoTempByDate" resultMap = "tempResultMap" parameterType="Map" >
+  		select 
+  		<include refid="Base_Column_List"></include> 
+  		from d_account_req_tmp  t where 
+  		art_channel_code=#{CHANNELCODE,jdbcType=VARCHAR}
+      	and  art_trans_date=#{TRANSDATE,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAccoInfoByDate" resultMap = "tempResultMapReq" parameterType="Map" >
+  	select 
+  		<include refid="Base_Column_ListReq"></include> 
+  	from d_account_req  t where 
+	ar_channel_code=#{CHANNELCODE,jdbcType=VARCHAR}
+   	and  ar_trans_date=#{TRANSDATE,jdbcType=VARCHAR}
+   	<if test="VALIDFLAG != null and VALIDFLAG != ''">
+   		and ar_valid_flag = #{VALIDFLAG,jdbcType=VARCHAR}
+   	</if>
+   	<if test="TATRANSSTATUS != null and TATRANSSTATUS != ''">
+   		and AR_TA_TRANS_STATUS = #{TATRANSSTATUS,jdbcType=VARCHAR}
+   	</if>
+   	ORDER BY AR_BUSINESS_CODE ,AR_TRANSACTION_DATE,AR_TRANSACTION_TIME
+  </select>
+  
+  <update id="batchUpdateAccountReqData" parameterType="java.util.List">
+  		<foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            update d_account_req
+            <set>
+                <if test="item.VALIDFLAG != null">
+                    AR_VALID_FLAG = #{item.VALIDFLAG,jdbcType=VARCHAR},
+                </if>
+                <if test="item.TASERIALNO != null">
+                    AR_TA_SERIAL_NO = #{item.TASERIALNO,jdbcType=VARCHAR},
+                </if>
+                <if test="item.TAACCOUNTID != null">
+                    ar_ta_account_id = #{item.TAACCOUNTID,jdbcType=VARCHAR},
+                </if>
+                <if test="item.OPENCHANNELSTAT != null">
+                    AR_OPEN_CHANNEL_STAT = #{item.OPENCHANNELSTAT,jdbcType=VARCHAR},
+                </if>
+                <if test="item.ERRORDEC != null">
+                    AR_ERROR_DEC = #{item.ERRORDEC,jdbcType=VARCHAR},
+                </if>
+                <if test="item.RETURNCODE != null">
+                    AR_RETURN_CODE = #{item.RETURNCODE,jdbcType=VARCHAR},
+                </if>
+                 <!--
+                <if test="item.TATRANSSTATUS != null">
+                    ER_TA_TRANS_STATUS = #{item.TATRANSSTATUS,jdbcType=VARCHAR},
+                </if> -->
+            </set>
+            where AR_TRANS_DATE = #{item.BUSINESSDATE,jdbcType = VARCHAR}
+  		 	and AR_CHANNEL_CODE =#{item.CHANNELCODE,jdbcType = VARCHAR}
+  		 	and AR_APP_SHEET_SERIAL_NO =#{item.APPSHEETSERIALNO,jdbcType = VARCHAR}
+        </foreach>
+  </update>
+  
+  <select id="checkAccountSameData" resultType="Integer" parameterType="hashMap">
+  		select COUNT(1) from d_account_req_tmp  
+  		where art_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND ART_TRANS_DATE = #{TRANSDATE,jdbcType = VARCHAR}
+  		GROUP BY art_channel_code,ART_ADDRESS, ART_INST_REPR_ID_CODE, ART_INST_REPR_ID_TYPE, 
+  		ART_INST_REPR_NAME, ART_APP_SHEET_SERIAL_NO, ART_CERTIFICATE_TYPE, ART_CERTIFICATE_NO, 
+  		ART_INVESTOR_NAME, ART_TRANSACTION_DATE, ART_TRANSACTION_TIME, ART_INDIVIDUAL_OR_INSTITUTION, 
+  		ART_POST_CODE, ART_TRANSACTOR_CERT_NO, ART_TRANSACTOR_CERT_TYPE, ART_TRANSACTOR_NAME, 
+  		ART_TRANSACTION_ACCOUNT_ID, ART_DISTRIBUTOR_CODE, ART_BUSINESS_CODE, ART_ACCT_NO_FM_IN_CLEAR_AGENCY, 
+  		ART_ACCT_NAME_F_I_CLEAR_AGENCY, ART_CLEARING_AGENCY_CODE, ART_INVESTORS_BIRTHDAY, 
+  		ART_DEPOSIT_ACCT, ART_REGION_CODE, ART_EDUCATION_LEVEL, ART_EMAIL_ADDRESS, ART_FAX_NO, 
+  		ART_VOCATION_CODE, ART_HOME_TEL_NO, ART_ANNUAL_INCOME, ART_MOBILE_TEL_NO, ART_BRANCH_CODE, 
+  		ART_OFFICE_TEL_NO, ART_ACCOUNT_ABBR, ART_CONFIDENTIAL_DOCUMENT_CODE, ART_SEX, ART_SH_SECURITIES_ACCOUNTID, 
+  		ART_SZ_SECURITIES_ACCOUNTID, ART_TA_ACCOUNT_ID, ART_TEL_NO, ART_TRADING_METHOD, ART_MINOR_FLAG, 
+  		ART_DELIVER_TYPE, ART_TRANSACTOR_ID_TYPE, ART_ACCOUNT_CARD_ID, ART_MULTIACCT_FLAG, ART_TARGET_TRANSACT_ACCT_CODE, 
+  		ART_ACCT_NAME_INVE_CLEAR_AGEN, ART_ACCT_NO_INVE_CLEAR_AGEN, ART_CLEARING_AGENCY, ART_DELIVER_WAY, ART_NATIONALITY, 
+  		ART_NET_NO, ART_BROKER, ART_CORP_NAME, ART_CERT_VALID_DATE, ART_INST_TRAN_CERT_VALID_DATE, ART_INST_REPR_CERT_VALID_DATE, 
+  		ART_CLIENT_RISK_RATE, ART_INST_REPR_MANAGE_RANGE, ART_CONTROL_HOLDER, ART_ACTUAL_CONTROLLER, ART_MARRIAGE_STATUS, 
+  		ART_FAMILY_NUM, ART_PENATES, ART_MEDIA_HOBBY, ART_INSTITUTION_TYPE, ART_ENGLISH_FIRST_NAME, ART_ENGLISH_FAMLIY_NAME, 
+  		ART_VOCATION, ART_CORPO_PROPERTY, ART_STAFF_NUM, ART_HOBBYTYPE, ART_PROVINCE, ART_CITY, ART_COUNTY, ART_COMMEND_PERSON, 
+  		ART_COMMEND_PERSON_TYPE, ART_ACCEPT_METHOD, ART_FROZEN_CAUSE, ART_FREEZING_DEADLINE, ART_ORIGINAL_SERIAL_NO, 
+  		ART_ORIGINAL_APP_SHEET_NO, ART_SPECIFICATION  HAVING COUNT(1) > 1 
+  </select>
+  
+  <select id="updateAccoReq" parameterType="hashMap">
+  	update d_account_req set 
+  	ar_ta_trans_status = #{TATRANSTATUS,jdbcType = VARCHAR} ,
+  	ar_error_dec = #{ERRORDEC,jdbcType = VARCHAR},
+  	ar_return_code = #{RETURNCODE,jdbcType = VARCHAR},
+  	ar_ta_account_id = #{TAACCOUNTID,jdbcType = VARCHAR},
+  	<if test="OPENCHANNELSTAT != null and OPENCHANNELSTAT != '' ">
+  		AR_OPEN_CHANNEL_STAT = #{OPENCHANNELSTAT,jdbcType = VARCHAR},
+  	</if>
+  	<if test="VALIDFLAG != null and VALIDFLAG != '' ">
+  		AR_VALID_FLAG = #{VALIDFLAG,jdbcType = VARCHAR},
+  	</if>
+  	AR_TA_TRANS_TIME = #{TATRANSTIME,jdbcType = VARCHAR}
+  	where ar_id = #{ARID,jdbcType = DECIMAL}
+  </select>
+  
+  <resultMap id="accountAddtional" type="HashMap" >
+    <id column="AR_ID" property="ARID" jdbcType="DECIMAL" />
+    <result column="AR_CHANNEL_CODE" property="CHANNELCODE" jdbcType="VARCHAR" />
+     <result column="CI_CHANNEL_NAME" property="CHANNELNAME" jdbcType="VARCHAR" />
+    <result column="AR_TRANS_DATE" property="BUSINESSDATE" jdbcType="VARCHAR" />
+    <result column="AR_ADDRESS" property="ADDRESS" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_CODE" property="INSTREPRIDCODE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_ID_TYPE" property="INSTREPRIDTYPE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_NAME" property="INSTREPRNAME" jdbcType="VARCHAR" />
+    <result column="AR_APP_SHEET_SERIAL_NO" property="APPSHEETSERIALNO" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_TYPE" property="CERTIFICATETYPE" jdbcType="VARCHAR" />
+    <result column="AR_CERTIFICATE_NO" property="CERTIFICATENO" jdbcType="VARCHAR" />
+    <result column="AR_INVESTOR_NAME" property="INVESTORNAME" jdbcType="NVARCHAR" />
+    <result column="AR_TRANSACTION_DATE" property="TRANSACTIONDATE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_TIME" property="TRANSACTIONTIME" jdbcType="VARCHAR" />
+    <result column="AR_INDIVIDUAL_OR_INSTITUTION" property="INDIVIDUALORINSTITUTION" jdbcType="VARCHAR" />
+    <result column="AR_POST_CODE" property="POSTCODE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_NO" property="TRANSACTORCERTNO" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_CERT_TYPE" property="TRANSACTORCERTTYPE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_NAME" property="TRANSACTORNAME" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTION_ACCOUNT_ID" property="TRANSACTIONACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_DISTRIBUTOR_CODE" property="DISTRIBUTORCODE" jdbcType="VARCHAR" />
+    <result column="AR_BUSINESS_CODE" property="BUSINESSCODE" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_FM_IN_CLEAR_AGENCY" property="ACCTNOFMINCLEARAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_F_I_CLEAR_AGENCY" property="ACCTNAMEFICLEARAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY_CODE" property="CLEARINGAGENCYCODE" jdbcType="VARCHAR" />
+    <result column="AR_INVESTORS_BIRTHDAY" property="INVESTORSBIRTHDAY" jdbcType="VARCHAR" />
+    <result column="AR_DEPOSIT_ACCT" property="DEPOSITACCT" jdbcType="VARCHAR" />
+    <result column="AR_REGION_CODE" property="REGIONCODE" jdbcType="VARCHAR" />
+    <result column="AR_EDUCATION_LEVEL" property="EDUCATIONLEVEL" jdbcType="VARCHAR" />
+    <result column="AR_EMAIL_ADDRESS" property="EMAILADDRESS" jdbcType="VARCHAR" />
+    <result column="AR_FAX_NO" property="FAXNO" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION_CODE" property="VOCATIONCODE" jdbcType="VARCHAR" />
+    <result column="AR_HOME_TEL_NO" property="HOMETELNO" jdbcType="VARCHAR" />
+    <result column="AR_ANNUAL_INCOME" property="ANNUALINCOME" jdbcType="DECIMAL" />
+    <result column="AR_MOBILE_TEL_NO" property="MOBILETELNO" jdbcType="VARCHAR" />
+    <result column="AR_BRANCH_CODE" property="BRANCHCODE" jdbcType="VARCHAR" />
+    <result column="AR_OFFICE_TEL_NO" property="OFFICETELNO" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_ABBR" property="ACCOUNTABBR" jdbcType="VARCHAR" />
+    <result column="AR_CONFIDENTIAL_DOCUMENT_CODE" property="ConfidentialDocumentCode" jdbcType="VARCHAR" />
+    <result column="AR_SEX" property="SEX" jdbcType="VARCHAR" />
+    <result column="AR_SH_SECURITIES_ACCOUNTID" property="SHSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_SZ_SECURITIES_ACCOUNTID" property="SZSECURITIESACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_TA_ACCOUNT_ID" property="TAACCOUNTID" jdbcType="VARCHAR" />
+    <result column="AR_TEL_NO" property="TELNO" jdbcType="VARCHAR" />
+    <result column="AR_TRADING_METHOD" property="TRADINGMETHOD" jdbcType="VARCHAR" />
+    <result column="AR_MINOR_FLAG" property="MINORFLAG" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_TYPE" property="DELIVERTYPE" jdbcType="VARCHAR" />
+    <result column="AR_TRANSACTOR_ID_TYPE" property="TRANSACTORIDTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ACCOUNT_CARD_ID" property="ACCOUNTCARDID" jdbcType="VARCHAR" />
+    <result column="AR_MULTIACCT_FLAG" property="MULTIACCTFLAG" jdbcType="VARCHAR" />
+    <result column="AR_TARGET_TRANSACT_ACCT_CODE" property="TARGETTRANSACTACCTCODE" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NAME_INVE_CLEAR_AGEN" property="ACCTNAMEINVECLEARAGEN" jdbcType="VARCHAR" />
+    <result column="AR_ACCT_NO_INVE_CLEAR_AGEN" property="ACCTNOINVECLEARAGEN" jdbcType="VARCHAR" />
+    <result column="AR_CLEARING_AGENCY" property="CLEARINGAGENCY" jdbcType="VARCHAR" />
+    <result column="AR_DELIVER_WAY" property="DELIVERWAY" jdbcType="VARCHAR" />
+    <result column="AR_NATIONALITY" property="NATIONALITY" jdbcType="VARCHAR" />
+    <result column="AR_NET_NO" property="NETNO" jdbcType="VARCHAR" />
+    <result column="AR_BROKER" property="BROKER" jdbcType="VARCHAR" />
+    <result column="AR_CORP_NAME" property="CORPNAME" jdbcType="VARCHAR" />
+    <result column="AR_CERT_VALID_DATE" property="CERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_TRAN_CERT_VALID_DATE" property="INSTTRANCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_CERT_VALID_DATE" property="INSTREPRCERTVALIDDATE" jdbcType="VARCHAR" />
+    <result column="AR_CLIENT_RISK_RATE" property="CLIENTRISKRATE" jdbcType="VARCHAR" />
+    <result column="AR_INST_REPR_MANAGE_RANGE" property="INSTREPRMANAGERANGE" jdbcType="VARCHAR" />
+    <result column="AR_CONTROL_HOLDER" property="CONTROLHOLDER" jdbcType="VARCHAR" />
+    <result column="AR_ACTUAL_CONTROLLER" property="ACTUALCONTROLLER" jdbcType="VARCHAR" />
+    <result column="AR_MARRIAGE_STATUS" property="MARRIAGESTATUS" jdbcType="VARCHAR" />
+    <result column="AR_FAMILY_NUM" property="FAMILYNUM" jdbcType="DECIMAL" />
+    <result column="AR_PENATES" property="PENATES" jdbcType="DECIMAL" />
+    <result column="AR_MEDIA_HOBBY" property="MEDIAHOBBY" jdbcType="VARCHAR" />
+    <result column="AR_INSTITUTION_TYPE" property="INSTITUTIONTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FIRST_NAME" property="ENGLISHFIRSTNAME" jdbcType="VARCHAR" />
+    <result column="AR_ENGLISH_FAMLIY_NAME" property="ENGLISHFAMLIYNAME" jdbcType="VARCHAR" />
+    <result column="AR_VOCATION" property="VOCATION" jdbcType="VARCHAR" />
+    <result column="AR_CORPO_PROPERTY" property="CORPOPROPERTY" jdbcType="VARCHAR" />
+    <result column="AR_STAFF_NUM" property="STAFFNUM" jdbcType="DECIMAL" />
+    <result column="AR_HOBBYTYPE" property="HOBBYTYPE" jdbcType="VARCHAR" />
+    <result column="AR_PROVINCE" property="PROVINCE" jdbcType="VARCHAR" />
+    <result column="AR_CITY" property="CITY" jdbcType="VARCHAR" />
+    <result column="AR_COUNTY" property="COUNTY" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON" property="COMMENDPERSON" jdbcType="VARCHAR" />
+    <result column="AR_COMMEND_PERSON_TYPE" property="COMMENDPERSONTYPE" jdbcType="VARCHAR" />
+    <result column="AR_ACCEPT_METHOD" property="ACCEPTMETHOD" jdbcType="VARCHAR" />
+    <result column="AR_FROZEN_CAUSE" property="FROZENCAUSE" jdbcType="VARCHAR" />
+    <result column="AR_FREEZING_DEADLINE" property="FREEZINGDEADLINE" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_SERIAL_NO" property="ORIGINALSERIALNO" jdbcType="VARCHAR" />
+    <result column="AR_ORIGINAL_APP_SHEET_NO" property="ORIGINALAPPSHEETNO" jdbcType="VARCHAR" />
+    <result column="AR_SPECIFICATION" property="SPECIFICATION" jdbcType="VARCHAR" />
+    <result column="AR_ERROR_DEC" property="ERRORDEC" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <select id="queryFailedInfo" resultType = "Map">
+  	select distinct p.ci_channel_name channelName,
+     t.ar_app_sheet_serial_no appsheetserialno,
+	 t.ar_investor_name investorname,
+	 t.ar_certificate_no certificateno,
+	 t.ar_transaction_date transactiondate,
+	 t.ar_trans_date transdate,
+	 t.ar_transaction_account_id transactionaccountid,
+	 t.ar_ta_account_id taaccountid,
+	 t.ar_business_code businesscode,
+	 <!--取电话号码  当其中某一个有值时,就取当前有值的  -->
+	 nvl(nvl(nvl(t.ar_mobile_tel_no,t.ar_home_tel_no),t.ar_tel_no),t.ar_office_tel_no) telno,
+	 t.ar_channel_code channelcode,
+	 t.ar_error_dec errordec,
+	 t.ar_return_code returnCode
+  	from d_account_req  t left join p_channel_info p on t.ar_channel_code = p.ci_channel_code 
+  	<where>
+	 	<if test="condition.transDate != null and condition.transDate != ''">
+	 	ar_trans_date=#{condition.transDate,jdbcType=VARCHAR}
+	 	</if>
+	 	<if test="condition.channelCode != null and condition.channelCode != '' ">
+			and ar_channel_code=#{condition.channelCode,jdbcType=VARCHAR}
+	 	</if>
+	 	<if test="condition.certificateno != null and condition.certificateno != '' ">
+			and ar_certificate_no like  ('%'|| #{condition.certificateno,jdbcType=VARCHAR} ||'%')
+	 	</if>
+	 	<if test="condition.transactionAacountId != null and condition.transactionAacountId != '' ">
+			and ar_transaction_account_id like ('%'|| #{condition.transactionAacountId,jdbcType=VARCHAR} ||'%') 
+		</if>
+		<if test="condition.taAccountId != null and condition.taAccountId != '' ">
+			and ar_ta_account_id like ('%'|| #{condition.taAccountId,jdbcType=VARCHAR} ||'%') 
+		</if>
+	 	
+	  	  <choose>
+	  	  	<when test='condition.handel == "0000" '>
+	  	  		and t.ar_return_code = '0000'
+	  	  	</when>
+	  	  	<when test='condition.handel == "9999" '>
+	  	  		and t.ar_return_code &lt;&gt; '0000'
+	  	  	</when>
+	  	  </choose>
+   	 </where>
+     <if test="pageInfo.sort != null and pageInfo.sort != ''">
+       order by ${pageInfo.sort} ${pageInfo.order}
+     </if>
+  </select>
+  
+  <select id="queryAccountFailedInfo" parameterType = "Map" resultType = "Map">
+  	select 
+  	 t.ar_ID           ID,
+     p.ci_channel_name channelName,
+     t.ar_app_sheet_serial_no appsheetserialno,
+	 t.ar_investor_name investorname,
+	 t.ar_certificate_no certificateno,
+	 t.ar_transaction_date transactiondate,
+	 T.AR_TRANS_DATE TRANSDATE,
+	 t.ar_transaction_account_id transactionaccountid,
+	 t.ar_business_code businesscode,
+	 <!--取电话号码  当其中某一个有值时,就取当前有值的  -->
+	 nvl(nvl(nvl(t.ar_mobile_tel_no,t.ar_home_tel_no),t.ar_tel_no),t.ar_office_tel_no) telno,
+	 t.ar_channel_code channelcode,
+	 t.ar_error_dec errordec,
+	 t.ar_return_code returnCode
+  	 from d_account_req  t left join p_channel_info p on t.ar_channel_code = p.ci_channel_code 
+  	 where t.ar_valid_flag !='01'
+	 	<if test="condition.transDate != null and condition.transDate != ''">
+	 	    and ar_trans_date=#{condition.transDate,jdbcType=VARCHAR}
+	 	</if>
+	 	<if test="condition.channelCode != null and condition.channelCode != '' ">
+			and ar_channel_code=#{condition.channelCode,jdbcType=VARCHAR}
+	 	</if>
+	 	<if test="condition.certificateno != null and condition.certificateno != '' ">
+			and ar_certificate_no like  ('%'|| #{condition.certificateno,jdbcType=VARCHAR} ||'%')
+	 	</if>
+	 	<if test="condition.transactionAacountId != null and condition.transactionAacountId != '' ">
+			and ar_transaction_account_id like ('%'|| #{condition.transactionAacountId,jdbcType=VARCHAR} ||'%') 
+		</if>
+        <choose>
+          <when test="pageInfo.sort != null and pageInfo.sort != ''">
+            order by ${pageInfo.sort} ${pageInfo.order}
+          </when>
+          <otherwise>
+            order by TRANSDATE desc
+          </otherwise>
+        </choose>
+  </select>
+  
+  <update id="updateAccountData"  parameterType="hashMap">
+		   update d_account_req d
+		   set d.ar_return_code     = '0000',
+		       d.ar_valid_flag      = '01',
+		       d.ar_ta_trans_status = '00',
+		       d.ar_error_dec = '',
+		       d.ar_uuser = #{USER,jdbcType = VARCHAR},
+		       d.ar_utime = #{SYSDATE,jdbcType = DATE}
+		   where d.ar_id =#{ID,jdbcType = VARCHAR}
+  </update>
+  
+  <select id="selectAccountReqOpenCount" parameterType="Map" resultType="Integer">
+		select count(1) from d_account_req t 
+		where t.ar_channel_code = #{CHANNELCODE,jdbcType = VARCHAR}
+		and t.ar_trans_date = #{BUSINESSDATE,jdbcType = VARCHAR}
+		and t.ar_business_code = '001'
+		<if test="CERTIFICATETYPE != null and CERTIFICATETYPE != ''">
+		and t.ar_certificate_type = #{CERTIFICATETYPE,jdbcType = VARCHAR}
+		</if>
+		<if test="CERTIFICATENO != null and CERTIFICATENO != ''">
+		and t.ar_certificate_no = #{CERTIFICATENO,jdbcType = VARCHAR}
+		</if>
+		and t.ar_transaction_account_id = #{TRANSACTIONACCOUNTID,jdbcType = VARCHAR}
+		and t.ar_individual_or_institution = #{INDIVIDUALORINSTITUTION,jdbcType = VARCHAR}
+  </select>
+
+  <select id="selectAccountReq" parameterType="map" resultMap="tempResultMapReq">
+  		select * from d_account_req t where t.ar_channel_code = #{CHANNELCODE,jdbcType = VARCHAR} AND T.AR_TRANSACTION_ACCOUNT_ID = #{TRANSACTIONACCOUNTID,jdbcType = VARCHAR}
+		and t.ar_return_code = '0000' and t.ar_business_code in ('001','003')
+		order by t.ar_business_code asc ,t.ar_trans_date asc ,t.ar_transaction_time asc
+  </select>
+</mapper>
