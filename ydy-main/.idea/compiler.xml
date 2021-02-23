@@ -7,17 +7,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="ydy-common" />
+        <module name="ydy-rabbitMq" />
         <module name="ydy-swagger" />
         <module name="ydy-item" />
         <module name="ydy-eureka" />
         <module name="ydy-producer" />
         <module name="demo" />
         <module name="ydy-item1" />
+        <module name="ydy-shiro" />
         <module name="ydy-user" />
         <module name="ydy-order" />
-        <module name="api-gateway" />
         <module name="config-server" />
-        <module name="ydy-rabbitMq" />
+        <module name="api-gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,6 +33,7 @@
       <module name="ydy-order" target="1.8" />
       <module name="ydy-producer" target="1.8" />
       <module name="ydy-rabbitMq" target="1.8" />
+      <module name="ydy-shiro" target="1.8" />
       <module name="ydy-swagger" target="1.8" />
       <module name="ydy-user" target="1.8" />
     </bytecodeTargetLevel>
@@ -44,6 +46,7 @@
       <module name="ydy-item" options="-parameters" />
       <module name="ydy-item1" options="-parameters" />
       <module name="ydy-order" options="-parameters" />
+      <module name="ydy-shiro" options="-parameters" />
     </option>
   </component>
 </project>
