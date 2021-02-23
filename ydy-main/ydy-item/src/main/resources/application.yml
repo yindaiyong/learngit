@@ -1,0 +1,20 @@
+server:
+  port: 8085
+
+
+eureka:
+  client:
+    registerWithEureka: true #�Ƿ��Լ�ע�ᵽEureka�����У�Ĭ��Ϊtrue
+    fetchRegistry: true #�Ƿ��Eureka�л�ȡע����Ϣ��Ĭ��Ϊtrue
+    serviceUrl: #Eureka�ͻ�����Eureka����˽��н����ĵ�ַ
+      defaultZone: http://admin:11111@127.0.0.1:8999/eureka/
+  instance:
+    prefer-ip-address: true #���Լ���ip��ַע�ᵽEureka������
+spring:
+  application:
+    name: ydy-item
+
+management:
+  security:
+    enabled: false #是否开启actuator安全认证
+

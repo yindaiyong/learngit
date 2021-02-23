@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="ydy-common" />
+        <module name="ydy-swagger" />
+        <module name="ydy-item" />
+        <module name="ydy-eureka" />
+        <module name="ydy-producer" />
+        <module name="demo" />
+        <module name="ydy-item1" />
+        <module name="ydy-user" />
+        <module name="ydy-order" />
+        <module name="api-gateway" />
+        <module name="config-server" />
+        <module name="ydy-rabbitMq" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-gateway" target="1.8" />
+      <module name="config-server" target="1.8" />
+      <module name="demo" target="1.8" />
+      <module name="ydy-common" target="1.8" />
+      <module name="ydy-eureka" target="1.8" />
+      <module name="ydy-item" target="1.8" />
+      <module name="ydy-item1" target="1.8" />
+      <module name="ydy-main" target="1.8" />
+      <module name="ydy-order" target="1.8" />
+      <module name="ydy-producer" target="1.8" />
+      <module name="ydy-rabbitMq" target="1.8" />
+      <module name="ydy-swagger" target="1.8" />
+      <module name="ydy-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-gateway" options="-parameters" />
+      <module name="config-server" options="-parameters" />
+      <module name="demo" options="-parameters" />
+      <module name="ydy-item" options="-parameters" />
+      <module name="ydy-item1" options="-parameters" />
+      <module name="ydy-order" options="-parameters" />
+    </option>
+  </component>
+</project>
