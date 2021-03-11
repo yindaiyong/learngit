@@ -1,0 +1,4 @@
+
+¶%squid:RedundantThrowsDeclarationCheck8"yRemove the declaration of thrown exception 'org.apache.shiro.authc.AuthenticationException' which is a runtime exception.(¡ïË»ùÿÿÿÿ8Ë¼¶ðü.
+“squid:S1488D"pImmediately return this expression instead of assigning it to the temporary variable "simpleAuthenticationInfo".(°£±‚üÿÿÿÿ8Ë¼¶ðü.
+hsquid:S1858D"E"getPassword" returns a string, there's no need to call "toString()".(°£±‚üÿÿÿÿ8ÂéŠñü.

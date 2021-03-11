@@ -1,0 +1,425 @@
+[0][INFO][localhost-startStop-1] 13:59:28,075 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[42][INFO][localhost-startStop-1] 13:59:28,117 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 13:59:28 CST 2021]; root of context hierarchy
+[163][INFO][localhost-startStop-1] 13:59:28,238 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[452][INFO][localhost-startStop-1] 13:59:28,527 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[453][INFO][localhost-startStop-1] 13:59:28,528 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[819][INFO][localhost-startStop-1] 13:59:28,894 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[846][INFO][localhost-startStop-1] 13:59:28,921 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[946][INFO][localhost-startStop-1] 13:59:29,021 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[952][INFO][localhost-startStop-1] 13:59:29,027 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[977][INFO][localhost-startStop-1] 13:59:29,052 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@77e99983: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2604][INFO][localhost-startStop-1] 13:59:30,679 method:org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:434) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@77e99983: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[2604][INFO][localhost-startStop-1] 13:59:30,679 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.destroy(SchedulerFactoryBean.java:758) Shutting down Quartz Scheduler
+[2606][ERROR][localhost-startStop-1] 13:59:30,681 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307) Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'scheduleJobInit': Invocation of init method failed; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:394)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:605)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:472)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:573)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:637)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:666)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:674)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:714)
+	at com.dexcoder.dal.spring.JdbcDaoImpl.queryList(JdbcDaoImpl.java:85)
+	at com.dexcoder.demo.service.impl.ScheduleJobServiceImpl.initScheduleJob(ScheduleJobServiceImpl.java:36)
+	at com.dexcoder.demo.event.ScheduleJobInit.init(ScheduleJobInit.java:37)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:346)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:299)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:132)
+	... 23 more
+Caused by: org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:77)
+	... 38 more
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1078)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4187)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4119)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:927)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1709)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1252)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2483)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2516)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2301)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:346)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 42 more
+[0][INFO][localhost-startStop-1] 13:59:59,399 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[51][INFO][localhost-startStop-1] 13:59:59,450 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 13:59:59 CST 2021]; root of context hierarchy
+[87][INFO][localhost-startStop-1] 13:59:59,486 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[176][INFO][localhost-startStop-1] 13:59:59,575 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[177][INFO][localhost-startStop-1] 13:59:59,576 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[234][INFO][localhost-startStop-1] 13:59:59,633 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[243][INFO][localhost-startStop-1] 13:59:59,642 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[338][INFO][localhost-startStop-1] 13:59:59,737 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[342][INFO][localhost-startStop-1] 13:59:59,741 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[379][INFO][localhost-startStop-1] 13:59:59,778 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6467ed83: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[867][INFO][localhost-startStop-1] 14:00:00,266 method:org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:434) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@6467ed83: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[868][INFO][localhost-startStop-1] 14:00:00,267 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.destroy(SchedulerFactoryBean.java:758) Shutting down Quartz Scheduler
+[869][ERROR][localhost-startStop-1] 14:00:00,268 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307) Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'scheduleJobInit': Invocation of init method failed; nested exception is org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:394)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:605)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:472)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run$$$capture(FutureTask.java:266)
+	at java.util.concurrent.FutureTask.run(FutureTask.java)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Could not get JDBC Connection; nested exception is org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:80)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:573)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:637)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:666)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:674)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:714)
+	at com.dexcoder.dal.spring.JdbcDaoImpl.queryList(JdbcDaoImpl.java:85)
+	at com.dexcoder.demo.service.impl.ScheduleJobServiceImpl.initScheduleJob(ScheduleJobServiceImpl.java:36)
+	at com.dexcoder.demo.event.ScheduleJobInit.init(ScheduleJobInit.java:37)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:346)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:299)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:132)
+	... 24 more
+Caused by: org.apache.commons.dbcp.SQLNestedException: Cannot create PoolableConnectionFactory (Access denied for user 'root'@'localhost' (using password: NO))
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1549)
+	at org.apache.commons.dbcp.BasicDataSource.createDataSource(BasicDataSource.java:1388)
+	at org.apache.commons.dbcp.BasicDataSource.getConnection(BasicDataSource.java:1044)
+	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:111)
+	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:77)
+	... 39 more
+Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: NO)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1078)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4187)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4119)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:927)
+	at com.mysql.jdbc.MysqlIO.proceedHandshakeWithPluggableAuthentication(MysqlIO.java:1709)
+	at com.mysql.jdbc.MysqlIO.doHandshake(MysqlIO.java:1252)
+	at com.mysql.jdbc.ConnectionImpl.coreConnect(ConnectionImpl.java:2483)
+	at com.mysql.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:2516)
+	at com.mysql.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:2301)
+	at com.mysql.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:834)
+	at com.mysql.jdbc.JDBC4Connection.<init>(JDBC4Connection.java:47)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:416)
+	at com.mysql.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:346)
+	at org.apache.commons.dbcp.DriverConnectionFactory.createConnection(DriverConnectionFactory.java:38)
+	at org.apache.commons.dbcp.PoolableConnectionFactory.makeObject(PoolableConnectionFactory.java:582)
+	at org.apache.commons.dbcp.BasicDataSource.validateConnectionFactory(BasicDataSource.java:1556)
+	at org.apache.commons.dbcp.BasicDataSource.createPoolableConnectionFactory(BasicDataSource.java:1545)
+	... 43 more
+[0][INFO][localhost-startStop-1] 14:01:21,943 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[47][INFO][localhost-startStop-1] 14:01:21,990 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 14:01:21 CST 2021]; root of context hierarchy
+[76][INFO][localhost-startStop-1] 14:01:22,019 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[163][INFO][localhost-startStop-1] 14:01:22,106 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[164][INFO][localhost-startStop-1] 14:01:22,107 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[211][INFO][localhost-startStop-1] 14:01:22,154 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[220][INFO][localhost-startStop-1] 14:01:22,163 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[294][INFO][localhost-startStop-1] 14:01:22,237 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[297][INFO][localhost-startStop-1] 14:01:22,240 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[324][INFO][localhost-startStop-1] 14:01:22,267 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4d93dc28: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[1144][INFO][localhost-startStop-1] 14:01:23,087 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[1165][INFO][localhost-startStop-1] 14:01:23,108 method:org.springframework.jdbc.support.SQLErrorCodesFactory.<init>(SQLErrorCodesFactory.java:126) SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[1170][INFO][localhost-startStop-1] 14:01:23,113 method:org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:434) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4d93dc28: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[1170][INFO][localhost-startStop-1] 14:01:23,113 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.destroy(SchedulerFactoryBean.java:758) Shutting down Quartz Scheduler
+[1172][ERROR][localhost-startStop-1] 14:01:23,115 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307) Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'scheduleJobInit': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT ALIAS_NAME,CRON_EXPRESSION,DESCRIPTION,GMT_CREATE,GMT_MODIFY,IS_SYNC,JOB_GROUP,JOB_NAME,JOB_TRIGGER,SCHEDULE_JOB_ID,STATUS FROM SCHEDULE_JOB ORDER BY SCHEDULE_JOB_ID DESC]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:394)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:605)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:472)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT ALIAS_NAME,CRON_EXPRESSION,DESCRIPTION,GMT_CREATE,GMT_MODIFY,IS_SYNC,JOB_GROUP,JOB_NAME,JOB_TRIGGER,SCHEDULE_JOB_ID,STATUS FROM SCHEDULE_JOB ORDER BY SCHEDULE_JOB_ID DESC]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:233)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:603)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:637)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:666)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:674)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:714)
+	at com.dexcoder.dal.spring.JdbcDaoImpl.queryList(JdbcDaoImpl.java:85)
+	at com.dexcoder.demo.service.impl.ScheduleJobServiceImpl.initScheduleJob(ScheduleJobServiceImpl.java:36)
+	at com.dexcoder.demo.event.ScheduleJobInit.init(ScheduleJobInit.java:37)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:346)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:299)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:132)
+	... 23 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4187)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4119)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2570)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2731)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2815)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:2322)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:96)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:96)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:644)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:587)
+	... 37 more
+[0][INFO][localhost-startStop-1] 14:01:42,103 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[39][INFO][localhost-startStop-1] 14:01:42,142 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 14:01:42 CST 2021]; root of context hierarchy
+[73][INFO][localhost-startStop-1] 14:01:42,176 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[159][INFO][localhost-startStop-1] 14:01:42,262 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[159][INFO][localhost-startStop-1] 14:01:42,262 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[208][INFO][localhost-startStop-1] 14:01:42,311 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[218][INFO][localhost-startStop-1] 14:01:42,321 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[289][INFO][localhost-startStop-1] 14:01:42,392 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[293][INFO][localhost-startStop-1] 14:01:42,396 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[317][INFO][localhost-startStop-1] 14:01:42,420 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4150436a: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[788][INFO][localhost-startStop-1] 14:01:42,891 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[809][INFO][localhost-startStop-1] 14:01:42,912 method:org.springframework.jdbc.support.SQLErrorCodesFactory.<init>(SQLErrorCodesFactory.java:126) SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[813][INFO][localhost-startStop-1] 14:01:42,916 method:org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:434) Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4150436a: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[814][INFO][localhost-startStop-1] 14:01:42,917 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.destroy(SchedulerFactoryBean.java:758) Shutting down Quartz Scheduler
+[816][ERROR][localhost-startStop-1] 14:01:42,919 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:307) Context initialization failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'scheduleJobInit': Invocation of init method failed; nested exception is org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT ALIAS_NAME,CRON_EXPRESSION,DESCRIPTION,GMT_CREATE,GMT_MODIFY,IS_SYNC,JOB_GROUP,JOB_NAME,JOB_TRIGGER,SCHEDULE_JOB_ID,STATUS FROM SCHEDULE_JOB ORDER BY SCHEDULE_JOB_ID DESC]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:135)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyBeanPostProcessorsBeforeInitialization(AbstractAutowireCapableBeanFactory.java:394)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1448)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:294)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:225)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:193)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:605)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:925)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:472)
+	at org.springframework.web.context.ContextLoader.configureAndRefreshWebApplicationContext(ContextLoader.java:383)
+	at org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:283)
+	at org.springframework.web.context.ContextLoaderListener.contextInitialized(ContextLoaderListener.java:111)
+	at org.apache.catalina.core.StandardContext.listenerStart(StandardContext.java:4939)
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:5434)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:150)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1559)
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1549)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: org.springframework.jdbc.BadSqlGrammarException: PreparedStatementCallback; bad SQL grammar [SELECT ALIAS_NAME,CRON_EXPRESSION,DESCRIPTION,GMT_CREATE,GMT_MODIFY,IS_SYNC,JOB_GROUP,JOB_NAME,JOB_TRIGGER,SCHEDULE_JOB_ID,STATUS FROM SCHEDULE_JOB ORDER BY SCHEDULE_JOB_ID DESC]; nested exception is com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at org.springframework.jdbc.support.SQLErrorCodeSQLExceptionTranslator.doTranslate(SQLErrorCodeSQLExceptionTranslator.java:233)
+	at org.springframework.jdbc.support.AbstractFallbackSQLExceptionTranslator.translate(AbstractFallbackSQLExceptionTranslator.java:72)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:603)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:637)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:666)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:674)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:714)
+	at com.dexcoder.dal.spring.JdbcDaoImpl.queryList(JdbcDaoImpl.java:85)
+	at com.dexcoder.demo.service.impl.ScheduleJobServiceImpl.initScheduleJob(ScheduleJobServiceImpl.java:36)
+	at com.dexcoder.demo.event.ScheduleJobInit.init(ScheduleJobInit.java:37)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleElement.invoke(InitDestroyAnnotationBeanPostProcessor.java:346)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeInitMethods(InitDestroyAnnotationBeanPostProcessor.java:299)
+	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeInitialization(InitDestroyAnnotationBeanPostProcessor.java:132)
+	... 23 more
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'test.schedule_job' doesn't exist
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1054)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4187)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4119)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2570)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2731)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2815)
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2155)
+	at com.mysql.jdbc.PreparedStatement.executeQuery(PreparedStatement.java:2322)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:96)
+	at org.apache.commons.dbcp.DelegatingPreparedStatement.executeQuery(DelegatingPreparedStatement.java:96)
+	at org.springframework.jdbc.core.JdbcTemplate$1.doInPreparedStatement(JdbcTemplate.java:644)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:587)
+	... 37 more
+[0][INFO][localhost-startStop-1] 14:03:48,738 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[39][INFO][localhost-startStop-1] 14:03:48,777 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 14:03:48 CST 2021]; root of context hierarchy
+[65][INFO][localhost-startStop-1] 14:03:48,803 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[139][INFO][localhost-startStop-1] 14:03:48,877 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[139][INFO][localhost-startStop-1] 14:03:48,877 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[185][INFO][localhost-startStop-1] 14:03:48,923 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[193][INFO][localhost-startStop-1] 14:03:48,931 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[263][INFO][localhost-startStop-1] 14:03:49,001 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[266][INFO][localhost-startStop-1] 14:03:49,004 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[290][INFO][localhost-startStop-1] 14:03:49,028 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@4e41e74c: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[401][INFO][localhost-startStop-1] 14:03:49,139 method:org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:334) Starting beans in phase 2147483647
+[401][INFO][localhost-startStop-1] 14:03:49,139 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.startScheduler(SchedulerFactoryBean.java:648) Starting Quartz Scheduler now
+[402][INFO][localhost-startStop-1] 14:03:49,140 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:301) Root WebApplicationContext: initialization completed in 400 ms
+[421][INFO][localhost-startStop-1] 14:03:49,159 method:org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:444) FrameworkServlet 'springmvc': initialization started
+[425][INFO][localhost-startStop-1] 14:03:49,163 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Wed Mar 10 14:03:49 CST 2021]; parent: Root WebApplicationContext
+[425][INFO][localhost-startStop-1] 14:03:49,163 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-mvc.xml]
+[443][INFO][localhost-startStop-1] 14:03:49,181 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[444][INFO][localhost-startStop-1] 14:03:49,182 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[458][INFO][localhost-startStop-1] 14:03:49,196 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[461][INFO][localhost-startStop-1] 14:03:49,199 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@11aa0690: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,velocityConfig,viewResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@4e41e74c
+[501][INFO][localhost-startStop-1] 14:03:49,239 method:org.springframework.ui.velocity.VelocityEngineFactory.createVelocityEngine(VelocityEngineFactory.java:222) Loading Velocity config from [class path resource [velocity.properties]]
+[505][INFO][localhost-startStop-1] 14:03:49,243 method:org.springframework.web.servlet.view.velocity.VelocityConfigurer.postProcessVelocityEngine(VelocityConfigurer.java:139) ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+[869][INFO][localhost-startStop-1] 14:03:49,607 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job] onto handler 'scheduleJobController'
+[869][INFO][localhost-startStop-1] 14:03:49,607 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job.*] onto handler 'scheduleJobController'
+[869][INFO][localhost-startStop-1] 14:03:49,607 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job/] onto handler 'scheduleJobController'
+[870][INFO][localhost-startStop-1] 14:03:49,608 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job] onto handler 'scheduleJobController'
+[870][INFO][localhost-startStop-1] 14:03:49,608 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job.*] onto handler 'scheduleJobController'
+[870][INFO][localhost-startStop-1] 14:03:49,608 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job/] onto handler 'scheduleJobController'
+[870][INFO][localhost-startStop-1] 14:03:49,608 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job] onto handler 'scheduleJobController'
+[870][INFO][localhost-startStop-1] 14:03:49,608 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job.*] onto handler 'scheduleJobController'
+[871][INFO][localhost-startStop-1] 14:03:49,609 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job/] onto handler 'scheduleJobController'
+[871][INFO][localhost-startStop-1] 14:03:49,609 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job] onto handler 'scheduleJobController'
+[871][INFO][localhost-startStop-1] 14:03:49,609 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job.*] onto handler 'scheduleJobController'
+[871][INFO][localhost-startStop-1] 14:03:49,609 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job/] onto handler 'scheduleJobController'
+[871][INFO][localhost-startStop-1] 14:03:49,609 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job] onto handler 'scheduleJobController'
+[872][INFO][localhost-startStop-1] 14:03:49,610 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job.*] onto handler 'scheduleJobController'
+[872][INFO][localhost-startStop-1] 14:03:49,610 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job/] onto handler 'scheduleJobController'
+[872][INFO][localhost-startStop-1] 14:03:49,610 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job] onto handler 'scheduleJobController'
+[872][INFO][localhost-startStop-1] 14:03:49,610 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job.*] onto handler 'scheduleJobController'
+[872][INFO][localhost-startStop-1] 14:03:49,610 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job/] onto handler 'scheduleJobController'
+[873][INFO][localhost-startStop-1] 14:03:49,611 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job] onto handler 'scheduleJobController'
+[873][INFO][localhost-startStop-1] 14:03:49,611 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job.*] onto handler 'scheduleJobController'
+[873][INFO][localhost-startStop-1] 14:03:49,611 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job/] onto handler 'scheduleJobController'
+[1038][INFO][localhost-startStop-1] 14:03:49,776 method:org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:463) FrameworkServlet 'springmvc': initialization completed in 617 ms
+[157594][INFO][http-bio-8080-exec-9] 14:06:26,332 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[157616][INFO][http-bio-8080-exec-9] 14:06:26,354 method:org.springframework.jdbc.support.SQLErrorCodesFactory.<init>(SQLErrorCodesFactory.java:126) SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]
+[0][INFO][localhost-startStop-1] 14:07:25,293 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:272) Root WebApplicationContext: initialization started
+[50][INFO][localhost-startStop-1] 14:07:25,343 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing Root WebApplicationContext: startup date [Wed Mar 10 14:07:25 CST 2021]; root of context hierarchy
+[84][INFO][localhost-startStop-1] 14:07:25,377 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [applicationContext.xml]
+[183][INFO][localhost-startStop-1] 14:07:25,476 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[184][INFO][localhost-startStop-1] 14:07:25,477 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[243][INFO][localhost-startStop-1] 14:07:25,536 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-quartz.xml]
+[254][INFO][localhost-startStop-1] 14:07:25,547 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.registerBeanDefinition(DefaultListableBeanFactory.java:643) Overriding bean definition for bean 'schedulerFactoryBean': replacing [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [applicationContext.xml]] with [Generic bean: class [org.springframework.scheduling.quartz.SchedulerFactoryBean]; scope=; abstract=false; lazyInit=false; autowireMode=0; dependencyCheck=0; autowireCandidate=true; primary=false; factoryBeanName=null; factoryMethodName=null; initMethodName=null; destroyMethodName=null; defined in class path resource [spring-quartz.xml]]
+[368][INFO][localhost-startStop-1] 14:07:25,661 method:org.springframework.core.io.support.PropertiesLoaderSupport.loadProperties(PropertiesLoaderSupport.java:177) Loading properties file from class path resource [init.properties]
+[373][INFO][localhost-startStop-1] 14:07:25,666 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[410][INFO][localhost-startStop-1] 14:07:25,703 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@74e83c1: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.aop.config.internalAutoProxyCreator,org.springframework.beans.factory.config.PropertyPlaceholderConfigurer#0,dataSource,jdbcTemplate,jdbcDao,schedulerFactoryBean,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; root of factory hierarchy
+[572][INFO][localhost-startStop-1] 14:07:25,865 method:org.springframework.context.support.DefaultLifecycleProcessor$LifecycleGroup.start(DefaultLifecycleProcessor.java:334) Starting beans in phase 2147483647
+[572][INFO][localhost-startStop-1] 14:07:25,865 method:org.springframework.scheduling.quartz.SchedulerFactoryBean.startScheduler(SchedulerFactoryBean.java:648) Starting Quartz Scheduler now
+[573][INFO][localhost-startStop-1] 14:07:25,866 method:org.springframework.web.context.ContextLoader.initWebApplicationContext(ContextLoader.java:301) Root WebApplicationContext: initialization completed in 571 ms
+[608][INFO][localhost-startStop-1] 14:07:25,901 method:org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:444) FrameworkServlet 'springmvc': initialization started
+[612][INFO][localhost-startStop-1] 14:07:25,905 method:org.springframework.context.support.AbstractApplicationContext.prepareRefresh(AbstractApplicationContext.java:503) Refreshing WebApplicationContext for namespace 'springmvc-servlet': startup date [Wed Mar 10 14:07:25 CST 2021]; parent: Root WebApplicationContext
+[613][INFO][localhost-startStop-1] 14:07:25,906 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [spring-mvc.xml]
+[631][INFO][localhost-startStop-1] 14:07:25,924 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:202) JSR-250 'javax.annotation.ManagedBean' found and supported for component scanning
+[631][INFO][localhost-startStop-1] 14:07:25,924 method:org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider.registerDefaultFilters(ClassPathScanningCandidateComponentProvider.java:210) JSR-330 'javax.inject.Named' annotation found and supported for component scanning
+[649][INFO][localhost-startStop-1] 14:07:25,942 method:org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.<init>(AutowiredAnnotationBeanPostProcessor.java:139) JSR-330 'javax.inject.Inject' annotation found and supported for autowiring
+[650][INFO][localhost-startStop-1] 14:07:25,943 method:org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:577) Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@5593d3e7: defining beans [scheduleJobController,scheduleJobInit,scheduleJobServiceImpl,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,org.springframework.web.servlet.view.ContentNegotiatingViewResolver#0,velocityConfig,viewResolver,org.springframework.context.annotation.ConfigurationClassPostProcessor.importAwareProcessor]; parent: org.springframework.beans.factory.support.DefaultListableBeanFactory@74e83c1
+[724][INFO][localhost-startStop-1] 14:07:26,017 method:org.springframework.ui.velocity.VelocityEngineFactory.createVelocityEngine(VelocityEngineFactory.java:222) Loading Velocity config from [class path resource [velocity.properties]]
+[729][INFO][localhost-startStop-1] 14:07:26,022 method:org.springframework.web.servlet.view.velocity.VelocityConfigurer.postProcessVelocityEngine(VelocityConfigurer.java:139) ClasspathResourceLoader with name 'springMacro' added to configured VelocityEngine
+[956][INFO][localhost-startStop-1] 14:07:26,249 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job] onto handler 'scheduleJobController'
+[956][INFO][localhost-startStop-1] 14:07:26,249 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job.*] onto handler 'scheduleJobController'
+[956][INFO][localhost-startStop-1] 14:07:26,249 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/save-schedule-job/] onto handler 'scheduleJobController'
+[956][INFO][localhost-startStop-1] 14:07:26,249 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job.*] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/pause-schedule-job/] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job.*] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/input-schedule-job/] onto handler 'scheduleJobController'
+[957][INFO][localhost-startStop-1] 14:07:26,250 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job.*] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/list-schedule-job/] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job.*] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/delete-schedule-job/] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job] onto handler 'scheduleJobController'
+[958][INFO][localhost-startStop-1] 14:07:26,251 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job.*] onto handler 'scheduleJobController'
+[959][INFO][localhost-startStop-1] 14:07:26,252 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/run-once-schedule-job/] onto handler 'scheduleJobController'
+[959][INFO][localhost-startStop-1] 14:07:26,252 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job] onto handler 'scheduleJobController'
+[959][INFO][localhost-startStop-1] 14:07:26,252 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job.*] onto handler 'scheduleJobController'
+[959][INFO][localhost-startStop-1] 14:07:26,252 method:org.springframework.web.servlet.handler.AbstractUrlHandlerMapping.registerHandler(AbstractUrlHandlerMapping.java:314) Mapped URL path [/resume-schedule-job/] onto handler 'scheduleJobController'
+[1073][INFO][localhost-startStop-1] 14:07:26,366 method:org.springframework.web.servlet.FrameworkServlet.initServletBean(FrameworkServlet.java:463) FrameworkServlet 'springmvc': initialization completed in 465 ms
+[27843][INFO][http-bio-8080-exec-3] 14:07:53,136 method:org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:315) Loading XML bean definitions from class path resource [org/springframework/jdbc/support/sql-error-codes.xml]
+[27870][INFO][http-bio-8080-exec-3] 14:07:53,163 method:org.springframework.jdbc.support.SQLErrorCodesFactory.<init>(SQLErrorCodesFactory.java:126) SQLErrorCodes loaded: [DB2, Derby, H2, HSQL, Informix, MS-SQL, MySQL, Oracle, PostgreSQL, Sybase]

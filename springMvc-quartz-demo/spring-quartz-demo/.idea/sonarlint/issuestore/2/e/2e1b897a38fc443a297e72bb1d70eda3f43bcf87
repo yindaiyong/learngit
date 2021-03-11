@@ -1,0 +1,9 @@
+
+}squid:S11924"aDefine a constant instead of duplicating this literal "redirect:list-schedule-job.shtml" 5 times.(²¤ï¾øÿÿÿÿ
+_squid:S4488"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(ÅÆ¤Ï
+_squid:S4488/"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(“³ÍŠ
+dsquid:S4488<"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Á„öýÿÿÿÿ
+dsquid:S4488I"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(Š…Œ÷ýÿÿÿÿ
+^squid:S4488T"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(¢Ö¤
+asquid:S4488`"JReplace "@RequestMapping(method = RequestMethod.POST)" with "@PostMapping"(™Ìî½
+dsquid:S4488w"HReplace "@RequestMapping(method = RequestMethod.GET)" with "@GetMapping"(­Ã†áýÿÿÿÿ
