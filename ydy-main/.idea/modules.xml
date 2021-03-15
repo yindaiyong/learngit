@@ -12,6 +12,7 @@
       <module fileurl="file://$PROJECT_DIR$/ydy-main.iml" filepath="$PROJECT_DIR$/ydy-main.iml" />
       <module fileurl="file://$PROJECT_DIR$/ydy-order/ydy-order.iml" filepath="$PROJECT_DIR$/ydy-order/ydy-order.iml" />
       <module fileurl="file://$PROJECT_DIR$/ydy-producer/ydy-producer.iml" filepath="$PROJECT_DIR$/ydy-producer/ydy-producer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ydy-quartz/ydy-quartz.iml" filepath="$PROJECT_DIR$/ydy-quartz/ydy-quartz.iml" />
       <module fileurl="file://$PROJECT_DIR$/ydy-rabbitMq/ydy-rabbitMq.iml" filepath="$PROJECT_DIR$/ydy-rabbitMq/ydy-rabbitMq.iml" />
       <module fileurl="file://$PROJECT_DIR$/ydy-shiro/ydy-shiro.iml" filepath="$PROJECT_DIR$/ydy-shiro/ydy-shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/ydy-swagger/ydy-swagger.iml" filepath="$PROJECT_DIR$/ydy-swagger/ydy-swagger.iml" />

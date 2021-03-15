@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/api-gateway/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/ydy-shiro/pom.xml" />
+        <option value="$PROJECT_DIR$/ydy-quartz/pom.xml" />
       </list>
     </option>
   </component>
