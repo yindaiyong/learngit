@@ -1,0 +1,29 @@
+<template>
+    <layout-page-list title="灵活报表">
+       
+    </layout-page-list>
+</template>
+
+<script>
+import LayoutPageList from "layout/LayoutPageList.vue";
+export default {
+    components: {
+        LayoutPageList
+    },
+    data() {
+        return {
+           
+        }
+    },
+    methods: {
+       
+    },
+    created() {
+       
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

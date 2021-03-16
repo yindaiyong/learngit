@@ -1,0 +1,176 @@
+<template>
+  <div class="page-login">
+    <el-container>
+      <!-- 登陆页背景 -->
+      <div class="login-background">
+        <img src="~/assets/images/timg.jpg" width="100%" alt="背景图"/>
+      </div>
+      <!-- logo -->
+      <img class="logo" src="~/assets/images/logo.png" alt="上海信托" />
+
+      <el-header height="100px">普惠金融数据尽调平台</el-header>
+      <el-main>
+          <el-row type="flex" class="row-bg" justify="center">
+              <el-col :span="16">
+              <div class="login-panel">
+                  <div class="login-title">用户登录</div>
+                  <div class="login-form">
+                      <el-form
+                      :model="loginForm"
+                      status-icon
+                      :rules="rules"
+                      ref="loginForm"
+                      label-width="100px"
+                      >
+                      <el-form-item label="账号" prop="account">
+                          <el-input v-model="loginForm.account" placeholder="请输入登陆账号" autocomplete="off"></el-input>
+                      </el-form-item>
+                      <el-form-item label="密码" prop="pass">
+                          <el-input type="password" v-model="loginForm.pass" placeholder="请输入密码" autocomplete="off" @keyup.enter.native="submitForm('loginForm')" show-password></el-input>
+                      </el-form-item>
+                      </el-form>
+                      <!-- 登陆按键 -->
+                      <el-button class="login-button" type="primary" @click="submitForm('loginForm')">登录</el-button>
+                  </div>
+              </div>
+              </el-col>
+          </el-row>
+      </el-main>
+      <div class="footer-wrap">
+          <p>Copyright@Due Diligence Platform all rights reserved 2020-2030</p>
+      </div>
+      <!-- bottom-banner -->
+      <img class="bottom-banner" src="~/assets/images/bottomMaterial.png" alt="" />
+    </el-container>
+  </div>
+</template>
+<script>
+import Cookies from "js-cookie";
+export default {
+    data() {
+        var validateAccount = (rule, value, callback) => {
+            if (value === "") {
+                callback(new Error("请输入账号"));
+            } else {
+                callback();
+            }
+        };
+        var validatePass = (rule, value, callback) => {
+            if (value === "") {
+                callback(new Error("请输入密码"));
+            } else {
+                callback();
+            }
+        };
+
+        return {
+            loginForm: {
+                pass: "",
+                account: ""
+            },
+            rules: {
+                pass: [{ validator: validatePass, trigger: "blur" }],
+                account: [{ validator: validateAccount, trigger: "blur" }]
+            }
+        };
+    },
+    methods: {
+        submitForm(formName) {
+          this.$refs[formName].validate(valid => {
+            if (valid) {
+              let req = {"password":this.loginForm.pass,"accountNo":this.loginForm.account}
+
+              this.$api.Login(req).then(res => {
+                  Cookies.set("AuthToken",res.data.data,{ expires: 1 }) //1day
+                  Cookies.set("ddpAccount", req.accountNo,{ expires: 1 }); //1day
+                  let redirectUrl = decodeURIComponent(this.$route.query.redirect || '/')
+                  // 跳转到指定的路由
+                  this.$router.push({
+                    path: redirectUrl
+                  })
+              }).catch(err => {
+                  this.$commsgbox.alert(err);
+              });
+            } else {
+              console.log("error submit!!");
+              return false;
+            }
+          });
+      }
+    }
+};
+</script>
+<style lang="scss" scoped>
+.page-login .login-background {
+  z-index: -2;
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1583px;
+}
+.page-login .logo{
+  position:absolute;
+  top: 24px;
+  left: 80px;
+  width: 228px;
+  height: 100px;
+}
+.page-login .el-header {
+  z-index:1;
+  margin-top: 2%;
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 100px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, .12);
+}
+.page-login .el-main {
+  color: #333;
+}
+.page-login .login-title {
+  margin-top: 25%;
+  margin-bottom: -120px;
+  padding-top: 16px;
+  color: #4c4948;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: center;
+  // background-color:rgba(255,255,255,0.5);
+}
+.page-login .login-form {
+  margin:0 auto;
+  margin-top: 150px;
+  width: 500px; // 填空位置宽度
+}
+.page-login .login-panel {
+  margin: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12);
+  max-height: 360px;
+  max-width: 560px;
+  background-color: rgba(255,255,255,0.8);
+}
+.page-login .login-button {
+  min-width: 112px; 
+  margin-bottom: 24px;
+}
+.page-login .footer-wrap {
+  color: #7d7d7d;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: left;
+  margin-bottom:56px;
+  margin-left: 80px;
+  position:fixed;
+  bottom:0;
+  z-index: 1;
+}
+.page-login .bottom-banner {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  z-index: -1;
+}
+</style>

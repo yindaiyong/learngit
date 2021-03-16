@@ -1,0 +1,64 @@
+<template>
+    <layout-page-list title="数据采集">
+        <div class="options">
+            <el-tabs type="card">
+                <el-tab-pane label="数据导入">
+                    <div class = "content">
+                        <upload-file></upload-file>
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="业务校验">
+                    <div class = "content">配置管理
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="真实性校验">
+                    <div class = "content">配置管理
+                </div>
+                </el-tab-pane>
+                <el-tab-pane label="校验日志导出">
+                    <div class = "content">配置管理
+                    </div>
+                </el-tab-pane>
+                <el-tab-pane label="样本集数据统计">
+                    <div class = "content">配置管理
+                    </div>
+                </el-tab-pane>
+            </el-tabs>
+        </div>
+    </layout-page-list>
+</template>
+
+<script>
+    import LayoutPageList from "layout/LayoutPageList.vue";
+    import uploadFile from "views/file/uploadFile.vue";
+    export default {
+        components: {
+            uploadFile,
+            LayoutPageList
+        },
+        data() {
+            return {}
+        },
+        methods: {
+
+            created() {
+            },
+            mounted() {
+            }
+        }
+    }
+</script>
+
+<style scoped>
+    .options {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .el-table {
+        padding: 5px 20px;
+    }
+    .content{
+        height:500px;
+    }
+</style>

@@ -1,0 +1,159 @@
+<template>
+    <div class="page-wrap">
+        <div class="search-wrap">
+            <el-form size ="mini" :model="customerInfoForm" :rules="customerInfoFormRules" ref= "customerInfoForm" :inline="true">
+                <el-form-item label="期次" prop="periodCode">
+                    <el-select v-model="customerInfoForm.periodCode" style="width:110px;" clearable @change="changeDetailPeriod()" @focus="focusPeriod()">
+                        <el-option
+                            v-for="item in periodDetails"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  label="批次" prop="batchCode">
+                    <el-select v-model="customerInfoForm.batchCode" style="width:110px;" clearable >
+                        <el-option
+                                v-for="item in batchDetails"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="客户编号" prop="customerCode">
+                    <el-input v-model="customerInfoForm.customerCode" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="客户名称" prop="customerName">
+                    <el-input v-model="customerInfoForm.customerName" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="证件号码" prop="certificatesCode">
+                    <el-input v-model="customerInfoForm.certificatesCode" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" icon="el-icon-search" size="mini" @click="doLogDetailCheckQuery()" class="search-btn">查询</el-button>
+                    <el-button type="primary" icon="el-icon-download" size="mini" @click="doLogDetailCheckQuery()" class="search-btn">导出</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <el-table :data="tableData" border height="460" size="mini" style="width: 150%">
+            <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="checkStatus" label="校验状态" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="customerCode" label="客户编号" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="customerName" label="客户名称" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="certificatesType" label="证件类型" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="certificatesCode" label="证件号码" ></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="customerLevel" label="客户等级" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="statisticsEndDate" label="数据统计截止日期"></el-table-column>
+        </el-table>
+
+        <el-pagination
+                background
+                layout="total, sizes, prev, pager, next, jumper"
+                :page-sizes="[10, 20, 30, 50]"
+                :total="tableTotal"
+                :page-size="tablePageSize"
+                :current-page="tableCurrentPage"
+                @current-change="handleCurrentChange"
+                @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </div>
+</template>
+
+<script>
+    export default {
+        components: {
+        },
+        data() {
+            return {
+                //customerInfo table lists
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                customerInfoForm :{
+                    periodCode :"",
+                    batchCode :"",
+                    customerCode:'',
+                    customerName:"",
+                    certificatesCode:"",
+                    statisticsEndDate :"",
+                },
+                periodDetails :[],
+                batchDetails :[],
+                customerInfoFormRules :{
+
+                },
+            }
+        },
+        methods: {
+            //lists
+            getCustomerInfo() {
+                let req = {
+                    nowpage: this.tableCurrentPage,
+                    pagesize: this.tablePageSize,
+                    sort : 'id',
+                    order: 'desc'
+                };
+
+                // this.$api.CustomerInfoQuery(req).then(res => {
+                //     this.tableTotal = res.data.total;
+                //     this.tableData = res.data.rows;
+                // }).catch(err => {
+                //     this.$commsgbox.alert(err);
+                // });
+            },
+            handleCurrentChange(val) {
+                this.tableCurrentPage = val;
+                this.getCustomerInfo();
+            },
+            handleSizeChange(val) {
+                this.tablePageSize = val;
+                this.getCustomerInfo();
+            },
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:sessionStorage.getItem('organCode')};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periodDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            changeDetailPeriod(){
+                let req = {period : this.customerInfoForm.periodCode,organCode:sessionStorage.getItem('organCode')};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+                this.customerInfoForm.batchCode = '';
+            },
+            focusPeriod(){
+                this.getPeriodComBox();
+            },
+        },
+        mounted(){
+            this.getPeriodComBox();
+        },
+        created() {
+            this.getCustomerInfo();
+        },
+        filters: {
+
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+    .page-wrap .search-wrap {
+        text-align:left;
+        margin-bottom:5px;
+    }
+    .page-wrap .search-wrap .search-options .search-btn{
+        margin-left: 50px;
+    }
+</style>

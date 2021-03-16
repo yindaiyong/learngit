@@ -1,0 +1,166 @@
+<template>
+  <div>
+    <uploader
+      browse_button="browse_button"
+      :url="'/api/'+apiUrls.file.upload"
+      chunk_size="5MB"
+      :filters="{prevent_duplicates:true,mime_types:[{title:'csv文件',extensions:'csv'}]}"
+      :FilesAdded="filesAdded"
+      :BeforeUpload="beforeUpload"
+      @inputUploader="inputUploader"
+    />
+    <el-button type="primary" id="browse_button">选择多个文件</el-button>
+    <br />
+    <el-table :data="tableData" style="width: 100%; margin: 10px 10px;">
+      <el-table-column label="文件名">
+        <template slot-scope="scope">
+          <span>{{scope.row.name}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="大小">
+        <template slot-scope="scope">
+          <span>{{scope.row.size}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态">
+        <template slot-scope="scope">
+          <span v-if="scope.row.status === -1">文件读取中</span>
+          <span v-if="scope.row.status === 1">文件读取完成，准备上传</span>
+          <span v-if="scope.row.status === 4" style="color: brown">上传失败</span>
+          <span v-if="scope.row.status === 5" style="color: chartreuse">已上传</span>
+          <span v-if="scope.row.status === 6" style="color: brown">文件过大</span>
+          <span v-if="scope.row.status === 7" style="color: brown">文件名称校验失败</span>
+          <span v-if="scope.row.status === 8" style="color: brown">重复上传</span>
+          <el-progress
+            v-if="scope.row.status === 2"
+            :text-inside="true"
+            :stroke-width="20"
+            :percentage="scope.row.percent"
+          ></el-progress>
+        </template>
+      </el-table-column>
+      <el-table-column label="操作">
+        <template slot-scope="scope">
+          <el-button type="danger" @click="deleteFile(scope.row.id)">删除</el-button>
+          <el-button
+            v-if="scope.row.status === 8"
+            type="danger"
+            @click="sureUpload(scope.row.id)"
+          >确认上传</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
+    <br />
+    <el-button type="danger" @click="up.start()">开始上传</el-button>
+  </div>
+</template>
+
+<script>
+import apiUrls from "../../apis/api-urls.js";
+import FileMd5 from "./file-md5.js";
+import Uploader from "./Uploader";
+import _ from "lodash";
+let i = 0;
+export default {
+  name: "BigFileUpload",
+  data() {
+    return {
+      apiUrls:apiUrls,
+      up: {},
+      files: [],
+      tableData: [],
+      checkValue: {},
+    };
+  },
+  components: {
+    uploader: Uploader,
+  },
+  watch: {
+    files: {
+      handler() {
+        this.tableData = [];
+        //根据校验结果  解析文件
+        this.files.forEach((e) => {
+          if (e.size > 500000) {
+            e.status = 6;
+          }
+          let key = e.name.split(".")[0] + e.status;
+          console.log(i + "--" + e.status + "--" + e.name);
+          if (
+            !_.has(this.checkValue, key) &&
+            e.status != 5 &&
+            e.status != 6 &&
+            e.status != 7 &&
+            e.status != 8
+          ) {
+            console.log("进入" + "--" + e.status + "--" + e.name);
+            //忽略下一次查询
+            _.set(this.checkValue, key, true);
+            //执行文件名校验
+            this.$api
+              .CheckFileName({ name: e.name })
+              .then((res) => {
+                let code = res.data;
+                if (code == "201") {
+                  e.status = 7;
+                }
+                if (code == "202") {
+                  e.status = 8;
+                }
+              })
+              .catch((err) => {
+                this.$commsgbox.alert(err);
+              });
+          }
+          this.tableData.push({
+            name: e.name,
+            size: e.size,
+            status: e.status,
+            id: e.id,
+            percent: e.percent,
+          });
+          i += 1;
+        });
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    inputUploader(up) {
+      this.up = up;
+      this.files = up.files;
+      this.checkValue = {};
+    },
+    filesAdded(up, files) {
+      files.forEach((f) => {
+        f.status = -1;
+        FileMd5(f.getNative(), (e, md5) => {
+          f["md5"] = md5;
+          f.status = 1;
+        });
+      });
+    },
+    deleteFile(id) {
+      let file = this.up.getFile(id);
+      if(file.status === 2){
+        this.$commsgbox.alert('上传过程中不允许执行删除操作');
+      }else{
+        this.up.removeFile(file);
+      }
+      
+    },
+    sureUpload(id) {
+      let file = this.up.getFile(id);
+      file.status = 1;
+      // this.up.removeFile(file);
+    },
+    beforeUpload(up, file) {
+      up.setOption("multipart_params", { size: file.size, md5: file.md5 });
+    },
+  },
+};
+</script>
+
+<style scoped>
+</style>
+

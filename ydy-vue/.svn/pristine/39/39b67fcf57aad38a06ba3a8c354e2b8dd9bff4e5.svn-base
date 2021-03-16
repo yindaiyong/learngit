@@ -1,0 +1,230 @@
+<template>
+  <div class="page-data-sample">
+    <layout-page-default :focusPageIndex=2>
+      <el-row>
+        <el-col :span="10" class="cols">
+          <div class="left">
+            <div class="filter">
+              <span class="title">选择范围</span>
+              <el-button class="search" size="mini" type="primary" @click="searchSample()">查询</el-button>
+              <div class="filterform">
+                <el-form :inline="true" :model="searchSampleForm" ref="searchSampleForm" size="mini">
+                  <el-form-item label="期  次" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.x" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="批  次" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.x" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="客户等级" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.x" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="客户地区" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="贷款状态" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="贷款期限" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xxxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="产品类型" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xxxxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="产品名称" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xxxxxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="放款日期" :label-width="searchSampleFormLabelWidth">
+                    <el-input v-model="searchSampleForm.xxxxxxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                  <el-form-item label="截止日期" :label-width="searchSampleFormLabelWidth">
+                      <el-input v-model="searchSampleForm.xxxxxxxx" autocomplete="off"></el-input>
+                  </el-form-item>
+                </el-form>
+              </div>
+            </div>
+
+            <div class="resultChart">
+              <span class="title">范围数据统计</span>
+              <div class="chartCanvas" ref="sampleCharts"></div>
+            </div>
+
+            <div class="split">
+              <span class="title">拆分条件</span>
+              <div class="condition">
+                <el-radio-group v-model="radio">
+                  <el-radio :label="1">自然季度</el-radio>
+                  <el-radio :label="2">自然半年</el-radio>
+                  <el-radio :label="3">自然年</el-radio>
+                  <el-radio :label="4">指定条数</el-radio>
+                  <el-radio :label="5">指定月</el-radio>
+                </el-radio-group>
+              </div>
+            </div>
+          </div>
+        </el-col>
+        <el-col :span="14" class="cols">
+          <div class="right">
+            right
+          </div>
+        </el-col>
+      </el-row>
+    </layout-page-default>
+  </div>
+</template>
+
+<script>
+import echarts from 'echarts'
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+export default {
+  components: {
+    LayoutPageDefault
+  },
+  data() {
+    return {
+      searchSampleFormLabelWidth: '80px',
+      searchSampleForm: {
+        periodId: "",
+        batchId: "",
+        x:"",
+      },
+    };
+  },
+  mounted() {
+      var sampleCharts = echarts.init(this.$refs.sampleCharts)
+      var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
+      var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+      var yMax = 500;
+      var dataShadow = [];
+
+      for (var i = 0; i < data.length; i++) {
+          dataShadow.push(yMax);
+      }
+
+      var option = {
+          title: {
+              text: '特性示例：渐变色 阴影 点击缩放',
+              subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+          },
+          xAxis: {
+              data: dataAxis,
+              axisLabel: {
+                  inside: true,
+                  textStyle: {
+                      color: '#fff'
+                  }
+              },
+              axisTick: {
+                  show: false
+              },
+              axisLine: {
+                  show: false
+              },
+              z: 10
+          },
+          yAxis: {
+              axisLine: {
+                  show: false
+              },
+              axisTick: {
+                  show: false
+              },
+              axisLabel: {
+                  textStyle: {
+                      color: '#999'
+                  }
+              }
+          },
+          dataZoom: [
+              {
+                  type: 'inside'
+              }
+          ],
+          series: [
+              { // For shadow
+                  type: 'bar',
+                  itemStyle: {
+                      color: 'rgba(0,0,0,0.05)'
+                  },
+                  barGap: '-100%',
+                  barCategoryGap: '40%',
+                  data: dataShadow,
+                  animation: false
+              },
+              {
+                  type: 'bar',
+                  itemStyle: {
+                      color: new echarts.graphic.LinearGradient(
+                          0, 0, 0, 1,
+                          [
+                              {offset: 0, color: '#83bff6'},
+                              {offset: 0.5, color: '#188df0'},
+                              {offset: 1, color: '#188df0'}
+                          ]
+                      )
+                  },
+                  emphasis: {
+                      itemStyle: {
+                          color: new echarts.graphic.LinearGradient(
+                              0, 0, 0, 1,
+                              [
+                                  {offset: 0, color: '#2378f7'},
+                                  {offset: 0.7, color: '#2378f7'},
+                                  {offset: 1, color: '#83bff6'}
+                              ]
+                          )
+                      }
+                  },
+                  data: data
+              }
+          ]
+      };
+
+      // Enable data zoom when user click bar.
+      var zoomSize = 6;
+      sampleCharts.on('click', function (params) {
+          console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+          sampleCharts.dispatchAction({
+              type: 'dataZoom',
+              startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+              endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+          });
+      });
+      sampleCharts.setOption(option)
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.page-data-sample .cols {
+  padding:10px;
+  height: 600px;
+}
+.left {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+.filter {
+  text-align: left;
+  position: relative;
+}
+.title {
+  font-size: 18px;
+  font-weight: 400;
+}
+.search {
+  position: absolute;
+  right:0px;
+}
+.filterform {
+  margin-top: 5px;
+}
+.resultChart {
+  text-align: left;
+}
+.chartCanvas {
+  text-align: center;
+  height: 240px;
+  width: 100%;
+}
+</style>

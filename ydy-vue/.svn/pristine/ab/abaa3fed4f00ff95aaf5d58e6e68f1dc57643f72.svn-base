@@ -1,0 +1,195 @@
+<template>
+    <layout-page-default :focusPageIndex=4>
+        <div class="page-analysis-report">
+            <div class="title">
+                <div class="item">选择报表</div>
+                <div class="item">报告生成列表</div>
+            </div>
+            <div class="context">
+                <div style="width:48%;float:left;height:580px;">
+                    <div class="option">
+                        <el-form size="mini" :model="selectReportForm"  ref= "selectReportForm" :inline="true">
+                            <el-form-item label="样本" prop="sampleCode">
+                                    <el-select v-model="selectReportForm.sampleCode" placeholder="请选择" style="width:110px;" clearable>
+                                        <el-option
+                                        v-for="item in samples"
+                                        :key="item.id"
+                                        :label="item.name"
+                                        :value="item.id">
+                                        </el-option>
+                                    </el-select>
+                            </el-form-item>
+                            </el-form>
+                    </div>
+                    <p>选择报告报表</p>
+                    <div style="width:100%;border:1px solid #000;height:75%">
+                        <el-tree :data="reportModel" :props="defaultProps"  show-checkbox @check-change="handleCheckChange">
+                        </el-tree>
+                    </div>
+                    <div style="width:100%;height:10%;margin-top:10px;">
+                        <el-button type="primary" icon="el-icon-search" size="mini" style="float:right;" @click="submitReportModel()">提交生成</el-button>
+                    </div>
+                </div>
+                <div style="width:48%;float:right;height:570px;margin-right:20px;">
+                    <div style="width:650px;height:50%;">
+                        <p>报告生成进度<el-button type="primary" icon="el-icon-search" size="mini" style="float:right;">刷新</el-button></p>
+
+                        <el-table :data="reportProcess" border size="mini" @selection-change="handleSelectionChange" height="71%">
+                            <el-table-column type="selection" width="40"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="报表大类" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="报表名" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="状态" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="操作" ></el-table-column>
+                        </el-table>
+
+                        <el-button type="primary" icon="el-icon-search" size="mini" style="float:right;">提交生成</el-button>
+                    </div>
+                    <div style="width:650px;height:50%;">
+                        <p>文档生成进度<el-button type="primary" icon="el-icon-search" size="mini" style="float:right;">刷新</el-button></p>
+                    
+                        <el-table :data="documentProcess" border size="mini" @selection-change="handleSelectionChange" height="75%">
+                            <el-table-column type="selection" width="40"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="报告名称" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="生成时间" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="状态" width="150"></el-table-column>
+                            <el-table-column show-overflow-tooltip align="center" prop="organName" label="操作"></el-table-column>
+                        </el-table>
+
+                        <el-button type="primary" icon="el-icon-search" size="mini" style="float:right;">报告下载</el-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </layout-page-default>
+</template>
+
+<script>
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+
+
+export default {
+    components: {
+        LayoutPageDefault
+    },
+    data() {
+        return {
+        selectReportForm :{
+            sampleCode :'',
+        },
+
+        reportModel: [{
+            id:'1',
+            label: '贷款基础数据分析',
+            children: [{
+                id :'3',
+                label: '产品贷款期限占比'
+            },{
+                id :'4',
+                label: '产品贷款期限占比',
+                disabled: true
+            }]
+        }, {
+            id:'2',
+            label: '静态池分析',
+            children: [{
+                id:'5',
+                label: '静态池分析',
+            }]
+        }],
+        defaultProps: {
+        children: 'children',
+        label: 'label',
+        id :'id'
+        },
+
+        
+        samples :[{
+        id: '1',
+        name: '尹家村'
+        }, {
+        id: '2',
+        name: '陈家屯'
+        }, {
+        id: '3',
+        name: '魏家沟'
+        }],
+        reportProcess :[],
+        documentProcess :[],
+        multipleSelection :[],
+        selectReportModel :[],
+    };
+  },  
+  methods: {
+    handleCheckChange(data, checked, indeterminate) {
+        if(data.children == undefined){
+            if(checked  == true){
+                console.log("勾选" + data, checked, indeterminate);
+                this.selectReportModel.push(data.id);
+            }else{
+                console.log("取消" + data, checked, indeterminate);
+                this.selectReportModel.pop(data.id);
+            }
+            console.log(this.selectReportModel);
+            
+        }
+    },
+    //提交报表模板
+    submitReportModel(){
+        this.$commsgbox.alert("勾选的小类ID" + this.selectReportModel);
+    },
+    handleSelectionChange(val) {
+        this.multipleSelection = val;
+    },
+    //样本列表下拉
+    getSamples(){
+        // this.$commsgbox.alert("样本下拉方法");
+        //this.samples = 
+    }
+  },
+  created() {
+  },
+  mounted(){
+      this.getSamples();
+  }
+
+};
+</script>
+
+<style scoped>
+.page-analysis-report{
+    margin: 0px 10px 0px 10px;
+}
+.page-analysis-report .title{
+    margin: 0 0 15px;
+    background-color: #e64a4a;
+}
+.page-analysis-report .title .item{
+    font-size: 20px;
+    font-weight: bold;
+    width: 49%;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center !important;
+    color: white;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    line-height: 40px;
+    display: inline-block;
+    list-style: none;
+    position: relative;
+}
+
+
+.options {
+  text-align: center;
+  margin-bottom: 5px;
+  height: 28px;
+}
+p {
+    font-size: 20px;
+    font-weight :bold;
+    text-align: left;
+}
+
+</style>
+

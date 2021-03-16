@@ -1,0 +1,1334 @@
+<template>
+  <div class="page-data-sample">
+    <layout-page-default :focusPageIndex=2>
+      <el-dialog title="样本重命名" :visible.sync="sampleRenameFormVisible" :close-on-click-modal="false" :append-to-body="true">
+        <el-form :model="sampleRenameForm" :rules="sampleRenameFormRules" ref="sampleRenameForm">
+          <el-form-item label="旧样本名称" :label-width="sampleRenameFormLabelWidth" prop="oldSampleName">
+            <el-input v-model="sampleRenameForm.oldSampleName" :disabled="true" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="新样本名称" :label-width="sampleRenameFormLabelWidth" prop="newSampleName">
+            <el-input v-model="sampleRenameForm.newSampleName" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="updateSampleName('sampleRenameForm')">重命名</el-button>
+        </div>
+      </el-dialog>
+
+      <el-dialog class="ranges sys-ranges" :visible.sync="sysRangeFormVisible" :close-on-click-modal="false" :append-to-body="true">
+        <div class="left">
+          <el-table
+            :data="sysAgeRangeTableData"
+            height="500"
+            size="mini"
+            style="width: 90%;margin:0 auto;">
+            <el-table-column show-overflow-tooltip align="center" label="年龄区间">
+              <el-table-column show-overflow-tooltip align="center" prop="minValue" label="min(岁)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" prop="maxValue" label="max(岁)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" label="操作"></el-table-column>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="right">
+          <el-table
+            :data="sysBalanceRangeTableData"
+            height="500"
+            size="mini"
+            style="width: 90%;margin:0 auto;">
+            <el-table-column show-overflow-tooltip align="center" label="金额区间">
+              <el-table-column show-overflow-tooltip align="center" prop="minValue" label="min(K)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" prop="maxValue" label="max(K)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" label="操作"></el-table-column>
+            </el-table-column>
+          </el-table>
+        </div>
+      </el-dialog>
+
+      <el-dialog class="ranges" :visible.sync="ageAndBalanceRangeFormVisible" :close-on-click-modal="false" :append-to-body="true">
+        <div style="margin:10px 30px;text-align:right;">
+          <el-button size="mini" type="primary" @click="showSysRowRange()">查看系统设置</el-button>
+        </div>
+        <div class="left">
+          <el-table
+            :data="ageRangeTableData"
+            height="360"
+            size="mini"
+            style="width: 90%;margin:0 auto;">
+            <el-table-column show-overflow-tooltip align="center" label="年龄区间">
+              <el-table-column show-overflow-tooltip align="center" prop="minValue" label="min(岁)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" prop="maxValue" label="max(岁)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" label="操作">
+                <template slot-scope="scope">
+                  <el-button
+                  size="mini"
+                  type="danger"
+                  @click="deleteRowRange(scope.row)">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table-column>
+          </el-table>
+          <div style="margin:20px 10px;">
+            <el-row>
+              <el-col :span="9">
+                <div class="sub-title">最小年龄</div>
+                <el-input v-model="ageRangeForm.minValue" autocomplete="off"></el-input>
+              </el-col>
+              <el-col :span="9">
+                <div class="sub-title">最大年龄</div>
+                <el-input v-model="ageRangeForm.maxValue" autocomplete="off"></el-input>
+              </el-col>
+              <el-col :span="6">
+                <el-button
+                  size="mini"
+                  type="primary"
+                  style="margin:10px;"
+                  @click="addAgeRange()">添加</el-button>
+              </el-col>
+            </el-row>
+          </div>
+        </div>
+        <div class="right">
+          <el-table
+            :data="balanceRangeTableData"
+            height="360"
+            size="mini"
+            style="width: 90%;margin:0 auto;">
+            <el-table-column show-overflow-tooltip align="center" label="金额区间">
+              <el-table-column show-overflow-tooltip align="center" prop="minValue" label="min(K)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" prop="maxValue" label="max(K)" width="120"></el-table-column>
+              <el-table-column show-overflow-tooltip align="center" label="操作">
+                <template slot-scope="scope">
+                  <el-button
+                  size="mini"
+                  type="danger"
+                  @click="deleteRowRange(scope.row)">删除</el-button>
+                </template>
+              </el-table-column>
+            </el-table-column>
+          </el-table>
+          <div style="margin:20px 10px;">
+          <el-row>
+            <el-col :span="9">
+              <div class="sub-title">最小金额</div>
+              <el-input v-model="balanceRangeForm.minValue" autocomplete="off"></el-input>
+            </el-col>
+            <el-col :span="9">
+              <div class="sub-title">最大金额</div>
+              <el-input v-model="balanceRangeForm.maxValue" autocomplete="off"></el-input>
+            </el-col>
+            <el-col :span="6">
+              <el-button
+                size="mini"
+                type="primary"
+                style="margin:10px;"
+                @click="addBalanceRange()">添加</el-button>
+            </el-col>
+          </el-row>
+          </div>
+        </div>
+      </el-dialog>
+
+      <div class="wrap">
+        <div class="upper">
+          <el-row>
+            <el-col :span="16">
+              <div class="sample">
+                <el-row>
+                  <el-col :span="12">
+                    <div class="search">
+                      <div class="title">样本集范围选择</div>
+                      <div class="condition">
+                        <el-form :inline="true" :model="sampleRangeForm" :rules="sampleRangeFormRules" ref="sampleRangeForm" size="mini">
+                          <el-form-item label="期  次" prop="periodCode" :label-width="rangeLabelWidth">
+                            <el-select v-model="sampleRangeForm.periodCode" @change="changeRangePeriod()" @focus="focusRangePeriod()">
+                              <el-option
+                                v-for="item in rangePeriods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                              </el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="批  次" :label-width="rangeLabelWidth">
+                            <el-select v-model="sampleRangeForm.batchCode">
+                              <el-option
+                                    v-for="item in rangeBatchs"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                              </el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="客户等级" :label-width="rangeLabelWidth">
+                            <el-select v-model="sampleRangeForm.customerLevel" clearable>
+                              <el-option
+                                    v-for="item in customerLevels"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                              </el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="客户地区" :label-width="rangeLabelWidth">
+                            <el-input v-model="sampleRangeForm.contractProvince" autocomplete="off"></el-input>
+                          </el-form-item>
+                          <el-form-item label="贷款状态" :label-width="rangeLabelWidth">
+                            <el-select v-model="sampleRangeForm.contractStatus" clearable>
+                              <el-option
+                                    v-for="item in contractStatuss"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                              </el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="贷款期限" :label-width="rangeLabelWidth">
+                            <el-select v-model="sampleRangeForm.contractTotalMonth" clearable>
+                              <el-option
+                                    v-for="item in contractTotalMonths"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                              </el-option>
+                            </el-select>
+                          </el-form-item>
+                          <el-form-item label="产品名称" :label-width="rangeLabelWidth">
+                            <el-input v-model="sampleRangeForm.contractProduct" autocomplete="off"></el-input>
+                          </el-form-item>
+                          <el-form-item label="放款日期" :label-width="rangeLabelWidth">
+                            <el-date-picker
+                              v-model="sampleRangeForm.contractStartDate"
+                              type="date"
+                              placeholder="选择日期"
+                              value-format="yyyy-MM-dd"
+                              clearable
+                            ></el-date-picker>
+                          </el-form-item>
+                          <el-form-item label="截止时间" :label-width="rangeLabelWidth">
+                            <el-date-picker
+                              v-model="sampleRangeForm.contractEndDate"
+                              type="date"
+                              placeholder="选择日期"
+                              value-format="yyyy-MM-dd"
+                              clearable
+                            ></el-date-picker>
+                          </el-form-item>
+                          <el-form-item label="贷款利率" :label-width="rangeLabelWidth">
+                            <el-input v-model="sampleRangeForm.contractMonthRate" autocomplete="off"></el-input>
+                          </el-form-item>
+                          <div style="float:right;margin-right:24px;">
+                            <el-button type="primary" icon="el-icon-search" size="small" @click="sampleRangeQuery('sampleRangeForm')">确认范围</el-button>
+                          </div>
+                        </el-form>
+                      </div>
+                    </div>
+                  </el-col>
+                  <el-col :span="12">
+                    <div class="statistics">
+                      <div class="chart" >
+                        <div class="chartCanvas" ref="sampleRangeCharts"></div>
+                      </div>
+                      <div class="date-range">样本集放款日期统计:{{contractStartDateRange}}</div>
+                      <div class="slice">
+                        <el-radio-group v-model="sampleSliceType">
+                          <el-radio :label="1">自然年</el-radio>
+                          <el-radio :label="2">自然半年</el-radio>
+                          <el-radio :label="3">自然季度</el-radio>
+                          <br/>
+                          <span class="compose">
+                            <el-radio :label="4">指定月</el-radio>
+                            <el-input v-model="sliceMonthValue" autocomplete="off"></el-input>
+                          </span>
+                          <span class="compose">
+                            <el-radio :label="5">指定条数</el-radio>
+                            <el-input v-model="sliceNumberValue" autocomplete="off"></el-input>
+                          </span>
+                        </el-radio-group>
+                        <div class="name">
+                          <span><span style="color: #F56C6C;margin-right: 4px;">*</span>样本名称 <el-input v-model="sliceSampleName" autocomplete="off" style="margin:2px 10px;"></el-input></span>
+                          <el-button type="primary" size="small" @click="sliceSampleRecord('sampleRangeForm')">发起抽样</el-button>
+                        </div>
+                      </div>
+                    </div>
+                  </el-col>
+                </el-row>
+              </div>
+            </el-col>
+            <el-col :span="8">
+              <div class="list">
+                <div class="title">抽样结果列表</div>
+                <el-form :inline="true" :model="sampleResultForm" :rules="sampleResultFormRules" ref="sampleResultForm" size="mini" class="form">
+                  <el-form-item label="期次" prop="resultPeriodCode">
+                    <el-select v-model="sampleResultForm.resultPeriodCode" clearable @change="changeResultPeriod()" @focus="focusResultPeriod()">
+                      <el-option
+                        v-for="item in resultPeriods"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                  <el-form-item label="样本名称">
+                    <el-select v-model="sampleResultForm.sampleCode" filterable clearable placeholder="输入或选择">
+                      <el-option
+                            v-for="item in resultSampleCodes"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                      </el-option>
+                    </el-select>
+                  </el-form-item>
+                  <div style="float:right;margin-right:4px;">
+                    <el-button type="primary" icon="el-icon-search" size="small" @click="doSampleResultQuery()">查询</el-button>
+                  </div>
+                </el-form>
+                <el-table
+                  :data="tableData"
+                  border
+                  height="195"
+                  size="mini"
+                  style="width: 98%; margin:0 auto;">
+                      <el-table-column show-overflow-tooltip align="center" prop="sampleName" label="样本名称" width="200"></el-table-column>
+                      <el-table-column show-overflow-tooltip align="center" label="操作" width="210">
+                          <template slot-scope="scope">
+                              <el-button
+                              size="mini"
+                              type="primary"
+                              @click="renameSample(scope.$index, scope.row)">重命名</el-button>
+                              <el-button
+                              size="mini"
+                              type="primary"
+                              @click="showSampleView(scope.row)">查看视图</el-button>
+                              <el-button
+                              size="mini"
+                              type="primary"
+                              v-if="scope.row.sampleStatus === '3'"
+                              @click="saveSampleAtList(scope.row)">保存</el-button>
+                          </template>
+                      </el-table-column> 
+                      <el-table-column show-overflow-tooltip align="center" label="抽样状态" width="120">
+                          <template slot-scope="scope">
+                              {{ scope.row.sampleStatus | statusNameFormat }}
+                          </template>
+                      </el-table-column>
+                      <el-table-column show-overflow-tooltip align="center" prop="remarks" label="结果描述" width="180"></el-table-column>
+              </el-table>
+
+              <el-pagination
+                  background
+                  small
+                  layout="total, prev, pager, next, jumper"
+                  :total="tableTotal"
+                  :page-size="tablePageSize"
+                  :pager-count=5
+                  :current-page="tableCurrentPage"
+                  @current-change="handleCurrentChange"
+                  @size-change="handleSizeChange"
+                  style="width: 94%; margin:0 auto;"
+              >
+              </el-pagination>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+
+        <div class="below">
+          <div class="title">
+            <span>样本名称:{{sampleDetail.sampleName}}</span>
+          </div>
+          <el-row>
+            <el-col :span="5">
+              <div class="status-wrap">
+                <div class="chartCanvasRecord" ref="sampleStatusCharts"></div>
+              </div>
+            </el-col>
+            <el-col :span="6">
+              <div class="period-wrap">
+                <div class="chartCanvasRecord" ref="samplePeriodCharts"></div>
+              </div>            
+            </el-col>
+            <el-col :span="10">
+              <div class="age-wrap">
+                <div class="chartCanvasRecord" ref="sampleAgeBalanceCharts"></div>
+              </div>  
+            </el-col>
+            <el-col :span="3">
+              <div>
+                <el-button type="danger" size="small" v-if="sampleDetail.sampleStatus === '3'" @click="discardSample()">放弃</el-button>
+              </div>
+              <div class="option-wrap">
+                <div style="display:inline-block;margin-left:3px;">
+                  <p><el-button size="small" @click="showAgeAndBalanceRange()" class="opt-button">区间调整</el-button></p>
+                  <p><el-button size="small" @click="refreshAgeChart()" class="opt-button">刷新图表</el-button></p>
+                </div>
+                <div style="display:inline-block;margin-left:20px;">
+                  <p><el-button type="primary" size="small" v-if="sampleDetail.sampleStatus === '3'" @click="saveSampleAtDetail()">保存</el-button></p>
+                  <p>
+                    <el-link href="/sampleAnalysis" style="color:#409EFF;width:56px;padding:9px 4px;">样本分析</el-link>
+                  </p>
+                </div>
+              </div>  
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </layout-page-default>
+  </div>
+</template>
+
+<script>
+import echarts from 'echarts'
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+export default {
+  components: {
+    LayoutPageDefault
+  },
+  data() {
+    return {
+      //样本集范围
+      rangeLabelWidth: '70px',
+      sampleRangeForm: {
+        periodCode: "",
+        batchCode: "",
+        customerLevel: "",
+        contractProvince: "",
+        contractStatus: "",
+        contractTotalMonth: "",
+        contractProduct: "",
+        contractStartDate: "",
+        contractEndDate: "",
+        contractMonthRate: ""
+      },
+      sampleRangeFormRules: {
+        periodCode: [
+          { required: true, message: '请选择期次号', trigger: 'change' }
+        ],
+      },
+      rangePeriods:[],
+      rangeBatchs:[],
+      customerLevels:[],
+      contractStatuss:[],
+      contractTotalMonths:[],
+      contractStartDateRange:"",
+
+      //slice发起抽样
+      sampleSliceType: 0,
+      sliceMonthValue: '',
+      sliceNumberValue: '',
+      sliceSampleName: '',
+
+      //抽样结果
+      sampleResultForm: {
+        resultPeriodCode: "",
+        sampleCode: "",
+      },
+      sampleResultFormRules: {
+        resultPeriodCode: [
+          { required: true, message: '请选择期次号', trigger: 'change' }
+        ]
+      },
+      resultPeriods:[],
+      resultSampleCodes:[],
+      tableData: [],
+      tableTotal : 0,
+      tablePageSize: 10,
+      tableCurrentPage: 1,
+      //rename sample form
+      sampleRenameFormVisible: false,
+      sampleRenameForm: {
+        oldSampleName: '',
+        newSampleName: '',
+        sampleCode: '',
+      },
+      sampleRenameFormLabelWidth: '120px',
+      sampleRenameFormRules: {
+        newSampleName: [
+          { required: true, message: '请输入新样本名称', trigger: 'blur' },
+          { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
+        ]
+      },
+      //below
+      sampleDetail: {
+        sampleName: "",
+        sampleCode: "",
+        sampleStatus: "",
+        organCode: "",
+      },
+      //区间调整
+      ageAndBalanceRangeFormVisible: false,
+      ageRangeTableData: [],
+      ageRangeForm: {
+        minValue: '',
+        maxValue: '',
+      },
+      balanceRangeTableData: [],
+      balanceRangeForm: {
+        minValue: '',
+        maxValue: '',
+      },
+      sysRangeFormVisible: false,
+      sysAgeRangeTableData: [],
+      sysBalanceRangeTableData: [],
+    };
+  },
+  watch:{
+    //解决清空日期后time变成null的问题
+    'sampleRangeForm.contractStartDate': function (newVal) {
+        if (newVal == null) {
+            this.sampleRangeForm.contractStartDate = '';
+        }
+    },
+    'sampleRangeForm.contractEndDate': function (newVal) {
+        if (newVal == null) {
+            this.sampleRangeForm.contractEndDate = '';
+        }
+    },
+  },
+  methods:{
+    //期次下拉
+    getPeriodComBox(){
+      if(sessionStorage.getItem('organCode')){
+        let req ={organCode:sessionStorage.getItem('organCode')};
+        this.$api.PeriodComboBox(req).then(res => {
+            this.rangePeriods = res.data;
+        }).catch(err => {
+            this.$commsgbox.alert(err);
+        });
+      }
+    },
+    //批次下拉
+    getBatchComBox(){
+      let req = {period : this.sampleRangeForm.periodCode, organCode:sessionStorage.getItem('organCode')};
+      this.$api.BatchComboBox(req).then(res => {
+          this.rangeBatchs = res.data;
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    convertContractStatusName(contractStatus){
+      let name = '';
+      switch(contractStatus){
+        case '1':
+          name='正常结清';
+          break;
+        case '2':
+          name='提前结清';
+          break;
+        case '3':
+          name='正常';
+          break;
+        case '4':
+          name='逾期结束 ';
+          break;
+        case '5':
+          name='逾期未结束';
+          break;
+      }
+      return name;
+    },
+    getSampleRangeFilterComBox(){
+      let req = {
+          organCode : sessionStorage.getItem('organCode'),
+          periodCode: this.sampleRangeForm.periodCode,
+          batchCode: this.sampleRangeForm.batchCode,
+      };
+      this.$api.SamplingFilterComboBox(req).then(res => {
+        this.customerLevels = [];
+        this.contractStatuss = [];
+        this.contractTotalMonths = [];
+        if(res.data.customerLevel){
+          for(let index in res.data.customerLevel){
+            let item = {"id": res.data.customerLevel[index], "name":res.data.customerLevel[index]};
+            this.customerLevels.push(item);
+          }
+        }
+        if(res.data.contractStatus){
+          for(let index in res.data.contractStatus){
+            let item = {"id": res.data.contractStatus[index], "name":this.convertContractStatusName(res.data.contractStatus[index])};
+            this.contractStatuss.push(item);
+          }
+        }
+        if(res.data.contractTotalMonth){
+          for(let index in res.data.contractTotalMonth){
+            let item = {"id": res.data.contractTotalMonth[index], "name":res.data.contractTotalMonth[index]+'月'};
+            this.contractTotalMonths.push(item);
+          }
+        }
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    focusRangePeriod(){
+      this.getPeriodComBox();
+    },
+    changeRangePeriod(){
+      this.$comfunc.truncateObject(this.sampleRangeForm, ["periodCode"]);
+      this.getBatchComBox();
+      this.getSampleRangeFilterComBox();
+    },
+    //确认范围
+    sampleRangeQuery(formName){
+      if(!sessionStorage.getItem('organCode')){
+        this.$commsgbox.alert("请选择操作机构");
+        return false;
+      }
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let req = {
+            organCode : sessionStorage.getItem('organCode'),
+            periodCode: this.sampleRangeForm.periodCode,
+            batchCode: this.sampleRangeForm.batchCode,
+            customerLevel: this.sampleRangeForm.customerLevel,
+            contractProvince: this.sampleRangeForm.contractProvince,
+            contractStatus: this.sampleRangeForm.contractStatus,
+            contractTotalMonth: this.sampleRangeForm.contractTotalMonth,
+            contractProduct: this.sampleRangeForm.contractProduct,
+            contractStartDate: this.sampleRangeForm.contractStartDate,
+            contractEndDate: this.sampleRangeForm.contractEndDate,
+            contractMonthRate: this.sampleRangeForm.contractMonthRate,
+          };
+          //请求后端
+          this.$api.SamplingRangeQuery(req).then(res => {
+            let minContractStartDate = res.data.dateRange.minContractStartDate;
+            let maxContractStartDate = res.data.dateRange.maxContractStartDate;
+            this.contractStartDateRange = "";
+            if(minContractStartDate || maxContractStartDate){
+              this.contractStartDateRange = minContractStartDate+"~"+maxContractStartDate;
+            }
+            let periodTotal = res.data.chart.periodTotal;
+            let filterTotal = res.data.chart.filterTotal;
+            let filterRate = [];
+            for(let index in periodTotal){
+              let total = periodTotal[index];
+              let filter = filterTotal[index];
+              let rate = 0;
+              if(total != 0){
+                rate = (filter/total).toFixed(2);
+              }
+              filterRate.push(rate);
+            }
+            this.showSampleRangeCanvas(periodTotal, filterTotal, filterRate);
+          }).catch(err => {
+            this.$commsgbox.alert(err);
+          });
+        }
+      })
+    },
+    showSampleRangeCanvas(periodTotal, filterTotal, filterRate){
+      let sampleRangeCharts = echarts.init(this.$refs.sampleRangeCharts)
+      let option = {
+        title: {
+          text: '样本集数据量统计',
+          left: 'center',
+          align: 'center'
+        },
+        grid: {
+            top: 50,
+            left: 20,
+            right: 50,
+            bottom: 30,
+            containLabel: true
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            animation: false,
+            label: {
+                backgroundColor: '#505765'
+            }
+          }
+        },
+        dataZoom: [
+        ],
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            axisLine: {onZero: false},
+            data: ['合同表', '客户表', '初始还款计划表', '真实还款计划表', '真实还款交易表']
+          }
+        ],
+        yAxis: [
+          {
+              name: '数据量',
+              type: 'value'
+          },
+          {
+              name: '占比',
+              nameLocation: 'start',
+              max: 5,
+              type: 'value',
+              inverse: true
+          }
+        ],
+        series: [
+          {
+            name: '数据总量',
+            type: 'line',
+            animation: false,
+            areaStyle: {},
+            color: '#B50023',
+            lineStyle: {
+                width: 1
+            },
+            data: periodTotal
+          },
+          {
+            name: '范围数据量',
+            type: 'line',
+            areaStyle: {},
+            color: '#2E3A46',
+            lineStyle: {
+                width: 1
+            },
+            data: filterTotal
+          },
+          {
+            name: '占比',
+            type: 'line',
+            yAxisIndex: 1,
+            animation: false,
+            areaStyle: {},
+            color: '#2E3A46',
+            lineStyle: {
+                width: 1
+            },
+            data: filterRate
+          }
+        ]
+      };
+      sampleRangeCharts.setOption(option);
+    },
+    sliceSampleRecord(formName){
+      if(!sessionStorage.getItem('organCode')){
+        this.$commsgbox.alert("请选择操作机构");
+        return false;
+      }
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          if(!this.sliceSampleName){
+            this.$commsgbox.alert("请输入样本名称");
+            return false;
+          }
+          if(!this.sampleSliceType){
+            this.$commsgbox.alert("请选择抽样类型");
+            return false;
+          }
+          if(this.sampleSliceType == 4 && !this.sliceMonthValue){
+            this.$commsgbox.alert("指定月，请输入月份间隔");
+            return false;
+          }
+          if(this.sampleSliceType == 5 && !this.sliceNumberValue){
+            this.$commsgbox.alert("指定条数，请输入条数");
+            return false;
+          }
+          let req = {
+            samplingRangeFormDto : {
+              organCode : sessionStorage.getItem('organCode'),
+              periodCode: this.sampleRangeForm.periodCode,
+              batchCode: this.sampleRangeForm.batchCode,
+              customerLevel: this.sampleRangeForm.customerLevel,
+              contractProvince: this.sampleRangeForm.contractProvince,
+              contractStatus: this.sampleRangeForm.contractStatus,
+              contractTotalMonth: this.sampleRangeForm.contractTotalMonth,
+              contractProduct: this.sampleRangeForm.contractProduct,
+              contractStartDate: this.sampleRangeForm.contractStartDate,
+              contractEndDate: this.sampleRangeForm.contractEndDate,
+              contractMonthRate: this.sampleRangeForm.contractMonthRate,
+            },
+            sampleSliceType: this.sampleSliceType,
+            sliceMonthValue: parseInt(this.sliceMonthValue),
+            sliceNumberValue: parseInt(this.sliceNumberValue),
+            sliceSampleName: this.sliceSampleName,
+          };
+          this.$api.SliceSampleRecord(req).then(res => {
+            if(this.sampleResultForm.resultPeriodCode == ""){
+              this.sampleResultForm.resultPeriodCode = this.sampleRangeForm.periodCode;
+            }
+            this.doSampleResultQuery();
+          }).catch(err => {
+            this.$commsgbox.alert(err);
+          });
+        }
+      })
+    },
+    //抽样结果查询期次下拉
+    getResultPeriodComBox(){
+      let req ={organCode:sessionStorage.getItem('organCode')};
+      this.$api.PeriodComboBox(req).then(res => {
+          this.resultPeriods = res.data;
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    //样本名称下拉
+    getSampleNameComBox(){
+      let req = {periodCode : this.sampleResultForm.resultPeriodCode, organCode:sessionStorage.getItem('organCode')};
+      this.$api.SampleNameComboBox(req).then(res => {
+          this.resultSampleCodes = res.data;
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    focusResultPeriod(){
+      this.sampleResultForm.periodCode = '';
+      this.getResultPeriodComBox();
+    },
+    changeResultPeriod(){
+      this.sampleResultForm.sampleCode = '';
+      this.getSampleNameComBox();
+    },
+    handleCurrentChange(val){
+        this.tableCurrentPage = val;
+        this.sampleResultQuery("sampleResultForm");
+    },
+    handleSizeChange(val){
+        this.tablePageSize = val;
+        this.sampleResultQuery("sampleResultForm");
+    },
+    doSampleResultQuery(){
+        this.tableCurrentPage = 1;
+        this.sampleResultQuery("sampleResultForm");
+    },
+    //查询
+    sampleResultQuery(formName){
+      if(!sessionStorage.getItem('organCode')){
+        this.$commsgbox.alert("请选择操作机构");
+        return false;
+      }
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let req = {
+            nowpage: this.tableCurrentPage,
+            pagesize: this.tablePageSize,
+            sort : 'id',
+            order: 'desc',
+            organCode : sessionStorage.getItem('organCode'),
+            periodCode: this.sampleResultForm.resultPeriodCode,
+            sampleCode: this.sampleResultForm.sampleCode,
+          };
+          //请求后端
+          this.$api.SamplingRecordQuery(req).then(res => {
+            this.tableTotal = res.data.total;
+            this.tableData = res.data.rows;
+          }).catch(err => {
+            this.$commsgbox.alert(err);
+          });
+        }
+      })
+    },
+    renameSample(index, row){
+      if(row.sampleStatus == '1' || row.sampleStatus == '2'){
+        this.$commsgbox.alert("抽样中,请查询后重试");
+        return false;
+      }
+      this.sampleRenameForm = {
+        oldSampleName: row.sampleName,
+        newSampleName: '',
+        sampleCode: row.sampleCode,
+      };
+      this.sampleRenameFormVisible = true;
+    },
+    updateSampleName(formName){
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          let req = {
+            sampleName: this.sampleRenameForm.newSampleName,
+            sampleCode: this.sampleRenameForm.sampleCode,
+          };
+          this.$api.UpdateSampleName(req).then(() => {
+            this.sampleResultQuery("sampleResultForm");
+            this.sampleRenameFormVisible = false;
+          }).catch(err => {
+            this.$commsgbox.alert(err);
+          });
+        } else {
+          return false;
+        }
+      });
+    },
+    showSampleView(row){
+      if(row.sampleStatus == '1' || row.sampleStatus == '2'){
+        this.$commsgbox.alert("抽样中,请查询后重试");
+        return false;
+      }
+      this.sampleDetail.sampleName = row.sampleName;
+      this.sampleDetail.sampleCode = row.sampleCode;
+      this.sampleDetail.sampleStatus = row.sampleStatus;
+      this.sampleDetail.organCode = row.organCode;
+      let sampleChartStatus = JSON.parse(row.sampleChartStatusJsn);
+      let sampleChartMonth = JSON.parse(row.sampleChartMonthJsn);
+      let sampleChartAge = JSON.parse(row.sampleChartAgeJsn);
+      this.showSampleStatusCanvas(sampleChartStatus.seriesData, sampleChartStatus.legendData);
+      this.showSamplePeriodCanvas(sampleChartMonth.seriesData, sampleChartMonth.legendData);
+      this.showSampleAgeBalanceCanvas(sampleChartAge.xAxisData1, sampleChartAge.xAxisData2, sampleChartAge.seriesData1, sampleChartAge.seriesData2);
+    },
+    showSampleStatusCanvas(seriesData, legendData){
+      let sampleStatusCharts = echarts.init(this.$refs.sampleStatusCharts)
+      let option = {
+        title: {
+          text: '贷款状态分布图',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+          type: 'scroll',
+          left: 'center',
+          top: 'bottom',
+          data: legendData
+        },
+        series: [
+          {
+            name: '状态分布图',
+            type: 'pie',
+            label: {
+              show: false
+            },
+            data: seriesData,
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      };
+      sampleStatusCharts.setOption(option);
+    },
+    showSamplePeriodCanvas(seriesData, legendData){
+      let samplePeriodCharts = echarts.init(this.$refs.samplePeriodCharts);
+      let option = {
+        title: {
+          text: '贷款期次分布图',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },legend: {
+          left: 'center',
+          top: 'bottom',
+          data: legendData
+        },
+        grid: {
+          top: 80,
+          bottom: 50
+        },
+        series: [
+          {
+            name: '期次分布图',
+            type: 'pie',
+            radius: ['10%', '80%'],
+            roseType: 'area',
+            label: {
+              show: false
+            },
+            data: seriesData
+          }
+        ]
+      };
+      samplePeriodCharts.setOption(option);
+    },
+    showSampleAgeBalanceCanvas(xAxisData1, xAxisData2, seriesData1, seriesData2){
+      let sampleAgeBalanceCharts = echarts.init(this.$refs.sampleAgeBalanceCharts);
+      let colors = ['#5793f3', '#d14a61', '#675bba'];
+      let option = {
+        title: {
+          text: '年龄-金额分布图'
+        },
+        color: colors,
+        tooltip: {
+          trigger: 'none',
+          axisPointer: {
+            type: 'cross'
+          }
+        },
+        legend: {
+          data:['年龄区间', '金额区间']
+        },
+        grid: {
+          top: 70,
+          bottom: 30,
+          left: 30,
+          right: 30
+        },
+        xAxis: [
+          {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                  color: colors[1]
+              }
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                    return '年龄区间  ' + params.value
+                        + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                }
+              }
+            },
+            data: xAxisData1
+          },
+          {
+            type: 'category',
+            axisTick: {
+                alignWithLabel: true
+            },
+            axisLine: {
+              onZero: false,
+              lineStyle: {
+                  color: colors[0]
+              }
+            },
+            axisPointer: {
+              label: {
+                formatter: function (params) {
+                    return '金额区间  ' + params.value
+                        + (params.seriesData.length ? '：' + params.seriesData[0].data : '');
+                }
+              }
+            },
+            data: xAxisData2
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value',
+            name:'合同笔数'
+          }
+        ],
+        series: [
+          {
+            name: '年龄区间',
+            type: 'line',
+            xAxisIndex: 1,
+            smooth: true,
+            data: seriesData1
+          },
+          {
+            name: '金额区间',
+            type: 'line',
+            smooth: true,
+            data: seriesData2
+          }
+        ]
+      };
+      sampleAgeBalanceCharts.setOption(option);
+    },
+    saveSampleAtList(row){
+      let req = {
+        organCode: row.organCode,
+        sampleCode: row.sampleCode,
+      };
+      this.$api.SaveSampleInfo(req).then(res => {
+        this.sampleResultQuery("sampleResultForm");
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    saveSampleAtDetail(){
+      let req = {
+        organCode: this.sampleDetail.organCode,
+        sampleCode: this.sampleDetail.sampleCode,
+      };
+      this.$api.SaveSampleInfo(req).then(res => {
+        this.sampleResultQuery("sampleResultForm");
+        this.showSampleView(res.data);
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    discardSample(){
+      this.$commsgbox.confirm('此操作将放弃该样本, 是否继续?').then(() => {
+        let req = {
+          organCode: this.sampleDetail.organCode,
+          sampleCode: this.sampleDetail.sampleCode,
+        };
+        this.$api.DiscardSampleInfo(req).then(res => {
+          this.sampleResultQuery("sampleResultForm");
+          this.showSampleView(res.data);
+        }).catch(err => {
+          this.$commsgbox.alert(err);
+        });
+      }).catch(() => {
+
+      });
+    },
+    refreshAgeChart(){
+      let req = {
+        organCode: this.sampleDetail.organCode,
+        sampleCode: this.sampleDetail.sampleCode,
+      };
+      this.$api.UpdateSampleChartAgeJson(req).then(res => {
+        this.showSampleView(res.data);
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    showAgeAndBalanceRange(){
+      this.requestQueryRowRange();
+      this.ageAndBalanceRangeFormVisible = true;
+    },
+    requestQueryRowRange(){
+      let req = {};
+      this.$api.QueryRowRange(req).then(res => {
+        this.ageRangeTableData = res.data.age;
+        this.balanceRangeTableData = res.data.balance;
+        this.ageRangeForm = { minValue: '', maxValue: ''};
+        this.balanceRangeForm = { minValue: '', maxValue: ''};
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    addAgeRange(){
+      if(!this.ageRangeForm.minValue){
+        this.$commsgbox.alert("请输入最小年龄");
+        return false;
+      }
+      if(!this.ageRangeForm.maxValue){
+        this.$commsgbox.alert("请输入最大年龄");
+        return false;
+      }
+      this.$api.AddAgeRowRange(this.ageRangeForm).then(res => {
+        this.requestQueryRowRange();
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    addBalanceRange(){
+      if(!this.balanceRangeForm.minValue){
+        this.$commsgbox.alert("请输入最小金额");
+        return false;
+      }
+      if(!this.balanceRangeForm.maxValue){
+        this.$commsgbox.alert("请输入最大金额");
+        return false;
+      }
+      this.$api.AddBalanceRowRange(this.balanceRangeForm).then(res => {
+        this.requestQueryRowRange();
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    deleteRowRange(row){
+      this.$commsgbox.confirm('此操作将删除设置信息, 是否继续?').then(() => {
+        let req = {
+          id: row.id
+        };
+        this.$api.DeleteRowRange(req).then(() => {
+          this.requestQueryRowRange();
+        }).catch(err => {
+          this.$commsgbox.alert(err);
+        });
+      }).catch(() => {
+
+      });
+    },
+    showSysRowRange(){
+      let req = {};
+      this.$api.QuerySysRowRange(req).then(res => {
+        this.sysAgeRangeTableData = res.data.age;
+        this.sysBalanceRangeTableData = res.data.balance;
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+      this.sysRangeFormVisible = true;
+    }
+  },
+  mounted() {
+    this.showSampleRangeCanvas([], [], []);
+    this.showSampleStatusCanvas([], []);
+    this.showSamplePeriodCanvas([], []);
+    this.showSampleAgeBalanceCanvas([], [], [], []);
+  },
+  filters: {
+    statusNameFormat: function(statusVal){
+        let statusName = statusVal;
+        if(statusVal == 1) { statusName = '抽样中' }
+        else if(statusVal == 2) { statusName = '抽样失败' }
+        else if(statusVal == 3) { statusName = '抽样完成' }
+        else if(statusVal == 4) { statusName = '保存完成' }
+        else if(statusVal == 5) { statusName = '放弃样本' }
+        return statusName;
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.ranges {
+  width: 100%;
+}
+.ranges .left {
+  width:49%;
+  display: inline-block;
+  border-right: 1px solid #ccc;
+}
+.ranges .right {
+  width:50%;
+  display: inline-block;
+}
+.page-data-sample .wrap{
+  border:1px solid #ddd;
+  border-radius: 20px;
+  margin:10px;
+}
+.page-data-sample .wrap .upper {
+  height: 300px;
+}
+.page-data-sample .wrap .upper .sample{
+  border:1px solid #eee;
+  border-radius: 20px;
+  height: 300px;
+}
+.page-data-sample .wrap .upper .sample .search{
+  // border:1px solid #0ee;
+  width:100%;
+}
+.page-data-sample .wrap .upper .sample .search .title{
+  font-size: 22px;
+  font-weight: bold;
+  padding-left: 20px;
+  text-align: left;
+}
+.page-data-sample .wrap .upper .sample .search .condition{
+  text-align: left;
+  padding: 10px;
+}
+.page-data-sample .wrap .upper .sample .statistics{
+  width:100%;
+}
+.page-data-sample .wrap .upper .sample .statistics .chart .chartCanvas{
+  height: 180px;
+}
+.page-data-sample .wrap .upper .sample .statistics .date-range{
+  font-size:16px;
+  font-weight: bold;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice{
+  text-align: left;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .compose{
+  margin-right:30px;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .name{
+  margin:10px 0px;
+}
+.page-data-sample .wrap .upper .list{
+  border:1px solid #eee;
+  border-radius: 20px;
+  margin-left:20px;
+  height: 300px;
+}
+.page-data-sample .wrap .upper .list .title{
+  font-size: 22px;
+  font-weight: bold;
+  padding-left: 20px;
+  text-align: left;
+}
+.page-data-sample .wrap .below {
+  height: 300px;
+}
+.page-data-sample .wrap .below .title{
+  font-size: 22px;
+  font-weight: bold;
+  padding-left: 6px;
+  text-align: left;
+  margin-top: 10px;
+}
+.page-data-sample .wrap .below .chartCanvasRecord{
+  height:256px;
+}
+.page-data-sample .wrap .below .status-wrap,
+.page-data-sample .wrap .below .period-wrap,
+.page-data-sample .wrap .below .age-wrap{
+  border:1px solid #eee;
+  border-top: 2px solid #ccc;
+  border-left: 2px solid #ccc;
+  margin: 0px 5px;
+}
+.page-data-sample .wrap .below .option-wrap{
+  text-align: center;
+  vertical-align: middle;
+}
+.page-data-sample .wrap .below .option-wrap .opt-button{
+  background-color:#ecf5ff;
+  border-color:#c6e2ff;
+  border-radius:4px;
+  color:#409eff;
+}
+</style>
+<style lang="scss">
+.ranges .el-dialog__body{
+  padding: 0px 0px 30px 0px;
+}
+.sys-ranges .el-dialog__body{
+  padding: 30px 0px;
+}
+.ranges .el-input__inner{
+  width: 80%;
+  height: 30px;
+}
+.page-data-sample .wrap .upper .sample .search .condition .el-select
+, .page-data-sample .wrap .upper .sample .search .condition .el-input
+, .page-data-sample .wrap .upper .sample .search .condition .el-date-picker{
+  width:130px;
+}
+.page-data-sample .wrap .upper .sample .search .condition .el-form-item{
+  margin-bottom: 14px;
+}
+.page-data-sample .wrap .upper .sample .search .condition .el-form-item__label{
+  text-align: justify;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .el-radio-group{
+  text-align: justify;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .compose .el-radio{
+  margin-right: 5px;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .el-input {
+  display: inline;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .compose .el-input__inner{
+  display: inline-block;
+  width: 105px;
+  height: 25px;
+}
+.page-data-sample .wrap .upper .sample .statistics .slice .name .el-input__inner{
+  display: inline-block;
+  width: 240px;
+  height: 25px;
+}
+.page-data-sample .wrap .upper .list .el-pagination__jump{
+  margin-left: 5px;
+}
+.page-data-sample .wrap .upper .list .el-button--mini{
+  font-size: 7px;
+  padding: 5px 8px;
+  color:#409EFF;
+  background-color: #ecf5ff;
+}
+.page-data-sample .wrap .upper .list .form .el-select{
+  width:106px;
+}
+.page-data-sample .wrap .below .option-wrap {
+  position: absolute;
+  top: 40px;
+}
+.page-data-sample .wrap .below .option-wrap .el-button {
+  margin-top: 50px;
+}
+</style>

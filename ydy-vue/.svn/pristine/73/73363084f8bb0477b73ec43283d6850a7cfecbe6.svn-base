@@ -1,0 +1,126 @@
+<template>
+    <div style="width:100%">
+            <div class="options">
+                <el-form size="mini" :model="businessForm" :rules="businessFormRules" ref= "businessForm" :inline="true">
+                    <el-form-item label="期次" prop="periodId">
+                        <el-select  v-model="businessForm.periodId" style="width:110px;" clearable ></el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchId">
+                        <el-select v-model="businessForm.batchId" style="width:110px;" clearable ></el-select>
+                    </el-form-item>
+                    <el-form-item label="上传时间" prop="uploadTime">
+                        <el-date-picker v-model="businessForm.uploadTime" type="date" placeholder="选择日期"
+                                        style="width:130px;" clearable ></el-date-picker>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="businessCheckQuery('businessForm')">查询</el-button>
+                    </el-form-item>
+                    <el-form-item style ="float: right">
+                        <el-button type="primary" icon="el-icon-folder-checked" size="mini" @click="businessCheck('businessForm')">发起一键校验</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodId" label="期次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchId" label="批次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="数据类型"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="校验阶段" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="校验状态" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="数据总量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="基础校验错误量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="业务校验错误量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="orgName" label="上传时间" width="150"></el-table-column>
+            </el-table>
+            <el-pagination
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    align="center"
+                    :page-sizes="[10, 20, 30, 50]"
+                    :total="tableTotal"
+                    :page-size="tablePageSize"
+                    :current-page="tableCurrentPage"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+            >
+            </el-pagination>
+        </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                businessForm: {
+                    periodId: "",
+                    batchId: "",
+                    uploadTime: "",
+                },
+                businessFormRules: {
+                    periodId :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }],
+                },
+                multipleSelection:[],
+            };
+        },
+        components: {
+
+        },
+
+        methods: {
+            handleSelectionChange(val){
+                this.multipleSelection = val;
+            },
+            handleCurrentChange(val){
+                this.tableCurrentPage = val;
+            },
+            handleSizeChange(val){
+                this.tablePageSize = val;
+            },
+            //查询
+            businessCheckQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            sort : 'id',
+                            order: 'desc',
+                            periodId: this.periodId,
+                            batchId: this.batchId,
+                            uploadTime: this.uploadTime
+                        };
+                        //请求后端
+                        console.log("测试");
+                        this.$api.businessCheckQuery(req).then(res => {
+                            this.tableTotal = res.data.total;
+                            this.tableData = res.data.rows;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            //校验
+            businessCheck(){
+                this.$commsgbox.alert("一键校验,待做");
+            },
+
+        }
+    };
+</script>
+
+<style scoped>
+    .options {
+        text-align:left;
+        margin-bottom:5px;
+        height: 28px;
+    }
+    
+</style>
+

@@ -1,0 +1,350 @@
+<template>
+    <div style="width:100%">
+        
+
+        <el-dialog title="业务校验详情" :visible.sync="truthFormDetailVisible" :close-on-click-modal="false" :append-to-body="true">
+            <div class="detailOptions">
+                <el-form size="mini" :model="truthFormDetail" :rules="truthFormRules" ref= "truthForm" :inline="true">
+                    <el-form-item label="校验状态" prop="checkStats">
+                        <el-select v-model="truthFormDetail.checkStats" style="width:110px;" clearable>
+                            <el-option
+                                v-for="item in stats"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="客户等级" prop="customerLevel">
+                        <el-input v-model="truthFormDetail.customerLevel" style="width:110px;" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款地区" prop="customerLevel">
+                        <el-input v-model="truthFormDetail.customerLevel" style="width:110px;" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款期数" prop="contractTotalPeriod">
+                        <el-input v-model="truthFormDetail.contractTotalPeriod" style="width:110px;" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="合同号" prop="contractCode">
+                        <el-input v-model="truthFormDetail.contractCode" style="width:110px;" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款状态" prop="contractStatus">
+                        <el-input v-model="truthFormDetail.contractStatus" style="width:110px;" clearable></el-input>
+                    </el-form-item>
+                    <br>
+                    <el-form-item>
+                        <el-button type="primary" size="small" icon="el-icon-search" @click="queryTruthCheckDetail()">查询</el-button>
+                        <el-button type="primary" size="small" icon="el-icon-search" @click="noPass()">不通过</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            
+            <el-table :data="detailTableData" @selection-change="detailHandleSelectionChange" border height="450" size="mini" style="width: 100%">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip prop="periodCode" align="center" width = "100" label="期次"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="periodCode" align="center" width = "100" label="批次"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="contractCode" align="center" width = "100" label="合同号"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="contractStatus" align="center" width = "100" label="贷款状态"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="contractStatus" align="center" width = "100" label="贷款地区"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="contractTotalPeriod" align="center" width = "100" label="贷款期数"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="customerLevel" align="center" width = "100" label="客户等级"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="checkStatus" align="center" width = "100" label="处理状态"></el-table-column>
+                <el-table-column show-overflow-tooltip prop="checkStatus" align="center" width = "100" label="操作">
+                    <template slot-scope="scope">
+                        <el-button type="primary" size="small" icon="el-icon-search" @click="noPass(scope.row)">不通过</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+        
+            <el-pagination
+                        background
+                        layout="total, sizes, prev, pager, next, jumper"
+                        align="center"
+                        :page-sizes="[10, 20, 30, 50]"
+                        :total="detailTableTotal"
+                        :page-size="detailTablePageSize"
+                        :current-page="detailTableCurrentPage"
+                        @current-change="detailHandleCurrentChange"
+                        @size-change="detailHandleSizeChange"
+                >
+            </el-pagination>
+        </el-dialog>
+
+
+            <div class="options">
+                <el-form size="mini" :model="truthForm" :rules="truthFormRules" ref= "truthForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="truthForm.periodCode" style="width:110px;" clearable @change="changePeriod()" @focus="focusPeriod()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchCode">
+                        <el-select v-model="truthForm.batchCode" style="width:110px;" clearable @change="changeBatch()">
+                            <el-option
+                                v-for="item in batchs"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="上传时间" prop="updateTime">
+                        <el-date-picker v-model="truthForm.updateTime" type="date" placeholder="选择日期"
+                                        style="width:130px;" clearable ></el-date-picker>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="truthCheckQuery('truthForm')">查询</el-button>
+                    </el-form-item>
+                    <el-form-item style ="float: right">
+                        <el-button type="primary" icon="el-icon-s-grid" size="mini" @click="truthLookDetail()">查看详情</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="organName" label="机构名称" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="fileTypeName" label="数据类型"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkProcessName" label="校验阶段" width="180">
+                    <template slot-scope="scope">
+                        <span v-if="scope.row.checkProcess === '3'" style="color: #9A9FFF">{{scope.row.checkProcessName}}</span>
+                        <span v-if="scope.row.checkProcess === '4'" style="color: #F099A5">{{scope.row.checkProcessName}}</span>
+                        <span v-if="scope.row.checkProcess === '5'" style="color: #9BC454">{{scope.row.checkProcessName}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="truthDataCount" label="数据总量" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="truthErrorCount" label="真实性校验错误量" width="120"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="updateUser" label="操作人"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="updateTime" label="操作时间">
+                    <template slot-scope="scope">
+                        {{ timeFormat(scope.row.updateTime) }}
+                    </template>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center"  label="操作">
+                    <template slot-scope="scope">
+                        <el-button type="primary" icon="el-icon-folder-checked" size="mini" v-if="scope.row.checkProcess === '3'" @click="truthCheck(scope.row)">一键通过</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+            <el-pagination
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    align="center"
+                    :page-sizes="[10, 20, 30, 50]"
+                    :total="tableTotal"
+                    :page-size="tablePageSize"
+                    :current-page="tableCurrentPage"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+            >
+            </el-pagination>
+        </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                truthForm: {
+                    periodCode: "",
+                    batchCode: "",
+                    uploadCode: "",
+                },
+                truthFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }],
+                },
+                periods : [],
+                batchs : [],
+                multipleSelection:[],
+
+                //详情
+                truthFormDetailVisible : false,
+                detailTableData :[],
+                detailTableTotal : 0,
+                detailTablePageSize: 10,
+                detailTableCurrentPage: 1,
+                truthFormDetail :{
+                    checkStats:"",
+                    customerLevel :"",
+                    contractTotalPeriod :'',
+                    contractCode :'',
+                    contractStatus:'',
+                },
+                detailPeriodCode :'',
+                detailBatchCode:[],
+                stats :[],
+                detailMultipleSelection :[],
+            };
+        },
+        components: {
+
+        },
+
+        methods: {
+            handleSelectionChange(val){
+                this.multipleSelection = val;
+            },
+            handleCurrentChange(val){
+                this.tableCurrentPage = val;
+                this.truthCheckQuery("truthForm");
+            },
+            handleSizeChange(val){
+                this.tablePageSize = val;
+                this.truthCheckQuery("truthForm");
+            },
+            //详情
+            detailHandleSelectionChange(val){
+                this.detailMultipleSelection = val;
+            },
+            detailHandleCurrentChange(val){
+                this.detailTableCurrentPage = val;
+            },
+            detailHandleSizeChange(val){
+                this.detailTablePageSize = val;
+            },
+            //查询
+            truthCheckQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            sort : 'id',
+                            order: 'desc',
+                            organCode : sessionStorage.getItem('organCode'),
+                            periodCode: this.truthForm.periodCode,
+                            batchCode: this.truthForm.batchCode,
+                            updateTime: this.truthForm.updateTime
+                        };
+                        //请求后端
+                        this.$api.TruthCheckQuery(req).then(res => {
+                            this.tableTotal = res.data.total;
+                            this.tableData = res.data.rows;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            //校验
+            truthCheck(row){
+                let req = {
+                    uploadCode : row.uploadCode,
+                };
+                this.$api.TruthCheck(req).then(res => {
+                    this.tableTotal = res.data.total;
+                    this.tableData = res.data.rows;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:sessionStorage.getItem('organCode')};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periods = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //批次下拉
+            getBatchComBox(){
+                let req = {period : this.truthForm.periodCode,organCode:sessionStorage.getItem('organCode')};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchs = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //期次下拉改变
+            changePeriod(){
+                this.getBatchComBox();
+                this.truthForm.batchCode = '';
+                this.truthCheckQuery("truthForm");
+            },
+            changeBatch(){
+                this.truthCheckQuery("truthForm");
+            },
+            focusPeriod(){
+                this.truthForm.period = '';
+                this.getPeriodComBox();
+            },
+            //日期转换
+            timeFormat: function(timeVal){
+                return this.$comfunc.timeFormat(timeVal);
+            },
+            //查看详情
+            truthLookDetail(){
+                let length = this.multipleSelection.length;
+                if(length === 0){
+                    this.$commsgbox.alert("请勾选需要查看的数据!");
+                    return ;
+                }
+                this.detailPeriodCode = '';
+                this.detailBatchCode = [];
+                this.multipleSelection.forEach(item =>{
+                    this.detailPeriodCode = item.periodCode;
+                    this.detailBatchCode.push(item.batchCode);
+                });
+                this.truthFormDetailVisible = true;
+            },
+            //详情查询接口
+            queryTruthCheckDetail(){
+                let req = {
+                    nowpage: this.detailTableCurrentPage,
+                    pagesize: this.detailTablePageSize,
+                    sort : 'id',
+                    order: 'desc',
+                    periodCode : this.detailPeriodCode,
+                    batchCodes : this.detailBatchCode,
+                    checkStats : this.truthFormDetail.checkStats,
+                    customerLevel :this.truthFormDetail.customerLevel,
+                    contractTotalPeriod :this.truthFormDetail.contractTotalPeriod,
+                    contractCode :this.truthFormDetail.contractCode,
+                    contractStatus:this.truthFormDetail.contractStatus,
+                };
+                //请求后端
+                this.$api.TruthCheckDetailQuery(req).then(res => {
+                    this.detailTableTotal = res.data.total;
+                    this.detailTableData = res.data.rows;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            //不通过
+            noPass(row){
+                console.log(row);
+            },
+        },
+        mounted(){
+            this.getPeriodComBox();
+        },
+    };
+</script>
+
+<style scoped>
+    .options {
+        text-align:left;
+        margin-bottom:5px;
+        height: 28px;
+    }
+    .detailOptions {
+        text-align:left;
+        margin-bottom:5px;
+        height: 150px;
+    }
+    
+</style>
+

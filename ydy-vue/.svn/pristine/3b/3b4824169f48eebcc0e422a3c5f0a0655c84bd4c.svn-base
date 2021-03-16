@@ -1,0 +1,57 @@
+<template>
+  <div class="page-data-import">
+    <layout-page-default :focusPageIndex=2>
+        <div class="sampling-page" style="margin: 0 10px 0 10px">
+            <div class="horizontal-line"></div>
+
+        </div>
+    </layout-page-default>
+  </div>
+</template>
+
+<script>
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+export default {
+  components: {
+    LayoutPageDefault,
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.horizontal-line {
+//   float:left;
+  width: 100%;
+  height: 3px;
+  background: rgba(230, 74, 74, 1);
+}
+</style>
+
+<style lang="scss">
+.page-data-import .el-tabs__nav {
+    width: 100%; 
+    background-color: rgba(230, 74, 74, 1);
+    text-align: left;
+}
+.page-data-import .el-tabs__active-bar {
+    display: none;
+}
+.page-data-import .el-tabs__item {
+    font-size: 20px;
+    font-weight: bold;
+    width: 200px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center !important; 
+    // background-color: rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 1);
+}
+.page-data-import .el-tabs__item:hover{
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.page-data-import .el-tabs__item.is-active{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+</style>

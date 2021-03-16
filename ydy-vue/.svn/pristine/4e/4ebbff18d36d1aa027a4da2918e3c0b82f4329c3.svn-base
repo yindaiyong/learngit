@@ -1,0 +1,231 @@
+<template>
+  <div class="header-wrap">
+    <div class="mini-header" style="margin-top:23px; height:64px;">
+      <el-row :gutter="0" class="orgin-form-row">
+        <!-- 空 -->
+        <el-col :span="4">
+          <div class="grid-content"></div>
+        </el-col>
+        <!-- 首页、样本集明细、离线数据校验、合作机构管理链接表头按钮 -->
+        <el-col :span="10">
+            <div class="round-button" style="text-align:left;">
+                <!-- <el-button class="Transparent-button" type="normal" size="medium" plain><el-link href="/" :underline="false" class="menu-button">首页</el-link></el-button>
+                <el-button class="Transparent-button" type="normal" size="medium" plain><el-link href="/" target="_blank" :underline="false" class="menu-button">样本集明细</el-link></el-button>
+                <el-button class="Transparent-button" type="normal" size="medium" plain><el-link href="/" target="_blank" :underline="false" class="menu-button">数据离线校验</el-link></el-button>
+                <el-button class="Transparent-button" type="normal" size="medium" plain><el-link href="/organ" :underline="false" class="menu-button">合作机构管理</el-link></el-button> -->
+
+                <el-link href="/" :underline="false" class="menu-button">首页</el-link>
+                <el-link href="/" target="_blank" :underline="false" class="menu-button">样本集明细</el-link>
+                <el-link href="/" target="_blank" :underline="false" class="menu-button">数据离线校验</el-link>
+                <el-link href="/organ" :underline="false" class="menu-button">合作机构管理</el-link>
+            </div>
+        </el-col>
+        <!-- 空 -->
+        <el-col :span="3">
+          <div class="grid-content"></div>
+        </el-col>
+        <!-- 机构选择 -->
+        <el-col :span="5" style=" padding-top:10px">
+          <el-select  style="margin-right:10px; width: 50%;" size="small" v-model="orgSelectedCode" placeholder="请选择机构" @change="changeOrganCode">
+              <el-option
+              v-for="item in orgOptions"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+              ></el-option>
+          </el-select>
+
+          <el-button class="Transparent-button" style="margin-right:50px;" type="normal" size="small" @click="searchByOrgan">查询</el-button>
+        </el-col>
+        <!-- 用户下拉 -->
+        <el-col :span="1" >
+          <div style="text-align: right;">
+              <el-dropdown class="my-self-button">
+                  <el-button class="Transparent-button" type="normal" size="small"> <!-- icon="el-icon-user-solid" -->
+                    <p :title="accountInfo" class="account">{{accountInfo}}</p>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </el-button>
+                  <el-menu :default-active="activeIndex"
+                          :router="true"
+                          class="el-menu-demo"
+                          mode="horizontal"
+                          background-color="#545c64"
+                          text-color="#fff"
+                          active-text-color="#ffd04b">
+                  </el-menu>
+                  <el-dropdown-menu :default-active="$route.path"
+                          :router="true"
+                          class="el-menu-demo"
+                          mode="horizontal">
+                    <el-dropdown-item><el-link href="/user" :underline="false" icon="el-icon-s-custom">用户管理</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/authRole" :underline="false" icon="el-icon-s-check">角色权限</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/authReport" :underline="false" icon="el-icon-s-data">报表权限</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/myReport" :underline="false" icon="el-icon-s-grid">我的报表</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/dict" :underline="false" icon = "el-icon-s-tools">字典配置</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/resetpassword" :underline="false" icon="el-icon-s-claim">修改密码</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link :underline="false" icon="el-icon-switch-button" @click="logout">退出登陆</el-link></el-dropdown-item>
+                  </el-dropdown-menu>
+              </el-dropdown>
+          </div>
+        </el-col>
+        <el-col :span="1" style="min-width:64px">
+          <div class="grid-content"></div>
+        </el-col>
+
+      </el-row>
+      <div style="height:20px"></div>
+    </div>
+
+    <!-- logo -->
+    <img class="logo" src="../assets/images/logo.png" title="首页" alt="logo.png" @click="$router.push('/')"/>
+  
+  </div>
+</template>
+<script>
+import Cookies from "js-cookie"
+export default {
+  data() {
+    return {
+      activeIndex: '0',
+      orgOptions: [],
+      orgSelectedCode: '',
+      accountInfo: ''
+    };
+  },
+  methods: {
+    searchByOrgan() {
+      console.log(this.orgSelectedCode);
+    },
+    //机构下拉切换,给全局变量organCode赋值
+    changeOrganCode(value){
+      console.log(sessionStorage.getItem('organCode'));
+      sessionStorage.setItem('organCode', value);
+    },
+    getOrganCombox() {
+      this.$api.OrganCombox({}).then(res => {
+        this.orgOptions = res.data;
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    logout() {
+      this.$api.LoginOut({}).then(() => {
+          Cookies.remove("AuthToken");
+          Cookies.remove("ddpAccount");
+          sessionStorage.clear();
+          window.location.reload();
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    }
+  },
+  created: function () {
+    this.getOrganCombox();
+    this.accountInfo = Cookies.get('ddpAccount');
+      
+    this.orgSelectedCode = sessionStorage.getItem('organCode');
+  }
+};
+</script>
+
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+
+.check-orgin label{
+  color: white;
+  font-size: 15px;
+  padding-right:12px;
+}
+
+.logo{
+  position:absolute;
+  top: 10px;
+  left: 64px;
+  width: 171.25px;
+  height: 74.5px;
+}
+.header-title {
+
+  font-size: 30px;
+  font-weight: 800;
+  color: white;
+}
+.my-self-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
+}
+.round-button{
+  width: 100%;
+  margin-top: 10px;
+  height: 25px;
+}
+.primary-button{
+  margin-right: 10px;
+}
+.Transparent-button {
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(0, 0, 0, 0);
+  font-size: 16px;
+  /* font-weight: bold; */
+  /* box-shadow: 0px 0px 3px #7d7d7d */
+}
+.Transparent-button:hover{
+  color: white;
+  background: rgba(0, 0, 0, 0.35);
+  border-color: rgba(0, 0, 0, 0);
+  font-weight: bold;
+}
+.menu-button{
+  height: 40px;
+  margin: 0 0px 0 15px;;
+  padding: 0 20px 0 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  font-size: 16px;
+}
+.menu-button:hover{
+  color: white;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.35);
+}
+.el-row {
+  margin-bottom: 20px;
+  /* &:last-child {
+    margin-bottom: 0;
+  } scss*/
+}
+.el-col {
+  border-radius: 4px;
+}
+.grid-content {
+  border-radius: 4px;
+  min-height: 36px;
+}
+.el-dropdown {
+  vertical-align: top;
+}
+.el-dropdown + .el-dropdown {
+  margin-left: 15px;
+}
+.el-icon-arrow-down {
+  font-size: 12px;
+}
+.account {
+  width: 50px;
+  display: inline-block;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+}
+</style>
+
+<style>
+.el-menu.el-menu--horizontal{
+  border-bottom:none;
+}
+</style>

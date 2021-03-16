@@ -1,0 +1,86 @@
+/**
+ *  @author Mr.peng
+ *  @description 该文件主要放置请求的所有接口地址，方便统一管理(不是规定，个人习惯)
+ */
+// let baseUrl = process.env.NODE_ENV === 'production' ? '' : ''
+export default {
+    // 登录
+    login: {
+        login: '/user/login',
+        loginOut: '/user/logout'
+    },
+    // 合作机构
+    organ: {
+        combox: '/combobox/organ',
+        query: '/organ/query',
+        upStatus: '/organ/upStatus',
+        add: '/organ/add',
+        update: '/organ/update',
+        delete: '/organ/delete'
+    },
+    //用户
+    user: {
+        query: '/user/query',
+        upStatus: '/user/upStatus',
+        upPassword: '/user/upPassword',
+        add: '/user/add',
+        update: '/user/update',
+        delete: '/user/delete',
+    },
+    //权限
+    auth: {
+        //报表
+        query: '/sysReport/queryRoleFormPower',
+        upStatus: '/sysReport/upStatus',
+        delete: '/sysReport/delRoleForm',
+        addReportRole: '/sysReport/allocReportForRole'
+    },
+    //类别
+    category: {
+        comboxClass: '/combobox/sysReport/class',
+        comboxForm: '/sysReport/queryReportForm'
+    },
+    //角色
+    role: {
+        combox: '/combobox/role',
+        query: '/user/role/query',
+        upStatus: '/user/role/upStatus',
+        add: '/user/role/add',
+        delete: '/user/role/delete'
+    },
+    //角色权限
+    power: {
+        query: '/user/auth/query',
+        update: '/user/auth/update'
+    },
+    //我的
+    my: {
+        //报表
+        report: {
+            combox: '/combobox/dict/classType',
+            query: '/userReport/query',
+            upStatus: '/userReport/upStatus',
+            addClass: '/userReport/addClass',
+            delete: '/userReport/deleteUserForm',
+            queryUserClass: '/userReport/userClass/query',
+            comboxUserClass: '/combobox/userReport/userClass',
+            comboxUserForm: '/combobox/userReport/userForm',
+            addForm: '/userReport/allocReportForUser',
+            deleteClass: '/userReport/deleteUserClass'
+        }
+    },
+    //字典配置
+    dict : {
+        addType : '/dict/addType',
+        comboxDictType: '/combobox/dict/type',
+        add : '/dict/add',
+        query :'/dict/query',
+        deleteType :'/dict/deleteType',
+        delete :'/dict/delete',
+    },
+    //文件操作
+    file : {
+        upload : '/file/upload',
+        checkName: '/file/checkName',
+    }
+}

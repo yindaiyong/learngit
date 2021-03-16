@@ -1,0 +1,58 @@
+<template>
+    <div class="page-data-import">
+        <layout-page-default>
+            <el-tabs style="height: 200px;">
+                <el-tab-pane label="客户信息"><customer-info></customer-info></el-tab-pane>
+                <el-tab-pane label="合同信息"></el-tab-pane>
+                <el-tab-pane label="初始还款计划信息"></el-tab-pane>
+                <el-tab-pane label="真实还款计划信息"></el-tab-pane>
+                <el-tab-pane label="真实还款交易信息"></el-tab-pane>
+            </el-tabs>
+        </layout-page-default>
+    </div>
+</template>
+
+<script>
+    import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+    import customerInfo from "views/data/customerInfo.vue";
+    export default {
+        components: {
+            LayoutPageDefault,
+            customerInfo
+        }
+    }
+</script>
+
+<style lang="scss" scoped>
+    .el-tabs {
+        margin: 0px 10px 0px 10px;
+    }
+</style>
+
+<style lang="scss">
+    .page-data-import .el-tabs__nav {
+        width: 100%;
+        background-color: white;
+        text-align: left;
+    }
+    .page-data-import .el-tabs__active-bar {
+        display: none;
+    }
+    .page-data-import .el-tabs__item {
+        font-size: 22px;
+        font-weight: bold;
+        width: 200px;
+        height: 40px;
+        vertical-align: middle;
+        text-align: center !important;
+        color: #909399;
+    }
+    .page-data-import .el-tabs__item:hover{
+        font-size: 24px;
+        color: #d27468;
+    }
+    .page-data-import .el-tabs__item.is-active{
+        font-size: 24px;
+        color: #303133;
+    }
+</style>

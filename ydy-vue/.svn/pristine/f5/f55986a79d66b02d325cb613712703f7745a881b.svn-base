@@ -1,0 +1,276 @@
+<template>
+  <div>
+    <uploader
+      browse_button="browse_button"
+      :url="'/api/'+apiUrls.file.upload"
+      chunk_size="5MB"
+      :FilesAdded="filesAdded"
+      :BeforeUpload="beforeUpload"
+      :filters="{prevent_duplicates:true,mime_types:[{title:'csv文件',extensions:'csv'}]}"
+      @inputUploader="inputUploader"
+    />
+    <div style="width: 48%;float: left">
+      <div class="options">
+        <el-button size="mini" type="primary" icon="el-icon-upload" id="browse_button">选择多个文件</el-button>
+        <el-button size="mini" type="primary" icon="el-icon-circle-check" @click="up.start()">开始上传</el-button>
+        <el-button size="mini" type="primary" icon="el-icon-delete-solid" @click="clear()">清空</el-button>
+      </div>
+
+      <el-table :data="tableData" border size="mini" height="450" >
+        <el-table-column label="文件名" align="center" width="270">
+          <template slot-scope="scope">
+            <span>{{scope.row.name}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="大小" align="center" width="100">
+          <template slot-scope="scope">
+            <span>{{scope.row.size}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="状态" align="center" width="110">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status === -1">文件读取中</span>
+            <span v-if="scope.row.status === 1">文件读取完成</span>
+            <span v-if="scope.row.status === 4" style="color: brown">上传失败</span>
+            <span v-if="scope.row.status === 5" style="color: chartreuse">已上传</span>
+            <span v-if="scope.row.status === 6" style="color: brown">文件过大</span>
+            <span v-if="scope.row.status === 7" style="color: brown">{{errorMsg[scope.row.id]}}</span>
+            <span v-if="scope.row.status === 8" style="color: brown">重复上传</span>
+            <el-progress
+              v-if="scope.row.status === 2"
+              :text-inside="true"
+              :stroke-width="20"
+              :percentage="scope.row.percent"
+            ></el-progress>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button type="danger" size="mini" class="el-icon-delete" @click="deleteFile(scope.row.id)">删除</el-button>
+            <el-button
+              v-if="scope.row.status === 8"
+              type="danger"
+              @click="sureUpload(scope.row.id)"
+            >确认上传</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+    <div style="width: 49% ;float: right;">
+      <div class="options">
+        <el-form size="mini" :model="uploadForm" :rules="uploadFormRules" ref= "uploadForm" :inline="true">
+          <el-form-item label="期次">
+            <el-select  v-model="uploadForm.periodId" style="width:110px;" clearable prop="periodId"></el-select>
+          </el-form-item>
+          <el-form-item label="批次">
+            <el-select v-model="uploadForm.batchId" style="width:110px;" clearable prop="batchId"></el-select>
+          </el-form-item>
+          <el-form-item label="上传时间">
+            <el-date-picker v-model="uploadForm.uploadTime" type="date" placeholder="选择日期"
+                            style="width:130px;" clearable prop="uploadTime"></el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" icon="el-icon-search" size="mini" @click="uploadDataSearch('uploadForm')">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-table :data="uploadData" border size="mini" height="450">
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="文件名"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="文件大小" width="100"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="数据类型" width="110"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="处理状态" width="110"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="文件行数" width="80"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="导入数据量" width="100"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="orgName" label="上传时间" width="100"></el-table-column>
+      </el-table>
+      <el-pagination
+              background
+              layout="total, sizes, prev, pager, next, jumper"
+              align="center"
+              :page-sizes="[10, 20, 30, 50]"
+              :total="uploadTotal"
+              :page-size="uploadPageSize"
+              :current-page="uploadCurrentPage"
+              @current-change="handleCurrentChange"
+              @size-change="handleSizeChange"
+      >
+      </el-pagination>
+    </div>
+  </div>
+</template>
+
+<script>
+import apiUrls from "../../apis/api-urls.js";
+import FileMd5 from "./file-md5.js";
+import Uploader from "./Uploader";
+import _ from "lodash";
+let i = 0;
+export default {
+  name: "BigFileUpload",
+  data() {
+    return {
+      apiUrls:apiUrls,
+      up: {},
+      files: [],
+      tableData: [],
+      checkValue: {},
+      errorMsg:{'defaultError':'文件名校验失败'},
+
+      //后台上传列表
+        headerHeight: 70,
+        uploadForm: {
+            periodId: '',
+            batchId: '',
+            uploadTime: ''
+        },
+        uploadFormRules: {
+            periodId: [{ required: true, message: '请选择期次号', trigger: 'blur' }]
+        },
+        uploadData:[],
+        uploadTotal : 0,
+        uploadPageSize: 10,
+        uploadCurrentPage: 1,
+    };
+  },
+  components: {
+    uploader: Uploader,
+  },
+  watch: {
+    files: {
+      handler() {
+        this.tableData = [];
+        //根据校验结果  解析文件
+        this.files.forEach((e) => {
+          if (e.size > 500000000) {//500M
+            e.status = 6;
+          }
+          let key = e.name.split(".")[0] + e.status;
+          console.log(i + "--" + e.status + "--" + e.name);
+          if (
+            !_.has(this.checkValue, key) &&
+            e.status != 5 &&
+            e.status != 6 &&
+            e.status != 7 &&
+            e.status != 8
+          ) {
+            console.log("进入" + "--" + e.status + "--" + e.name);
+            //忽略下一次查询
+            _.set(this.checkValue, key, true);
+            //执行文件名校验 organCode -> 动态获取  TODO
+            this.$api
+              .CheckFileName({ name: e.name ,organCode: 'organ20200902132156172527561'})
+              .then((res) => {
+                let code = res.data;
+                if (code == "201") {
+                  e.status = 8;
+                }
+                if(code != "200" && code != "201"){
+                  e.status = 7;
+                  //更新展示错误信息
+                  _.set(this.errorMsg, e.id,code );
+                  console.log(this.errorMsg)
+                }
+              })
+              .catch((err) => {
+                this.$commsgbox.alert(err);
+              });
+          }
+          this.tableData.push({
+            name: e.name,
+            size: e.size,
+            status: e.status,
+            id: e.id,
+            percent: e.percent,
+          });
+          i += 1;
+        });
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    inputUploader(up) {
+      this.up = up;
+      this.files = up.files;
+      this.checkValue = {};
+    },
+    filesAdded(up, files) {
+      files.forEach((f) => {
+        f.status = -1;
+        FileMd5(f.getNative(), (e, md5) => {
+          f["md5"] = md5;
+          f.status = 1;
+        });
+      });
+    },
+    deleteFile(id) {
+      let file = this.up.getFile(id);
+      if(file.status === 2){
+        this.$commsgbox.alert('上传过程中不允许执行删除操作');
+      }else{
+        this.up.removeFile(file);
+      }
+      
+    },
+    sureUpload(id) {
+      let file = this.up.getFile(id);
+      file.status = 1;
+      // this.up.removeFile(file);
+    },
+    beforeUpload(up, file) {
+      up.setOption("multipart_params", { size: file.size, md5: file.md5 });
+    },
+
+    handleCurrentChange(val) {
+        this.uploadCurrentPage = val;
+    },
+    handleSizeChange(val) {
+        this.uploadPageSize = val;
+    },
+      //清空选择文件列表
+      clear(){
+        this.tableData.forEach((value) =>{
+            let index = value.id;
+            let file = this.up.getFile(index);
+            if(file.status != 2) {
+                this.up.removeFile(file);
+            }
+        })
+      },
+      //后台上传数据查询
+      uploadDataSearch(formName){
+          this.$refs[formName].validate((valid) => {
+              if (valid) {
+                  let req = {
+                      nowpage: this.uploadCurrentPage,
+                      pagesize: this.uploadPageSize,
+                      sort : 'id',
+                      order: 'desc',
+                      periodId: this.periodId,
+                      batchId: this.batchId,
+                      uploadTime: this.uploadTime
+                  };
+                  //请求后端
+                  console.log("测试");
+                  this.$api.uploadFileRecordQuery(req).then(res => {
+                      this.tableTotal = res.data.total;
+                      this.tableData = res.data.rows;
+                  }).catch(err => {
+                      this.$commsgbox.alert(err);
+                  });
+              }
+          })
+      },
+  },
+};
+</script>
+
+<style scoped>
+  .options {
+    text-align:left;
+    margin-bottom:5px;
+    height: 28px;
+  }
+</style>
+

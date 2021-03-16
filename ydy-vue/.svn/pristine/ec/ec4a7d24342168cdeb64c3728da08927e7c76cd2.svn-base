@@ -1,0 +1,138 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Cookies from "js-cookie"
+
+Vue.use(VueRouter)
+
+const routes = [
+    {
+        path: '/',
+        redirect: '/home'
+    },
+    {
+        path: '/home',
+        component: ()=>import('views/home/index.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/login',
+        component: () => import('views/login/index.vue')
+    },
+    {
+        path: '/organ',
+        component: () => import('views/organ/index.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/user',
+        component: () => import('views/user/index.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/authRole', ///auth/role
+        component: () => import('views/auth/role.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/authReport', ///auth/report
+        component: () => import('views/auth/report.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/myReport', ///my/report
+        component: () => import('views/my/report.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/dict',
+        component: () => import('views/dict/index.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/resetpassword', ///my/resetpassword
+        component: () => import('views/my/resetpassword.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/dataImport',
+        component: ()=>import('views/data/import.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/dataSampling',
+        component: ()=>import('views/data/sampling.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/sampleAnalysis',
+        component: ()=>import('views/sample/analysis.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/analysisReport',
+        component: ()=>import('views/report/analysis.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '/columnsFormat',
+        component: ()=>import('views/dict/columns.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
+        path: '*',
+        name: '404',
+        component: () => import('views/error/404.vue')
+    },
+    {
+        path: '/test',
+        component: () => import('views/test/index.vue'),
+        children: [
+			{
+				path: 'page_1',
+				component: () => import('views/test/pageone/index.vue')
+			},
+			{
+				path: 'page_2',
+				component: () => import('views/test/pagetwo/index.vue')
+			},
+			{
+				path: 'page_3',
+				component: () => import('views/test/pagethree/index.vue')
+			},
+        ]
+    },
+]
+
+const router = new VueRouter({
+  mode: 'history',
+  routes
+})
+// 修改路由重复点击错误
+const originalPush = VueRouter.prototype.push
+   VueRouter.prototype.push = function push(location) {
+   return originalPush.call(this, location).catch(err => err)
+}
+router.beforeEach((to, from, next) => {
+    let token = Cookies.get('AuthToken')
+    if (to.meta.requiresAuth) {
+        if (token) {
+            next()
+        } else {
+            // 是否跳转 /back/login
+            // var reg = RegExp(/back/);
+            // var jumpPath = '/login';
+            // if(to.fullPath.match(reg)){
+            //     jumpPath = '/back/login';
+            // }
+            // 
+            next({
+                path: '/login', // path: jumpPath,
+                query: { redirect: to.fullPath }
+            })
+        }
+    } else {
+        next()
+    }
+})
+
+export default router

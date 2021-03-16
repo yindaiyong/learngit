@@ -1,0 +1,433 @@
+<template>
+    <div style="width:100%">
+        <div class="search-wrap">
+            <el-form size="small" :model="truthForm" :rules="truthFormRules" ref="truthForm" :inline="true">
+                <el-form-item label="期次" prop="periodCode">
+                    <el-select  v-model="truthForm.periodCode" style="width:110px;" clearable @change="changePeriod()" @focus="focusPeriod()">
+                        <el-option
+                            v-for="item in periods"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="批次" prop="batchCode" style="margin-left:20px;display:none;">
+                    <el-select v-model="truthForm.batchCode" style="width:110px;">
+                        <el-option
+                            v-for="item in batchs"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item style="margin-left:20px;">
+                    <el-button type="primary" icon="el-icon-search" size="small" @click="truthCheckQuery('truthForm')">查询</el-button>
+                </el-form-item>
+                <el-form-item style ="float: right">
+                    <el-button type="primary" icon="el-icon-success" size="small" @click="truthCheckSuccess()" class="check-button" :disabled="batchCheckProcess != '3'">一键通过</el-button>
+                    <el-button type="danger" icon="el-icon-error" size="small" @click="truthCheckFailure()" class="check-button" :disabled="batchCheckProcess != '3'">一键否决</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <el-table :data="tableData" border size="mini" :span-method="tableSpanMethod">
+            <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="80"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="60"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="checkProcessName" label="校验状态" width="140" style="color: chartreuse">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.checkProcess === '1'">待业务校验</span>
+                    <span v-if="scope.row.checkProcess === '2'">业务校验中</span>
+                    <span v-if="scope.row.checkProcess === '3'">待真实性校验</span>
+                    <span v-if="scope.row.checkProcess === '4'">真实性校验中</span>
+                    <span v-if="scope.row.checkProcess === '5'" style="color: #9BC454">真实性校验成功</span>
+                    <span v-if="scope.row.checkProcess === '6'" style="color: #f56c6c">真实性校验失败</span>
+                    <span v-if="scope.row.checkProcess === '7'" style="color: #E6A23C">真实性指标统计中</span>
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="truthTypeName" label="数据指标名称" width="100"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="truthType" label="指标详情" width="120">
+                <template slot-scope="scope">
+                    <el-button size="mini" @click="showTruthCheckReport(scope.row)" class="check-button truth-report-button" style="color: #409EFF" :disabled="disableShowReport(scope.row)">查看详情</el-button>
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="truthStatus" label="指标状态" width="100">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.truthStatus === '1'" style="color: #9A9FFF">通过</span>
+                    <span v-if="scope.row.truthStatus === '2'" style="color: #F099A5">否决</span>
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="truthMsg" label="指标描述" width="180"></el-table-column>
+            <el-table-column show-overflow-tooltip align="left" label="操作" width="300">
+                <template slot-scope="scope">
+                    <div style="display:inline-block;">
+                        <el-input type="textarea" v-model="scope.row.newTruthMsg" autocomplete="off" :disabled="scope.row.checkProcess != '3'"></el-input>
+                    </div>
+                    <div style="display:inline-block;margin-left:10px;">
+                        <el-button type="primary" icon="el-icon-success" size="mini" @click="addSuccessTruthLog(scope.$index, scope.row)" class="check-button" :disabled="scope.row.checkProcess != '3'">通过</el-button>
+                        <p style="height:3px;"></p>
+                        <el-button type="danger" icon="el-icon-error" size="mini" @click="addFailureTruthLog(scope.$index, scope.row)" class="check-button" :disabled="scope.row.checkProcess != '3'">否决</el-button>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="createUser" label="操作人"></el-table-column>
+            <!-- <el-table-column show-overflow-tooltip align="center" prop="createTime" label="操作时间">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.createTime) }}
+                </template>
+            </el-table-column> -->
+        </el-table>
+
+        <el-dialog title="月末时点余额" :visible.sync="tableEndOfMonthBalance" :close-on-click-modal="false" :append-to-body="true" width="80%">
+            <el-table :data="endOfMonthBalance.tableData" border size="mini" :header-cell-style="{background:'#e0e0e0'}">
+                <el-table-column show-overflow-tooltip align="center" prop="title" label="月份" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" v-for="col in endOfMonthBalance.columns" :key="col" :prop="col" :label="col" width="100"></el-table-column>
+            </el-table>
+        </el-dialog>
+        <el-dialog title="月底逾期余额" :visible.sync="tableOverdueBalance" :close-on-click-modal="false" :append-to-body="true" width="80%">
+            <el-table :data="overdueBalance.tableData" border size="mini" :header-cell-style="{background:'#e0e0e0'}">
+                <el-table-column show-overflow-tooltip align="center" prop="title" label="月份" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" v-for="col in overdueBalance.columns" :key="col" :prop="col" :label="col" width="100"></el-table-column>
+            </el-table>
+        </el-dialog>
+        <el-dialog title="Vintage" :visible.sync="tableVintage" :close-on-click-modal="false" :append-to-body="true" width="80%">
+            <el-table :data="vintage.tableData" border size="mini" :header-cell-style="vintageHeaderCellStyle" :span-method="vintageSpanMethod">
+                <el-table-column show-overflow-tooltip align="center" label="放款月份">
+                    <el-table-column show-overflow-tooltip align="center" prop="type" label=""></el-table-column>
+                    <el-table-column show-overflow-tooltip align="center" prop="title" label=""></el-table-column>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" v-for="col in vintage.columns" :key="col" :prop="col" :label="col"></el-table-column>
+            </el-table>
+        </el-dialog>
+        <el-dialog title="逾期迁移率" :visible.sync="tableMigrationRate" :close-on-click-modal="false" :append-to-body="true" width="80%">
+            <el-table :data="migrationRate.tableData" border size="mini" :header-cell-style="{background:'#e0e0e0'}">
+                <el-table-column show-overflow-tooltip align="center" prop="title" label="月份"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" v-for="col in migrationRate.columns" :key="col" :prop="col" :label="col"></el-table-column>
+            </el-table>
+        </el-dialog>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                truthForm: {
+                    periodCode: "",
+                    batchCode: "",
+                },
+                truthFormRules: {
+                    periodCode: [
+                        { required: true, message: '请选择期次号', trigger: 'change' }
+                    ],
+                    batchCode : [
+                        { required: true, message: '批次不存在', trigger: 'change' }
+                    ],
+                },
+                periods : [],
+                batchs : [],
+                batchCheckProcess: "",
+                endOfMonthBalance: {
+                    rowKeys:[
+                        {key:"row1", title:"余额"}
+                    ],
+                    columns: [],
+                    tableData: [],
+                },
+                overdueBalance: {
+                    rowKeys:[
+                        {key:"1+", title:"1+"},
+                        {key:"30+", title:"30+"},
+                        {key:"60+", title:"60+"},
+                        {key:"90+", title:"90+"},
+                    ],
+                    columns: [],
+                    tableData: [],
+                },
+                vintage: {
+                    rowKeys:[
+                        {key:"1-1+", type:"金额口径", title:"1+"},
+                        {key:"1-30+", type:"金额口径", title:"30+"},
+                        {key:"1-60+", type:"金额口径", title:"60+"},
+                        {key:"1-90+", type:"金额口径", title:"90+"},
+                        {key:"2-1+", type:"笔数口径", title:"1+"},
+                        {key:"2-30+", type:"笔数口径", title:"30+"},
+                        {key:"2-60+", type:"笔数口径", title:"60+"},
+                        {key:"2-90+", type:"笔数口径", title:"90+"},
+                    ],
+                    columns: [],
+                    tableData: [],
+                },
+                migrationRate: {
+                    rowKeys:[
+                        {key:"M0-M1", title:"M0-M1"},
+                        {key:"M1-M2", title:"M1-M2"},
+                        {key:"M2-M3", title:"M2-M3"},
+                        {key:"M3-M4", title:"M3-M4"},
+                        {key:"M4-M5", title:"M4-M5"},
+                        {key:"M5-M6", title:"M5-M6"},
+                        {key:"M6-M7", title:"M6-M7"},
+                        {key:"M7+", title:"M7+"},
+                    ],
+                    columns: [],
+                    tableData: [],
+                },
+                tableEndOfMonthBalance: false,
+                tableOverdueBalance: false,
+                tableVintage: false,
+                tableMigrationRate: false,
+            };
+        },
+        watch: {
+        },
+        components: {
+        },
+        methods: {
+            //查询
+            truthCheckQuery(formName){
+                if(!sessionStorage.getItem('organCode')){
+                    this.$commsgbox.alert("请选择操作机构");
+                    return false;
+                }
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            organCode : sessionStorage.getItem('organCode'),
+                            periodCode: this.truthForm.periodCode,
+                            batchCode: this.truthForm.batchCode,
+                        };
+                        //请求后端
+                        this.$api.TruthCheckQueryDetail(req).then(res => {
+                            this.tableData = res.data.rows;
+                            this.batchCheckProcess = res.data.batchCheckProcess;
+                            let reportData = res.data.reports;
+                            for(let truthType in reportData){
+                                let decodeColumns = JSON.parse(reportData[truthType].truthColumn);
+                                let decodeTruthReport = JSON.parse(reportData[truthType].truthReportJsn);
+                                if('1' == truthType){
+                                    this.endOfMonthBalance.columns = decodeColumns;
+                                    let tableData = [];
+                                    for(let index in this.endOfMonthBalance.rowKeys){
+                                        let rowKey = this.endOfMonthBalance.rowKeys[index];
+                                        let rowData = {};
+                                        if(rowKey.key in decodeTruthReport){
+                                            rowData = decodeTruthReport[rowKey.key];
+                                        }
+                                        rowData["title"] = rowKey.title;
+                                        tableData.push(rowData);
+                                    }
+                                    this.endOfMonthBalance.tableData = tableData;
+                                }else if('2' == truthType){
+                                    this.overdueBalance.columns = decodeColumns;
+                                    let tableData = [];
+                                    for(let index in this.overdueBalance.rowKeys){
+                                        let rowKey = this.overdueBalance.rowKeys[index];
+                                        let rowData = {};
+                                        if(rowKey.key in decodeTruthReport){
+                                            rowData = decodeTruthReport[rowKey.key];
+                                        }
+                                        rowData["title"] = rowKey.title;
+                                        tableData.push(rowData);
+                                    }
+                                    this.overdueBalance.tableData = tableData;
+                                }else if('3' == truthType){
+                                    this.vintage.columns = decodeColumns;
+                                    let tableData = [];
+                                    for(let index in this.vintage.rowKeys){
+                                        let rowKey = this.vintage.rowKeys[index];
+                                        let rowData = {};
+                                        if(rowKey.key in decodeTruthReport){
+                                            rowData = decodeTruthReport[rowKey.key];
+                                        }
+                                        rowData["type"] = rowKey.type;
+                                        rowData["title"] = rowKey.title;
+                                        tableData.push(rowData);
+                                    }
+                                    this.vintage.tableData = tableData;
+                                }else if('4' == truthType){
+                                    this.migrationRate.columns = decodeColumns;
+                                    let tableData = [];
+                                    for(let index in this.migrationRate.rowKeys){
+                                        let rowKey = this.migrationRate.rowKeys[index];
+                                        let rowData = {};
+                                        if(rowKey.key in decodeTruthReport){
+                                            rowData = decodeTruthReport[rowKey.key];
+                                        }
+                                        rowData["title"] = rowKey.title;
+                                        tableData.push(rowData);
+                                    }
+                                    this.migrationRate.tableData = tableData;
+                                }
+                            }
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            //校验通过
+            truthCheckSuccess(){
+                let req = {
+                    organCode : sessionStorage.getItem('organCode'),
+                    periodCode: this.truthForm.periodCode,
+                    batchCode: this.truthForm.batchCode
+                };
+                this.$api.TruthCheckSuccess(req).then(res => {
+                    this.truthCheckQuery("truthForm");
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //校验不通过
+            truthCheckFailure(){
+                let req = {
+                    organCode : sessionStorage.getItem('organCode'),
+                    periodCode: this.truthForm.periodCode,
+                    batchCode: this.truthForm.batchCode
+                };
+                this.$api.TruthCheckFailure(req).then(res => {
+                    this.truthCheckQuery("truthForm");
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            tableSpanMethod({ row, column, rowIndex, columnIndex }) {
+                if (columnIndex === 0 || columnIndex === 1 || columnIndex === 2) {
+                    if (rowIndex % 4 === 0) {
+                        return {
+                            rowspan: 4,
+                            colspan: 1
+                        };
+                    } else {
+                        return {
+                            rowspan: 0,
+                            colspan: 0
+                        };
+                    }
+                }
+            },
+            //记录日志
+            addSuccessTruthLog(index, row){
+                let truthStatus = 1;
+                this.addTruthLog(index, row, truthStatus);
+            },
+            addFailureTruthLog(index, row){
+                let truthStatus = 2;
+                this.addTruthLog(index, row, truthStatus);
+            },
+            addTruthLog(index, row, truthStatus){
+                let req = {
+                    organCode: row.organCode,
+                    periodCode: row.periodCode,
+                    batchCode: row.batchCode,
+                    truthType: row.truthType,
+                    truthStatus: truthStatus,
+                    truthMsg: row.newTruthMsg
+                };
+                this.$api.AddTruthLog(req).then(res => {
+                    this.tableData[index].truthStatus = res.data.truthStatus;
+                    this.tableData[index].truthMsg = res.data.truthMsg;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            showTruthCheckReport(row){
+                this.tableEndOfMonthBalance = false;
+                this.tableOverdueBalance = false;
+                this.tableVintage = false;
+                this.tableMigrationRate = false;
+                let truthType = row.truthType;
+                if(truthType == '1'){
+                    this.tableEndOfMonthBalance = true;
+                }else if(truthType == '2'){
+                    this.tableOverdueBalance = true;
+                }else if(truthType == '3'){
+                    this.tableVintage = true;
+                }else if(truthType == '4'){
+                    this.tableMigrationRate = true;
+                }
+            },
+            //期次下拉
+            getPeriodComBox(){
+                if(sessionStorage.getItem('organCode')){
+                    let req ={organCode:sessionStorage.getItem('organCode')};
+                    this.$api.PeriodComboBox(req).then(res => {
+                        this.periods = res.data;
+                    }).catch(err => {
+                        this.$commsgbox.alert(err);
+                    });
+                }
+            },            
+            //期次下拉改变,因为页面不显示批次，所以默认选择批次最大的
+            changePeriod(){
+                let req = {period : this.truthForm.periodCode,organCode:sessionStorage.getItem('organCode')};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchs = res.data;
+                    this.truthForm.batchCode = this.batchs[this.batchs.length-1].id;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            focusPeriod(){
+                this.truthForm.period = '';
+                this.getPeriodComBox();
+            },
+            //日期转换
+            timeFormat(timeVal){
+                if(timeVal != ""){
+                    return this.$comfunc.timeFormatToDate(timeVal);
+                }else{
+                    return timeVal;
+                }
+            },
+            vintageSpanMethod({ row, column, rowIndex, columnIndex }) {
+                if (columnIndex === 0) {
+                    if (rowIndex % 4 === 0) {
+                        return {
+                            rowspan: 4,
+                            colspan: 1
+                        };
+                    } else {
+                        return {
+                            rowspan: 0,
+                            colspan: 0
+                        };
+                    }
+                }
+            },
+            vintageHeaderCellStyle({ row, column, rowIndex, columnIndex }) {
+                if (rowIndex === 1) {
+                    return {background:'#e0e0e0',display:'none'}
+                }else{
+                    return {background:'#e0e0e0'}
+                }
+            },
+            disableShowReport(row){
+                if(row.checkProcess == 3 || row.checkProcess == 4 || row.checkProcess == 5 || row.checkProcess == 6){
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+        },
+        mounted(){
+            this.getPeriodComBox();
+        },
+    };
+</script>
+
+<style scoped>
+.search-wrap {
+    text-align:left;
+    margin-bottom:5px;
+    height: 28px;
+}
+.check-button {
+    border-radius: 20px;
+}
+.truth-report-button.is-disabled{
+    color: #C0C4CC !important;
+    background-color: #F5F7FA;
+}
+</style>

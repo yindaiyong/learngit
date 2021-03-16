@@ -1,0 +1,77 @@
+<template>
+  <el-container>
+    <div class="background">
+      <!-- <img src="../assets/images/timg.jpg" width="100%" height="100%" alt="主背景" /> -->
+    </div>
+    <el-header height="80px">
+      <common-header ref="commonHeaderRefs" :focusButtonIndex=focusPageIndex></common-header> <!--ref不能删除,organ页面会更新头部-->
+    </el-header>
+    <el-main style="margin-top:10px;">
+      <div>
+        <div class="page-default">
+          <div class="content-wrap">
+              <slot ></slot>
+          </div>
+        </div>
+      </div>
+    </el-main>
+    <el-footer>
+      <common-footer></common-footer>
+    </el-footer>
+  </el-container>
+</template>
+
+<script>
+import commonHeader from "components/CommonHeader.vue";
+import commonFooter from "components/CommonFooter.vue";
+export default {
+  name: 'LayoutPageDefault',
+  components: {
+    commonHeader,
+    commonFooter
+  },
+  props: {
+    focusPageIndex : Number
+  }
+}
+</script>
+
+<style scoped>
+.el-container{
+  background: -webkit-linear-gradient(
+    top,
+    #d27468,
+    #d27468,
+    #e2a296,
+    #f1d3c9,
+    #ffffff,
+    #ffffff,
+    #ffffff,
+    #f2f2f2
+  )
+  no-repeat;
+}
+.background {
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1583px;
+  z-index: -1;
+}
+.el-header{
+  padding:0px;
+}
+.page-default{
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.24);
+  width: 95%;
+  min-height: 700px;
+  background-color: white;
+  border:3px solid rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+.content-wrap{
+  margin-top:10px;
+}
+</style>
+

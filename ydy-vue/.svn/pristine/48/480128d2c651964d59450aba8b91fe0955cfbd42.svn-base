@@ -1,0 +1,295 @@
+<template>
+  <layout-page-list title="角色权限管理页面">
+    <div class="options">
+      <el-button type="primary" size="mini" @click="showAddRoleFormDialog()">角色管理</el-button>
+    </div>
+    <div class="options">
+      <label style="padding-right:12px;">选择角色</label>
+      <el-select size="mini" @change="getRolePowerLists" v-model="roleCode" placeholder="请选择角色">
+        <el-option v-for="item in userRoles" :key="item.id" :label="item.name" :value="item.id"></el-option>
+      </el-select>
+      <el-button size="mini" style="float:right;" type="primary" @click="submitRolePower()">提交权限分配</el-button>
+    </div>
+
+    <el-dialog
+      title="角色管理"
+      :visible.sync="addRoleFormVisible"
+      :close-on-click-modal="false"
+      :append-to-body="true"
+    >
+      <el-table :data="roleTableData" border height="240" size="mini" style="width: 100%">
+        <el-table-column show-overflow-tooltip align="center" prop="roleName" label="角色名" width="160"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" label="角色状态" width="120">
+          <template slot-scope="scope">{{ scope.row.roleStatus | statusNameFormat }}</template>
+        </el-table-column>
+        <el-table-column show-overflow-tooltip align="center" prop="remarks" label="角色信息描述"></el-table-column>
+        <el-table-column show-overflow-tooltip align="center" label="操作" width="220">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="primary"
+              @click="handleUserRoleUseStatus(scope.$index, scope.row)"
+            >启停</el-button>
+            <el-button size="mini" type="primary" @click="handleUserRoleDelete(scope.$index, scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+
+      <div class="role-add-form">
+        <el-form :model="addRoleForm" :rules="rules" ref="addRoleForm">
+          <el-form-item label="角色名" :label-width="formLabelWidth" prop="roleName">
+            <el-input v-model="addRoleForm.roleName" autocomplete="off"></el-input>
+          </el-form-item>
+          <el-form-item label="角色描述" :label-width="formLabelWidth" prop="remarks">
+            <el-input v-model="addRoleForm.remarks" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button size="mini" @click="resetAddRoleForm('addRoleForm')">重 置</el-button>
+          <el-button size="mini" type="primary" @click="submitAddRoleForm('addRoleForm')">新增角色</el-button>
+        </div>
+      </div>
+    </el-dialog>
+
+    <el-table :data="tableData" border height="520" size="mini" style="width: 100%">
+      <el-table-column show-overflow-tooltip align="center" prop="roleName" label="角色名" width="160"></el-table-column>
+      <el-table-column show-overflow-tooltip align="center" prop="powerName" label="权限模块名" width="180"></el-table-column>
+      <el-table-column show-overflow-tooltip align="center" prop="powerRemarks" label="权限模块描述"></el-table-column>
+      <el-table-column show-overflow-tooltip align="center" label="操作权限分配" prop="names" width="300">
+        <template slot-scope="scope">
+          <el-select
+            placeholder="请选择操作权限"
+            multiple
+            v-model="scope.row.actions"
+            @change="getChange(scope.$index,$event)"
+          >
+            <el-option
+              v-for="item in cities"
+              :label="item.label"
+              :value="item.value"
+              :key="item.value"
+            ></el-option>
+          </el-select>
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <el-pagination
+      background
+      layout="total"
+      :total="tableTotal"
+    ></el-pagination>
+  </layout-page-list>
+</template>
+
+<script>
+import LayoutPageList from "layout/LayoutPageList.vue";
+export default {
+  components: {
+    LayoutPageList,
+  },
+  data() {
+    return {
+      //role table lists
+      tableData: [],
+      tableTotal: 0,
+      userRoles: [],
+      roleCode: "",
+      //role form -- role list
+      roleTableData: [],
+      //role form -- add role 
+      addRoleFormVisible: false,
+      addRoleForm: {
+        roleName: "",
+        remarks: "",
+      },
+      formLabelWidth: "120px",
+      rules: {
+        roleName: [
+          { required: true, message: "请输入角色名称", trigger: "blur" },
+          { min: 1, max: 6, message: "长度在 1 到 6 个字符", trigger: "blur" },
+        ],
+      },
+      // 下拉多选展示按钮
+      cities: [
+        { value: "view", label: "查看" },
+        { value: "handle", label: "操作" },
+      ],
+    };
+  },
+  methods: {
+    // 获取角色下拉列表方法
+    getRoleCombox() {
+      this.$api
+        .RoleComboBox({})
+        .then((res) => {
+          if (res.data.length != 0) {
+            this.userRoles = res.data;
+            //执行列表查询数据查询方案
+            this.roleCode = this.userRoles[0].id;
+          } else {
+            console.log("获取角色下拉列表失败.");
+          }
+        })
+        .catch((err) => {
+          this.$commsgbox.alert(err);
+        });
+    },
+    getRolePowerLists() {
+      let req = {
+        roleCode: this.roleCode,
+      };
+
+      this.$api
+        .RolePowerQuery(req)
+        .then((res) => {
+          this.tableTotal = res.data.total;
+          this.tableData = res.data.rows;
+        })
+        .catch((err) => {
+          this.$commsgbox.alert(err);
+        });
+    },
+    submitRolePower() {
+      let params = [];
+      //操作解析当前数据对象，组装后端请求数据
+      for (let i = 0; i < this.tableData.length; i++) {
+        let module = this.tableData[i].module;
+        let actions = this.tableData[i].actions;
+        params[i] = { module, actions };
+      }
+      let req = {
+        roleCode: this.roleCode,
+        values: JSON.stringify(params),
+      };
+      this.$api
+        .RolePowerUpdate(req)
+        .then(() => {
+          this.$commsgbox.alert("处理成功.");
+          this.getRolePowerLists();
+        })
+        .catch((err) => {
+          this.$commsgbox.alert(err);
+            this.getRolePowerLists();
+        });
+    },
+    //user role form
+    getRoleList() {
+      this.$api
+        .RoleQuery({})
+        .then((res) => {
+          this.roleTableData = res.data.rows;
+        })
+        .catch((err) => {
+          this.$commsgbox.alert(err);
+        });
+    },
+    showAddRoleFormDialog() {
+      this.getRoleList();
+      this.addRoleFormVisible = true;
+    },
+    handleUserRoleUseStatus(index, row) {
+      this.$commsgbox
+        .confirm()
+        .then(() => {
+          let nowStatus = row.roleStatus;
+          if (nowStatus == 0) {
+            nowStatus = 1;
+          } else {
+            nowStatus = 0;
+          }
+          let req = { roleCode: row.roleCode, roleStatus: nowStatus };
+          this.$api
+            .RoleUpStatus(req)
+            .then(() => {
+              this.getRoleList();
+              //刷新下拉列表中角色列表数据
+              this.getRoleCombox();
+            })
+            .catch((err) => {
+              this.$commsgbox.alert(err);
+            });
+        })
+        .catch(() => {});
+    },
+    handleUserRoleDelete(index, row) {
+      this.$commsgbox
+        .confirm("此操作将删除该数据, 是否继续?")
+        .then(() => {
+          let req = { roleCode: row.roleCode };
+          this.$api
+            .RoleDel(req)
+            .then(() => {
+              this.getRoleList();
+              //刷新下拉列表中角色列表数据
+              this.getRoleCombox();
+              this.getRolePowerLists();
+            })
+            .catch((err) => {
+              this.$commsgbox.alert(err);
+            });
+        })
+        .catch(() => {});
+    },
+    submitAddRoleForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.$api
+            .RoleAdd(this.addRoleForm)
+            .then(() => {
+              this.$refs[formName].resetFields();
+              //刷新弹窗中角色列表数据
+              this.getRoleList();
+              //刷新下拉列表中角色列表数据
+              this.getRoleCombox();
+              this.getRolePowerLists();
+            })
+            .catch((err) => {
+              this.$commsgbox.alert(err);
+            });
+        } else {
+          return false;
+        }
+      });
+    },
+    resetAddRoleForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    getChange(index, val) {
+      if (val == "handle") {
+        this.tableData[index].actions = ["view", "handle"];
+      }
+    },
+  },
+  created() {
+    this.getRoleCombox();
+    this.getRolePowerLists();
+  },
+  filters: {
+    statusNameFormat: function (statusVal) {
+      let statusName = statusVal;
+      if (statusVal == 0) {
+        statusName = "停用";
+      } else if (statusVal == 1) {
+        statusName = "启用";
+      }
+      return statusName;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.options {
+  text-align: left;
+  margin-bottom: 5px;
+}
+.el-table {
+  padding: 5px 20px;
+}
+.role-add-form {
+  margin: 20px 0px;
+  padding: 15px;
+  border: 1px solid #eee;
+}
+</style>

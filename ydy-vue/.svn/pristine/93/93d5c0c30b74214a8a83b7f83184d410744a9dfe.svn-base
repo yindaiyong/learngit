@@ -1,0 +1,267 @@
+<template>
+    <div style="width:100%">
+
+        <el-dialog title="校验日志详情" :visible.sync="checkLogDetailFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <div style = "height:150px;width:200px;">
+                <el-form size="mini" :model="logDetailForm" :rules="logDetailFormRules" ref= "logForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="logDetailForm.periodCode" style="width:110px;" clearable @change="changePeriod()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchCode">
+                        <el-select v-model="logDetailForm.batchCode" style="width:110px;" clearable >
+                            <el-option
+                                v-for="item in batchs"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="校验状态" prop="checkStatus">
+                        <el-select v-model="logDetailForm.checkStatus" clearable></el-select>
+                    </el-form-item>
+                    <el-form-item label="客户等级" prop="createUser">
+                        <el-input v-model="logDetailForm.createUser" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款地区" prop="createUser">
+                        <el-input v-model="logDetailForm.createUser" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款期数" prop="createUser">
+                        <el-input v-model="logDetailForm.createUser" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="合同号" prop="createUser">
+                        <el-input v-model="logDetailForm.createUser" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款状态" prop="createUser">
+                        <el-input v-model="logDetailForm.createUser" clearable></el-input>
+                    </el-form-item>
+                </el-form>
+            </div>
+            
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="fileTypeName" label="数据类型"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkStatusName" label="处理过程"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="dataCount" label="数据总量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="successCount" label="校验通过量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="errorCount" label="校验失败量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createUser" label="操作人" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createTime" label="操作时间" width="150"></el-table-column>
+            </el-table>
+            <el-pagination
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    align="center"
+                    :page-sizes="[10, 20, 30, 50]"
+                    :total="tableTotal"
+                    :page-size="tablePageSize"
+                    :current-page="tableCurrentPage"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+            >
+            </el-pagination>
+        </el-dialog>
+
+            <div class="options">
+                <el-form size="mini" :model="logForm" :rules="logFormRules" ref= "logForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="logForm.periodCode" style="width:110px;" clearable @change="changePeriod()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchCode">
+                        <el-select v-model="logForm.batchCode" style="width:110px;" clearable >
+                            <el-option
+                                v-for="item in batchs"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="校验过程" prop="checkProcess">
+                        <el-select v-model="logForm.checkProcess" style="width:110px;" clearable >
+                                 <el-option
+                                    v-for="item in options"
+                                    :key="item.ID"
+                                    :label="item.NAME"
+                                    :value="item.ID">
+                                </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="logCheckQuery('logForm')">查询</el-button>
+                        <el-button type="primary" icon="el-icon-download" size="mini" @click="logExport('logForm')">导出</el-button>
+                    </el-form-item>
+                    <el-form-item style ="float: right">
+                        <el-link type="primary" @click="checkLogDetailFormVisible = true">进入日志详情查看</el-link>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="fileTypeName" label="数据类型"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkStatusName" label="处理过程"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="dataCount" label="数据总量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="successCount" label="校验通过量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="errorCount" label="校验失败量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createUser" label="操作人" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createTime" label="操作时间" width="150"></el-table-column>
+            </el-table>
+            <el-pagination
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    align="center"
+                    :page-sizes="[10, 20, 30, 50]"
+                    :total="tableTotal"
+                    :page-size="tablePageSize"
+                    :current-page="tableCurrentPage"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+            >
+            </el-pagination>
+        </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                logForm: {
+                    periodCode: "",
+                    batchCode: "",
+                    checkProcess: "",
+                },
+                logFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }],
+                    checkProcess :[{
+                        required: true, message: '请选择校验过程', trigger: 'blur'
+                    }],
+                },
+                periods : [],
+                batchs : [],
+                multipleSelection:[],
+                options: [{
+                    ID: '1',
+                    NAME: '基础校验'
+                    }, {
+                    ID: '2',
+                    NAME: '业务校验'
+                    }, {
+                    ID: '3',
+                    NAME: '真实性校验'
+                    }],
+
+                //日志详情
+                checkLogDetailFormVisible : false,
+                logDetailForm:{},
+
+                    
+            };
+        },
+        components: {
+
+        },
+
+        methods: {
+            handleSelectionChange(val){
+                this.multipleSelection = val;
+            },
+            handleCurrentChange(val){
+                this.tableCurrentPage = val;
+            },
+            handleSizeChange(val){
+                this.tablePageSize = val;
+            },
+            //查询
+            logCheckQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            sort : 'id',
+                            order: 'desc',
+                            periodCode: this.logForm.periodCode,
+                            batchCode: this.logForm.batchCode,
+                            checkProcess: this.logForm.checkProcess
+                        };
+                        //请求后端
+                        this.$api.CheckLogQuery(req).then(res => {
+                            this.tableTotal = res.data.total;
+                            this.tableData = res.data.rows;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            //导出
+            logExport(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$commsgbox.alert("导出");
+                    }
+                    this.$commsgbox.alert("导出");
+                })
+            },
+            //期次下拉
+            getPeriodComBox(){
+                this.$api.PeriodComboBox({}).then(res => {
+                    this.periods = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //批次下拉
+            getBatchComBox(){
+                let req = {period : this.logForm.periodCode};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchs = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //期次下拉改变
+            changePeriod(){
+                this.getBatchComBox();
+                this.logForm.batchCode = '';
+            },
+        },
+        mounted(){
+            this.getPeriodComBox();
+        },
+    };
+</script>
+
+<style scoped>
+    .options {
+        text-align:left;
+        margin-bottom:5px;
+        height: 28px;
+    }
+    
+</style>
+

@@ -1,0 +1,162 @@
+/**
+ *  @author Mr.peng
+ *  @description 该文件主要放置请求的所有接口地址，方便统一管理(不是规定，个人习惯)
+ */
+// let baseUrl = process.env.NODE_ENV === 'production' ? '' : ''
+export default {
+    // 登录
+    login: {
+        login: '/user/login',
+        loginOut: '/user/logout'
+    },
+    // 首页
+    index: {
+        query: '/index/getIndexJson'
+    },
+    // 合作机构
+    organ: {
+        combox: '/combobox/organ',
+        query: '/organ/query',
+        upStatus: '/organ/upStatus',
+        add: '/organ/add',
+        update: '/organ/update',
+        delete: '/organ/delete'
+    },
+    //用户
+    user: {
+        query: '/user/query',
+        upStatus: '/user/upStatus',
+        upPassword: '/user/upPassword',
+        add: '/user/add',
+        update: '/user/update',
+        delete: '/user/delete',
+    },
+    //权限
+    auth: {
+        //报表
+        query: '/sysReport/queryRoleFormPower',
+        upStatus: '/sysReport/upStatus',
+        delete: '/sysReport/delRoleForm',
+        addReportRole: '/sysReport/allocReportForRole'
+    },
+    //类别
+    category: {
+        comboxClass: '/combobox/sysReport/class',
+        comboxForm: '/sysReport/queryReportForm'
+    },
+    //角色
+    role: {
+        combox: '/combobox/role',
+        query: '/user/role/query',
+        upStatus: '/user/role/upStatus',
+        add: '/user/role/add',
+        delete: '/user/role/delete'
+    },
+    //角色权限
+    power: {
+        query: '/user/auth/query',
+        update: '/user/auth/update'
+    },
+    //我的
+    my: {
+        //报表
+        report: {
+            combox: '/combobox/dict/classType',
+            query: '/userReport/query',
+            upStatus: '/userReport/upStatus',
+            addClass: '/userReport/addClass',
+            delete: '/userReport/deleteUserForm',
+            queryUserClass: '/userReport/userClass/query',
+            comboxUserClass: '/combobox/userReport/userClass',
+            comboxUserForm: '/combobox/userReport/userForm',
+            addForm: '/userReport/allocReportForUser',
+            deleteClass: '/userReport/deleteUserClass'
+        }
+    },
+    //字典配置
+    dict : {
+        addType : '/dict/addType',
+        comboxDictType: '/combobox/dict/type',
+        comboxFileType: '/combobox/columns/fileType',
+        comboxIsNulls : '/combobox/columns/isNulls',
+        add : '/dict/add',
+        query :'/dict/query',
+        deleteType :'/dict/deleteType',
+        delete :'/dict/delete',
+
+        columnsQuery :'/dict/columns/query',
+        columnsAdd : '/dict/columns/add',
+        columnsUpdate : '/dict/columns/update',
+    },
+    //文件操作
+    file : {
+        upload : '/file/upload',
+        checkName: '/file/checkName',
+        uploadRecord :'/file/uploadRecord/query',
+        redoBaseCheck : '/file/redoBaseCheck',
+        deleteUploadFile : '/file/uploadRecord/delete',
+        period :'/combobox/period',
+        batch:'/combobox/batch',
+
+        businessCheck : '/file/business/check',
+        businessCheckQuery :'/file/businessCheck/query',
+        truthCheckSuccess : '/file/truth/check/success',
+        truthCheckFailure : '/file/truth/check/failure',
+        addTruthLog : '/file/truth/checklog/add',
+        truthCheckQuery :'/file/truthCheck/query',
+        truthCheckQueryDetail :'/file/truthCheck/queryDetail',
+
+        checkLogQuery : '/file/checkLog/query',
+        checkLogDetailQuery : '/file/checkLogDetail/query',
+
+        statisticsBeforeSample : '/file/statisticsBeforeSample/query',
+        repetitiveRate : '/file/repetitiveRate/query',
+    },
+    //抽样
+    sampling : {
+        canSamplingMaxBatchCode : '/sampling/period/maxBatchCode',
+        samplingFilterComboBox : '/sampling/range/combobox',
+        samplingRangeQuery : '/sampling/range/queryDataStatistic',
+        sliceSampleRecord : '/sampling/range/sliceSampleRecord',
+        sampleNameComboBox : '/sampling/period/sampleNameComboBox',
+        samplingRecordQuery : '/sampling/samplingRecord/query',
+        updateSampleName : '/sampling/rename',
+        saveSampleInfo : '/sampling/sampleinfo/save',
+        discardSampleInfo : '/sampling/sampleinfo/discard',
+        updateSampleChartAgeJson : '/sampling/samplingRecord/updateChartJson',
+        queryRowRange : '/sampling/rowRange/query',
+        querySysRowRange : '/sampling/rowRange/sys/query',
+        addAgeRowRange : '/sampling/rowRangeAge/add',
+        addBalanceRowRange : '/sampling/rowRangeBalance/add',
+        deleteRowRange : '/sampling/rowRange/delete',
+    },
+    //样本操作
+    sampleAnalyse : {
+        category: '/sampleAnalyse/category',
+        doSampleAnalyse: '/sampleAnalyse/add',
+        recreateDetail: '/sampleAnalyse/recreateDetail',
+        sampleAnalyzeResultQuery: '/sampleAnalyse/query',
+        sampleAnalyzePreview: '/sampleAnalyse/preview',
+    },
+    sampleReport : {
+        category: '/sampleReport/category',
+        doAnalyseReport: '/sampleReport/add',
+        recreateDetail: '/sampleReport/recreateDetail',
+        analyzeReportResultQuery: '/sampleReport/query',
+        analyzeReportPreview: '/sampleReport/preview',
+    },
+    //查询数据详情
+    dataDetails :{
+        customerInfoQuery : '/dataDetail/customerInfo/query',
+        contractInfoQuery : '/dataDetail/contractInfo/query',
+        initRepayPlanInfoQuery : '/dataDetail/initRepayPlanInfo/query',
+        realRepayPlanInfoQuery : '/dataDetail/realRepayPlanInfo/query',
+        realRepayDealInfoQuery : '/dataDetail/realRepayDealInfo/query',
+    },
+    //灵活报表
+    flexible : {
+        dimensionElements : '/flexible/dimensionElements',
+        sampleRange : '/flexible/sampleRange',
+        addFlexibleRecord : '/flexible/add',
+    }
+}

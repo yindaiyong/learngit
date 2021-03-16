@@ -1,0 +1,419 @@
+<template>
+  <div>
+    <uploader
+      browse_button="browse_button"
+      :url="'/api/'+apiUrls.file.upload"
+      chunk_size="5MB"
+      :FilesAdded="filesAdded"
+      :BeforeUpload="beforeUpload"
+      :filters="{prevent_duplicates:true,mime_types:[{title:'csv文件',extensions:'csv'}]}"
+      @inputUploader="inputUploader"
+    />
+    <div style="width: 48%;float: left">
+      <div class="options">
+        <el-button size="mini" type="primary" icon="el-icon-upload" id="browse_button">选择多个文件</el-button>
+        <el-button size="mini" type="primary" icon="el-icon-circle-check" @click="up.start()">开始上传</el-button>
+        <el-button size="mini" type="primary" icon="el-icon-delete-solid" @click="clear()">清空</el-button>
+      </div>
+
+      <el-table :data="tableData" border size="mini" height="450">
+        <el-table-column label="文件名" align="center" width="270">
+          <template slot-scope="scope">
+            <span>{{scope.row.name}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="大小" align="center" width="80">
+          <template slot-scope="scope">
+            <span>{{scope.row.size}}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="状态" align="center" width="110">
+          <template slot-scope="scope">
+            <span v-if="scope.row.status === -1">文件读取中</span>
+            <span v-if="scope.row.status === 1">文件读取完成</span>
+            <span v-if="scope.row.status === 4" style="color: brown">{{errorMsg[scope.row.id]}}</span>
+            <span v-if="scope.row.status === 5" style="color: chartreuse">已上传</span>
+            <span v-if="scope.row.status === 6" style="color: brown">文件过大</span>
+            <!-- <span v-if="scope.row.status === 7" style="color: brown"></span> -->
+            <span v-if="scope.row.status === 8" style="color: brown">重复上传</span>
+            <span v-if="scope.row.status === 9" style="color: brown">系统异常</span>
+            <el-progress
+              v-if="scope.row.status === 2"
+              :text-inside="true"
+              :stroke-width="20"
+              :percentage="scope.row.percent"
+            ></el-progress>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button
+              type="danger"
+              size="mini"
+              class="el-icon-delete"
+              @click="deleteFile(scope.row.id)"
+            >删除</el-button>
+            <el-button
+              v-if="scope.row.status === 8"
+              type="danger"
+              size="mini"
+              @click="sureUpload(scope.row.id)"
+            >确认上传</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+    <div style="width: 49% ;float: right;">
+      <div class="options">
+        <el-form
+          size="mini"
+          :model="uploadForm"
+          :rules="uploadFormRules"
+          ref="uploadForm"
+          :inline="true"
+        >
+          <el-form-item label="期次">
+            <el-select v-model="uploadForm.period" style="width:105px;" clearable prop="periodId" @change="changePeriod()" @focus="focusPeriod()">
+                <el-option
+                      v-for="item in periods"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="批次">
+            <el-select v-model="uploadForm.batch" style="width:95px;" clearable prop="batchId">
+                <el-option
+                      v-for="item in batchs"
+                      :key="item.id"
+                      :label="item.name"
+                      :value="item.id">
+                </el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="上传时间">
+            <el-date-picker
+              v-model="uploadForm.uploadTime"
+              type="date"
+              placeholder="选择日期"
+              style="width:125px;"
+              clearable
+              prop="uploadTime"
+            ></el-date-picker>
+          </el-form-item>
+          <el-form-item>
+            <el-button
+              type="primary"
+              icon="el-icon-search"
+              size="mini"
+              @click="uploadDataSearch('uploadForm')"
+            >查询</el-button>
+            <el-button
+              type="primary"
+              icon="el-icon-download"
+              size="mini"
+              @click="uploadCheckLogDawnLoad('uploadForm')"
+            >下载</el-button>
+          </el-form-item>
+        </el-form>
+      </div>
+      <el-table :data="uploadData" border size="mini" height="450">
+        <el-table-column show-overflow-tooltip prop="fileName" align="center" width = "200" label="文件名"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="fileSize" align="center" width = "100" label="文件大小"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="fileTypeName" align="center" width = "150" label="文件类型"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="checkStatusName" align="center" width = "100" label="处理过程"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="dataCount" align="center" width = "100" label="数据总量"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="errorCount" align="center" width = "100" label="错误总量"></el-table-column>
+        <el-table-column show-overflow-tooltip prop="createTime" align="center" width = "150" label="上传时间">
+          <template slot-scope="scope">
+                    {{ timeFormat(scope.row.createTime) }}
+          </template>
+        </el-table-column>
+      </el-table>
+      <el-pagination
+        background
+        layout="total, sizes, prev, pager, next, jumper"
+        align="center"
+        :page-sizes="[10, 20, 30, 50]"
+        :total="uploadTotal"
+        :page-size="uploadPageSize"
+        :current-page="uploadCurrentPage"
+        @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
+      ></el-pagination>
+    </div>
+  </div>
+</template>
+
+<script>
+import apiUrls from "../../apis/api-urls.js";
+import FileMd5 from "./file-md5.js";
+import Uploader from "./Uploader";
+import _ from "lodash";
+export default {
+  name: "BigFileUpload",
+  data() {
+    return {
+      apiUrls: apiUrls,
+      up: {},
+      files: [],
+      tableData: [],
+      checkValue: {},
+      errorMsg: {},
+      errorCode: {},
+      checkRes: {},
+
+      //后台上传列表
+      uploadForm: {
+        period: "",
+        batch: "",
+        uploadTime: "",
+      },
+      uploadFormRules: {
+        period: [
+          { required: true, message: "请选择期次号", trigger: "blur" },
+        ],
+      },
+      uploadData: [],
+      uploadTotal: 0,
+      uploadPageSize: 10,
+      uploadCurrentPage: 1,
+
+      periods:[],
+      batchs:[],
+    };
+  },
+  components: {
+    uploader: Uploader,
+  },
+  watch: {
+    files: {
+      handler() {
+        this.tableData = [];
+        //根据校验结果  解析文件
+        this.files.forEach((e) => {
+          let statusFlag;
+          // console.log(this.errorCode)
+          let tCode = _.get(this.errorCode, e.id, 0);
+          if (
+            tCode != 4 &&
+            tCode != 5 &&
+            tCode != 6 &&
+            (e.status === 2 || e.status === 4 || e.status === 5)
+          ) {
+            _.set(this.errorCode, e.id, e.status);
+          }
+          if (e.size > 500000000) {
+            //500M
+            e.status = 6;
+          }
+          // console.log(this.checkValue)
+          //  console.log("进入" + "--" + e.status + "--" + e.name);
+          if (e.status == 1) {
+            //忽略下一次查询
+            if (!_.has(this.checkValue, e.id + e.status)) {
+              _.set(this.checkValue, e.id + e.status, true);
+              let code = _.get(this.checkRes, e.id, undefined);
+              if (code === undefined) {
+                this.checkFileMethod(e);
+              }
+            }
+          }
+          if (e.status === 9) {
+            statusFlag = true;
+          }
+          this.tableData.push({
+            name: e.name,
+            size: e.size,
+            status: statusFlag
+              ? e.status
+              : _.get(this.errorCode, e.id, undefined) == undefined
+              ? e.status
+              : _.get(this.errorCode, e.id, e.status),
+            id: e.id,
+            percent: e.percent,
+          });
+          console.log("222-" + JSON.stringify(this.tableData));
+        });
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    checkFileMethod(e) {
+      //执行文件名校验 organCode -> 动态获取  TODO
+      this.$api
+        .CheckFileName({
+          name: e.name,
+          organCode: sessionStorage.getItem('organCode'),
+        })
+        .then((res) => {
+          let code = res.data;
+          //执行一次插入操作
+          _.set(this.checkRes, e.id, code);
+          if (code == "201") {
+            e.status = 8;
+            _.set(this.errorCode, e.id, 8);
+          }
+          if (code == "200") {
+            _.set(this.errorCode, e.id, 1);
+          }
+          if (code != "200" && code != "201") {
+            e.status = 4;
+            //更新展示错误信息
+            _.set(this.errorMsg, e.id, code);
+            _.set(this.errorCode, e.id, 7);
+            // console.log(this.errorMsg)
+          }
+        })
+        .catch((err) => {
+          this.$commsgbox.alert(err);
+        });
+    },
+    inputUploader(up) {
+      this.up = up;
+      this.files = up.files;
+      this.checkValue = {};
+    },
+    filesAdded(up, files) {
+      files.forEach((f) => {
+        f.status = -1;
+        FileMd5(f.getNative(), (e, md5) => {
+          f["md5"] = md5;
+          f.status = 1;
+        });
+      });
+    },
+    deleteFile(id) {
+      let file = this.up.getFile(id);
+      if (file.status === 2) {
+        this.$commsgbox.alert("上传过程中不允许执行删除操作");
+      } else {
+        // console.log(1 + "===" + JSON.stringify(this.errorMsg));
+        this.checkValue = {};
+        if (_.has(this.errorMsg, id)) {
+          this.errorMsg = _.omit(this.errorMsg, id);
+        }
+        // console.log(2 + "===" + JSON.stringify(this.errorMsg));
+        this.up.removeFile(file);
+      }
+    },
+    sureUpload(id) {
+      let file = this.up.getFile(id);
+      file.status = 1;
+      _.set(this.errorCode, id, 1);
+      this.up.start();
+    },
+    beforeUpload(up, file) {
+      up.setOption("multipart_params", { size: file.size, md5: file.md5 });
+    },
+
+    handleCurrentChange(val) {
+      this.uploadCurrentPage = val;
+      this.getFileUploadRecord();
+    },
+    handleSizeChange(val) {
+      this.uploadPageSize = val;
+      this.getFileUploadRecord();
+    },
+    //清空选择文件列表
+    clear() {
+      //清除临时缓存
+      this.checkValue = {};
+      this.errorMsg = {};
+      this.tableData.forEach((value) => {
+        let index = value.id;
+        let file = this.up.getFile(index);
+        if (file.status != 2) {
+          this.up.removeFile(file);
+        }
+      });
+    },
+
+    //list 
+    getFileUploadRecord(){
+      let req = {
+          nowpage: this.uploadCurrentPage,
+          pagesize: this.uploadPageSize,
+          sort: "id",
+          order: "desc",
+          organCode :sessionStorage.getItem('organCode'),
+          periodCode: this.uploadForm.period,
+          batchCode: this.uploadForm.batch,
+          createTime: this.uploadForm.createTime,
+      };
+      //请求后端
+      this.$api.uploadFileRecordQuery(req).then((res) => {
+          this.uploadTotal = res.data.total;
+          this.uploadData = res.data.rows;
+      }).catch((err) => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    //查询数据
+    uploadDataSearch(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.uploadCurrentPage = 1;
+          this.getFileUploadRecord();
+        }
+      });
+    },
+    //日期转换
+    timeFormat: function(timeVal){
+        return this.$comfunc.timeFormat(timeVal);
+    },
+    //期次下拉
+    getPeriodComBox(){
+      let req ={organCode:sessionStorage.getItem('organCode')};
+      this.$api.PeriodComboBox(req).then(res => {
+          this.periods = res.data;
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    //批次下拉
+    getBatchComBox(){
+      let req = {period : this.uploadForm.period,organCode:sessionStorage.getItem('organCode')};
+      this.$api.BatchComboBox(req).then(res => {
+          this.batchs = res.data;
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    },
+    //期次下拉改变
+    changePeriod(){
+        this.getBatchComBox();
+        this.uploadForm.batch = '';
+    },
+    //下载校验日志
+    uploadCheckLogDawnLoad(){
+      console.log(sessionStorage.getItem('organCode'));
+      this.$commsgbox.alert("下载校验日志");
+    },
+    focusPeriod(){
+      this.uploadForm.period = '';
+      this.getPeriodComBox();
+    },
+  },
+  created() {
+    this.clear();
+    this.getFileUploadRecord();
+  },
+  mounted(){
+    this.getPeriodComBox();
+  }
+
+};
+</script>
+
+<style scoped>
+.options {
+  text-align: left;
+  margin-bottom: 5px;
+  height: 28px;
+}
+</style>
+

@@ -1,0 +1,131 @@
+<template>
+  <el-container>
+    <div class="background">
+      <img src="../assets/images/主背景1.png" width="100%" height="100%" alt="主背景" />
+    </div>
+    <el-header height="80px" style="padding-top:0px; ">
+      <common-header ref="commonHeaderRefs"></common-header> <!--ref不能删除,organ页面会更新头部-->
+    </el-header>
+    <el-main height="700px" style="margin-top:20px;">
+      <div>
+        <div class="page-list">
+          <!-- 主按钮 -->
+          <div class="primary-button">
+            <el-row :gutter="0">
+              <el-col :span="4"><div class="grid-content"></div></el-col>
+              <el-col :span="3"><div class="grid-content bg-purple"><el-button class="my-primary-button" type="normal" plain>数据采集</el-button></div></el-col>
+              <div class="vertical-line"></div>
+              <el-col :span="3"><div class="grid-content bg-purple"><el-button class="my-primary-button" type="normal" plain>数据抽样</el-button></div></el-col>
+              <div class="vertical-line"></div>
+              <el-col :span="3"><div class="grid-content bg-purple"><el-button class="my-primary-button" type="normal" plain>样本分析</el-button></div></el-col>
+              <div class="vertical-line"></div>
+              <el-col :span="3"><div class="grid-content bg-purple"><el-button class="my-primary-button" type="normal" plain>分析报告</el-button></div></el-col>
+              <el-col :span="8"><div class="grid-content"></div></el-col>
+            </el-row>
+          </div>
+
+          <div class="title-wrap">
+            {{ title }}
+          </div>
+          <div class="list-wrap">
+              <slot ></slot>
+          </div>
+        </div>
+      </div>
+    </el-main>
+    <el-footer>
+      <common-footer></common-footer>
+    </el-footer>
+  </el-container>
+</template>
+
+<script>
+import commonHeader from "components/CommonHeader.vue";
+import commonFooter from "components/CommonFooter.vue";
+export default {
+  name: 'LayoutPageList',
+  components: {
+    commonHeader,
+    commonFooter
+  },
+  props: {
+    title: String
+  }
+}
+</script>
+
+<style scoped>
+/* .el-container{
+  background-image: url(../assets/images/主背景.png);
+  background-size: 100% 100%;
+} */
+.background {
+  position:absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 1583px;
+  z-index: -1;
+}
+.el-header{
+  padding:0px;
+}
+.page-list{
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.24);
+  width: 90%;
+  min-height: 700px;
+  background-color: white;
+  border:3px solid rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+.primary-button{
+  margin-left:10px; 
+  margin-right:10px; 
+  padding-top: 20px;
+}
+.my-primary-button {
+  height: 50px;
+  width: 100%;
+  color: #4c4948;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  font-size: 20px;
+  border-radius: 0px;
+}
+.my-primary-button:hover {
+  color: #4c4948;
+  background-color: rgba(0 ,0 , 0, 0.15);
+  border-color: rgba(0 ,0 , 0, 0);
+}
+.my-primary-button:focus {
+  color: #4c4948;;
+  background-color: rgba(0 ,0 , 0, 0);
+  border-color: rgba(0 ,0 , 0, 0);
+  font-size:26px;
+  font-weight: bold;
+}
+.vertical-line {
+  float:left;
+  width: 2px;
+  height: 50px;
+  background: darkgray;
+}
+.list-wrap{
+  margin-top: 10px;
+  padding-bottom: 16px;
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.title-wrap {
+    background-color: #E64A4A;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    line-height:40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 20px;
+}
+</style>

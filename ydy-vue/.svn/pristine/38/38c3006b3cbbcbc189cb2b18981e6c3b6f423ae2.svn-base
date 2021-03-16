@@ -1,0 +1,394 @@
+<template>
+    <layout-page-list title="用户管理页面" ref="layoutRefs"> <!-- 这个ref不能删除 -->
+        <div class="options">
+            <el-button type="primary" size="medium" @click="addUserFormVisible = true">新增用户</el-button>
+        </div>
+
+        <el-dialog title="新增用户" :visible.sync="addUserFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-form :model="addUserForm" :rules="addUserFormRules" ref="addUserForm">
+                <el-form-item label="用户账号" :label-width="addUserFormLabelWidth" prop="accountNo">
+                    <el-input v-model="addUserForm.accountNo" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="密码" :label-width="addUserFormLabelWidth" prop="password">
+                    <el-input v-model="addUserForm.password" autocomplete="off" show-password></el-input>
+                </el-form-item>
+                <el-form-item label="角色" :label-width="addUserFormLabelWidth" prop="roleCode">
+                    <el-select v-model="addUserForm.roleCode" placeholder="请选择角色" style="display:block;">
+                        <el-option
+                            v-for="item in addUserFormRoleCodes"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="用户可操作机构" :label-width="addUserFormLabelWidth" prop="orgCodeList">
+                    <el-select v-model="addUserForm.orgCodeList" placeholder="请选择机构" multiple style="display:block;">
+                        <el-option
+                            v-for="item in allOrganOptions"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="昵称" :label-width="addUserFormLabelWidth" prop="userName">
+                    <el-input v-model="addUserForm.userName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="用户信息描述" :label-width="addUserFormLabelWidth" prop="remarks">
+                    <el-input v-model="addUserForm.remarks" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="resetAddUserForm('addUserForm')">重 置</el-button>
+                <el-button type="primary" @click="submitAddUserForm('addUserForm')">立即新增</el-button>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="修改用户" :visible.sync="updateUserFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-form :model="updateUserForm" :rules="updateUserFormRules" ref="updateUserForm">
+                <el-form-item label="用户账号" :label-width="updateUserFormLabelWidth" prop="accountNo">
+                    <el-input v-model="updateUserForm.accountNo" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="角色" :label-width="updateUserFormLabelWidth" prop="roleCode">
+                    <el-select v-model="updateUserForm.roleCode" placeholder="请选择角色" style="display:block;">
+                        <el-option
+                            v-for="item in updateUserFormRoleCodes"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="用户可操作机构" :label-width="updateUserFormLabelWidth" prop="orgCodeList">
+                    <el-select v-model="updateUserForm.orgCodeList" placeholder="请选择机构" multiple style="display:block;">
+                        <el-option
+                            v-for="item in allOrganOptions"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="昵称" :label-width="updateUserFormLabelWidth" prop="userName">
+                    <el-input v-model="updateUserForm.userName" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="用户信息描述" :label-width="updateUserFormLabelWidth" prop="remarks">
+                    <el-input v-model="updateUserForm.remarks" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="用户状态" :label-width="updateUserFormLabelWidth" prop="userStatus">
+                    <el-radio-group v-model="updateUserForm.userStatus">
+                        <el-radio label="1">启用</el-radio>
+                        <el-radio label="0">停用</el-radio>
+                    </el-radio-group>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button @click="resetUpdateUserForm('updateUserForm')">重 置</el-button>
+                <el-button type="primary" @click="submitUpdateUserForm('updateUserForm')">立即修改</el-button>
+            </div>
+        </el-dialog>
+
+        <el-table
+            :data="tableData"
+            border
+            size="mini"
+            style="width: 100%">
+                <el-table-column show-overflow-tooltip align="center" prop="accountNo" label="用户账号" width="120"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="userName" label="昵称" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="roleName" label="用户角色" width="120"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="机构" width="300">
+                    <template slot-scope="scope">
+                        <el-tag type="primary" :key="orgName" v-for="orgName in scope.row.orgNames">{{ orgName }}</el-tag>
+                    </template>
+                    <!-- <template slot-scope="scope">
+                        <el-select
+                            v-model="scope.row.orgCodeList"
+                            multiple
+                            collapse-tags
+                        >
+                            <el-option
+                                v-for="item in scope.row.orgMaps"
+                                :key="item.code"
+                                :label="item.name"
+                                :value="item.code"
+                            >
+                            </el-option>
+                        </el-select>
+                    </template> -->
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="用户状态" width="80">
+                    <template slot-scope="scope">
+                        {{ scope.row.userStatus | statusNameFormat }}
+                        <!-- <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleUseStatus(scope.$index, scope.row)">启停</el-button> -->
+                    </template>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="remarks" label="用户信息描述"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="updateUser" label="最后操作人" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="操作" width="200">
+                    <template slot-scope="scope">
+                        <el-button
+                        size="mini"
+                        type="primary"
+                        @click="showUpdateOrganForm(scope.$index, scope.row)">修改</el-button>
+                        <!-- <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleDelete(scope.$index, scope.row)">删除</el-button> -->
+                    </template>
+                </el-table-column>
+        </el-table>
+
+        <el-pagination
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            :page-sizes="[10, 20, 30, 50]"
+            :total="tableTotal"
+            :page-size="tablePageSize"
+            :current-page="tableCurrentPage"
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </layout-page-list>
+</template>
+
+<script>
+import Cookies from "js-cookie"
+import LayoutPageList from "layout/LayoutPageList.vue";
+export default {
+    components: {
+        LayoutPageList
+    },
+    data() {
+        return {
+            //common init once
+            allOrganOptions: [],
+            //user table lists
+            tableData: [],
+            tableTotal : 0,
+            tablePageSize: 10,
+            tableCurrentPage: 1,
+            //add user form
+            addUserFormVisible: false,
+            addUserForm: {
+                accountNo: '',
+                password: '',
+                roleCode: '',
+                orgCodeList: [],
+                userName: '',
+                remarks: ''
+            },
+            addUserFormLabelWidth: '120px',
+            addUserFormRoleCodes:[],
+            addUserFormRules: {
+                accountNo: [
+                    { required: true, message: '请输入用户账号', trigger: 'blur' },
+                    { min: 6, max: 32, message: '长度在 6 到 32 个字符', trigger: 'blur' }
+                ],
+                password: [
+                    { required: true, message: '请输入密码', trigger: 'blur' },
+                    { min: 1, message: '密码不能为空', trigger: 'blur' }
+                ],
+                roleCode: [
+                    { required: true, message: '请选择角色', trigger: 'blur' }
+                ]
+            },
+            //update user form
+            updateUserFormVisible: false,
+            updateUserForm: {
+                accountNo: '',
+                userCode: '',
+                roleCode: '',
+                orgCodeList: '',
+                userName: '',
+                remarks: '',
+                userStatus: 0
+            },
+            updateUserFormEmpty: '',
+            updateUserFormLabelWidth: '120px',
+            updateUserFormRoleCodes:[],
+            updateUserFormRules: {   
+                roleCode: [
+                    { required: true, message: '请选择角色', trigger: 'blur' }
+                ]
+            }
+        }
+    },
+    methods: {
+        //common get all organs
+        getAllOrganCombox() {
+            let req = {
+                getType: 'all'
+            };
+            this.$api.OrganCombox(req).then(res => {
+                this.allOrganOptions = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        //lists
+        getUserLists() {
+            let req = {
+                nowpage: this.tableCurrentPage,
+                pagesize: this.tablePageSize,
+                sort : 'id',
+                order: 'desc'
+            };
+
+            this.$api.UserQuery(req).then(res => {
+                this.tableTotal = res.data.total;
+                //转换用户对应的合作机构信息
+                for(let index in res.data.rows) {
+                    let userInfo = res.data.rows[index];
+                    userInfo.orgNames = [];
+                    userInfo.orgCodeList = []; //orgCodeList,在updateUserForm里要一样
+                    if(typeof(userInfo.orgNameStr) === 'string'){
+                        userInfo.orgNames = userInfo.orgNameStr.split(",");
+                    }
+                    if(typeof(userInfo.orgCodeStr) === 'string'){
+                        userInfo.orgCodeList = userInfo.orgCodeStr.split(",");
+                    }
+                    userInfo.orgMaps = {};
+                    for(let key in userInfo.orgCodeList){
+                        let map = {"code":userInfo.orgCodeList[key], "name":userInfo.orgNames[key]}
+                        userInfo.orgMaps[key] = map;
+                    }
+                }
+                this.tableData = res.data.rows;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        handleCurrentChange(val) {
+            this.tableCurrentPage = val;
+            this.getUserLists();
+        },
+        handleSizeChange(val) {
+            this.tablePageSize = val;
+            this.getUserLists();
+        },
+        handleUseStatus(index, row) {
+            this.$commsgbox.confirm().then(() => {
+                let nowStatus = row.userStatus;
+                if(nowStatus == 0){
+                    nowStatus = 1;
+                }else{
+                    nowStatus = 0;
+                }
+                let req = {"userCode":row.userCode, "userStatus":nowStatus};
+                this.$api.UserUpStatus(req).then(() => {
+                    this.getUserLists()
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            }).catch(() => {
+
+            });
+        },
+        //用戶刪除，流程有点问题，暂不提供删除功能
+        // handleDelete(index, row) {
+        //     this.$commsgbox.confirm('此操作将删除该数据, 是否继续?').then(() => {
+        //         let req = {"userCode" : row.userCode};
+        //         this.$api.UserDel(req).then(() => {
+        //             this.getUserLists();
+        //         }).catch(err => {
+        //             this.$commsgbox.alert(err);
+        //         });
+        //     }).catch(() => {
+
+        //     });
+        // },
+        //add user form
+        submitAddUserForm(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$api.UserAdd(this.addUserForm).then(() => {
+                        this.addUserFormVisible = false;
+                        this.$refs[formName].resetFields();
+                        
+                        this.tableCurrentPage = 1;
+                        this.getUserLists();
+                    }).catch(err => {
+                        this.$commsgbox.alert(err);
+                    });
+                } else {
+                    return false;
+                }
+            });
+        },
+        resetAddUserForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        //update
+        showUpdateOrganForm(index, row) {
+            this.updateUserForm = this.$comfunc.assignNeed(row, this.updateUserForm);
+            this.updateUserFormVisible = true;
+        },
+        submitUpdateUserForm(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$api.UserUpdate(this.updateUserForm).then(() => {
+                        //如果修改了自己的用户信息，可能会修改机构，所以刷新头部
+                        let loginAccount = Cookies.get('ddpAccount');
+                        if(this.updateUserForm.accountNo == loginAccount){
+                            this.$refs.layoutRefs.$refs.commonHeaderRefs.getOrganCombox() //更新hearder头部的下拉组织选项
+                        }
+                        this.updateUserForm = this.updateUserFormEmpty;
+                        this.updateUserFormVisible = false;
+                        this.getUserLists();
+                    }).catch(err => {
+                        this.$commsgbox.alert(err);
+                    });
+                } else {
+                    return false;
+                }
+            });
+        },
+        resetUpdateUserForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        //add & update getRoles
+        getRoleCombox() {
+            this.$api.RoleComboBox({}).then(res => {
+                this.addUserFormRoleCodes = res.data;
+                this.updateUserFormRoleCodes = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        }
+    },
+    created() {
+        this.updateUserFormEmpty = this.updateUserForm;
+        this.getUserLists();
+    },
+    mounted() {
+        this.getRoleCombox();
+        this.getAllOrganCombox();
+    },
+    filters: {
+        statusNameFormat: function(statusVal){
+            let statusName = statusVal;
+            if(statusVal == 0) { statusName = '停用' }
+            else if(statusVal == 1) { statusName = '启用' }
+            return statusName;
+        }
+    }
+}
+</script>
+
+<style scoped>
+.options {
+    text-align:left;
+    margin-bottom:5px;
+}
+.el-table {
+    padding : 5px 20px;
+}
+.el-tag {
+    margin-left:3px;
+}
+</style>

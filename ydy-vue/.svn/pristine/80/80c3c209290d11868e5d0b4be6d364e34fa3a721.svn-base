@@ -1,0 +1,61 @@
+<template>
+  <div class="page-data-import">
+    <layout-page-default :focusPageIndex=1>
+      <el-tabs style="height: 200px;">
+        <el-tab-pane label="数据导入"><upload-file></upload-file></el-tab-pane>
+        <el-tab-pane label="业务校验"><business-check></business-check></el-tab-pane>
+        <el-tab-pane label="真实性校验">真实性校验</el-tab-pane>
+        <el-tab-pane label="校验日志导出">校验日志导出</el-tab-pane>
+        <el-tab-pane label="样本集数据统计">样本集数据统计</el-tab-pane>
+      </el-tabs>
+    </layout-page-default>
+  </div>
+</template>
+
+<script>
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+import uploadFile from "views/file/uploadFile.vue";
+import businessCheck from "views/check/business.vue";
+export default {
+  components: {
+    LayoutPageDefault,
+    uploadFile,
+    businessCheck
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.el-tabs {
+    margin: 0px 10px 0px 10px;
+}
+</style>
+
+<style lang="scss">
+.page-data-import .el-tabs__nav {
+    width: 100%; 
+    background-color: rgba(230, 74, 74, 1);
+    text-align: left;
+}
+.page-data-import .el-tabs__active-bar {
+    display: none;
+}
+.page-data-import .el-tabs__item {
+    font-size: 20px;
+    font-weight: bold;
+    width: 200px;
+    height: 40px;
+    vertical-align: middle;
+    text-align: center !important; 
+    // background-color: rgba(0, 0, 0, 0.15);
+    color: rgba(255, 255, 255, 1);
+}
+.page-data-import .el-tabs__item:hover{
+    color: rgba(255, 255, 255, 1);
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.page-data-import .el-tabs__item.is-active{
+    color: white;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+</style>

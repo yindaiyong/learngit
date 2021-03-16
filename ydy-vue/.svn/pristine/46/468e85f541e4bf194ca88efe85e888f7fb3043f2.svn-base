@@ -1,0 +1,20 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
+  state: {
+    // organCode: JSON.parse(sessionStorage.getItem("organCode")),
+  },
+  mutations: {
+    // data_organCode(state, x) {
+    //   sessionStorage.setItem('organCode', JSON.stringify(x))
+    //   state.organCode = x
+    // }
+  },
+  actions: {
+  },
+  modules: {
+  }
+})

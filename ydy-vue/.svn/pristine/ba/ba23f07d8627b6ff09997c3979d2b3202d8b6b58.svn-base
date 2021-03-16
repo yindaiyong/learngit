@@ -1,0 +1,411 @@
+<template>
+    <layout-page-list title="校验字段规则配置页面">
+        <div class="options">
+            <el-form size="mini" :model="columnsForm" ref= "columnsForm" :inline="true">
+                    <el-form-item label="数据类型:" prop="fileType">
+                        <el-select  v-model="columnsForm.fileType" clearable style="width:140px;">
+                            <el-option
+                                    v-for="item in fileTypes"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="是否可为空:" prop="isNull">
+                        <el-select v-model="columnsForm.isNull"  clearable style="width:100px;">
+                            <el-option
+                                    v-for="item in isNulls"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="字段英文名称:" prop="columnNameEn">
+                        <el-input v-model="columnsForm.columnNameEn" type="text" style="width:130px;" clearable ></el-input>
+                    </el-form-item>
+                    <el-form-item label="字段中文名称:" prop="columnNameCn">
+                        <el-input v-model="columnsForm.columnNameCn" type="text" style="width:130px;" clearable ></el-input>
+                    </el-form-item>
+                    <el-form-item label="是否启用:" prop="isDel">
+                        <el-select v-model="columnsForm.isDel"  clearable style="width:100px;">
+                            <el-option
+                                    v-for="item in isDels"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button size="mini" type="primary" icon ="el-icon-refresh" @click="columnsQuery()">查询</el-button>
+                    </el-form-item>
+            </el-form>
+            <el-button type="primary" size="mini" icon = "el-icon-circle-plus" @click="addColumnsFormatFormVisible = true">新增字段规则</el-button>
+        </div>
+
+        <el-dialog title="新增字段配置" center :visible.sync="addColumnsFormatFormVisible" :close-on-click-modal="false" 
+        :append-to-body="true" width="25%">
+            <el-form :model="addColumnsFormatForm" :rules="addColumnsFormatFormRules" ref="addColumnsFormatForm">
+                <el-form-item label="数据类型" prop="fileType" :label-width="addcolumnsFormatLabelWidth" >
+                    <el-select v-model="addColumnsFormatForm.fileType" autocomplete="off">
+                         <el-option
+                                    v-for="item in addFileTypes"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="英文名称" prop="columnNameEn" :label-width="addcolumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" v-model="addColumnsFormatForm.columnNameEn" autocomplete="off">
+                    </el-input>
+                </el-form-item>
+                <el-form-item label="中文名称" prop="columnNameCn" :label-width="addcolumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" v-model="addColumnsFormatForm.columnNameCn" autocomplete="off"></el-input>
+                </el-form-item>
+                 <el-form-item label="字段类型" prop="columnType" :label-width="addcolumnsFormatLabelWidth">
+                     <el-radio v-model="addColumnsFormatForm.columnType" label="C">字符型</el-radio>
+                     <el-radio v-model="addColumnsFormatForm.columnType" label="N">数值型</el-radio>
+                </el-form-item>
+                <el-form-item label="是否可为空" prop="isNull" :label-width="addcolumnsFormatLabelWidth">
+                    <el-radio v-model="addColumnsFormatForm.isNull" label="0">不可为空</el-radio>
+                    <el-radio v-model="addColumnsFormatForm.isNull" label="1">可为空</el-radio>
+                </el-form-item>
+                <el-form-item label="字段长度" prop="columnLength" :label-width="addcolumnsFormatLabelWidth">
+                    <el-input-number style = "width:217px;" v-model="addColumnsFormatForm.columnLength" :min="1" :max="99" label="描述文字"></el-input-number>
+                </el-form-item>
+                <el-form-item label="正则规则" prop="columnRegular" :label-width="addcolumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" v-model="addColumnsFormatForm.columnRegular" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="resetaddColumnsFormatForm('addColumnsFormatForm')">重 置</el-button>
+                <el-button type="primary" size="small" icon="el-icon-circle-check" @click="submitaddColumnsFormatForm('addColumnsFormatForm')">立即新增</el-button>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="修改字段配置" center :visible.sync="updateColumnsFormatFormVisible" :close-on-click-modal="false" 
+       :append-to-body="true" width="25%">
+            <el-form :model="updateColumnsFormatForm" :rules="updateColumnsFormatFormRules" ref="updateColumnsFormatForm">
+                <el-form-item label="数据类型" prop="fileType" :label-width="updateColumnsFormatLabelWidth">
+                    <el-select disabled  v-model="updateColumnsFormatForm.fileType" autocomplete="off">
+                         <el-option
+                                    v-for="item in updateFileTypes"
+                                    :key="item.id"
+                                    :label="item.name"
+                                    :value="item.id">
+                            </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="英文名称" prop="columnNameEn" :label-width="updateColumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" disabled  v-model="updateColumnsFormatForm.columnNameEn" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="中文名称" prop="columnNameCn" :label-width="updateColumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" v-model="updateColumnsFormatForm.columnNameCn" autocomplete="off"></el-input>
+                </el-form-item>
+                 <el-form-item label="字段类型" prop="columnType" :label-width="updateColumnsFormatLabelWidth">
+                     <el-radio v-model="updateColumnsFormatForm.columnType" label="C">字符型</el-radio>
+                     <el-radio v-model="updateColumnsFormatForm.columnType" label="N">数值型</el-radio>
+                </el-form-item>
+                <el-form-item label="是否可为空" prop="isNull" :label-width="updateColumnsFormatLabelWidth">
+                    <el-radio v-model="updateColumnsFormatForm.isNull" label="0">不可为空</el-radio>
+                    <el-radio v-model="updateColumnsFormatForm.isNull" label="1">可为空</el-radio>
+                </el-form-item>
+                <el-form-item label="字段长度" prop="columnLength" :label-width="updateColumnsFormatLabelWidth">
+                    <el-input-number style = "width:217px;" v-model="updateColumnsFormatForm.columnLength" :min="1" :max="99" label="描述文字"></el-input-number>
+                </el-form-item>
+                <el-form-item label="正则规则" prop="columnRegular" :label-width="updateColumnsFormatLabelWidth">
+                    <el-input style = "width:217px;" v-model="updateColumnsFormatForm.columnRegular" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="是否启用" prop="isDel" :label-width="updateColumnsFormatLabelWidth">
+                    <el-radio v-model="updateColumnsFormatForm.isDel" :label=0>启用</el-radio>
+                    <el-radio v-model="updateColumnsFormatForm.isDel" :label=1>停用</el-radio>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="resetUpdateColumnsFormatForm('updateColumnsFormatForm')">重 置</el-button>
+                <el-button type="primary" size="small" icon="el-icon-circle-check" @click="submitUpdateColumnsFormatForm('updateColumnsFormatForm')">立即修改</el-button>
+            </div>
+        </el-dialog>
+
+        <el-table
+            :data="tableData"
+            border
+            height="450"
+            size="mini"
+            style="width: 100%">
+            <el-table-column show-overflow-tooltip prop="fileType" align="center" width = "100" label="数据类型">
+                <template slot-scope="scope">
+                    {{ fileTypeFormat(scope.row.fileType)}}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip prop="columnNameEn" align="center" width = "150" label="英文列名"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="columnNameCn" align="center" width = "150" label="中文列名"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="columnType" align="center" width = "80" label="字段类型">
+                <template slot-scope="scope">
+                    {{ columnTypeFormat(scope.row.columnType)}}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip prop="columnLength" align="center" width = "80" label="字段长度"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="isNull" align="center" width = "100" label="是否允许为null">
+                <template slot-scope="scope">
+                    {{ isNullFormat(scope.row.isNull)}}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip prop="columnRegular" align="center" width = "100" label="正则格式"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="isDel" align="center" width = "100" label="是否启用">
+                <template slot-scope="scope">
+                    {{ scope.row.isDel | isDelFormat }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip prop="updateUser" align="center" width = "80"  label="修改人"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="updateTime" align="center" width = "150"  label="修改时间">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.updateTime) }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" label="操作">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="primary" class="el-icon-edit" @click="showUpdateColumnForm(scope.row)">修改</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            :page-sizes="[10, 20, 30, 50]"
+            :total="tableTotal"
+            :page-size="tablePageSize"
+            :current-page="tableCurrentPage"
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </layout-page-list>
+</template>
+
+<script>
+    import LayoutPageList from "layout/LayoutPageList.vue";
+
+    export default {
+        components: {
+            LayoutPageList
+        },
+        data() {
+            return {
+                //table lists
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+
+                //columns  query
+                columnsForm :{
+                    fileType:'',
+                    isNull :'',
+                    columnNameEn :''
+
+                },
+                isNulls: [],
+                fileTypes :[],
+                isDels :[{ id:0,
+                        name :'启用'
+                    },{
+                        id:1,
+                        name :'停用'
+                }],
+
+                // add columns 
+                addColumnsFormatFormVisible : false,
+                addcolumnsFormatLabelWidth :"100px",
+                addColumnsFormatForm :{
+                    fileType:'',
+                    columnNameEn :'',
+                    columnNameCn :'',
+                    columnType:'',
+                    columnLength :'',
+                    isNull :'',
+                    columnRegular :'',
+
+                },
+                addColumnsFormatFormRules :{
+                    fileType : {required: true, message: '请选择字段类型', trigger: 'blur'},
+                    columnNameEn :{required: true, message: '请输入字段英文名称`', trigger: 'blur'},
+                    columnType :{required: true, message: '请选择字段类型', trigger: 'blur'},
+                    columnLength :{required: true, message: '请输字段长度', trigger: 'blur'},
+                    isNull :{required: true, message: '请选择是否可为空', trigger: 'blur'},
+                },
+                addFileTypes:[],
+
+                //update columns
+                updateColumnsFormatFormVisible : false,
+                updateColumnsFormatLabelWidth :"100px",
+                updateColumnsFormatForm :{
+                    fileType:'',
+                    columnNameEn :'',
+                    columnNameCn :'',
+                    columnType:'',
+                    columnLength :'',
+                    isNull :'',
+                    columnRegular :'',
+                    isDel : 0,
+
+                },
+                updateColumnsFormatFormRules :{
+                    columnType :{required: true, message: '请选择字段类型', trigger: 'blur'},
+                    columnLength :{required: true, message: '请输字段长度', trigger: 'blur'},
+                    isNull :{required: true, message: '请选择是否可为空', trigger: 'blur'},
+                },
+                updateFileTypes:[]
+            }
+        },
+        methods: {
+            handleCurrentChange(val) {
+                this.tableCurrentPage = val;
+                this.columnsQuery();
+            },
+            handleSizeChange(val) {
+                this.tablePageSize = val;
+                this.columnsQuery();
+            },
+            //获得fileType下拉
+            getFileTypesComboBox(){
+                this.$api.FileTypesComboBox({}).then(res => {
+                    this.fileTypes = res.data;
+                    this.addFileTypes = res.data;
+                    this.updateFileTypes = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //获得是否可为空下拉
+            getIsNullsComboBox(){
+                this.$api.IsNullsComboBox({}).then(res => {
+                    this.isNulls = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //查询
+            columnsQuery(){
+                let fileType = this.columnsForm.fileType;
+                let isNull = this.columnsForm.isNull;
+                let columnNameEn = this.columnsForm.columnNameEn;
+                let columnNameCn = this.columnsForm.columnNameCn;
+                let isDel = this.columnsForm.isDel;
+                let req = {
+                    nowpage: this.tableCurrentPage,
+                    pagesize: this.tablePageSize,
+                    sort : 'id',
+                    order: 'desc',
+                    fileType : fileType,
+                    isNull:isNull,
+                    columnNameEn:columnNameEn,
+                    columnNameCn:columnNameCn,
+                    isDel:isDel,
+                };
+                this.$api.ColumnsQuery(req).then(res => {
+                    this.tableTotal = res.data.total;
+                    this.tableData = res.data.rows;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //列表文件类型转换
+            fileTypeFormat(fileType){
+                let fileTypeName = "";
+                this.fileTypes.forEach(function (item) {
+                    if(item.id === fileType){
+                        fileTypeName = item.name;
+                    }
+                });
+                return fileTypeName;        
+            },
+            //字段类型转换
+            columnTypeFormat(type){
+                if(type === 'C'){return 'C(字符型)'}
+                if(type === 'N'){return 'N(数值型)'}
+            },
+            //是否可谓null转换
+            isNullFormat(isNull){
+                if(isNull === '0'){return '不可为空'}
+                if(isNull === '1'){return '可为空'}
+            },
+            resetaddColumnsFormatForm(formName){
+                this.$refs[formName].resetFields();
+            },
+            resetUpdateColumnsFormatForm(formName){
+                this.$refs[formName].resetFields();
+            },
+            //新增提交
+            submitaddColumnsFormatForm(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$api.ColumnsFormatAdd(this.addColumnsFormatForm).then(() => {
+                            this.addColumnsFormatFormVisible = false;
+                            this.$refs[formName].resetFields();
+                            this.columnsQuery();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            //更新提交
+            submitUpdateColumnsFormatForm(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$api.ColumnsFormatUpdate(this.updateColumnsFormatForm).then(() => {
+                            this.updateColumnsFormatFormVisible = false;
+                            this.$refs[formName].resetFields();
+                            this.columnsQuery();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            //展示更新界面
+            showUpdateColumnForm(row){
+                this.updateColumnsFormatForm = this.$comfunc.assignNeed(row, this.updateColumnsFormatForm);
+                this.updateColumnsFormatFormVisible = true;
+            },
+            //日期转换
+            timeFormat: function(timeVal){
+                return this.$comfunc.timeFormat(timeVal);
+            },
+        },
+        created() {
+            this.columnsQuery();
+        },
+        mounted() {
+            this.getFileTypesComboBox();
+            this.getIsNullsComboBox();
+        },
+
+        filters: {
+            isDelFormat :function(isDel){
+                if(isDel == 0){return '启用'}
+                if(isDel == 1){return '停用'}
+            },
+        }
+
+    }
+</script>
+
+<style scoped>
+    .options {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .el-table {
+        padding: 5px 20px;
+    }
+</style>

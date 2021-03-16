@@ -1,0 +1,494 @@
+<template>
+    <div class="page-home">
+        <el-container>
+            <el-header height="100px">
+                <div class="the-header-bg">
+                    <el-row :gutter="0" type="flex" justify="center" align="middle">
+                        <el-col :span="6" class="height-100">
+                            <img class="logo" src="../../assets/images/logo.png" />
+                            <img class="sjjdlogo" src="../../assets/images/sjjdlogo.png" />
+                            <div style="clear: both;"></div>
+                        </el-col>
+                        <el-col :span="4" class="height-100"></el-col>
+                        <el-col :span="12" class="height-100">
+                            <div class="grid-content bg-bottomMaterial">
+                                <img class="u61" src="../../assets/images/u61.png"/>
+                            </div>
+                        </el-col>
+                        <el-col :span="2" class="height-100"></el-col>
+                    </el-row>
+                </div>
+                <div class="the-header-menu">
+                    <el-row :gutter="0" type="flex" justify="center">
+                        <el-col :span="6"><div class="height-100"></div></el-col>
+                        <el-col :span="18">
+                            <el-row :gutter="0" >
+                                <el-col :span="6" style="padding-top:25px;">
+                                    <el-select style="margin-right:20px; width: 60%;" size="small" v-model="orgSelectedCode" placeholder="请选择机构" @change="changeOrganCode">
+                                        <el-option
+                                            v-for="item in orgOptions"
+                                            :key="item.id"
+                                            :label="item.name"
+                                            :value="item.id"
+                                        ></el-option>
+                                    </el-select>
+                                    <el-button style="margin-right:20px;" type="normal" size="small" @click="searchByOrgan">查询</el-button>
+                                </el-col>
+                                <el-col :span="8">
+                                    <div>
+                                        <el-link href="/" :underline="false" class="menu-button">首页</el-link>
+                                        <el-link href="/" :underline="false" class="menu-button">样本集明细</el-link>
+                                        <el-link href="/" :underline="false" class="menu-button">数据离线校验</el-link>
+                                        <el-link href="/organ" :underline="false" class="menu-button">合作机构管理</el-link>
+                                    </div>
+                                </el-col>
+                                <el-col :span="8">
+                                    <div class="height-100"></div>
+                                </el-col>
+                                <el-col :span="1" >
+                                    <div style="text-align: right;">
+                                        <el-dropdown class="account-button-dropdown">
+                                            <el-button class="account-button" type="normal" size="small">
+                                                <p :title="accountInfo" class="account-info">{{accountInfo}}</p>
+                                                <i class="el-icon-arrow-down el-icon--right"></i>
+                                            </el-button>
+                                            <el-menu :default-active="activeIndex"
+                                                    :router="true"
+                                                    class="el-menu-demo"
+                                                    mode="horizontal"
+                                                    background-color="#545c64"
+                                                    text-color="#fff"
+                                                    active-text-color="#ffd04b">
+                                            </el-menu>
+                                            <el-dropdown-menu
+                                                :default-active="$route.path"
+                                                :router="true"
+                                                class="el-menu-demo"
+                                                mode="horizontal">
+                                                <el-dropdown-item><el-link href="/user" :underline="false" icon="el-icon-s-custom">用户管理</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link href="/authRole" :underline="false" icon="el-icon-s-check">角色权限</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link href="/authReport" :underline="false" icon="el-icon-s-data">报表权限</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link href="/myReport" :underline="false" icon="el-icon-s-grid">我的报表</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link href="/dict" :underline="false" icon = "el-icon-s-tools">字典配置</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link href="/resetpassword" :underline="false" icon="el-icon-s-claim">修改密码</el-link></el-dropdown-item>
+                                                <el-dropdown-item><el-link :underline="false" icon="el-icon-switch-button" @click="logout">退出登陆</el-link></el-dropdown-item>
+                                            </el-dropdown-menu>
+                                        </el-dropdown>
+                                    </div>
+                                </el-col>
+                                <el-col :span="1">
+                                    <div class="height-100"></div>
+                                </el-col>
+                            </el-row>
+                        </el-col>
+                    </el-row>
+                </div>
+            </el-header>
+            
+            <el-main class="main-banner">        
+                <el-carousel :interval="500000" type="card" height="600px">
+                    <el-carousel-item class="card-items data-import">
+                        <div>
+                            <div class="card-item-title">
+                                <el-link type="primary" href="/dataImport"><h3>数据采集</h3></el-link>
+                            </div>
+                            <div class="card-item-msg">
+                                <p>数据采集具体流程为：文件导入 -> 业务校验 ->真实性校验  -> 统计样本集数据。
+                                <br>注：业务校验及后续校验需要保证合同表、客户表、初始还款、真实还款、真实交易表数据完整的情况下进行。</p>
+                            </div>
+                            <div class="card-item-body">
+                                <el-table
+                                :data="tableDataCollector"
+                                :span-method="arraySpanMethod"
+                                class="data-table"
+                                :header-cell-style="{background:'transparent',color:'white',hover:'none'}">
+                                    <el-table-column prop="colValue" label="维度"></el-table-column>
+                                    <el-table-column prop="customer" label="客户" width="70"></el-table-column>
+                                    <el-table-column prop="contract" label="合同" width="70"></el-table-column>
+                                    <el-table-column prop="initRepayPlan" label="初始还款" width="100"></el-table-column>
+                                    <el-table-column prop="realRepayPlan" label="真实还款" width="100"></el-table-column>
+                                    <el-table-column prop="realRepayDeal" label="真实交易" width="100"></el-table-column>
+                                </el-table>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                    <el-carousel-item class="card-items data-sampling">
+                        <div>
+                            <div class="card-item-title">
+                                <el-link type="primary" href="/dataSampling"><h3>数据抽样</h3></el-link>
+                            </div>
+                            <div class="card-item-msg">
+                                <p>数据抽样流程为：确认样本集范围 -> 选择方式 -> 发起抽样  -> 生成列表。
+                                <br>注：数据抽样基于已入样本集数据信息。抽样方式为自然年、半年、季度、月以及条数。抽样完成保存状态的样本数据方可进行样本分析。</p>
+                            </div>
+                            <div class="card-item-body">
+                                <el-table
+                                :data="tableDataSampling"
+                                class="data-table"
+                                :header-cell-style="{background:'transparent',color:'white',hover:'none'}">
+                                    <el-table-column prop="forPeriod" label="所属期次" width="120"></el-table-column>
+                                    <el-table-column prop="sampleName" label="样本名称"></el-table-column>
+                                    <el-table-column prop="sampleStatus" label="抽样状态" width="80"></el-table-column>
+                                    <el-table-column prop="sampleCount" label="样本数据" width="80"></el-table-column>
+                                    <el-table-column prop="sampleMethod" label="抽样方式" width="80"></el-table-column>
+                                </el-table>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                    <el-carousel-item class="card-items sample-analyse">
+                        <div>
+                            <div class="card-item-title">
+                                <el-link type="primary" href="/sampleAnalysis"><h3>样本分析</h3></el-link>
+                            </div>
+                            <div class="card-item-msg">
+                                <p>样本分析流程为：选择保存完成样本 -> 选择报表列表 -> 生成报表  -> 预览导出。
+                                <br>注：样本分析可选报表列表大类为：现金流表、资产表现类、催收表现类、客户画像类。</p>
+                            </div>
+                            <div class="card-item-body">
+                                <el-table
+                                :data="tableDataSampleAnalyse"
+                                class="data-table"
+                                :header-cell-style="{background:'transparent',color:'white',hover:'none'}">
+                                    <el-table-column prop="sampleName" label="样本名称"></el-table-column>
+                                    <el-table-column prop="reportName" label="报表名称" width="270"></el-table-column>
+                                    <el-table-column prop="status" width="80" label="生成状态"></el-table-column>
+                                </el-table>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                    <el-carousel-item class="card-items analyse-report">
+                        <div>
+                            <div class="card-item-title">
+                                <el-link type="primary" href="/analysisReport"><h3>分析报告</h3></el-link>
+                            </div>
+                            <div class="card-item-msg">
+                                <p>分析报告流程为：选择样本 -> 选择报表列表 -> 生成报表  -> 预览导出。
+                                <br>注：分析报告部分报表生成依赖于样本分析报表，分析报告可选报表列表大类为：贷款基础数据分析、动态池分析、静态池分析、坏客户分析。</p>
+                            </div>
+                            <div class="card-item-body">
+                                <el-table
+                                :data="tableDataAnalyseReport"
+                                class="data-table"
+                                :header-cell-style="{background:'transparent',color:'white',hover:'none'}">
+                                    <el-table-column prop="sampleName" label="样本名称"></el-table-column>
+                                    <el-table-column prop="reportName" label="报表名称" width="270"></el-table-column>
+                                    <el-table-column prop="status" width="80" label="生成状态"></el-table-column>
+                                </el-table>
+                            </div>
+                        </div>
+                    </el-carousel-item>
+                </el-carousel>
+            </el-main>
+
+            <el-footer>
+                <div class="footer-wrap">
+                    <p>Copyright@Due Diligence Platform</p>
+                    <p>all rights reserved 2020-2030</p>
+                </div>
+            </el-footer>
+        </el-container>
+    </div>
+</template>
+<script>
+import Cookies from "js-cookie"
+export default {
+    data() {
+        return {
+            activeIndex: '0',
+            orgOptions: [],
+            orgSelectedCode: '',
+            accountInfo: '',
+
+            tableDataCollector: [{
+                colValue: '数据总量',
+                customer: 300,
+                contract: 300,
+                initRepayPlan: 1920,
+                realRepayPlan: 1920,
+                realRepayDeal: 1880
+            }, {
+                colValue: '基础校验通过',
+                customer: 300,
+                contract: 300,
+                initRepayPlan: 1920,
+                realRepayPlan: 1920,
+                realRepayDeal: 1880
+            }, {
+                colValue: '业务校验通过',
+                customer: 300,
+                contract: 300,
+                initRepayPlan: 1920,
+                realRepayPlan: 1920,
+                realRepayDeal: 1880
+            }, {
+                colValue: '真实性校验通过',
+                customer: 300,
+                contract: 300,
+                initRepayPlan: 1920,
+                realRepayPlan: 1920,
+                realRepayDeal: 1880
+            },{
+                colValue: '已入样本集数据',
+                customer: 300,
+                contract: 300,
+                initRepayPlan: 1920,
+                realRepayPlan: 1920,
+                realRepayDeal: 1880
+            },{
+                colValue: '时间范围',
+                initRepayPlan: '20200101',
+                realRepayPlan: '20210101'
+            }],
+            tableDataSampling: [{
+                forPeriod: '20200101',
+                sampleName: '我的样本抽样2020-Q-1',
+                sampleStatus: '抽样完成',
+                sampleCount: 500,
+                sampleMethod: '自然半年'
+            },{
+                forPeriod: '20200101',
+                sampleName: '我的样本抽样2020-Q-1',
+                sampleStatus: '抽样完成',
+                sampleCount: 500,
+                sampleMethod: '自然半年'
+            },{
+                forPeriod: '20200101',
+                sampleName: '我的样本抽样2020-Q-1',
+                sampleStatus: '抽样完成',
+                sampleCount: 500,
+                sampleMethod: '自然半年'
+            },{
+                forPeriod: '20200101',
+                sampleName: '我的样本抽样2020-Q-1',
+                sampleStatus: '抽样完成',
+                sampleCount: 500,
+                sampleMethod: '自然半年'
+            }],
+            tableDataSampleAnalyse: [{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            },{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            },{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            }],
+            tableDataAnalyseReport: [{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            },{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            },{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '已生成'
+            },{
+                sampleName: '2020-Q-001-1',
+                reportName: '回款率对比一览表',
+                status: '生成失败'
+            }]
+        }
+    },
+    components: {},
+    methods: {
+        searchByOrgan() {
+            console.log(this.orgSelectedCode);
+        },
+        changeOrganCode(value){
+            sessionStorage.setItem('organCode', value);
+        },
+        getOrganCombox() {
+            this.$api.OrganCombox({}).then(res => {
+                this.orgOptions = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        logout() {
+            this.$api.LoginOut({}).then(() => {
+                Cookies.remove("AuthToken");
+                Cookies.remove("ddpAccount");
+                sessionStorage.clear();
+                window.location.reload();
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        arraySpanMethod({ row, column, rowIndex, columnIndex }) {
+            if(rowIndex == 6){
+                if (columnIndex === 2) {
+                    return [2,3,4,5,6];
+                }
+            }
+        },
+    },
+    created: function () {
+        this.getOrganCombox();
+        this.accountInfo = Cookies.get('ddpAccount');
+        this.orgSelectedCode = sessionStorage.getItem('organCode');
+    }
+};
+</script>
+<style lang="scss" scoped>
+.page-home {
+    width: 100%;
+    background: -webkit-linear-gradient(
+        top,
+        #b50023,
+        #d27468,
+        #e2a296,
+        #f1d3c9,
+        #ffffff,
+        #ffffff,
+        #ffffff,
+        #f2f2f2
+    )
+    no-repeat;
+}
+.page-home .the-header-bg{
+    height:100px;
+    width: 100%;  
+}
+.page-home .the-header-bg .logo {
+    height:100px;
+    float: left;
+    width: 55%;
+}
+.page-home .the-header-bg .sjjdlogo {
+    height:70px;
+    margin-top: 30px;
+    width: 45%;
+}
+.page-home .the-header-bg .u61 {
+    background-size: cover;
+    background-position: center;
+    height:80px;
+    z-index:1;
+}
+.page-home .the-header-menu {
+    margin-top: -100px;
+    height:100px;
+    width: 100%;
+    z-index: 2;
+}
+.page-home .the-header-menu .menu-button {
+    float: left;
+    font-size: 1vw;
+    color: white;
+    margin-left: 10px;
+    margin-top: 35px;
+}
+.page-home .the-header-menu .menu-button:hover {
+    background-color: white;
+    color:#B50023;
+}
+.page-home .the-header-menu .account-button-dropdown {
+    margin-top: 10px;
+    margin-right: 10px;
+}
+.page-home .the-header-menu .account-button-dropdown .account-button {
+    background-color: #B50023;
+    margin-top: 15px;
+    color: white;
+    border: 0px;
+}
+.page-home .the-header-menu .account-button-dropdown .account-button:hover {
+    background-color: white;
+    color:#B50023;
+}
+.page-home .the-header-menu .account-button-dropdown .account-info {
+    display: inline-block;
+    font-size: 12px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-align: left;
+}
+.page-home .main-banner {
+    min-height: 800px;
+}
+.page-home .main-banner .card-items {
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: black;
+}
+.page-home .main-banner .card-items .card-item-title {
+    min-height: 60px;
+}
+.page-home .main-banner .card-items .card-item-title h3 {
+    font-size: 25px;
+    color: white;
+}
+.page-home .main-banner .card-items .card-item-msg {
+    max-width: 80%;
+    margin-left: 10%;
+    color:whitesmoke;
+    font-size: 16px;
+    min-height: 70px;
+    text-align: left;
+}
+.page-home .main-banner .card-items .card-item-body {
+    min-height: 540px;
+    border-top-width: 10px;
+    border-color: black;
+}
+.page-home .main-banner .card-items .card-item-body .data-table{
+    max-width: 80%;
+    margin-left: 10%;
+}
+.page-home .height-100 {
+    height: 100px;
+}
+.page-home .footer-wrap {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+.page-home .el-carousel__item {
+  background: -webkit-linear-gradient(
+    top,
+    #909399, 
+    #DCDFE6
+  )
+  no-repeat;
+}  
+.page-home .el-carousel__item--card.is-active{
+    background: -webkit-linear-gradient(
+      top,
+      #606266,
+      #DCDFE6
+    )
+    no-repeat;
+}
+</style>
+<style>
+.page-home .main-banner .card-items .el-table {
+    background-color: transparent;
+    color: white;
+}
+.page-home .main-banner .card-items .el-table tr {
+    background-color: transparent;
+    color: white;
+}
+.page-home .main-banner .card-items .el-table .el-table__row:hover {
+    background-color: white !important;
+    color: black !important;
+}
+.page-home .main-banner .card-items .el-table th:hover {
+    background-color: transparent;
+    color: white;
+}
+.page-home .el-link.el-link--default:after,
+.page-home .el-link.el-link--primary.is-underline:hover:after,
+.page-home .el-link.el-link--primary:after {
+    border-color: #ffffff;
+}
+</style>

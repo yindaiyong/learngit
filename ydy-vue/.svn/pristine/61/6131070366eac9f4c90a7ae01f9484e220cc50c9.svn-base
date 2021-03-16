@@ -1,0 +1,197 @@
+/**
+ * @author Mr.peng
+ * @description 该文件为接口请求方法的集成文件,以及请求的相关配置
+ */
+import axios from 'axios'
+import apiUrls from './api-urls.js'
+import { Loading } from 'element-ui';
+import Cookies from "js-cookie"
+import qs from 'qs';
+
+axios.defaults.headers.post['Content-Type'] = 'application/json' //请求头
+axios.defaults.headers.Accept = 'application/json' //请求头
+axios.defaults.baseURL = '/api'
+axios.defaults.withCredentials = true
+axios.defaults.timeout = 60000
+
+//loading效果,因为loading是单例，所以多次请求时，只有一个loading,只有都请求完成后，关闭loading,通过totalApis来判断多请求
+let totalApis = 0
+let load
+// 请求拦截器
+axios.interceptors.request.use(function (config) {
+    totalApis++
+    //加载框
+    if (totalApis > 0) {
+        //特殊处理，加载期次和批次下拉框的时候，不要加载loading
+        if(
+            !(config.url.indexOf(apiUrls.file.period) != -1
+            || config.url.indexOf(apiUrls.file.batch) != -1)
+        ){
+            load = Loading.service({ text: '请求中...' });
+        }
+    }
+
+    let token = Cookies.get('AuthToken')
+    if (token) {//后端获取的header头部字段是 Authorization
+        config.headers.Authorization = token
+    }
+
+    return config
+}, function (error) {
+    return Promise.reject(error)
+})
+// 响应拦截器
+// 目前http 200会走response, 不是200都是走的error
+// 所以异常提示情况，通过promise.reject到最外面的catch err里面弹出
+axios.interceptors.response.use(function (response) {
+    totalApis--
+    if (totalApis <= 0) {
+        load.close();
+    }
+
+    if (response.status === 200) {//http状态码200正常应答, 不管是get还是post,只要逻辑应答有code和msg字段，code不是200，就报错
+        if(Object.prototype.hasOwnProperty.call(response.data, "code")
+            && Object.prototype.hasOwnProperty.call(response.data, "msg")
+            && response.data.code != 200
+        ){
+            return Promise.reject(response.data.msg);
+        }
+    }
+
+    return response
+}, function (error) {
+    totalApis--
+    if (totalApis <= 0) {
+        load.close();
+    }
+
+    if (error.response && error.response.status === 401) {
+        Cookies.remove("AuthToken");
+        Cookies.remove("ddpAccount");
+        sessionStorage.clear();
+        window.location.href = "/login"; //没有使用router带redirect跳转，因为router 3.0.7以上版本会报错
+        return Promise.reject("登录过期，请重新登录")
+    }
+    return Promise.reject(error)
+})
+
+// 公共方法提取
+// axios.get或post 先走请求拦截器，然后是响应拦截器，拦截器不能阻塞。
+// 然后根据响应拦截器的return确认走下面方法的then或者catch,最后到外部的then或者catch
+const returnValue = (url, params, type) => {
+    return new Promise((resolve, reject) => {
+        if (type === 'get') {
+            let reqUrl = url;
+            if (Object.keys(params).length != 0) {
+                reqUrl = url + '?' + qs.stringify(params);
+            }
+            axios.get(reqUrl)
+                .then((res) => {
+                    resolve(res)
+                })
+                .catch((err) => {
+                    reject(err)
+                })
+        } else {
+            axios.post(url, params)
+                .then((res) => {
+                    resolve(res)
+                })
+                .catch((err) => {
+                    reject(err)
+                })
+        }
+    })
+}
+
+export default {
+    // 登录接口
+    Login: (params) => { return returnValue(apiUrls.login.login, params) },
+    LoginOut: (params) => { return returnValue(apiUrls.login.loginOut, params, 'get') },
+
+    // 机构接口
+    OrganCombox: (params) => { return returnValue(apiUrls.organ.combox, params, 'get') },//头部获取机构下拉数据 GET
+    OrganQuery: (params) => { return returnValue(apiUrls.organ.query, params, 'get') }, //机构列表数据 GET
+    OrganUpStatus: (params) => { return returnValue(apiUrls.organ.upStatus, params) }, //机构单项数据启停更新 POST
+    OrganAdd: (params) => { return returnValue(apiUrls.organ.add, params) }, //新增机构 POST
+    OrganUpdate: (params) => { return returnValue(apiUrls.organ.update, params) }, //修改机构 POST
+    OrganDel: (params) => { return returnValue(apiUrls.organ.delete, params) }, //机构单项数据清空 POST
+
+    //用户接口
+    UserQuery: (params) => { return returnValue(apiUrls.user.query, params, 'get') }, //用户列表数据 GET
+    UserUpStatus: (params) => { return returnValue(apiUrls.user.upStatus, params) }, //用户单项数据启停更新 POST
+    UserUpPassword: (params) => { return returnValue(apiUrls.user.upPassword, params) }, //修改密码 POST
+    UserAdd: (params) => { return returnValue(apiUrls.user.add, params) }, //新增用户 POST
+    UserUpdate: (params) => { return returnValue(apiUrls.user.update, params) }, //更新用户 POST
+    UserDel: (params) => { return returnValue(apiUrls.user.delete, params) }, //用户单项数据清空 POST
+
+    //角色接口
+    RoleComboBox: (params) => { return returnValue(apiUrls.role.combox, params, 'get') },
+    RoleQuery: (params) => { return returnValue(apiUrls.role.query, params, 'get') },
+    RoleUpStatus: (params) => { return returnValue(apiUrls.role.upStatus, params) },
+    RoleAdd: (params) => { return returnValue(apiUrls.role.add, params) },
+    RoleDel: (params) => { return returnValue(apiUrls.role.delete, params) },
+
+    //权限接口
+    //-报表
+    AuthReportQuery: (params) => { return returnValue(apiUrls.auth.query, params, 'get') }, //权限报表列表数据 GET
+    AuthReportUpStatus: (params) => { return returnValue(apiUrls.auth.upStatus, params) }, //权限报表单项数据启停更新 POST
+    AuthReportDel: (params) => { return returnValue(apiUrls.auth.delete, params) }, //权限报表单项数据清空 POST
+    AuthReportAddForRole: (params) => { return returnValue(apiUrls.auth.addReportRole, params) }, //权限报表单项数据清空 POST
+    //-角色
+    RolePowerQuery: (params) => { return returnValue(apiUrls.power.query, params, 'get') },
+    RolePowerUpdate: (params) => { return returnValue(apiUrls.power.update, params) },
+
+    //类别
+    CategoryClassCombox: (params) => { return returnValue(apiUrls.category.comboxClass, params, 'get') }, //大类数据 GET
+    CategoryFormCombox: (params) => { return returnValue(apiUrls.category.comboxForm, params, 'get') }, //大类数据 GET
+
+    //我的
+    //-报表
+    MyReportClassTypeComboBox: (params) => { return returnValue(apiUrls.my.report.combox, params, 'get') }, //自定义大类下拉列表数据 GET
+    MyReportQuery: (params) => { return returnValue(apiUrls.my.report.query, params, 'get') }, //我的报表列表数据 GET
+    MyReportUpStatus: (params) => { return returnValue(apiUrls.my.report.upStatus, params) }, //我的报表单项数据启停更新 POST
+    MyReportDel: (params) => { return returnValue(apiUrls.my.report.delete, params) }, //我的报表单项数据清空 POST
+    MyReportAddClass: (params) => { return returnValue(apiUrls.my.report.addClass, params) }, //我的报表添加自定义大类 POST
+    MyReportDelClass: (params) => { return returnValue(apiUrls.my.report.deleteClass, params) }, //我的报表自定义大类删除 POST
+    MyReportClassQuery: (params) => { return returnValue(apiUrls.my.report.queryUserClass, params, 'get') }, //我的报表大类列表数据 GET
+    MyReportClassComboBox: (params) => { return returnValue(apiUrls.my.report.comboxUserClass, params, 'get') }, //自定义大类下拉列表数据 GET
+    MyReportFormComboBox: (params) => { return returnValue(apiUrls.my.report.comboxUserForm, params, 'get') }, //用户可分配小类列表数据 GET
+    MyReportAddForm: (params) => { return returnValue(apiUrls.my.report.addForm, params) }, //我的报表添加小类 POST
+
+    //字典接口
+    DictTypeAdd : (params) => {return returnValue(apiUrls.dict.addType, params)}, //新增字典配置类型
+    DictTypeComboBox : (params) => { return returnValue(apiUrls.dict.comboxDictType, params, 'get') }, //字典类型下拉
+    DictAdd : (params) => {return returnValue(apiUrls.dict.add, params)}, //新增字典配置
+    DictQuery :(params) => { return returnValue(apiUrls.dict.query, params, 'get') }, //字典类型下拉
+    DeleteType :(params) => {return returnValue(apiUrls.dict.deleteType, params)}, //删除字典类型
+    Delete:(params) => {return returnValue(apiUrls.dict.delete, params)}, //删除字典配置
+    //字段规则配置
+    FileTypesComboBox :(params) =>{return returnValue(apiUrls.dict.comboxFileType, params, 'get') },//查询文件类型下拉
+    IsNullsComboBox :(params) =>{return returnValue(apiUrls.dict.comboxIsNulls, params, 'get') },//查询是否可为空下拉
+    ColumnsQuery : (params) => {return returnValue(apiUrls.dict.columnsQuery, params,'get')}, //查询校验字段规则配置
+    ColumnsFormatAdd : (params) => {return returnValue(apiUrls.dict.columnsAdd, params)}, //字段规则配置新增
+    ColumnsFormatUpdate : (params) => {return returnValue(apiUrls.dict.columnsUpdate, params)}, //字段规则配置修改
+    //文件相关接口
+    CheckFileName:(params) => {return returnValue(apiUrls.file.checkName, params,'get')}, //校验文件名是否合法接口
+    uploadFileRecordQuery:(params) => {return returnValue(apiUrls.file.uploadRecord, params,'get')}, //查询上传结果接口
+    PeriodComboBox : (params) => {return returnValue(apiUrls.file.period, params,'get')}, //期次下拉
+    BatchComboBox : (params) => {return returnValue(apiUrls.file.batch, params,'get')}, //批次下拉
+    RedoBaseCheck : (params) => {return returnValue(apiUrls.file.redoBaseCheck, params)}, //重做基础校验
+    DeleteUploadFile : (params) => {return returnValue(apiUrls.file.deleteUploadFile, params)}, //删除文件上传
+
+    CheckLogQuery : (params) => {return returnValue(apiUrls.file.checkLogQuery, params,'get')}, //校验日志查询
+    CheckLogDetailQuery : (params) => {return returnValue(apiUrls.file.checkLogDetailQuery, params,'get')}, //校验日志详情查询
+    BusinessCheckQuery : (params) => {return returnValue(apiUrls.file.businessCheckQuery, params,'get')}, //查询待业务校验数据
+    BusinessCheck : (params) => {return returnValue(apiUrls.file.businessCheck, params)}, //进行业务校验
+    TruthCheckQuery : (params) => {return returnValue(apiUrls.file.truthCheckQuery, params,'get')}, //查询待真实性校验数据列表
+    TruthCheckQueryDetail : (params) => {return returnValue(apiUrls.file.truthCheckQueryDetail, params,'get')}, //查询某一期次的待真实性校验
+    TruthCheckSuccess : (params) => {return returnValue(apiUrls.file.truthCheckSuccess, params)}, //真实性校验一键通过
+    TruthCheckFailure : (params) => {return returnValue(apiUrls.file.truthCheckFailure, params)}, //真实性校验不通过
+    AddTruthLog : (params) => {return returnValue(apiUrls.file.addTruthLog, params)}, //添加真实性校验日志
+
+    StatisticsBeforeSample : (params) => {return returnValue(apiUrls.file.statisticsBeforeSample, params,'get')}, //统计查询
+    RepetitiveRate : (params) => {return returnValue(apiUrls.file.repetitiveRate, params,'get')}, //查询重复率
+    //样本
+    SampleReportTask : (params) => {return returnValue(apiUrls.sample.report.query, params,'get')}, //查询样本分析可选报表和已创建任务
+}

@@ -1,0 +1,66 @@
+<template>
+  <div class="page-data-import">
+    <layout-page-default :focusPageIndex=1>
+      <el-tabs>
+        <el-tab-pane label="数据导入"><upload-file></upload-file></el-tab-pane>
+        <el-tab-pane label="数据业务校验"><business-check></business-check></el-tab-pane>
+        <el-tab-pane label="数据真实性校验"><truth-check></truth-check></el-tab-pane>
+        <el-tab-pane label="日志导出"><check-log></check-log></el-tab-pane>
+        <el-tab-pane label="数据统计"><data-statistics></data-statistics></el-tab-pane>
+      </el-tabs>
+    </layout-page-default>
+  </div>
+</template>
+
+<script>
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+import uploadFile from "views/file/uploadFile.vue";
+import businessCheck from "views/check/business.vue";
+import truthCheck from "views/check/truth.vue";
+import checkLog from "views/check/log.vue";
+import dataStatistics from "views/check/dataStatistics.vue";
+export default {
+  components: {
+    LayoutPageDefault,
+    uploadFile,
+    businessCheck,
+    truthCheck,
+    checkLog,
+    dataStatistics
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.el-tabs {
+  margin: 0px 10px 0px 10px;
+}
+</style>
+
+<style lang="scss">
+.page-data-import .el-tabs__nav {
+  width: 100%;
+  background-color: white;
+  text-align: left;
+}
+.page-data-import .el-tabs__active-bar {
+  display: none;
+}
+.page-data-import .el-tabs__item {
+  font-size: 22px;
+  font-weight: bold;
+  width: 200px;
+  height: 40px;
+  vertical-align: middle;
+  text-align: center !important; 
+  color: #909399;
+}
+.page-data-import .el-tabs__item:hover{
+  font-size: 24px;
+  color: #d27468;
+}
+.page-data-import .el-tabs__item.is-active{
+  font-size: 24px;
+  color: #303133;
+}
+</style>

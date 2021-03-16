@@ -1,0 +1,82 @@
+<template>
+    <layout-page-list title="修改密码">
+        <div class="page-reset-password">
+            <el-form :model="resetPasswordForm" status-icon :rules="resetRules" ref="resetPasswordForm" label-width="100px">
+                <el-form-item label="原密码" prop="oldPassword">
+                    <el-input v-model="resetPasswordForm.oldPassword" placeholder="请输入原密码" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="新密码" prop="newPassword">
+                    <el-input type="password" v-model="resetPasswordForm.newPassword" placeholder="请输入新密码" autocomplete="off" show-password></el-input>
+                </el-form-item>
+                <el-form-item label="确认新密码" prop="newPasswordConfirm">
+                    <el-input type="password" v-model="resetPasswordForm.newPasswordConfirm" placeholder="请再次输入新密码" autocomplete="off" show-password @keyup.enter.native="submitForm('resetPasswordForm')"></el-input>
+                </el-form-item>
+            </el-form>
+            <el-button class="reset-button" type="primary" @click="submitResetForm('resetPasswordForm')">修改密码</el-button>
+        </div>
+    </layout-page-list>
+</template>
+
+<script>
+import Cookies from "js-cookie"
+import LayoutPageList from "layout/LayoutPageList.vue";
+export default {
+    components: {
+        LayoutPageList
+    },
+    data() {
+        return {
+            resetPasswordForm: {
+                oldPassword: "",
+                newPassword: "",
+                newPasswordConfirm: ""
+            },
+            resetRules: {
+                oldPassword: [
+                    { required: true, message: '请输入原密码', trigger: 'blur' }
+                ],
+                newPassword: [
+                    { required: true, message: '请输入新密码', trigger: 'blur' }
+                ],
+                newPasswordConfirm: [
+                    { required: true, message: '请再次输入新密码', trigger: 'blur' }
+                ],
+            }
+        }
+    },
+    methods: {
+        submitResetForm(formName) {
+            this.$refs[formName].validate(valid => {
+                if (valid) {
+                    this.$api.UserUpPassword(this.resetPasswordForm).then(() => {
+                        Cookies.remove("AuthToken");
+                        Cookies.remove("ddpAccount");
+                        window.location.href = "/login";
+                    }).catch(err => {
+                        this.$commsgbox.alert(err);
+                    });
+                } else {
+                    console.log("error submit!!");
+                    return false;
+                }
+            });
+        }
+    },
+    created() {
+
+    }
+}
+</script>
+
+<!-- scoped对原始标签限制作用域在当前页面，对于外部引用的元素插件无效 -->
+<style lang="scss" scoped>
+.page-reset-password {
+  margin:0 auto;
+  margin-top: 100px;
+  width: 500px;
+}
+.reset-button {
+  min-width: 112px; 
+  margin: 50px;
+}
+</style>

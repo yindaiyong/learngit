@@ -1,0 +1,347 @@
+<template>
+    <layout-page-list title="字典配置页面">
+        <div class="options">
+            <el-button type="primary" size="mini" icon = "el-icon-circle-plus" @click="addDictTypeFormVisible = true">新增字典分类</el-button>
+            <el-button type="primary" size="mini" icon = "el-icon-circle-plus" @click="addDictFormVisible = true">新增字典配置</el-button>
+            <el-button size="mini" type="primary" icon ="el-icon-refresh" @click="dictRefresh()">刷新</el-button>
+            <el-link style ="float: right" type="primary" href="/columnsFormat" >进入校验字段规则配置页面</el-link>
+        </div>
+
+        <el-dialog title="新增字典类型" :visible.sync="addDictTypeFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-form :model="addDictTypeForm" :rules="addDictTypeFormRules" ref="addDictTypeForm">
+                <el-form-item label="字典分类参数" :label-width="addDictTypeFormLabelWidth" prop="typeCode">
+                    <el-input v-model="addDictTypeForm.typeCode" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="字典分类名称" :label-width="addDictTypeFormLabelWidth" prop="typeName">
+                    <el-input v-model="addDictTypeForm.typeName" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="resetAddDictTypeForm('addDictTypeForm')">重 置</el-button>
+                <el-button type="primary" size="small" icon="el-icon-circle-check" @click="submitAddDictTypeForm('addDictTypeForm')">立即新增</el-button>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="新增字典" :visible.sync="addDictFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-form :model="addDictForm" :rules="addDictFormRules" ref="addDictForm">
+                <el-form-item label="字典分类" :label-width="addDictFormLabelWidth" prop="typeCode">
+                    <el-select v-model="addDictForm.typeCode" placeholder="请选择字典分类" style="display:block;">
+                        <el-option
+                                v-for="item in typeCodes"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="字典参数" :label-width="addDictFormLabelWidth" prop="dictCode">
+                    <el-input v-model="addDictForm.dictCode" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="字典值" :label-width="addDictFormLabelWidth" prop="dictValue">
+                    <el-input v-model="addDictForm.dictValue" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="备注" :label-width="addDictFormLabelWidth" prop="remarks">
+                    <el-input type="textarea" v-model="addDictForm.remarks" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="resetAddDictForm('addDictForm')">重 置</el-button>
+                <el-button type="primary" size="small" icon="el-icon-circle-check" @click="submitAddDictForm('addDictForm')">立即新增</el-button>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="修改字典" :visible.sync="updateDictFormVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-form :model="updateDictForm" :rules="updateDictFormRules" ref="updateDictForm">
+                <el-form-item label="字典分类" :label-width="updateDictFormLabelWidth" prop="typeCode">
+                    <el-select v-model="updateDictForm.typeCode" clearable  placeholder="请选择字典分类" style="display:block;">
+                        <el-option
+                                v-for="item in upTypeCodes"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                        ></el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="字典参数" :label-width="updateDictFormLabelWidth" prop="dictCode">
+                    <el-input v-model="updateDictForm.dictCode" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="字典值" :label-width="updateDictFormLabelWidth" prop="dictValue">
+                    <el-input v-model="updateDictForm.dictValue" autocomplete="off"></el-input>
+                </el-form-item>
+                <el-form-item label="备注" :label-width="updateDictFormLabelWidth" prop="remarks">
+                    <el-input type="textarea" v-model="updateDictForm.remarks" autocomplete="off"></el-input>
+                </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer">
+                <el-button type="primary" size="small" icon="el-icon-refresh-left" @click="resetUpdateDictForm('updateDictForm')">重 置</el-button>
+                <el-button type="primary" size="small" icon="el-icon-circle-check" @click="submitUpdateDictForm('updateDictForm')">立即修改</el-button>
+            </div>
+        </el-dialog>
+
+
+        <el-table
+                :data="tableData"
+                style="width: 100%;"
+                height="520"
+                size="mini"
+                row-key="uid"
+                border
+                :tree-props="{children: 'children', hasChildren: 'hasChildren'}">
+            <el-table-column show-overflow-tooltip prop="typeName" align="center" width = "160" label="分类类型"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="typeCode" align="center" width = "180" label="分类参数"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="dictCode" align="center" width = "140" label="字典参数"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="dictValue" align="center" width = "140" label="字典值"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="remarks" align="center" width = "150" label="备注"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="createUser" align="center" width = "100" label="创建人"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="updateUser" align="center" width = "120"  label="修改人"></el-table-column>
+            <el-table-column show-overflow-tooltip prop="updateTime" align="center" label="修改时间">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.updateTime) }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" label="操作" width="200">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="primary" class="el-icon-edit" v-if="scope.row.dictCode != null" @click="showUpdateDictForm(scope.$index, scope.row)">修改</el-button>
+                    <el-button size="mini" type="primary" class="el-icon-delete" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+        <el-pagination
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            :page-sizes="[10, 20, 30, 50]"
+            :total="tableTotal"
+            :page-size="tablePageSize"
+            :current-page="tableCurrentPage"
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </layout-page-list>
+</template>
+
+<script>
+    import LayoutPageList from "layout/LayoutPageList.vue";
+
+    export default {
+        components: {
+            LayoutPageList
+        },
+        data() {
+            return {
+                //dict table lists
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+
+                //add dictType form
+                addDictTypeFormVisible: false,
+                addDictTypeForm: {
+                    typeCode: '',
+                    typeName: '',
+                },
+                addDictTypeFormLabelWidth: '120px',
+                addDictTypeFormRules: {
+                    typeCode: [
+                        {required: true, message: '请输入字典分类参数', trigger: 'blur'},
+                        {min: 1, max: 32, message: '长度在 1 到 32 个字符', trigger: 'blur'}
+                    ],
+                    typeName: [
+                        {required: true, message: '请输入字典分类名称', trigger: 'blur'}
+                    ]
+                },
+                //add dict
+                addDictFormVisible: false,
+                typeCodes: [],
+                addDictForm: {
+                    typeCode: '',
+                    dictCode: '',
+                    dictValue: '',
+                    remarks: '',
+                },
+                addDictFormLabelWidth: '120px',
+                addDictFormRules: {
+                    dictCode: [{required: true, message: '请输入字典参数', trigger: 'blur'},
+                        {min: 1, max: 255, message: '长度在 1 到 255 个字符', trigger: 'blur'}],
+                    dictValue: [{required: true, message: '请输入字典值', trigger: 'blur'},
+                        {min: 1, max: 255, message: '长度在 1 到 255 个字符', trigger: 'blur'}],
+                },
+
+                //update dict
+                updateDictFormVisible: false,
+                updateDictForm: {
+                    id:0,
+                    typeCode: '',
+                    dictCode: '',
+                    dictValue: '',
+                    remarks: '',
+                },
+                upTypeCodes:[],
+                updateDictFormLabelWidth: '120px',
+                updateDictFormRules: {
+                    dictCode: [{required: true, message: '请输入字典参数', trigger: 'blur'},
+                        {min: 1, max: 255, message: '长度在 1 到 255 个字符', trigger: 'blur'}],
+                    dictValue: [{required: true, message: '请输入字典值', trigger: 'blur'},
+                        {min: 1, max: 255, message: '长度在 1 到 255 个字符', trigger: 'blur'}],
+                },
+
+            }
+        },
+        methods: {
+            //lists
+            getDictLists() {
+                let req = {
+                    nowpage: this.tableCurrentPage,
+                    pagesize: this.tablePageSize,
+                    sort : 'id',
+                    order: 'desc'
+                };
+                this.$api.DictQuery(req).then(res => {
+                    this.tableTotal = res.data.total;
+                    this.tableData = res.data.rows;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            handleCurrentChange(val) {
+                this.tableCurrentPage = val;
+                this.getDictLists();
+            },
+            handleSizeChange(val) {
+                this.tablePageSize = val;
+                this.getDictLists();
+            },
+
+            //展示修改页面
+            showUpdateDictForm(index,row){
+                this.updateDictForm = this.$comfunc.assignNeed(row, this.updateDictForm);
+                this.updateDictFormVisible = true;
+            },
+
+            handleDelete(index, row) {
+                this.$commsgbox.confirm('此操作将删除该数据, 是否继续?').then(() => {
+                    let dictCode = row.dictCode;
+                    if(dictCode == null ){
+                        //删除字典类型
+                        let req = {"typeCode": row.typeCode};
+                        this.$api.DeleteType(req).then(() => {
+                            this.getDictLists();
+                            this.getDictTypeComboBox();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }else{
+                        //删除字典
+                        let req = {"typeCode": row.typeCode,"dictCode": row.dictCode};
+                        this.$api.Delete(req).then(() => {
+                            this.getDictLists();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+
+
+                }).catch(() => {
+
+                });
+            },
+
+            //add dictType
+            submitAddDictTypeForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$api.DictTypeAdd(this.addDictTypeForm).then(() => {
+                            this.addDictTypeFormVisible = false;
+                            this.$refs[formName].resetFields();
+                            this.getDictLists();
+                            this.getDictTypeComboBox();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+
+            //add dict
+            submitAddDictForm(formName) {
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$api.DictAdd(this.addDictForm).then(() => {
+                            this.addDictFormVisible = false;
+                            this.$refs[formName].resetFields();
+                            this.getDictLists();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+            //update submit
+            submitUpdateDictForm(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$api.DictUpdate(this.updateDictForm).then(() => {
+                            this.updateDictFormVisible = false;
+                            this.$refs[formName].resetFields();
+                            this.getDictLists();
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    } else {
+                        return false;
+                    }
+                });
+            },
+
+            resetAddDictTypeForm(formName) {
+                this.$refs[formName].resetFields();
+            },
+            resetAddDictForm(formName) {
+                this.$refs[formName].resetFields();
+            },
+            resetUpdateDictForm(formName) {
+                this.$refs[formName].resetFields();
+            },
+            //刷新
+            dictRefresh(){
+                this.getDictLists();
+            },
+            getDictTypeComboBox(){
+                this.$api.DictTypeComboBox({}).then(res => {
+                    this.typeCodes = res.data;
+                    this.upTypeCodes = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            //日期转换
+            timeFormat: function(timeVal){
+                return this.$comfunc.timeFormat(timeVal);
+            },
+        },
+        created() {
+            this.getDictLists();
+        },
+        mounted() {
+            this.getDictTypeComboBox();
+        },
+
+    }
+</script>
+
+<style scoped>
+    .options {
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .el-table {
+        padding: 5px 20px;
+    }
+</style>

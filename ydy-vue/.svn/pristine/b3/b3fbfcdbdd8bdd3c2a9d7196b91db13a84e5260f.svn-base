@@ -1,0 +1,267 @@
+<template>
+  <div style="width:100%; height:100px;">
+    <div class="the-header">
+    <el-row :gutter="0" class="orgin-form-row" type="flex" justify="center" align="middle">
+      <el-col :span="6" class="the-back">
+        <div>
+          <img class="logo" src="../assets/images/logo.png" />
+          <img class="sjjdlogo" src="../assets/images/sjjdlogo.png" />
+          <div style="clear: both;"></div>
+        </div>
+      </el-col>
+      <el-col :span="4" class="the-back">
+        <div>
+        </div>
+      </el-col>
+      <el-col :span="12" class="the-back2">
+        <div class="grid-content bg-bottomMaterial">
+          <img class="u61" src="../assets/images/u61.png"/>
+        </div>
+        <div>
+        </div>
+      </el-col>
+      <el-col :span="2" class="the-back">
+        <div>
+        </div>
+      </el-col>
+    </el-row>
+  </div>
+  <div class="the-menu">
+    <el-row :gutter="0" class="orgin-form-row" type="flex" justify="center">
+      <el-col :span="6">
+        <div class="empty-div-100"></div>
+      </el-col>
+      <el-col :span="18">
+        <el-row :gutter="0" >
+          <el-col :span="6" style=" padding-top:25px;">
+          <el-select  style="margin-right:20px; width: 60%;" size="small" v-model="orgSelectedCode" placeholder="请选择机构" @change="changeOrganCode">
+              <el-option
+              v-for="item in orgOptions"
+              :key="item.id"
+              :label="item.name"
+              :value="item.id"
+              ></el-option>
+          </el-select>
+
+          <el-button class="Transparent-button" style="margin-right:20px;" type="normal" size="small" @click="searchByOrgan">查询</el-button>
+        </el-col>
+        <el-col :span="8"><div>
+          <el-link href="/" :underline="false" class="menu-button">首页</el-link>
+          <el-link href="/" :underline="false" class="menu-button">样本集明细</el-link>
+          <el-link href="/" :underline="false" class="menu-button">数据离线校验</el-link>
+          <el-link href="/organ" :underline="false" class="menu-button">合作机构管理</el-link>
+          <div style="clear: both;"></div>
+          </div></el-col>
+
+      <el-col :span="8">
+        <div class="empty-div-50"></div>
+      </el-col>
+      <el-col :span="1" >
+          <div style="text-align: right;">
+              <el-dropdown class="my-self-button">
+                  <el-button class="Transparent-button my-self-btn" type="normal" size="small"> <!-- icon="el-icon-user-solid" -->
+                    <p :title="accountInfo" class="account">{{accountInfo}}</p>
+                    <i class="el-icon-arrow-down el-icon--right"></i>
+                  </el-button>
+                  <el-menu :default-active="activeIndex"
+                          :router="true"
+                          class="el-menu-demo"
+                          mode="horizontal"
+                          background-color="#545c64"
+                          text-color="#fff"
+                          active-text-color="#ffd04b">
+                  </el-menu>
+                  <el-dropdown-menu :default-active="$route.path"
+                          :router="true"
+                          class="el-menu-demo"
+                          mode="horizontal">
+                    <el-dropdown-item><el-link href="/user" :underline="false" icon="el-icon-s-custom">用户管理</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/authRole" :underline="false" icon="el-icon-s-check">角色权限</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/authReport" :underline="false" icon="el-icon-s-data">报表权限</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/myReport" :underline="false" icon="el-icon-s-grid">我的报表</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/dict" :underline="false" icon = "el-icon-s-tools">字典配置</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link href="/resetpassword" :underline="false" icon="el-icon-s-claim">修改密码</el-link></el-dropdown-item>
+                    <el-dropdown-item><el-link :underline="false" icon="el-icon-switch-button" @click="logout">退出登陆</el-link></el-dropdown-item>
+                  </el-dropdown-menu>
+              </el-dropdown>
+          </div>
+        </el-col>
+      <el-col :span="1">
+        <div class="empty-div-50">
+
+        </div>
+      </el-col>
+      </el-row>
+      <el-row :gutter="0" type="flex" justify="center">
+        <el-col :span="24"><div>
+          <el-button class="main-button" round>圆角按钮</el-button>
+          <el-button class="main-button" round>圆角按钮</el-button>
+          <el-button class="main-button" round>圆角按钮</el-button>
+          <el-button class="main-button" round>圆角按钮</el-button>
+                </div></el-col>
+      </el-row>
+          
+      </el-col>
+    </el-row>
+  </div>
+  </div>
+</template>
+<script>
+import Cookies from "js-cookie"
+export default {
+  data() {
+    return {
+      activeIndex: '0',
+      orgOptions: [],
+      orgSelectedCode: '',
+      accountInfo: ''
+    };
+  },
+  methods: {
+    searchByOrgan() {
+      console.log(this.orgSelectedCode);
+    },
+    //机构下拉切换,给全局变量organCode赋值
+    changeOrganCode(value){
+      console.log(sessionStorage.getItem('organCode'));
+      sessionStorage.setItem('organCode', value);
+    },
+    getOrganCombox() {
+      this.$api.OrganCombox({}).then(res => {
+        this.orgOptions = res.data;
+      }).catch(err => {
+        this.$commsgbox.alert(err);
+      });
+    },
+    logout() {
+      this.$api.LoginOut({}).then(() => {
+          Cookies.remove("AuthToken");
+          Cookies.remove("ddpAccount");
+          sessionStorage.clear();
+          window.location.reload();
+      }).catch(err => {
+          this.$commsgbox.alert(err);
+      });
+    }
+    
+  },
+  created: function () {
+    this.getOrganCombox();
+    var ddpAccount = Cookies.get('ddpAccount');
+    if(ddpAccount.length > 6){
+      this.accountInfo = ddpAccount.slice(0,3) + "...";
+     }else{
+      this.accountInfo = ddpAccount;
+    }
+    this.orgSelectedCode = sessionStorage.getItem('organCode');
+  }
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+/* header为图层-1，不可进行点击操作，按钮操作放在z-index = 1上 */
+.the-header {
+  height:100px;
+  width: 100%;
+  z-index: -1;
+  /* background: -webkit-linear-gradient(top,#B50023,#D27468,#D27468) no-repeat; */
+}
+.the-menu {
+  margin-top: -100px;
+  height:100px;
+  width: 100%;
+  z-index: 2;
+  /* background: -webkit-linear-gradient(top,#B50023,#D27468,#D27468) no-repeat; */
+}
+.empty-div-100 {
+  width: 100%;
+  height: 100px;
+}
+.empty-div-50 {
+  width: 100%;
+  height: 50px;
+}
+.the-back {
+  height:100px;
+  background: -webkit-linear-gradient(top,#B50023,#D27468,#D27468) no-repeat;
+}
+.the-back2 {
+  height:100px;
+  background: -webkit-linear-gradient(top,#B50023,#D27468,#D27468) no-repeat;
+}
+.orgin-form-row {
+  height:100px;
+  width: 100%;
+}
+.logo {
+  height:100px;
+  float: left;
+  width: 55%;
+}
+.sjjdlogo {
+  height:70px;
+  margin-top: 30px;
+  width: 45%;
+}
+.u61 {
+  background-size: cover;
+    background-position: center;
+  height:70px;
+  z-index:1;
+}
+
+.menu-button {
+  float: left;
+  font-size: 1vw;
+  color: white;
+  margin-left: 10px;
+  margin-top: 30px;
+}
+
+.main-button {
+  background: #D27468;
+  color: white;
+  font-size: 18px;
+  width: 20%;
+  height: 38px;
+  border: 2px solid white;
+  text-align: center;
+  line-height: 14px;
+  margin-top: 5px;
+}
+
+.main-button:hover {
+  background-color: white;
+  color:  #D27468;
+}
+
+.my-self-btn {
+  background-color: #B50023;
+  margin-top: 15px;
+  color: white;
+  border: 0px;
+}
+
+.my-self-btn:hover {
+  background-color: white;
+  color:#B50023;
+}
+.account {
+  /* width: 50px; */
+  display: inline-block;
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-align: left;
+}
+.my-self-button {
+  margin-top: 10px;
+  margin-right: 10px;
+  /* float: right; */
+}
+
+
+</style>

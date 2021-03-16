@@ -1,0 +1,372 @@
+<template>
+    <div style="width:100%">
+        <el-dialog title="校验日志详情" :visible.sync="checkLogDetailFormVisible" :close-on-click-modal="false" :append-to-body="true" width="80%">
+            <div style = "height:100px;width:100%">
+                <el-form size="mini" :model="logDetailForm" :rules="logDetailFormRules" ref= "logDetailForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="logDetailForm.periodCode" style="width:110px;" clearable @change="changeDetailPeriod()">
+                            <el-option
+                                v-for="item in periodDetails"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchCode">
+                        <el-select v-model="logDetailForm.batchCode" style="width:110px;" clearable >
+                            <el-option
+                                v-for="item in batchDetails"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="校验状态" prop="checkStatus">
+                        <el-select v-model="logDetailForm.checkStatus" clearable></el-select>
+                    </el-form-item>
+                    <el-form-item label="贷款期数" prop="contractTotalMonth">
+                        <el-input v-model="logDetailForm.contractTotalMonth" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="合同号" prop="contractCode">
+                        <el-input v-model="logDetailForm.contractCode" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item label="贷款状态" prop="contractStatus">
+                        <el-input v-model="logDetailForm.contractStatus" clearable></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="logDetailCheckQuery('logDetailForm')">查询</el-button>
+                        <el-button type="primary" icon="el-icon-download" size="mini" @click="logDetailExport('logDetailForm')">导出</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450">
+                <el-table-column type="selection"  width="55"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="contractCode" label="合同号"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkProcess" label="校验阶段"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkStatus" label="校验状态"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="customerName" label="客户姓名" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="contractTotalMonth" label="贷款期限" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="contractProvince" label="贷款地区" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="contractStatus" label="还款状态" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="contractAmount" label="合同金额" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="updateUser" label="操作人" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="updateTime" label="操作时间" width="150"></el-table-column>
+            </el-table>
+            <el-pagination
+                    background
+                    layout="total, sizes, prev, pager, next, jumper"
+                    align="center"
+                    :page-sizes="[10, 20, 30, 50]"
+                    :total="tableTotal"
+                    :page-size="tablePageSize"
+                    :current-page="tableCurrentPage"
+                    @current-change="handleCurrentChange"
+                    @size-change="handleSizeChange"
+            >
+            </el-pagination>
+        </el-dialog>
+
+        <div class="search-wrap">
+            <el-form size="mini" :model="logForm" :rules="logFormRules" ref= "logForm" :inline="true">
+                <el-form-item label="期次" prop="periodCode">
+                    <el-select  v-model="logForm.periodCode" style="width:110px;" clearable @change="changePeriod()" @focus="focusPeriod()">
+                        <el-option
+                            v-for="item in periods"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="批次" prop="batchCode">
+                    <el-select v-model="logForm.batchCode" style="width:110px;" clearable >
+                        <el-option
+                            v-for="item in batchs"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="上传日期">
+                    <el-date-picker v-model="logForm.uploadStartTime" type="date" placeholder="开始日期"
+                                    style="width:130px;" clearable ></el-date-picker>
+                    ~
+                    <el-date-picker v-model="logForm.uploadEndTime" type="date" placeholder="结束日期"
+                                    style="width:130px;" clearable ></el-date-picker>
+                </el-form-item>
+                <el-form-item label="文件名">
+                    <el-input v-model="logForm.fileName" placeholder=""></el-input>
+                </el-form-item>
+                <el-form-item label="阶段" prop="checkProcess">
+                    <el-select v-model="logForm.checkProcess" style="width:110px;" clearable >
+                                <el-option
+                                v-for="item in processes"
+                                :key="item.ID"
+                                :label="item.NAME"
+                                :value="item.ID">
+                            </el-option>
+                    </el-select>
+                </el-form-item>
+            </el-form>
+            <div class="search-options">
+                <el-button type="primary" icon="el-icon-search" size="mini" @click="logCheckQuery('logForm')">查询</el-button>
+                <el-button type="primary" icon="el-icon-download" size="mini" @click="logExport('logForm')">导出</el-button>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <el-table :data="tableData" @selection-change="handleSelectionChange" border size="mini" height="450" class="table-list">
+                <el-table-column type="selection"  width="30"> </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次号" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次号" width="100"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="fileTypeName" label="数据类型"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="checkStatusName" label="处理过程"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="dataCount" label="数据总量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="successCount" label="校验通过量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="errorCount" label="校验失败量" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createUser" label="操作人" width="150"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="createTime" label="操作时间" width="150"></el-table-column>
+            </el-table>
+            <div class="log-detail-link">
+                <div style="position: relative;top: 200px;">
+                    <el-link type="primary" @click="checkLogDetailFormVisible = true">进入日志详情查看</el-link>
+                </div>
+            </div>
+        </div>
+        <el-pagination
+                background
+                layout="total, sizes, prev, pager, next, jumper"
+                align="center"
+                :page-sizes="[10, 20, 30, 50]"
+                :total="tableTotal"
+                :page-size="tablePageSize"
+                :current-page="tableCurrentPage"
+                @current-change="handleCurrentChange"
+                @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                logForm: {
+                    periodCode: "",
+                    batchCode: "",
+                    uploadStartTime: "",
+                    uploadEndTime: "",
+                    fileName: "",
+                    checkProcess: "",
+                },
+                logFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }],
+                },
+                periods : [],
+                batchs : [],
+                multipleSelection:[],
+                processes: [{
+                    ID: '3',
+                    NAME: '业务校验'
+                    }, {
+                    ID: '5',
+                    NAME: '真实性校验'
+                }],
+
+                //日志详情
+                checkLogDetailFormVisible : false,
+                logDetailForm:{
+                    periodCode: "",
+                    batchCode: "",
+                },
+                logDetailFormRules:{
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }],
+                },
+                periodDetails : [],
+                batchDetails : [],
+
+
+                    
+            };
+        },
+        computed: {
+
+        },
+        components: {
+
+        },
+
+        methods: {
+            handleSelectionChange(val){
+                this.multipleSelection = val;
+            },
+            handleCurrentChange(val){
+                this.tableCurrentPage = val;
+            },
+            handleSizeChange(val){
+                this.tablePageSize = val;
+            },
+            //查询
+            logCheckQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            organCode : this.$store.state.organCode,
+                            sort : 'id',
+                            order: 'desc',
+                            periodCode: this.logForm.periodCode,
+                            batchCode: this.logForm.batchCode,
+                            checkProcess: this.logForm.checkProcess
+                        };
+                        //请求后端
+                        this.$api.CheckLogQuery(req).then(res => {
+                            this.tableTotal = res.data.total;
+                            this.tableData = res.data.rows;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            //导出
+            logExport(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$commsgbox.alert("导出");
+                    }
+                    this.$commsgbox.alert("导出");
+                })
+            },
+
+            //日志祥情查询
+            logDetailCheckQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            organCode : this.$store.state.organCode,
+                            sort : 'id',
+                            order: 'desc',
+                            periodCode: this.logDetailForm.periodCode,
+                            batchCode: this.logDetailForm.batchCode,
+                        };
+                        //请求后端
+                        this.$api.CheckLogDetailQuery(req).then(res => {
+                            this.tableTotal = res.data.total;
+                            this.tableData = res.data.rows;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            logDetailExport(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.$commsgbox.alert("导出");
+                    }
+                    this.$commsgbox.alert("导出");
+                })
+            },
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:this.$store.state.organCode};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periods = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            getPeriodDetailsComBox(){
+                let req ={organCode:this.$store.state.organCode};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periodDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            //批次下拉
+            getBatchComBox(){
+                let req = {period : this.logForm.periodCode,organCode:this.$store.state.organCode};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchs = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            getBatchDetailsComBox(){
+                let req = {period : this.logDetailForm.periodCode,organCode:this.$store.state.organCode};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            //期次下拉改变
+            changePeriod(){
+                this.getBatchComBox();
+                this.logForm.batchCode = '';
+            },
+            changeDetailPeriod(){
+                this.getBatchDetailsComBox();
+                this.logDetailForm.batchCode = '';
+            },
+            focusPeriod(){
+                this.getPeriodComBox();
+            }
+        },
+        mounted(){
+            this.getPeriodComBox();
+            this.getPeriodDetailsComBox();
+        },
+    };
+</script>
+
+<style scoped>
+    .search-wrap {
+        text-align:left;
+        margin-bottom:5px;
+    }
+    .search-wrap .search-options {
+        text-align:center;
+    }
+    .table-wrap {
+        position: relative;
+        width: 100%;
+        text-align: left;
+    }
+    .table-wrap .table-list {
+        width:96%;
+        display:inline-block;
+    }
+    .table-wrap .log-detail-link {
+        width:3%;
+        height:448px;
+        display:inline-block;
+        border:1px solid #EBEEF5;
+        border-left:none;
+        position:absolute;
+        text-align:center;
+    }
+</style>
+

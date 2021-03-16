@@ -1,0 +1,627 @@
+<template>
+    <layout-page-default :focusPageIndex=4>
+        <div class="page-analysis-report">
+            <div class="wrap">
+                <el-row>
+                    <el-col :span="6">
+                        <div class="module">
+                            <div class="title">条件选择</div>
+                            <div class="condition">
+                                <div class="search">
+                                    <el-form :inline="true" :model="analyzeConditionForm" :rules="analyzeConditionFormRules" ref="analyzeConditionForm" size="mini">
+                                        <el-form-item label="期  次" prop="periodCode" :label-width="analyzeConditionFormLabelWidth">
+                                            <el-select v-model="analyzeConditionForm.periodCode" clearable @change="changeConditionPeriod()" @focus="focusConditionPeriod()">
+                                                <el-option
+                                                    v-for="item in conditionPeriods"
+                                                    :key="item.id"
+                                                    :label="item.name"
+                                                    :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                        <el-form-item label="样本名称" prop="sampleCode" :label-width="analyzeConditionFormLabelWidth">
+                                            <el-select v-model="analyzeConditionForm.sampleCode" filterable clearable placeholder="输入或选择">
+                                                <el-option
+                                                    v-for="item in conditionSampleCodes"
+                                                    :key="item.id"
+                                                    :label="item.name"
+                                                    :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                    </el-form>
+                                </div>
+                                <div class="option">
+                                    <el-button type="primary" icon="el-icon-search" size="small" @click="getAnalyseReportCategorys('analyzeConditionForm')">查询</el-button>
+                                    <el-link @click="jumpSampleAnalyse()" class="link">返回样本分析</el-link>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="module" style="margin-top:10px;">
+                            <div class="title">生成进度</div>
+                            <div class="process">
+                                <el-row>
+                                    <el-col :span="12">
+                                        <div style="margin:3px;"> 
+                                            <el-progress type="dashboard" :percentage="percentages.sysClass20200813142847635858853" :color="colors"></el-progress>
+                                            <div>贷款基础数据分析</div>
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <div style="margin:3px;"> 
+                                            <el-progress type="dashboard" :percentage="percentages.sysClass20200813142915231453262" :color="colors"></el-progress>
+                                            <div>动态池分析</div>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                                <el-row>
+                                    <el-col :span="12">
+                                        <div style="margin:3px;"> 
+                                            <el-progress type="dashboard" :percentage="percentages.sysClass20200813142925682455156" :color="colors"></el-progress>
+                                            <div>静态池分析</div>
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="12">
+                                        <div style="margin:3px;"> 
+                                            <el-progress type="dashboard" :percentage="percentages.sysClass20200813142936127354645" :color="colors"></el-progress>
+                                            <div>坏客户分析</div>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="6">
+                        <div class="module">
+                            <div class="title">选择报告模板</div>
+                            <div class="template">
+                                <div class="collapse">
+                                    <el-scrollbar style="height:100%">
+                                        <el-collapse v-model="activeCategorys">
+                                            <el-collapse-item v-for="category in categoryDatas" :name="category.id" :key="category.id">
+                                                <template slot="title">
+                                                    <span style="margin-right:10px;">{{category.label}}</span><el-checkbox @change="handleCheckAllChange($event, category.id)">全选</el-checkbox>
+                                                </template>
+                                                <div class="category">
+                                                    <el-checkbox-group v-model="checkedSubCategorysLabels[category.id]">
+                                                        <el-checkbox v-for="sub in category.children" :key="sub.id" :label="sub.label" :title="sub.label" :disabled="sub.disabled" border @change="handleCheckChange($event, category.id, sub.id, sub.label, sub.disabled)"></el-checkbox>
+                                                    </el-checkbox-group>
+                                                </div>
+                                            </el-collapse-item>
+                                        </el-collapse>
+                                    </el-scrollbar>
+                                </div>
+                                <div style="text-align:left;">
+                                    <el-button type="primary" icon="el-icon-circle-plus-outline" size="mini" @click="openCollapse()" class="shrink" v-if="showCollapseOpenBtn">一键展开</el-button>
+                                    <el-button type="primary" icon="el-icon-remove-outline" size="mini" @click="closeCollapse()" class="shrink" v-if="!showCollapseOpenBtn">一键收起</el-button>
+                                    <el-button type="primary" size="mini" style="float:right;" @click="doAnalyseReport()">发起分析报告</el-button>
+                                </div>
+                            </div>
+                        </div>
+                    </el-col>
+                    <el-col :span="12">
+                        <div class="module">
+                            <div class="title">分析报告结果列表</div>
+                            <div class="result">
+                                <div class="search">
+                                    <el-form :inline="true" :model="analyzeResultForm" size="mini">
+                                        <el-form-item label="期  次" :label-width="resultLabelWidth">
+                                            <el-select v-model="analyzeResultForm.periodCode" clearable @change="changeResultPeriod()" @focus="focusResultPeriod()">
+                                                <el-option
+                                                    v-for="item in resultPeriods"
+                                                    :key="item.id"
+                                                    :label="item.name"
+                                                    :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                        <el-form-item label="样本名称" :label-width="resultLabelWidth" style="margin-left:20px;">
+                                            <el-select v-model="analyzeResultForm.sampleCode" filterable clearable placeholder="输入或选择">
+                                                <el-option
+                                                    v-for="item in resultSampleCodes"
+                                                    :key="item.id"
+                                                    :label="item.name"
+                                                    :value="item.id">
+                                                </el-option>
+                                            </el-select>
+                                        </el-form-item>
+                                        <el-form-item label="报告名称" :label-width="resultLabelWidth">
+                                            <el-input v-model="analyzeResultForm.sampleReportName" autocomplete="off"></el-input>
+                                        </el-form-item>
+                                        <div class="option">
+                                            <el-button type="primary" icon="el-icon-search" size="small" @click="doAnalyseReportResultQuery()">查询</el-button>
+                                            <el-button type="primary" icon="el-icon-download" size="small" @click="exportAnalyzeReport()" class="export">导出</el-button>
+                                        </div>
+                                    </el-form>
+                                </div>
+                                <el-table :data="tableData" border size="mini" height="450" @selection-change="MultiSelectionChange" class="list">
+                                    <el-table-column type="selection" :selectable='canDownload' width="40"></el-table-column>
+                                    <el-table-column show-overflow-tooltip prop="sampleName" align="center" width = "200" label="样本名称"></el-table-column>
+                                    <el-table-column show-overflow-tooltip prop="sampleReportName" align="center" width = "225" label="报告名称"></el-table-column>
+                                    <el-table-column show-overflow-tooltip align="center" label="操作" width="90">
+                                        <template slot-scope="scope">
+                                            <el-button size="mini" type="primary" class="el-icon-view" v-if="scope.row.reportStatus === '5'" @click="preview(scope.row)">预览</el-button>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column show-overflow-tooltip prop="reportStatus" align="center" width = "100" label="生成状态">
+                                        <template slot-scope="scope">
+                                            <span v-if="scope.row.reportStatus === '1'" style="color: #9A9FFF">生成中</span>
+                                            <span v-if="scope.row.reportStatus === '2'" style="color: red">数据生成失败</span>
+                                            <span v-if="scope.row.reportStatus === '3'" style="color: #9BC454">数据生成成功</span>
+                                            <span v-if="scope.row.reportStatus === '4'" style="color: red">报表生成失败</span>
+                                            <span v-if="scope.row.reportStatus === '5'" style="color: #9BC454">报表生成成功</span>
+                                        </template>
+                                    </el-table-column>
+                                    <el-table-column show-overflow-tooltip prop="remarks" align="center" width = "300" label="错误描述"></el-table-column>
+                                </el-table>
+                                <el-pagination
+                                    background
+                                    layout="total, sizes, prev, pager, next, jumper"
+                                    align="center"
+                                    :page-sizes="[10, 20, 30, 50]"
+                                    :total="tableTotal"
+                                    :page-size="tablePageSize"
+                                    :current-page="tableCurrentPage"
+                                    :pager-count=5
+                                    @current-change="handleCurrentChange"
+                                    @size-change="handleSizeChange"
+                                ></el-pagination>
+                            </div>
+                        </div>
+                    </el-col>
+                </el-row>
+
+                <el-dialog :title="sampleReportNamePreview" :visible.sync="analyzeResultPreview" :close-on-click-modal="false" :append-to-body="true" width="70%">
+                    <el-scrollbar style="height:100%;">
+                        <div style="height:500px;" v-html="htmlPreview"></div>
+                    </el-scrollbar>
+                </el-dialog>
+            </div>
+        </div>
+    </layout-page-default>
+</template>
+
+<script>
+import qs from 'qs';
+import LayoutPageDefault from "layout/LayoutPageDefault.vue";
+
+export default {
+    components: {
+        LayoutPageDefault
+    },
+    data() {
+        return {
+            //分析条件
+            analyzeConditionForm: {
+                periodCode: "",
+                sampleCode: "",
+            },
+            analyzeConditionFormRules: {
+                periodCode: [
+                    { required: true, message: '请选择期次号', trigger: 'change' }
+                ],
+                sampleCode: [
+                    { required: true, message: '请输入或选择样本名称', trigger: 'change' }
+                ]
+            },
+            analyzeConditionFormLabelWidth: '80px',
+            conditionPeriods:[],
+            conditionSampleCodes:[],
+            //报告生成进度统计
+            percentages: {
+                sysClass20200813142847635858853 : 0,
+                sysClass20200813142915231453262 : 0,
+                sysClass20200813142925682455156 : 0,
+                sysClass20200813142936127354645 : 0,
+            },
+            colors: [
+                {color: '#f56c6c', percentage: 20},
+                {color: '#e6a23c', percentage: 40},
+                {color: '#5cb87a', percentage: 60},
+                {color: '#1989fa', percentage: 80},
+                {color: '#6f7ad3', percentage: 100}
+            ],
+            //分类
+            activeCategorys: [],
+            activeCategorysBackUp: [],
+            categoryDatas: [],
+            showCollapseOpenBtn: false,
+
+            checkedSubCategorysCollects:{}, //统一控制选择的分类，其他选择的数据通过这个变量来获取
+            checkedSubCategorysLabels:{},
+            //分析结果
+            resultLabelWidth: '70px',
+            analyzeResultForm: {
+                periodCode: "",
+                sampleCode: "",
+                sampleReportName: ""
+            },
+            resultPeriods:[],
+            resultSampleCodes:[],
+
+            tableData: [],
+            tableTotal: 0,
+            tablePageSize: 10,
+            tableCurrentPage: 1,
+            multipleSelection :[],
+
+            analyzeResultPreview: false,
+            sampleReportNamePreview: '',
+            htmlPreview:'',
+        };
+    },  
+    methods: {
+        focusConditionPeriod(){
+            this.analyzeConditionForm.periodCode = '';
+            let req ={organCode:sessionStorage.getItem('organCode')};
+            this.$api.PeriodComboBox(req).then(res => {
+                this.conditionPeriods = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        changeConditionPeriod(){
+            this.analyzeConditionForm.sampleCode = '';
+            let req = {periodCode : this.analyzeConditionForm.periodCode, organCode:sessionStorage.getItem('organCode')};
+            this.$api.SampleNameComboBox(req).then(res => {
+                this.conditionSampleCodes = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        getAnalyseReportCategorys(formName){
+            if(!sessionStorage.getItem('organCode')){
+                this.$commsgbox.alert("请选择操作机构");
+                return false;
+            }
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    let req = {
+                        organCode : sessionStorage.getItem('organCode'),
+                        periodCode: this.analyzeConditionForm.periodCode,
+                        sampleCode: this.analyzeConditionForm.sampleCode,
+                    };
+                    this.$api.AnalyseReportCategorys(req).then(res => {
+                        this.percentages = res.data.percentages;
+                        this.categoryDatas = res.data.categoryData;
+                        this.activeCategorys = [];
+                        for(let index in this.categoryDatas){
+                            this.activeCategorys.push(this.categoryDatas[index].id);
+                            let choosed = 0;
+                            let total = 0;
+                            for(let cindex in this.categoryDatas[index].children){
+                                total++;
+                                if(this.categoryDatas[index].children[cindex].disabled){
+                                    choosed++;
+                                }
+                            }
+                            this.categoryDatas[index].label = this.categoryDatas[index].label + " ("+choosed+"/"+total+")";
+
+                            this.checkedSubCategorysCollects[this.categoryDatas[index].id] = [];
+                        }
+                        this.activeCategorysBackUp = this.activeCategorys;
+                        this.checkedSubCategorysLabels = this.getCheckedSubCategoryLable();
+                        this.showCollapseOpenBtn = false;
+                    }).catch(err => {
+                        this.$commsgbox.alert(err);
+                    });
+                }
+            });
+        },
+        handleCheckAllChange(checked, categoryId){
+            let itemCategoryCollects = [];
+            if(checked  == true){
+                for(let index in this.categoryDatas){
+                    if(this.categoryDatas[index].id === categoryId){
+                        for(let cindex in this.categoryDatas[index].children){
+                            if(!this.categoryDatas[index].children[cindex].disabled){
+                                itemCategoryCollects.push({id:this.categoryDatas[index].children[cindex].id, name:this.categoryDatas[index].children[cindex].label});
+                            }
+                        }
+                        break;
+                    }
+                }
+            }else{
+                //全不选，就是默认[],清除
+            }
+            this.checkedSubCategorysCollects[categoryId] = itemCategoryCollects;
+            this.checkedSubCategorysLabels = this.getCheckedSubCategoryLable();
+        },
+        handleCheckChange(checked, categoryId, subId, subLabel, disabled) {
+            if(!disabled){
+                if(checked){
+                    this.checkedSubCategorysCollects[categoryId].push({id:subId, name:subLabel});
+                }else{
+                    this.deleteSubCategoryById(categoryId, subId);
+                }
+                this.checkedSubCategorysLabels = this.getCheckedSubCategoryLable();
+            }
+        },
+        deleteSubCategoryById(categoryId, subId){
+            for(let index in this.checkedSubCategorysCollects){
+                if(index === categoryId){
+                    for(let cindex in this.checkedSubCategorysCollects[index]){
+                        if(this.checkedSubCategorysCollects[index][cindex].id === subId){
+                            this.checkedSubCategorysCollects[index].splice(cindex, 1);
+                        }
+                    }
+                }
+            }
+        },
+        getCheckedSubCategoryId(){
+            var subCategoryIds = [];
+            for(var categoryId in this.checkedSubCategorysCollects){
+                for(let index in this.checkedSubCategorysCollects[categoryId]){
+                    let subId = this.checkedSubCategorysCollects[categoryId][index].id;
+                    if(subCategoryIds.indexOf(subId) === -1){
+                        subCategoryIds.push(subId);
+                    }
+                }
+            }
+            return subCategoryIds;
+        },
+        getCheckedSubCategoryLable(){
+            var subCategoryLabels = {};
+            for(var categoryId in this.checkedSubCategorysCollects){
+                subCategoryLabels[categoryId] = [];
+                for(let index in this.checkedSubCategorysCollects[categoryId]){
+                    subCategoryLabels[categoryId].push(this.checkedSubCategorysCollects[categoryId][index].name);
+                }
+            }
+            return subCategoryLabels;
+        },
+        openCollapse(){
+            this.activeCategorys = this.activeCategorysBackUp;
+            this.showCollapseOpenBtn = false;
+        },
+        closeCollapse(){
+            this.activeCategorys = [];
+            this.showCollapseOpenBtn = true;
+        },
+        //提交样本分析
+        doAnalyseReport(){
+            if(!sessionStorage.getItem('organCode')){
+                this.$commsgbox.alert("请选择操作机构");
+                return false;
+            }
+            let categorySelectedData = this.getCheckedSubCategoryId();
+            if(categorySelectedData.length == 0){
+                this.$commsgbox.alert("请选择要分析的报表模板");
+                return false;
+            }
+            let req = {
+                organCode : sessionStorage.getItem('organCode'),
+                periodCode : this.analyzeConditionForm.periodCode,
+                sampleCode : this.analyzeConditionForm.sampleCode,
+                sysFormCodeList : categorySelectedData
+            };
+            this.$api.DoAnalyseReport(req).then(res => {
+                this.getAnalyseReportCategorys('analyzeConditionForm');
+                if(!this.analyzeResultForm.periodCode){
+                    this.analyzeResultForm.periodCode = this.analyzeConditionForm.periodCode;
+                }
+                if(!this.analyzeResultForm.sampleCode){
+                    this.resultSampleCodes = this.conditionSampleCodes;
+                    this.analyzeResultForm.sampleCode = this.analyzeConditionForm.sampleCode;
+                }
+                this.doAnalyseReportResultQuery();
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        //样本结果分析
+        focusResultPeriod(){
+            this.analyzeResultForm.periodCode = '';
+            let req ={organCode:sessionStorage.getItem('organCode')};
+            this.$api.PeriodComboBox(req).then(res => {
+                this.resultPeriods = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        changeResultPeriod(){
+            this.analyzeResultForm.sampleCode = '';
+            let req = {periodCode : this.analyzeResultForm.periodCode, organCode:sessionStorage.getItem('organCode')};
+            this.$api.SampleNameComboBox(req).then(res => {
+                this.resultSampleCodes = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        handleCurrentChange(val){
+            this.tableCurrentPage = val;
+            this.analyzeReportResultQuery();
+        },
+        handleSizeChange(val){
+            this.tablePageSize = val;
+            this.analyzeReportResultQuery();
+        },
+        doAnalyseReportResultQuery(){
+            this.tableCurrentPage = 1;
+            this.analyzeReportResultQuery();
+        },
+        //查询
+        analyzeReportResultQuery(){
+            if(!sessionStorage.getItem('organCode')){
+                this.$commsgbox.alert("请选择操作机构");
+                return false;
+            }
+            let req = {
+                nowpage: this.tableCurrentPage,
+                pagesize: this.tablePageSize,
+                sort : 'id',
+                order: 'desc',
+                organCode : sessionStorage.getItem('organCode'),
+                periodCode: this.analyzeResultForm.periodCode,
+                sampleCode: this.analyzeResultForm.sampleCode,
+                sampleReportName: this.analyzeResultForm.sampleReportName,
+            };
+            //请求后端
+            this.$api.AnalyzeReportResultQuery(req).then(res => {
+                this.tableTotal = res.data.total;
+                this.tableData = res.data.rows;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        preview(row){
+          if(!sessionStorage.getItem('organCode')){
+                this.$commsgbox.alert("请选择操作机构");
+                return false;
+            }
+            let req = {
+                sampleReportCode: row.sampleReportCode,
+            };
+            //请求后端
+            this.$api.AnalyzeReportPreview(req).then(res => {
+                this.htmlPreview = res.data.html;
+                this.sampleReportNamePreview = res.data.reportName;
+                this.analyzeResultPreview = true;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        exportAnalyzeReport(){
+            if(this.multipleSelection.length == 0){
+                this.$commsgbox.alert("请选择要导出的列表项.");
+                return false;
+            }
+            let sampleReportCodes = [];
+            for(let index in this.multipleSelection) {
+                sampleReportCodes.push(this.multipleSelection[index].sampleReportCode);
+            }
+            let req = {sampleReportCodes : sampleReportCodes.toString()};
+            window.location.href = '/api/sampleReport/download' + '?' + qs.stringify(req);
+        },
+        MultiSelectionChange(val){
+            this.multipleSelection = val;
+        },
+        canDownload(row){
+            if(row.reportStatus == '5'){
+                return true;
+            }else{
+                return false;
+            }
+        },
+        jumpSampleAnalyse(){
+            this.$router.push({
+                name: 'sampleAnalysis',
+                params: {
+                    periodCode: this.analyzeConditionForm.periodCode,
+                    sampleCode: this.analyzeConditionForm.sampleCode
+                }
+            });
+        },
+    },
+    created() {
+    },
+    mounted() {
+    }
+};
+</script>
+
+<style scoped>
+.page-analysis-report .wrap {
+    margin:20px;
+}
+.page-analysis-report .wrap .module {
+    margin: 0px 10px;
+}
+.page-analysis-report .wrap .module .title{
+    height: 40px;
+    line-height: 40px;
+    text-align: center !important;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    padding: 10px;
+}
+.page-analysis-report .wrap .module .condition {
+    padding: 20px;
+}
+.page-analysis-report .wrap .module .condition .option{
+    text-align: left;
+}
+.page-analysis-report .wrap .module .condition .option .link{
+    color:#409EFF;
+    padding:9px 4px;
+    float:right;
+    margin-left:20px;
+    font-size:14px;
+}
+.page-analysis-report .wrap .module .template .collapse {
+    width:100%;
+    margin: 20px 0px;
+    height:526px;
+}
+.page-analysis-report .wrap .module .template .collapse .category{
+    text-align: left;
+    width:100%;
+}
+.page-analysis-report .wrap .module .template .collapse .category .el-checkbox{
+    width:95%;
+    margin:5px 10px 0px 10px;
+}
+.page-analysis-report .wrap .module .template .shrink{
+    background-color: #fff;
+    color: #555;
+    border:none;
+}
+.page-analysis-report .wrap .module .result {
+    padding: 20px;
+}
+.page-analysis-report .wrap .module .result .search{
+    text-align: left;
+}
+.page-analysis-report .wrap .module .result .search .option{
+    float: right;
+}
+.page-analysis-report .wrap .module .result .search .option .export{
+    background-color: #fff;
+    color: #555;
+    margin-left:30px;
+}
+</style>
+<style lang="scss">
+.page-analysis-report .wrap .module .condition .search .el-form-item__label{
+    text-align: left;
+}
+.page-analysis-report .wrap .module .template .collapse .category .el-checkbox__input{
+    margin-top: -10px;
+}
+.page-analysis-report .wrap .module .result .search .el-form-item__label{
+    text-align: center;
+}
+.page-analysis-report .wrap .module .condition .search .el-input,
+.page-analysis-report .wrap .module .condition .search .el-select,
+.page-analysis-report .wrap .module .result .search .el-input,
+.page-analysis-report .wrap .module .result .search .el-select {
+    width: 180px;
+}
+.page-analysis-report .collapse .el-scrollbar .el-scrollbar__wrap {overflow-x: hidden;}
+.page-analysis-report .wrap .module .result .list .el-button--mini{
+    padding: 3px 5px;
+    background-color: #fff;
+    color: #555;
+    border-color:#5555552e;
+}
+.el-checkbox__input.is-disabled .el-checkbox__inner::after {
+    transform: rotate(45deg) scaleY(1);
+}
+.page-analysis-report .wrap .module .template .collapse .category .el-checkbox__label{
+    width:96%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media only screen and (max-width: 1400px) {
+    .page-analysis-report .wrap .module .condition .search .el-input,
+    .page-analysis-report .wrap .module .condition .search .el-select{
+        width: 140px;   
+    }
+    .page-analysis-report .wrap .module .result .el-pagination__jump{
+        display: none;
+    }
+}
+</style>

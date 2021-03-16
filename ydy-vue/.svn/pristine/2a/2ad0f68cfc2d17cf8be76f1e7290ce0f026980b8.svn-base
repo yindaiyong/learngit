@@ -1,0 +1,423 @@
+<template>
+    <layout-page-list title="我的报表">
+        <div class="options">
+            <el-button type="primary" size="medium" @click="showMyReportClassDialog()">自定义大类</el-button>
+            <el-button type="primary" size="medium" @click="showMyReportFormDialog()">自定义报表</el-button>
+            <el-button size="mini" style="float:right;" @click="showRoleReportDialog()">查看角色报表</el-button>
+        </div>
+
+        <el-table
+            :data="tableData"
+            border
+            height="460"
+            size="mini"
+            style="width: 100%">
+                <el-table-column show-overflow-tooltip align="center" prop="className" label="用户报表大类" width="180"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="formName" label="报表名称"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="状态" width="160">
+                    <template slot-scope="scope">
+                        {{ scope.row.status | statusNameFormat }}
+                    </template>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="操作" width="220">
+                    <template slot-scope="scope">
+                        <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleUseStatus(scope.$index, scope.row)">启停</el-button>
+                        <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+        </el-table>
+
+        <el-pagination
+            background
+            layout="total, sizes, prev, pager, next, jumper"
+            :page-sizes="[10, 20, 30, 50]"
+            :total="tableTotal"
+            :page-size="tablePageSize"
+            :current-page="tableCurrentPage"
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+        >
+        </el-pagination>
+
+        <el-dialog title="角色报表信息" :visible.sync="roleReportDialogVisible" :close-on-click-modal="false" :append-to-body="true" style="height:1000px">
+            <el-table :data="roleReportTableDatas" border height="410" size="mini" style="width: 100%">
+                <el-table-column show-overflow-tooltip align="center" prop="classPowerName" label="角色报表大类" width="180"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="formPowerName" label="报表名称"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="状态" width="160">
+                    <template slot-scope="scope">
+                        {{ scope.row.status | statusNameFormat }}
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <el-pagination
+                background
+                layout="total, sizes, prev, pager, next, jumper"
+                :page-sizes="[10, 20, 30, 50]"
+                :total="roleReportTableTotal"
+                :page-size="roleReportTablePageSize"
+                :current-page="roleReportTableCurrentPage"
+                @current-change="roleReportHandleCurrentChange"
+                @size-change="roleReportHandleSizeChange"
+            >
+            </el-pagination>
+        </el-dialog>
+
+        <el-dialog title="自定义大类" :visible.sync="myReportClassDialogVisible" :close-on-click-modal="false" :append-to-body="true">
+            <el-table :data="myReportClassDatas" border height="260" size="mini" style="width: 100%">
+                <el-table-column show-overflow-tooltip align="center" prop="myClassName" label="报表大类名称"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" prop="classType" label="报表类型" width="160"></el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="报表大类状态" width="160">
+                    <template slot-scope="scope">{{ scope.row.status | statusNameFormat }}</template>
+                </el-table-column>
+                <el-table-column show-overflow-tooltip align="center" label="操作" width="150">
+                    <template slot-scope="scope">
+                        <el-button
+                        size="mini"
+                        type="primary"
+                        @click="handleDeleteReportClass(scope.$index, scope.row)">删除</el-button>
+                    </template>
+                </el-table-column>
+            </el-table>
+
+            <div class="add-my-report-class-form">
+                <el-form :model="addMyReportClassForm" :rules="addMyReportClassRules" ref="addMyReportClassForm">
+                    <el-form-item label="报表大类名称" :label-width="formLabelWidth" prop="myClassName">
+                        <el-input v-model="addMyReportClassForm.myClassName" autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="报表类型" :label-width="formLabelWidth" prop="classType">
+                        <el-select v-model="addMyReportClassForm.classType" placeholder="请选择报表类型" style="display:block;">
+                                <el-option
+                                v-for="item in classTypes"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id"
+                                ></el-option>
+                            </el-select>
+                    </el-form-item>
+                </el-form>
+                <div slot="footer" class="dialog-footer">
+                <el-button size="mini" @click="resetAddMyReportClassForm('addMyReportClassForm')">重 置</el-button>
+                <el-button size="mini" type="primary" @click="submitAddMyReportClassForm('addMyReportClassForm')">新增自定义大类</el-button>
+            </div>
+            </div>
+        </el-dialog>
+
+        <el-dialog title="自定义报表" :visible.sync="myReportFormDialogVisible" :close-on-click-modal="false" :append-to-body="true" width="68%">
+            <div>
+                <label style="padding-right:12px;">报表大类</label>
+                <el-select size="mini" v-model="searchMyReportClassCode" placeholder="请选择报表大类" @change="changeMyReportClass">
+                    <el-option
+                        v-for="item in myReportClasss"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id"
+                    ></el-option>
+                </el-select>
+            </div>
+            
+            <div class="add-my-report-sub-form">
+                <el-transfer
+                    :titles="['子类报表', '当前选择报表']"
+                    v-model="selectedReportForms"
+                    :data="unselectedReportForms"
+                    :render-content="renderMyReportForm"
+                    class="subcate-transfer"
+                >
+                    <el-button class="transfer-footer" slot="left-footer" size="small" @click="resetAddMyReportSubForm()">重置</el-button>
+                    <el-button type="primary" class="transfer-footer" slot="right-footer" size="small" @click="submitAddMyReportSubForm()">添加自定义报表</el-button>
+                </el-transfer>
+            </div>
+        </el-dialog>
+        
+    </layout-page-list>
+</template>
+
+<script>
+import LayoutPageList from "layout/LayoutPageList.vue";
+export default {
+    components: {
+        LayoutPageList
+    },
+    data() {
+        return {
+            //user table lists
+            tableData: [],
+            tableTotal : 0,
+            tablePageSize: 10,
+            tableCurrentPage: 1,
+            //role report static datas
+            roleReportTableDatas: [],
+            roleReportTableTotal : 0,
+            roleReportTablePageSize: 10,
+            roleReportTableCurrentPage: 1,
+            roleReportDialogVisible: false,
+            //custom class
+            myReportClassDialogVisible :false,
+            myReportClassDatas: [],
+            classTypes: [],
+            addMyReportClassForm: {
+                myClassName: '',
+                classType: ''
+            },
+            formLabelWidth: '120px',
+            addMyReportClassRules: {
+                myClassName: [
+                    { required: true, message: '请输入报表大类名称', trigger: 'blur' },
+                    { min: 1, max: 64, message: '长度在 6 到 32 个字符', trigger: 'blur' }
+                ],
+                classType: [
+                    { required: true, message: '请选择报表类型', trigger: 'blur' }
+                ]
+            },
+            //custom form
+            searchMyReportClassCode: '',
+            myReportClasss: [],
+            myReportFormDialogVisible: false,
+            unselectedReportForms: [],
+            unselectedReportFormsBackup: [],
+            selectedReportForms: [],
+        }
+    },
+    methods: {
+        //my report list
+        getMyReportLists() {
+            let req = {
+                nowpage: this.tableCurrentPage,
+                pagesize: this.tablePageSize,
+                sort : 'id',
+                order: 'desc'
+            };
+
+            this.$api.MyReportQuery(req).then(res => {
+                this.tableTotal = res.data.total;
+                this.tableData = res.data.rows;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        handleCurrentChange(val) {
+            this.tableCurrentPage = val;
+            this.getMyReportLists();
+        },
+        handleSizeChange(val) {
+            this.tablePageSize = val;
+            this.getMyReportLists();
+        },
+        handleUseStatus(index, row) {
+            this.$commsgbox.confirm().then(() => {
+                let nowStatus = row.status;
+                if(nowStatus == 0){
+                    nowStatus = 1;
+                }else{
+                    nowStatus = 0;
+                }
+                let req = {"sysFormCode":row.sysFormCode, "status":nowStatus};
+                this.$api.MyReportUpStatus(req).then(() => {
+                    this.getMyReportLists()
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            }).catch(() => {
+
+            });
+        },
+        handleDelete(index, row) {
+            this.$commsgbox.confirm('此操作将删除该数据, 是否继续?').then(() => {
+                let req = {"myClassCode":row.myClassCode, "sysFormCode":row.sysFormCode};
+                this.$api.MyReportDel(req).then(() => {
+                    this.getMyReportLists();
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            }).catch(() => {
+
+            });
+        },
+        // role dialog
+        getAuthRoleReportLists() {
+            let req = {
+                nowpage: this.roleReportTableCurrentPage,
+                pagesize: this.roleReportTablePageSize,
+                sort : 'id',
+                order: 'desc'
+            };
+
+            this.$api.AuthReportQuery(req).then(res => {
+                this.roleReportTableTotal = res.data.total;
+                this.roleReportTableDatas = res.data.rows;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        showRoleReportDialog() {
+            this.roleReportTableCurrentPage = 1;
+            this.getAuthRoleReportLists();
+            this.roleReportDialogVisible = true;
+        },
+        roleReportHandleCurrentChange(val) {
+            this.roleReportTableCurrentPage = val;
+            this.getAuthRoleReportLists();
+        },
+        roleReportHandleSizeChange(val) {
+            this.roleReportTablePageSize = val;
+            this.getAuthRoleReportLists();
+        },
+        // 自定义大类
+        showMyReportClassDialog() {
+            let req = {
+                sort : 'id',
+                order: 'desc',
+                pagemode: 'all'
+            };
+            this.$api.MyReportClassQuery(req).then(res => {
+                this.myReportClassDatas = res.data.rows;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+            
+            this.$api.MyReportClassTypeComboBox({}).then(res => {
+                this.classTypes = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+            this.myReportClassDialogVisible = true;
+            this.resetAddMyReportClassForm('addMyReportClassForm');
+        },
+        submitAddMyReportClassForm(formName) {
+            this.$refs[formName].validate((valid) => {
+                if (valid) {
+                    this.$api.MyReportAddClass(this.addMyReportClassForm).then(() => {
+                        this.showMyReportClassDialog();
+                    }).catch((err) => {
+                        this.$commsgbox.alert(err);
+                    });
+                } else {
+                    return false;
+                }
+            });
+        },
+        resetAddMyReportClassForm(formName) {
+            this.$refs[formName].resetFields();
+        },
+        handleDeleteReportClass(index, row) {
+            this.$commsgbox.confirm('此操作将删除该数据, 是否继续?').then(() => {
+                let req = {"myClassCode":row.myClassCode};
+                this.$api.MyReportDelClass(req).then(() => {
+                    this.getMyReportLists();
+                    this.showMyReportClassDialog();
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            }).catch(() => {
+
+            });
+        },
+        //自定义小类
+        showMyReportFormDialog() {
+            this.$api.MyReportClassComboBox({}).then(res => {
+                this.myReportClasss = res.data;
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+            
+            this.myReportFormDialogVisible = true;
+        },
+        changeMyReportClass() {
+            if(this.searchMyReportClassCode == ''){
+                this.$commsgbox.alert("请选择报表大类.");
+                return false;
+            }
+            let req = {
+                myClassCode: this.searchMyReportClassCode,
+            };
+            this.$api.MyReportFormComboBox(req).then(res => {
+                let resdata = res.data;
+                const responsedata = [];
+                resdata.forEach((obj) => {
+                    responsedata.push({
+                        label: obj.name,
+                        key: obj.id
+                    });
+                });
+                this.unselectedReportForms = responsedata;
+                this.unselectedReportFormsBackup = this.unselectedReportForms;
+                this.resetAddMyReportSubForm();
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        resetAddMyReportSubForm() {
+            this.unselectedReportForms = this.unselectedReportFormsBackup;
+            this.selectedReportForms = []
+        },
+        submitAddMyReportSubForm() {
+            if(this.searchMyReportClassCode == ''){
+                this.$commsgbox.alert("请选择报表大类.");
+                return false;
+            }
+            let req = {
+                myClassCode: this.searchMyReportClassCode,
+                formCodeList: this.selectedReportForms
+            };
+            this.$api.MyReportAddForm(req).then(() => {
+                this.myReportFormDialogVisible = false;
+                this.tableCurrentPage = 1;
+                this.getMyReportLists();
+            }).catch(err => {
+                this.$commsgbox.alert(err);
+            });
+        },
+        renderMyReportForm(h, option) {
+            return <span title={ option.label }>{ option.label }</span>;
+        }
+    },
+    created() {
+        this.getMyReportLists();
+    },
+    filters: {
+        statusNameFormat: function(statusVal){
+            let statusName = statusVal;
+            if(statusVal == 0) { statusName = '停用' }
+            else if(statusVal == 1) { statusName = '启用' }
+            return statusName;
+        }
+    }
+}
+</script>
+
+<!-- scoped对原始标签限制作用域在当前页面，对于外部引用的元素插件无效 -->
+<style lang="scss" scoped>
+.options {
+    text-align:left;
+    margin-bottom:5px;
+}
+.el-table {
+    padding : 5px 20px;
+}
+.add-my-report-class-form {
+    margin:20px 0px;
+    padding:15px;
+    border:1px solid #eee;
+}
+.add-my-report-sub-form {
+    margin:20px 0px;
+    padding:15px;
+    border:1px solid #eee;
+}
+</style>
+
+<style lang="scss">
+.subcate-transfer {
+    .el-transfer-panel {
+        text-align: left;
+        width: 38%;
+    }
+}
+</style>

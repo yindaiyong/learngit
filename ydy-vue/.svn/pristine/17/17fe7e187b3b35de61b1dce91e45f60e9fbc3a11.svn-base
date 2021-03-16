@@ -1,0 +1,277 @@
+<template>
+    <div class="page-statistics">
+        <div class="left-wrap">
+            <div class="title">已入样本集数据统计</div>
+            <div class="search">
+                <el-form size="mini" :model="statisticsForm" :rules="statisticsFormRules" ref="statisticsForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select v-model="statisticsForm.periodCode" style="width:120px;" clearable  @focus="getPeriodComBox()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="statisticsQuery('statisticsForm')" class="search-button">查询统计</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div class="chart" >
+                <div class="chartCanvas" ref="sampleCharts"></div>
+            </div>
+        </div>
+         <div class="right-wrap">
+             <div class="title">数据重复率统计</div>
+             <div class="search">
+                <el-form size="mini" :model="repeatForm" :rules="repeatFormRules" ref="repeatForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select v-model="repeatForm.periodCode" style="width:120px;" clearable  @focus="getPeriodComBox()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="维度" prop="dimension" style="margin-left:20px;">
+                        <el-select v-model="repeatForm.dimension" style="width:120px;" clearable>
+                            <el-option
+                                v-for="item in dimensions"
+                                :key="item.ID"
+                                :label="item.NAME"
+                                :value="item.ID">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="repeatQuery('repeatForm')" class="search-button">查询重复率</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div class="repeat-table">
+                <el-table size="mini" height="420"  border :data="repeatTableData" style="width:90%;margin:0 auto;">
+                    <template v-for="(item) in repeatTableHead">
+                        <el-table-column :prop="item.column_name" :label="item.column_comment" :key="item.column_name" show-overflow-tooltip align="center" min-width="100">
+                        </el-table-column>
+                    </template>
+                </el-table>
+            </div>
+         </div>
+    </div>
+</template>
+
+<script>
+import echarts from 'echarts'
+    export default {
+        data() {
+            return {
+                //统计
+                statisticsForm: {
+                    periodCode: ""
+                },
+                statisticsFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }]
+                },
+                //重复率
+                repeatForm: {
+                    periodCode: "",
+                    dimension: ""
+                },
+                repeatFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }]
+                },
+                dimensions: [{
+                    ID: 'contract',
+                    NAME: '合同号'
+                    }, {
+                    ID: 'customName',
+                    NAME: '姓名'
+                    }, {
+                    ID: 'customId',
+                    NAME: '证件号'
+                    }
+                ],
+                repeatTableHead :[],
+                repeatTableData :[],
+                periods :[],
+            };
+        },
+        components: {
+
+        },
+        methods: {
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:sessionStorage.getItem('organCode')};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periods = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            statisticsQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            organCode :sessionStorage.getItem('organCode'),
+                            periodCode :this.statisticsForm.periodCode
+                        };
+                        this.$api.StatisticsBeforeSample(req).then(res => {
+                            this.showCanvas(res.data.total, res.data.truthTotal);
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            repeatQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            organCode :sessionStorage.getItem('organCode'),
+                            periodCode :this.repeatForm.periodCode,
+                            dimension :this.repeatForm.dimension
+                        };
+                        this.$api.RepetitiveRate(req).then(res => {
+                            this.repeatTableHead = res.data.tableHead;
+                            this.repeatTableData = res.data.tableData;
+                        }).catch(err => {
+                            this.$commsgbox.alert(err);
+                        });
+                    }
+                })
+            },
+            showCanvas(allTotal, truthTotal){
+                var sampleCharts = echarts.init(this.$refs.sampleCharts)
+                let option = {
+                    title: {
+                        text: '已入样本集柱状图'
+                    },
+                    legend: {
+                        data: ['数据总量', '校验通过量']
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '4%',
+                        bottom: '3%',
+                        containLabel: true
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: ['合同表', '客户表', '初始还款计划表', '真实还款计划表', '真实还款交易表']
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        name: '数据总量',
+                        barGap: 0,
+                        data: allTotal,
+                        type: 'bar',
+                        backgroundStyle: {
+                            color: '#b50023'
+                        }
+                    },
+                    {
+                        name: '校验通过量',
+                        data: truthTotal,
+                        type: 'bar',
+                        backgroundStyle: {
+                            color: '#2e3a46'
+                        }
+                    }]
+                };
+                sampleCharts.setOption(option);
+            }
+        },
+        created(){
+            
+        },
+        mounted() {
+        },
+    };
+</script>
+
+<style scoped>
+.page-statistics{
+    width:100%;
+}
+.page-statistics .left-wrap{
+    width: 49%;
+    float: left;
+    height: 600px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+.page-statistics .left-wrap .title{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px 10px;
+}
+.page-statistics .left-wrap .search{
+    text-align: left;
+    padding-left: 10px;
+}
+.page-statistics .left-wrap .search .search-button{
+    margin-left: 100px;
+}
+.page-statistics .left-wrap .chart {
+    text-align: left;
+}
+.page-statistics .left-wrap .chartCanvas {
+    text-align: center;
+    height: 450px;
+    width: 650px;
+}
+.page-statistics .right-wrap{
+    width:49%;
+    float:right;
+    height: 600px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+.page-statistics .right-wrap .title{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: left;
+    padding: 20px 10px;
+}
+.page-statistics .right-wrap .search{
+    text-align: left;
+    padding-left: 10px;
+}
+.page-statistics .right-wrap .search .search-button{
+    margin-left: 100px;
+}
+.page-statistics .right-wrap .repeat-table {
+    text-align:center;
+}
+</style>
+<style>
+.page-statistics .right-wrap .repeat-table .el-table tr {
+    height: 60px;
+}
+.page-statistics .right-wrap .repeat-table .el-table .cell {
+    white-space: pre-line;
+}
+.page-statistics .right-wrap .repeat-table .el-table__body-wrapper {
+    height: 360px !important;
+}
+</style>

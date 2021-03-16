@@ -1,0 +1,268 @@
+<template>
+    <div class="contract-page">
+        <div class="contract-search">
+            <el-form size ="mini" :model="contractInfoForm" :rules="contractInfoFormRules" ref= "contractInfoForm" :inline="true">
+                <el-form-item label="期次" prop="periodCode">
+                    <el-select v-model="contractInfoForm.periodCode" style="width:110px;" clearable @change="changeDetailPeriod()" @focus="focusPeriod()">
+                        <el-option
+                            v-for="item in periodDetails"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item  label="批次" prop="batchCode">
+                    <el-select v-model="contractInfoForm.batchCode" style="width:110px;" clearable >
+                        <el-option
+                                v-for="item in batchDetails"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="合同号" prop="contractCode">
+                    <el-input v-model="contractInfoForm.contractCode" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="还款状态" prop="contractStatus">
+                    <el-select v-model="contractInfoForm.contractStatus" style="width:110px;" clearable >
+                        <el-option
+                                v-for="item in status"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                        </el-option>
+                    </el-select>
+                </el-form-item>
+                <el-form-item label="贷款期限" prop="contractTotalMonth">
+                    <el-input v-model="contractInfoForm.contractTotalMonth" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="产品名称" prop="contractProduct">
+                    <el-input v-model="contractInfoForm.contractProduct" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item label="合同放款日期" prop="contractStartDate">
+                    <el-date-picker
+                            v-model="contractInfoForm.contractStartDate"
+                            type="date"
+                            placeholder="选择日期"
+                            value-format="yyyy-MM-dd"
+                            style="width:170px;"
+                            clearable
+                    ></el-date-picker>
+                </el-form-item>
+                <el-form-item label="合同结束日期" prop="contractEndDate">
+                    <el-date-picker
+                            v-model="contractInfoForm.contractEndDate"
+                            type="date"
+                            placeholder="选择日期"
+                            value-format="yyyy-MM-dd"
+                            style="width:170px;"
+                            clearable
+                    ></el-date-picker>
+                </el-form-item>
+                <el-form-item label="客户编号" prop="customerCode">
+                    <el-input v-model="contractInfoForm.customerCode" style="width:200px;" clearable></el-input>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" icon="el-icon-search" size="mini" @click="doContractInfoQuery()" class="search-btn">查询</el-button>
+                    <el-button type="primary" icon="el-icon-download" size="mini" @click="doContractInfoDownLoad()" class="search-btn">导出</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+        <el-table :data="tableData" border height="500" size="mini" style="width: 150%">
+            <el-table-column show-overflow-tooltip align="center" prop="periodCode" label="期次" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="batchCode" label="批次" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="checkStatus" label="校验状态" width="150">
+                <template slot-scope="scope">
+                    {{ checkStateFormat(scope.row.checkStatus)}}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractCode" label="贷款合同号" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractStatus" label="贷款状态" width="150">
+                <template slot-scope="scope">
+                    {{ scope.row.contractStatus | contractStatusFormat }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractProvince" label="合同归属省" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractCity" label="合同归属市" width="200"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractProduct" label="贷款产品名称" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractStartDate" label="合同放款日期" width="200">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.contractStartDate) }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractEndDate" label="合同结束日期" width="150">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.contractEndDate) }}
+                </template>
+            </el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractTotalPeriod" label="合同总期数" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractTotalMonth" label="合同期限" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="repayType" label="还款方式" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="repaySpeed" label="合同还款频度" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractAmount" label="贷款合同金额" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractMonthRate" label="合同贷款月利率" width="200"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractRemain" label="贷款余额" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="contractRemainTotal" label="贷款剩余本金利息总额" width="200"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="customerCode" label="客户编号" width="150"></el-table-column>
+            <el-table-column show-overflow-tooltip align="center" prop="statisticsEndDate" label="数据统计截止日期" width="200">
+                <template slot-scope="scope">
+                    {{ timeFormat(scope.row.statisticsEndDate) }}
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <el-pagination
+                background
+                layout="total, sizes, prev, pager, next, jumper"
+                :page-sizes="[10, 20, 30, 50]"
+                :total="tableTotal"
+                :page-size="tablePageSize"
+                :current-page="tableCurrentPage"
+                @current-change="handleCurrentChange"
+                @size-change="handleSizeChange"
+        >
+        </el-pagination>
+    </div>
+</template>
+
+<script>
+    import qs from 'qs';
+    export default {
+        components: {
+        },
+        data() {
+            return {
+                //contractInfo table lists
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                contractInfoForm :{
+                    periodCode :"",
+                    batchCode :"",
+                    contractCode:'',
+                    contractStatus:"",
+                    contractTotalMonth:"",
+                    contractProduct :"",
+                    contractStartDate :"",
+                    contractEndDate :"",
+                    customerCode : "",
+                },
+                periodDetails :[],
+                batchDetails :[],
+                //1正常结清 2提前结清 3正常 4逾期结束  5逾期未结束'
+                status :[{id:1,name:"正常结清"},{id:2,name:"提前结清"},{id:3,name:"正常"},{id:4,name:"逾期结束"},{id:5,name:"逾期未结束"}],
+                contractInfoFormRules :{
+
+                },
+            }
+        },
+        methods: {
+            //lists
+            getContractInfo() {
+                let req = {
+                    nowpage: this.tableCurrentPage,
+                    pagesize: this.tablePageSize,
+                    organCode : sessionStorage.getItem('organCode'),
+                    sort : 'id',
+                    order: 'desc'
+                };
+                this.queryContractInfo(req);
+            },
+            queryContractInfo(req){
+                req = Object.assign(req,this.contractInfoForm);
+                this.$api.ContractInfoQuery(req).then(res => {
+                    this.tableTotal = res.data.total;
+                    this.tableData = res.data.rows;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            doContractInfoQuery(){
+                this.tableCurrentPage = 1;
+                if(!sessionStorage.getItem('organCode')){
+                    this.$commsgbox.alert("请选择操作机构");
+                    return false;
+                }
+                this.$refs["contractInfoForm"].validate((valid) => {
+                    if (valid) {
+                        let req = {
+                            nowpage: this.tableCurrentPage,
+                            pagesize: this.tablePageSize,
+                            organCode : sessionStorage.getItem('organCode'),
+                            sort : 'id',
+                            order: 'desc',
+                        };
+                        this.queryContractInfo(req);
+                    }
+                })
+            },
+            handleCurrentChange(val) {
+                this.tableCurrentPage = val;
+                this.getContractInfo();
+            },
+            handleSizeChange(val) {
+                this.tablePageSize = val;
+                this.getContractInfo();
+            },
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:sessionStorage.getItem('organCode')};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periodDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            changeDetailPeriod(){
+                let req = {period : this.contractInfoForm.periodCode,organCode:sessionStorage.getItem('organCode')};
+                this.$api.BatchComboBox(req).then(res => {
+                    this.batchDetails = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+                this.contractInfoForm.batchCode = '';
+            },
+            focusPeriod(){
+                this.getPeriodComBox();
+            },
+            //日期转换
+            timeFormat: function(timeVal){
+                return this.$comfunc.timeFormatToDate(timeVal);
+            },
+            //校验状态转换
+            checkStateFormat : function(statusVal){
+                return this.$comfunc.checkStateFormatToName(statusVal);
+            },
+            //导出
+            doContractInfoDownLoad : function(){
+                let req = Object.assign({organCode : sessionStorage.getItem('organCode')},this.contractInfoForm);
+                window.location.href = '/api/file/contractInfoDownLoad'+ '?' + qs.stringify(req);
+            },
+        },
+        mounted(){
+            this.getPeriodComBox();
+        },
+        created() {
+            this.getContractInfo();
+        },
+        filters: {
+            contractStatusFormat : function (statusVal){
+                //1正常结清\r\n2提前结清\r\n3正常\r\n4逾期结束  \r\n5逾期未结束',
+                let statusName = statusVal;
+                if(statusVal == '1') statusName = '正常结清'
+                else if(statusVal == '2') statusName = '提前结清'
+                else if(statusVal == '3') statusName = '正常'
+                else if(statusVal == '4') statusName = '逾期结束'
+                else if(statusVal == '5') statusName = '逾期未结束';
+                return statusName;
+            }
+        }
+    }
+</script>
+
+<style>
+
+</style>

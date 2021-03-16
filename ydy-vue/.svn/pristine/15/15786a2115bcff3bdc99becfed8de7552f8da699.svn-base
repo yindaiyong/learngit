@@ -1,0 +1,57 @@
+<template>
+  <!-- 主按钮 -->
+  <div style="text-align:left">
+    <el-button-group class="primary-button">
+      <el-button class="my-primary-button" @click="$router.push('/dataImport')" type="normal" plain :autofocus="focusButtonIndex == 1 ? true : false">数据采集</el-button>
+      <div class="vertical-line"></div>
+      <el-button class="my-primary-button" @click="$router.push('/dataSampling')" type="normal" plain :autofocus="focusButtonIndex == 2 ? true : false">数据抽样</el-button>
+      <div class="vertical-line"></div>
+      <el-button class="my-primary-button" @click="$router.push('/dataImport')" type="normal" plain :autofocus="focusButtonIndex == 3 ? true : false">样本分析</el-button>
+      <div class="vertical-line"></div>
+      <el-button class="my-primary-button" @click="$router.push('/dataImport')" type="normal" plain :autofocus="focusButtonIndex == 4 ? true : false">分析报告</el-button>
+    </el-button-group>
+  </div>
+</template>
+<script>
+export default {
+  name: 'PrimaryButtonGroup',
+  props: {
+    focusButtonIndex: Number
+  }
+}
+</script>
+
+<style scoped>
+.primary-button{
+  text-align: left;
+
+  margin: 10px 10px 0px 10px;
+}
+.my-primary-button {
+  height: 50px;
+  width: 200px;
+  color: #4c4948;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  font-size: 20px;
+  border-radius: 0px;
+}
+.my-primary-button:hover {
+  color: white;
+  background-color: rgba(0 ,0 , 0, 0.35);
+  border-color: rgba(0 ,0 , 0, 0);
+}
+.my-primary-button:focus {
+  color: #4c4948;;
+  background-color: rgba(0 ,0 , 0, 0);
+  border-color: rgba(0 ,0 , 0, 0);
+  font-size:26px;
+  font-weight: bold;
+}
+.vertical-line {
+  float:left;
+  width: 2px;
+  height: 50px;
+  background: darkgray;
+}
+</style>

@@ -1,0 +1,70 @@
+<template>
+  <!-- 主按钮 -->
+  <div class="primary-button">
+    <el-row :gutter="0">
+      <el-col :span="4"><div class="grid-content"></div></el-col>
+      <el-col :span="3"><div class="grid-content bg-purple"><el-link href="/dataImport" :underline="false"><el-button class="my-primary-button" type="normal" plain :autofocus="focusButtonIndex == 1 ? true : false">数据采集</el-button></el-link></div></el-col>
+      <div class="vertical-line"></div>
+      <el-col :span="3"><div class="grid-content bg-purple"><el-link href="/dataSampling" :underline="false"><el-button class="my-primary-button" type="normal" plain :autofocus="focusButtonIndex == 2 ? true : false">数据抽样</el-button></el-link></div></el-col>
+      <div class="vertical-line"></div>
+      <el-col :span="3"><div class="grid-content bg-purple"><el-link href="/dataImport" :underline="false"><el-button class="my-primary-button" type="normal" plain :autofocus="focusButtonIndex == 3 ? true : false">样本分析</el-button></el-link></div></el-col>
+      <div class="vertical-line"></div>
+      <el-col :span="3"><div class="grid-content bg-purple"><el-link href="/dataImport" :underline="false"><el-button class="my-primary-button" type="normal" plain :autofocus="focusButtonIndex == 4 ? true : false">分析报告</el-button></el-link></div></el-col>
+      <el-col :span="8"><div class="grid-content"></div></el-col>
+    </el-row>
+  </div>
+</template>
+<script>
+export default {
+  name: 'PrimaryButtonGroup',
+  props: {
+    focusButtonIndex: Number
+  }
+}
+</script>
+
+<style scoped>
+.primary-button{
+  margin-left:10px; 
+  margin-right:10px; 
+  padding-top: 20px;
+}
+.my-primary-button {
+  height: 50px;
+  width: 100%;
+  color: #4c4948;
+  background: rgba(0, 0, 0, 0);
+  border-color: rgba(0, 0, 0, 0);
+  font-size: 20px;
+  border-radius: 0px;
+}
+.my-primary-button:hover {
+  color: white;
+  background-color: rgba(0 ,0 , 0, 0.35);
+  border-color: rgba(0 ,0 , 0, 0);
+}
+.my-primary-button:focus {
+  color: #4c4948;;
+  background-color: rgba(0 ,0 , 0, 0);
+  border-color: rgba(0 ,0 , 0, 0);
+  font-size:26px;
+  font-weight: bold;
+}
+.vertical-line {
+  float:left;
+  width: 2px;
+  height: 50px;
+  background: darkgray;
+}
+</style>
+
+<style>
+.primary-button .el-link{
+  width:100%;
+}
+.primary-button .el-link .el-link--inner{
+  display: inline-block;
+  width:100%;
+}
+
+</style>

@@ -1,0 +1,16 @@
+export default {
+    assignNeed: (orgin = {}, target = {}) => {
+        var matchResults = {};
+        Object.keys(target).forEach(key=>{
+            if(!Object.prototype.hasOwnProperty.call(orgin, key)){
+                console.log('orgin not existed key:'+key);
+            }
+            matchResults[key] = orgin[key];
+        })
+        return matchResults;
+    },
+    //js对象=赋值默认是引用赋值,下面方式是非引用拷贝
+    cloneObjectPros: (obj) => {
+        return JSON.parse(JSON.stringify(obj));
+    }
+}

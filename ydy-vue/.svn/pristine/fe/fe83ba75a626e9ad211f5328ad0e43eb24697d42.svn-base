@@ -1,0 +1,259 @@
+<template>
+<div>
+    <div style="width:49%;float:left;border-right:1px dashed #F00 ;height:480px" >
+            <div class="options">
+                <el-form size="mini" :model="statisticsForm" :rules="statisticsFormRules" ref= "statisticsForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="statisticsForm.periodCode" style="width:110px;" clearable >
+
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item label="批次" prop="batchCode">
+                        <el-select v-model="statisticsForm.batchCode" style="width:110px;" clearable >
+
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="statisticsQuery('logForm')">查询</el-button>
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div style ="float: right"><el-link type="primary" href="/organ" >样本集明细查询</el-link></div>
+            <div class="resultChart" >
+              <span class="title">范围数据统计</span>
+              <div class="chartCanvas" ref="sampleCharts"></div>
+            </div>
+    </div>
+         <div style="width:49%;float:right;height:500px" > 
+             <div class="options">
+                <el-form size="mini" :model="statisticsForm" :rules="statisticsFormRules" ref= "statisticsForm" :inline="true">
+                    <el-form-item label="期次" prop="periodCode">
+                        <el-select  v-model="statisticsForm.periodCode" style="width:110px;" clearable  @focus="focusPeriod()">
+                            <el-option
+                                v-for="item in periods"
+                                :key="item.id"
+                                :label="item.name"
+                                :value="item.id">
+                            </el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-button type="primary" icon="el-icon-search" size="mini" @click="statisticsQuery('statisticsForm')">查询</el-button>
+                    </el-form-item>
+                </el-form>
+                <el-table size="mini" height="450"  border :data="repeatTableData" width ="200">
+                    <template v-for="(item) in repeatTableHead">
+                        <el-table-column :prop="item.column_name" :label="item.column_comment" :key="item.column_name" show-overflow-tooltip align="center" >
+                        </el-table-column>
+                    </template>
+                </el-table>
+            </div>
+         </div>
+</div>
+</template>
+
+<script>
+import echarts from 'echarts'
+    export default {
+        data() {
+            return {
+                tableData: [],
+                tableTotal : 0,
+                tablePageSize: 10,
+                tableCurrentPage: 1,
+                statisticsForm: {
+                    periodCode: "",
+                },
+                statisticsFormRules: {
+                    periodCode :[{
+                        required: true, message: '请选择期次号', trigger: 'blur'
+                    }]
+                },
+                multipleSelection:[],
+
+                //重复率
+                repeatTableHead :[],
+                repeatTableData :[],
+                periods :[],
+
+                
+            };
+        },
+        components: {
+
+        },
+
+        methods: {
+            handleSelectionChange(val){
+                this.multipleSelection = val;
+            },
+            handleCurrentChange(val){
+                this.tableCurrentPage = val;
+            },
+            handleSizeChange(val){
+                this.tablePageSize = val;
+            },
+            //期次下拉
+            getPeriodComBox(){
+                let req ={organCode:sessionStorage.getItem('organCode')};
+                this.$api.PeriodComboBox(req).then(res => {
+                    this.periods = res.data;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+            focusPeriod(){
+                this.getPeriodComBox();
+            },
+            //重复率查询
+            getRepetitiveRate(){
+                let req = {
+                    organCode :sessionStorage.getItem('organCode'),
+                    periodCode :this.statisticsForm.periodCode
+                };
+                this.$api.RepetitiveRate(req).then(res => {
+                    this.repeatTableHead = res.data.tableHead;
+                    this.repeatTableData = res.data.tableData;
+                }).catch(err => {
+                    this.$commsgbox.alert(err);
+                });
+            },
+
+            //查询
+            statisticsQuery(formName){
+                this.$refs[formName].validate((valid) => {
+                    if (valid) {
+                        this.getRepetitiveRate();
+                    }
+                })
+            },
+        },
+        created(){
+            this.getRepetitiveRate();
+        },
+        mounted() {
+            var sampleCharts = echarts.init(this.$refs.sampleCharts)
+            var dataAxis = ['点', '击', '柱', '子', '或', '者', '两', '指', '在', '触', '屏', '上', '滑', '动', '能', '够', '自', '动', '缩', '放'];
+            var data = [220, 182, 191, 234, 290, 330, 310, 123, 442, 321, 90, 149, 210, 122, 133, 334, 198, 123, 125, 220];
+            var yMax = 500;
+            var dataShadow = [];
+
+            for (var i = 0; i < data.length; i++) {
+                dataShadow.push(yMax);
+            }
+
+            var option = {
+                title: {
+                    text: '特性示例：渐变色 阴影 点击缩放',
+                    subtext: 'Feature Sample: Gradient Color, Shadow, Click Zoom'
+                },
+                xAxis: {
+                    data: dataAxis,
+                    axisLabel: {
+                        inside: true,
+                        textStyle: {
+                            color: '#fff'
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLine: {
+                        show: false
+                    },
+                    z: 10
+                },
+                yAxis: {
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        textStyle: {
+                            color: '#999'
+                        }
+                    }
+                },
+                dataZoom: [
+                    {
+                        type: 'inside'
+                    }
+                ],
+                series: [
+                    { // For shadow
+                        type: 'bar',
+                        itemStyle: {
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        barGap: '-100%',
+                        barCategoryGap: '40%',
+                        data: dataShadow,
+                        animation: false
+                    },
+                    {
+                        type: 'bar',
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(
+                                0, 0, 0, 1,
+                                [
+                                    {offset: 0, color: '#83bff6'},
+                                    {offset: 0.5, color: '#188df0'},
+                                    {offset: 1, color: '#188df0'}
+                                ]
+                            )
+                        },
+                        emphasis: {
+                            itemStyle: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2378f7'},
+                                        {offset: 0.7, color: '#2378f7'},
+                                        {offset: 1, color: '#83bff6'}
+                                    ]
+                                )
+                            }
+                        },
+                        data: data
+                    }
+                ]
+            };
+
+            // Enable data zoom when user click bar.
+            var zoomSize = 6;
+            sampleCharts.on('click', function (params) {
+                console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+                sampleCharts.dispatchAction({
+                    type: 'dataZoom',
+                    startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+                    endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+                });
+            });
+            sampleCharts.setOption(option)
+        },
+    };
+</script>
+
+<style scoped>
+    .options {
+        text-align:left;
+        margin-bottom:5px;
+        height: 28px;
+    }
+    .resultChart {
+        text-align: left;
+    }
+    .chartCanvas {
+        text-align: center;
+        height: 240px;
+        width: 100%;
+    }
+    .title {
+        font-size: 18px;
+        font-weight: 400;
+    }
+    
+</style>
+
